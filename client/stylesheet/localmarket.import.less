@@ -1,0 +1,42 @@
+.localmarket {
+  .module {
+    .content {
+      .widen-padding();
+    }
+    .master {
+      .slim-padding();
+      border-top:solid 1px #ddd;
+       display: -webkit-box;
+      -webkit-box-orient: horizontal;
+      -webkit-box-pack: end;
+      -webkit-box-align: center;
+      .btn-box {
+        .margin-right-rem(15px);
+        display: -webkit-box;
+        -webkit-box-flex:1;
+        text-align: center;
+        &:last-child {
+          margin-right: 0;
+        }        
+        >button {
+          font-size: 16px;
+          display: -webkit-box;
+          height: 48px;
+          -webkit-box-flex:1;
+          //width: 100%;
+          -webkit-box-pack: center;
+          -webkit-box-align: center; 
+           text-align: center;
+        }
+      }
+      .btn-default {
+        .bridge();
+        border: 0;
+      }
+      .btn-primary {
+        border: solid 1px @default-black;
+        background-color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+/*列表页*/
+.PostList {
+  ul {
+    .make-row();
+  }
+  .main-title {
+    //font-size: 24px;
+    font-weight: bold;
+    .margin-top-rem(25px);
+    .margin-bottom-rem(25px);
+    .padding-left-rem(30px);
+    .padding-right-rem(10px);
+    position: relative;
+    span {
+      display: inline-block;
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      .margin-left-rem(10px);
+      background-color: @default-background-color;
+    }
+  }
+  .postbox {
+    .padding-left-rem(10px);
+    .padding-right-rem(10px);
+    width: 50%;
+    float: left;
+    .box {
+      min-height: 200px;
+      background-color: #fff;
+      position: relative;
+    }
+    .price {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      color:@default-hightlight-color;
+    }
+    .title {
+      font-size:18px;
+      text-align: left;
+      .padding-top-rem(15px);
+      .padding-bottom-rem(15px);
+    }
+  }
+}
+/* 列表详情 */
+.main {
+  .board {
+    background: #fff;
+    .slim-padding();
+    .list();
+    .list {
+      .list();
+    }
+    .key {
+      .make-column();
+      line-height: 32px;
+      vertical-align: middle;
+      min-width: 90px;
+    }
+    .value {
+      .make-column();
+      line-height: 32px;
+      vertical-align: middle;
+    }
+  }
+  .main-title {
+    .list();
+  }
+  .field {
+    .list();
+  }
+  .notify {
+    .list();
+  }
+  .price {
+    color: @default-hightlight-color;
+  }
+  .select {
+    ul {
+      .make-row();
+    }
+    ul li {
+      .make-column();
+      border: solid 1px @default-black;
+      .padding-left-rem(8px);
+      .padding-right-rem(8px);
+      margin-left: -1px;
+      //height: 32px;
+      line-height: 30px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    ul li.selected {
+      .bridge();
+    }
+  }
+  .dist-content {
+    background-color: #fff;
+    min-height: 180px;
+    .widen-padding();
+  }
+}

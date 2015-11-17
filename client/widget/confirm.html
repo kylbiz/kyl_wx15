@@ -1,0 +1,33 @@
+<template name="confirm">
+  <div class="ui-dialog" id="confirm" role="dialog">
+    <div class="ui-dialog-content">
+      <div class="ui-dialog-box">
+        <div>
+          <h4>{{title}}你好</h4>
+          <div>{{content}}张三</div>
+        </div>
+      </div>
+      <div class="ui-dialog-control ui-btn-group">
+        <button type="button" data-role="button" class="select">确认</button>
+        <button type="button" data-role="button" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="alert">
+  <div class="ui-dialog" id="alert" role="dialog">
+    <div class="ui-dialog-content">
+      <div class="ui-dialog-box">
+        <div>
+          <h4>{{title}}你好</h4>
+          <div>{{content}}张三</div>
+        </div>
+      </div>
+      <div class="ui-dialog-control ui-btn-group">
+        <button type="button" data-role="button" data-dismiss="modal">确认</button>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,223 @@
+<template name="reactive_board">
+  <div class="ui-board" id="reactive_board" role="dialog">
+    <div class="ui-board-content">
+       {{> UI.contentBlock }}
+    </div>
+  </div>
+</template>
+
+<!-- 公司注册选项 -->
+<template name="registration_board">
+ {{#reactive_board}}
+  <div class="des">
+    <div class="photo-frame">
+
+    </div>
+    <div class="tag">
+      <div class="title">互联网公司注册</div>
+      <div class="price">&yen;1000</div>
+    </div>
+  </div>
+  <div class="ui-dist-content">
+    <div class="key">选择区域：</div>
+    <div class="field">
+      <ul>
+        <li class="selected">浦东</li>
+        <li>普陀</li>
+        <li>黄浦</li>
+      </ul>
+    </div>
+  </div>
+  <div class="control-box">
+    <button type="button" class="ui btn-default control">付款</button>
+  </div> 
+{{/reactive_board}}
+</template>
+
+
+<!-- 小企人事选项 -->
+<template name="assurance_board">
+ {{#reactive_board}}
+  <div class="des">
+    <div class="photo-frame">
+
+    </div>
+    <div class="tag">
+      <div class="title">小企人事</div>
+      <div class="price">&yen;120-800</div>
+    </div>
+  </div>
+  <div class="ui-dist-content">
+    <div class="piece">
+      <div class="key">选择区域：</div>
+      <div class="field">
+        <ul>
+          <li class="selected">全区</li>
+        </ul>
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">选择服务：</div>
+      <div class="field">
+        <ul>
+          <li class="selected">社保＋公积金开户</li>
+          <li>社保＋公积金每月代缴</li>
+        </ul>
+      </div>      
+    </div>  
+    <div class="piece">
+      <div class="key">时间：</div>
+      <div class="field">
+        <ul>
+          <li class="selected">半年</li>
+          <li>一年</li>
+        </ul>
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">人数：</div>
+      <div class="field">
+        <input type="text" class="form-control">
+      </div>      
+    </div>           
+          
+  </div>
+  <div class="control-box">
+    <button type="button" class="ui btn-default control">付款</button>
+  </div> 
+{{/reactive_board}}  
+</template>
+
+<!-- 财务代理选项 -->
+<template name="agent_board">
+ {{#reactive_board}}
+  <div class="des">
+    <div class="photo-frame">
+
+    </div>
+    <div class="tag">
+      <div class="title">财务代理</div>
+      <div class="price">&yen;500</div>
+    </div>
+  </div>
+  <div class="ui-dist-content">
+    <div class="piece">
+      <div class="key">服务类型：</div>
+      <div class="field">
+        <ul>
+          <li>小规模纳税人</li>
+          <li>一般纳税人</li>
+        </ul>
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">选择服务：</div>
+      <div class="field">
+        <ul>
+          <li class="selected">此次公积金开户</li>
+          <li>长春站重中之重缴</li>
+           <li>社保＋公积金每月代缴</li>
+        </ul>
+      </div>      
+    </div>  
+    <div class="piece">
+      <div class="key">时间：</div>
+      <div class="field">
+        <ul>
+          <li>季度</li>
+          <li class="selected">半年</li>
+          <li>一年</li>
+        </ul>
+      </div>      
+    </div>                  
+  </div>
+  <div class="control-box">
+    <button type="button" class="ui btn-default control">付款</button>
+  </div> 
+{{/reactive_board}}  
+</template>
+
+<!-- 流量记账 -->
+<template name="package_board">
+ {{#reactive_board}}
+  <div class="des">
+    <div class="photo-frame">
+
+    </div>
+    <div class="tag">
+      <div class="title">流量记账包服务套餐</div>
+      <div class="price">&yen;500</div>
+    </div>
+  </div>
+  <div class="ui-dist-content">
+    <div class="piece">
+      <div class="key">服务类型：</div>
+      <div class="field">
+        <ul>
+          <li>小规模纳税人</li>
+          <li>一般纳税人</li>        
+        </ul>
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">选择服务：</div>
+      <div class="field">
+        <ul>
+          <li class="selected">此次公积金开户</li>
+          <li>长春站重中之重缴</li>
+          <li>公积金每月代缴</li>
+          <li>社保＋公积金每月代缴</li>
+        </ul>
+      </div>      
+    </div>       
+  
+  </div>
+  <div class="control-box">
+    <button type="button" class="ui btn-default control">付款</button>
+  </div> 
+{{/reactive_board}}  
+</template>
+
+<!-- 新增收货地址 -->
+<template name="address_plus_board">
+ {{#reactive_board}}
+  <div class="des text-center">
+    <div class="title">新增收货地址</div>
+  </div>
+  <div class="ui-dist-content address-plus">
+    <div class="piece">
+      <div class="key">收货人：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="输入名字">
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">联系电话：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="手机号或固定电话">
+      </div>       
+    </div>
+    <div class="piece">
+      <div class="key">选择地区：</div>
+      <div class="field">省＋市＋区</div>
+    </div>
+    <div class="piece">
+      <div class="key">详细地址：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="街道门牌信息">
+      </div>      
+    </div> 
+    
+    <div class="piece">
+      <div class="key">邮政编号：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="邮政编号(选填)">
+      </div> 
+      </div>      
+    </div>                                  
+    
+  <div class="control-box">
+    <button type="button" class="ui btn-default control">保存</button>
+  </div> 
+{{/reactive_board}}  
+</template>

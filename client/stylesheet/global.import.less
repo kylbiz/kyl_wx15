@@ -1,0 +1,231 @@
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+}
+html,body {
+  .full-page();
+  font-family: @default-base-font-family;
+}
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #eee;
+}
+.main-title {
+  font-size: 24px !important;
+}
+.form-control {
+  .form-control();
+}
+button {
+  &:focus {
+    outline: 0;
+    box-shadow: 0;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  .no-bullets();
+}
+.segement {
+  .make-row();  
+}
+.pull-left {
+  .pull-left();
+}
+.pull-right {
+  .pull-right();
+}
+.text-center {
+  .text-center();
+}
+.hightlight {
+  color:@default-hightlight-color;
+}
+.slim-padding() {
+  .padding-top-rem(12px);
+  .padding-bottom-rem(12px);
+  .padding-left-rem(20px);
+  .padding-right-rem(20px);
+}
+.widen-padding() {
+  .padding-rem(20px);
+}
+
+.ui.btn-default {
+  .bridge();
+  .text-center();
+  .no-border();
+  .slim-padding();
+}
+.ui.btn-primary {
+  background-color: #fff;
+  border: solid 1px @default-black;  
+  .text-center();  
+  .slim-padding();  
+}
+
+.ui.btn-default.control {
+  width: 40%;
+  min-width: 120px;
+  max-width: 480px;
+  border:solid 1px @default-background-color;
+}
+.ui.btn-primary.control {
+  width: 40%;
+  min-width: 120px;
+  max-width: 480px;
+}
+
+.shadow-object {
+  visibility:hidden;
+}
+
+.list() {
+  .margin-bottom-rem(15px);
+  .make-row();
+}
+.main-container {
+  min-height: 100%;
+  position: relative;
+  .padding-top-rem(10px);
+  .padding-left-rem(10px);
+  .padding-right-rem(10px);
+}
+
+.has-ui-control-bottom {
+  .padding-bottom-rem(80px);  
+}
+.ui.control-box {
+  .text-center();
+  background-color: #fff;
+  box-shadow: 0 0 5px #ccc;
+  .padding-top-rem(20px);
+  .padding-bottom-rem(20px);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  .ui.btn-default.control,.ui.btn-primary.control {
+    .height(40px);
+  }
+}
+
+@ui-menu-height:80px;
+.has-ui-menu {
+  .padding-bottom-rem(@ui-menu-height);  
+}
+.ui.menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  .height(@ui-menu-height);
+  .padding-top-rem(20px);
+  .padding-bottom-rem(20px);
+  box-shadow: 0 0 5px #ccc;
+  background: #fff;
+  ul {
+    .make-row();
+  }
+  ul li {
+    width: 25%;
+    .make-column();
+    .height(40px);
+    .line-height(40px);
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    border-right: solid 1px @deep-gray;
+    >a {
+     display: block;
+     width: 100%;
+     height: 100%;
+      
+    }
+  }
+  ul li:last-child {
+    border-right:0; 
+  }
+}
+
+.module {
+  background-color: #fff;
+  .margin-bottom-rem(10px);
+  .main-title {
+    .widen-padding();
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 48px;
+    vertical-align: middle;
+    border-bottom: solid 1px #ddd;
+    font-size: 18px !important;
+  }
+  .content {
+    .padding-rem(15px);
+    display: -webkit-box;
+    >.photo {
+      .width(60px);
+      .height(60px);
+      background-color: #ccc;
+      .margin-right-rem(10px);
+    }
+    >.info,>.price {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-pack: center;
+    }
+    >.info {
+      -webkit-box-flex: 3;
+      .title {
+        font-weight: bold;
+        .margin-bottom-rem(10px);
+      }
+    }
+    >.price {
+      -webkit-box-flex: 1;
+      text-align: center;
+      color: @default-hightlight-color;
+    }
+
+    .single {
+      line-height: 28px;
+      vertical-align: middle;
+      width: 100%;
+      i.icon {
+        font-size: 24px;
+      }
+      i.angle.right.icon {
+        color: @deep-gray;
+      }
+      i.check.circle.icon {
+        color: @deep-gray;
+        .margin-right-rem(15px);
+      }
+      .done>i.check.circle.icon{
+        color: @default-green;
+      }
+    }
+  }
+  .content.center {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+  }
+  .content.cover {
+    width: 100%;
+  }
+}
+
+.main-message {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.key {
+    .margin-right-rem(10px);  
+}

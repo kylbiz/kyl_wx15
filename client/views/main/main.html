@@ -1,0 +1,27 @@
+<template name="main">
+	<div class="PostList">
+		{{#each products }}
+			  <div class="main-title">
+			    <span></span>{{title}}
+			  </div>
+			  <div>
+			    <ul class="postList">
+			    	{{#each items}}
+				        <li class="postbox">
+				          <div>
+							<a href="/product/{{type}}" >
+								<div class="box">
+					            	<div class="price">&yen;1000</div>
+					            </div>
+							</a>
+				            <div class="title">
+				              <a href="#">{{name}}</a>
+				            </div>
+				          </div>
+				        </li>
+				    {{/each}}
+			    </ul>
+			  </div>
+		{{/each}}
+	</div>
+</template>

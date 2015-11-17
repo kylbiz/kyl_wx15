@@ -1,0 +1,83 @@
+/*登录注册*/
+.login,.register {
+  .full-page();
+  background-color: #fff;
+  .page {
+   .make-row(); 
+  }
+  .logo {
+    .text-center;
+    margin:0 auto;
+    .margin-top-rem(20px);
+    .margin-bottom-rem(20px);
+    width: 15.6%;
+    max-width: 120px;
+    img {
+     width: 100%;
+     height: auto;
+    }
+  }
+  .slogon {
+    width: 44.8%;
+    max-width: 328px;
+    margin: 0 auto;
+    .text-center();
+    img {
+     width: 100%;
+     height: auto;
+    }    
+  }
+  table.cover {
+    background-color: #fff;
+    .full-page();
+    text-align: center;
+    tr {
+      .full-page();
+    }
+    td {
+      vertical-align: middle;
+    }
+  }
+  .control-box {
+    display: inline-block;
+    width: 60%;
+    max-width: 480px;
+    .margin-top-rem(20px);
+    input.form-control {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    .ui.btn-default {
+      width: 100%;
+      .padding-top-rem(20px);
+      .padding-bottom-rem(20px);
+    }
+  }
+  .link_box {
+    .margin-top-rem(20px);
+  }
+  .divide {
+    margin: 0 5px;
+  }
+  .code {
+    display: -webkit-box;
+    margin-bottom: 12px;
+    input.form-control {
+      display: -webkit-box;
+      -webkit-box-flex:1;
+      margin-bottom: 0;
+    }
+    span {
+      display: -webkit-box;
+      -webkit-box-orient: horizontal;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;    
+      padding-left: 10px;
+      padding-right: 10px;
+      border: solid 1px #ccc;
+      border-left: 0;
+      color: @default-black;
+      cursor: pointer;
+    }
+  }
+}

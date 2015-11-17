@@ -1,0 +1,91 @@
+.form {
+  @form-line-height:42px;
+  input[type="text"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      box-sizing: border-box;
+      border: none;
+      background: none;
+      border-radius: 0 0 0 0;
+      box-shadow: none;
+      padding: 0px;
+      margin: 0;
+      height: @form-line-height;
+      color: #000;
+      font-size: 16px;
+      font-family: inherit;
+      outline: 0;    
+      &:focus {
+        box-shadow: 0;
+      }    
+  } 
+  
+  .box-container {
+    >div {
+     .list(); 
+    }
+  }
+  .content {
+    line-height: @form-line-height;
+    vertical-align: middle;    
+  }
+  .key {
+    height: @form-line-height;        
+    display: inline-block;
+    min-width: 68px;
+    .margin-right-rem(20px); 
+  }  
+  .others {
+    .key {
+     min-width: 90px; 
+    }
+  }
+  
+  .module {
+    .content.helper {
+       width: 100%;
+       .make-row();
+       display: block;  
+       .pull-right {
+        line-height: @form-line-height;
+        vertical-align: middle;
+       }
+      i.help.circle.icon {
+        color: @deep-gray;
+        font-size: 2em;
+      }
+    }
+  }
+  .content.divide {
+     border-bottom:solid 1px #ddd; 
+  }
+  .list-container {
+     padding-top: 0 !important; 
+     padding-bottom: 0 !important;     
+  }
+  .list-group-horizonal {
+      display: inline-block;
+  }
+  .list-group-item {
+    position: relative;
+    display: block;
+    .padding-left-rem(15px);
+    //.padding-right-rem(15px);
+    .padding-right-rem(60px);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 100px;
+    .checkbox {
+      position: absolute;
+      right: 15px;
+      top: 0;
+    }
+  }  
+  .list-group-horizonal>.list-group-item {
+     float: left;
+     margin-bottom: -1px;
+     margin-right: -1px;
+  }
+}

@@ -1,0 +1,5 @@
+{
+	"wechat-api": "1.19.0",
+	"wechat-crypto": "0.0.2",
+	"wechat-oauth": "1.1.0"
+}
