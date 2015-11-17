@@ -1,7 +1,8 @@
 // 项目客户端的路由控制及路由的权限判断
 
 Router.configure({
-	layoutTemplate: 'layoutTemplate'
+	layoutTemplate: 'layoutTemplate',
+  loadingTemplate: 'loading'
 });
 
 
