@@ -5,13 +5,6 @@ Router.configure({
   loadingTemplate: 'loading'
 });
 
-
-// Router.route('/', function () {
-
-// 	this.redirect('/main');
-
-// });
-
 // 首页
 Router.route('/', {
 	name: 'main',
@@ -23,7 +16,7 @@ Router.route('/', {
 
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
-			RegList[key]['type'] = 'registration'
+			RegList[key]['type'] = 'registration';
 		}
 
 		productsPreview = [
@@ -160,3 +153,5 @@ Router.onBeforeAction(function () {
 // 	});
 // }, {where: 'server'});
 
+
+Router.route('form');

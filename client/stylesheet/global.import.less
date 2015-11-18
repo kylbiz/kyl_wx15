@@ -7,13 +7,21 @@ html,body {
   font-family: @default-base-font-family;
   font-size: @normel-font-size;
 }
+a {
+ &:link {
+   color: inherit;
+ }
+ &:visited {
+   color: inherit;      
+ }
+}
 body {
   max-width: 1200px;
   margin: 0 auto;
   background-color: #eee;
 }
 .main-title {
-  font-size: 24px !important;
+  font-size: @large-font-size !important;
 }
 .form-control {
   .form-control();
@@ -123,12 +131,15 @@ ul {
    cursor: pointer;
    .ui.sumbit {
      width: 100% !important;
-     height: 100% !important;
      display: block;
      font-size: @huge-font-size;
-     .padding-left-rem(10px);
-     .padding-right-rem(10px);
+//     .padding-left-rem(10px);
+//     .padding-right-rem(10px);
    }
+  }
+  .submit-box {
+     .bridge();  
+     font-size: @huge-font-size;    
   }
   .home-box {
      border-right: solid 1px #ddd;  
@@ -208,23 +219,24 @@ ul {
     .icon.ui-tools {
       background-position: -120px 0;
     }
-    .active {
-      .icon.ui-home {
-
-      }
-      .icon.ui-usercenter {
-        background-position: -40px -40px;
-      }
-      .icon.ui-localmarket {
-        background-position: -80px -40px;
-      }
-      .icon.ui-tools {
-        background-position: -120px -40px;
-      }      
-    }
   }
   ul li:last-child {
     border-right:0; 
+  }
+  ul li.active {
+    color:@default-background-color;
+    .icon.ui-home {
+      background-position: 0 -40px;
+    }
+    .icon.ui-usercenter {
+      background-position: -40px -40px;
+    }
+    .icon.ui-localmarket {
+      background-position: -80px -40px;
+    }
+    .icon.ui-tools {
+      background-position: -120px -40px;
+    }         
   }
 }
 

@@ -1,7 +1,7 @@
 <template name="ui_menu">
    <div class="ui menu">
       <ul>
-        <li>
+        <li class="{{$active '/' pathname}}">
          <a href="/">
           <div>
             <i class="icon ui-home"></i>
@@ -9,7 +9,7 @@
           <div>首页</div>           
          </a>
         </li>
-        <li>
+        <li class="{{$active '/home' pathname}}">
           <a href="/home">
             <div>
               <i class="icon ui-usercenter"></i>
@@ -17,7 +17,7 @@
             <div>个人中心</div>            
           </a>
         </li>
-        <li>
+        <li class="{{$active '/orderList' pathname}}">
           <a href="/orderList">
             <div>
               <i class="icon ui-localmarket"></i>
@@ -25,7 +25,7 @@
             <div>我的订单</div>              
           </a>
         </li>
-        <li>
+        <li class="{{$active '/tools' pathname}}">
           <a href="/tools">
             <div>
               <i class="icon ui-tools"></i>
