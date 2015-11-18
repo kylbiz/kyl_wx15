@@ -1,5 +1,5 @@
 Template.controlBox.events({
   'click .home-box':function(){
-    Router.go('/');  
+    Router.go('main');  
   }  
 });

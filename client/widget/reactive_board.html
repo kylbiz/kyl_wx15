@@ -178,6 +178,34 @@
 {{/reactive_board}}  
 </template>
 
+<template name="bank_board">
+ {{#reactive_board}}
+  <div class="des">
+    <div class="photo-frame">
+
+    </div>
+    <div class="tag">
+      <div class="title">银行开户</div>
+      <div class="price">&yen;500</div>
+    </div>
+  </div>
+  <div class="ui-dist-content">
+    <div class="piece">
+      <div class="key">开户银行：</div>
+      <div class="field">
+        <ul>
+          <li>上海银行</li>
+          <li>花旗银行</li>        
+        </ul>
+      </div>      
+    </div>       
+  </div>
+  <div class="control-box">
+    <button type="button" class="ui btn-default submit">立即购买</button>
+  </div> 
+{{/reactive_board}}  
+</template>
+
 <!-- 新增收货地址 -->
 <template name="address_plus_board">
  {{#reactive_board}}
