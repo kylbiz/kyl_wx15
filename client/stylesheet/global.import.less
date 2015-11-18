@@ -97,13 +97,13 @@ ul {
 }
 
 .has-ui-control-bottom {
-  .padding-bottom-rem(80px);  
+  .padding-bottom-rem(90px);  
 }
 .ui.control-box {
   .text-center();
   background-color: #fff;
   box-shadow: 0 0 5px #ccc;
-  .height(80px);
+  .height(90px);
 //  .padding-top-rem(20px);
 //  .padding-bottom-rem(20px);
   width: 100%;
@@ -137,7 +137,7 @@ ul {
      color: @default-gray; 
      .padding-left-rem(10px);
      .padding-right-rem(10px); 
-      //font-size: @label-font-size;    
+      font-size: @label-font-size;    
   }
   .icon {
      width: 40px;
@@ -155,7 +155,8 @@ ul {
   
 }
 
-@ui-menu-height:80px;
+/* widget:ui-menu */
+@ui-menu-height:90px;
 .has-ui-menu {
   .padding-bottom-rem(@ui-menu-height);  
 }
@@ -165,27 +166,61 @@ ul {
   left: 0;
   width: 100%;
   .height(@ui-menu-height);
-  .padding-top-rem(20px);
-  .padding-bottom-rem(20px);
   box-shadow: 0 0 5px #ccc;
   background: #fff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;  
   ul {
     .make-row();
+    width: 100%;
   }
   ul li {
     width: 25%;
     .make-column();
-    .height(40px);
-    .line-height(40px);
+    //.height(40px);
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
-    border-right: solid 1px @deep-gray;
+    font-size: @label-font-size;
     >a {
      display: block;
      width: 100%;
      height: 100%;
+    }
+    .icon {
+       width: 40px;
+       height: 40px;
+       background-image: url(/images/ui-icon.png);    
+       background-repeat: no-repeat;
+       margin:0 !important;           
+    }
+    .icon.ui-home {
       
+    }
+    .icon.ui-usercenter {
+      background-position: -40px 0;
+    }
+    .icon.ui-localmarket {
+      background-position: -80px 0;
+    }
+    .icon.ui-tools {
+      background-position: -120px 0;
+    }
+    .active {
+      .icon.ui-home {
+
+      }
+      .icon.ui-usercenter {
+        background-position: -40px -40px;
+      }
+      .icon.ui-localmarket {
+        background-position: -80px -40px;
+      }
+      .icon.ui-tools {
+        background-position: -120px -40px;
+      }      
     }
   }
   ul li:last-child {
