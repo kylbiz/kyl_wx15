@@ -9,7 +9,8 @@ Template.product.helpers({
 
 
 Template.product.events({
-	'click .buyBtn': function (event, template) {
+	'click #buyBtn': function (event, template) {
+    event.preventDefault();
 		// if (Meteor.userId()) {
 		// 	// 不同产品 不同购买选项
 		// 	console.log('buyBtn', Session.get('productType'));
@@ -21,6 +22,9 @@ Template.product.events({
 
 		// console.log('buyBtn');
 		// Router.go('/shopcart'); // 之后版本
-		Router.go('/trade');
-	}
+		Router.go('/shopcart');
+	},
+  'click .submit':function() {
+    Router.go('/trade');
+  }
 });

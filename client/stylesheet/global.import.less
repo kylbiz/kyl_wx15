@@ -5,6 +5,7 @@
 html,body {
   .full-page();
   font-family: @default-base-font-family;
+  font-size: 17px;
 }
 body {
   max-width: 1200px;
@@ -96,21 +97,59 @@ ul {
 }
 
 .has-ui-control-bottom {
-  .padding-bottom-rem(80px);  
+  .padding-bottom-rem(100px);  
 }
 .ui.control-box {
   .text-center();
   background-color: #fff;
   box-shadow: 0 0 5px #ccc;
-  .padding-top-rem(20px);
-  .padding-bottom-rem(20px);
+  .height(100px);
+//  .padding-top-rem(20px);
+//  .padding-bottom-rem(20px);
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  .ui.btn-default.control,.ui.btn-primary.control {
-    .height(40px);
+  display: -webkit-box;
+  .box {
+   display: -webkit-box;
+   -webkit-box-flex:1;
+   -webkit-box-pack:center;
+   -webkit-box-align:center;
+   height: 100%;
+   position: relative;
+   cursor: pointer;
+   .ui.sumbit {
+     width: 100% !important;
+     height: 100% !important;
+     display: block;
+     font-size: @huge-font-size;
+     .padding-left-rem(10px);
+     .padding-right-rem(10px);
+   }
   }
+  .home-box {
+     border-right: solid 1px #ddd;  
+  }
+  .icon-box {
+     color: @default-black; 
+     .padding-left-rem(10px);
+     .padding-right-rem(10px);    
+  }
+  .icon {
+     width: 60px;
+     height: 60px;
+     background-image: url(/images/ui-icon.png);    
+     background-repeat: no-repeat;
+     margin:0 !important;    
+  }
+  .icon.ui-home {
+    
+  }
+  .icon.ui-shopcart {
+    background-position: -240px 0;  
+  }
+  
 }
 
 @ui-menu-height:80px;

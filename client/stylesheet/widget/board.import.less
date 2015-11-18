@@ -64,9 +64,16 @@
   }
   .control-box {
     text-align:center;
-    .padding-top-rem(20px);
-    .padding-bottom-rem(20px);
-    border-top:solid 1px @deep-gray;
+//    .padding-top-rem(20px);
+//    .padding-bottom-rem(20px);
+//    border-top:solid 1px @deep-gray;
+    button.ui {
+     display: block;
+     width: 100%;
+     .height(60px);
+     font-size: @large-font-size;
+     padding: 0 !important;
+    }
   }
   .key {
     font-weight:bold;
@@ -80,16 +87,20 @@
       li {
         float:left;
         border:solid 1px @default-black;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
         .margin-right-rem(15px);
         .padding-rem(5px);
+        .padding-left-rem(15px);
+        .padding-right-rem(15px);
         cursor:pointer;
         .margin-bottom-rem(15px);
       }
       li.selected {
-        .bridge();
+        .toggle-color();
       }
       li:hover {
-        .bridge();
+        .toggle-color();
       }
     }
   }

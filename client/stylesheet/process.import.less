@@ -46,10 +46,10 @@
        left:50%;
        top: 50%;
        @dotOffset:unit(@dotUnit)/2;
-       @xdotOffset:unit(@dotOffset,px);
-       margin-left:-@xdotOffset;
-       margin-top:-@xdotOffset;
-      border-radius: (@xdotOffset);
+       @unitDotOffset:unit(@dotOffset,px);
+       margin-left:-@unitDotOffset;
+       margin-top:-@unitDotOffset;
+       border-radius: (@unitDotOffset);
       }
     }
     .content {
