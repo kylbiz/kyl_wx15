@@ -1,4 +1,12 @@
 <template name="shopcart">
+  {{#if empty}}
+    {{> emptyTemplate}}
+  {{else}}
+    {{> shopcart_content}}
+  {{/if}}
+</template>
+
+<template name="shopcart_content">
   <div class="shopcart main-container has-ui-control-bottom">
     <div class="module">
       <div class="content">
@@ -14,7 +22,7 @@
           </div>
         </div>
         <div class="right-segement">
-          delete icon
+          <i class="trash icon outline"></i>
         </div>
       </div>
     </div>
@@ -32,10 +40,35 @@
           </div>
         </div>
         <div class="right-segement">
-          delete icon
+          <i class="trash icon outline"></i>
         </div>
       </div>
     </div>    
     {{> shopcart_controlBox}}
+  </div>  
+</template>
+
+
+<template name="emptyTemplate">
+  <div class="main-container has-ui-menu emptyTemplate">
+    <div class="text-center">
+      <div>
+        <div class="photo">
+          <img src="/images/shopcart_empty.png" alt="">
+        </div>
+        <div class="des">
+          <p>您的购物车是空的</p>
+          <p>赶紧逛逛吧！</p>
+        </div>
+        <div class="get">
+           <div>
+            <a href="/">
+             <button class="ui btn-default ui-default" type="button">随便逛逛</button>              
+            </a>
+           </div>
+        </div>
+      </div>
+    </div>
+    {{> ui_menu}}
   </div>
 </template>
