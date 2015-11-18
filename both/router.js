@@ -153,5 +153,10 @@ Router.onBeforeAction(function () {
 // 	});
 // }, {where: 'server'});
 
-
+//填写公司注册详细内容
 Router.route('form');
+
+//填写地址
+Router.route('address');
+//地址通讯录
+Router.route('addressList');
