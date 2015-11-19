@@ -1,5 +1,6 @@
 Template.companyInfo.events({
-  'click .module':function(){
+  'click .list .module':function(event,template){
+    var index= $(event.currentTarget).index(); 
     Router.go('/form') 
   }  
 });
