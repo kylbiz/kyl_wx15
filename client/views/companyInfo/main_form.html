@@ -43,7 +43,18 @@
 
 <!-- 经营范围 -->
 <template name="scope_segement">
-  <div class="module">
+  <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <!-- Slides -->
+          {{#each pageNames}}
+          <div class="swiper-slide {{name}}">{{> UI.dynamic template=name}}</div>
+          {{/each}}
+      </div>
+  </div>
+</template>
+
+<template name="scope_segement_board">
+  <div class="module" id="step">
     <div class="content">
       <div class="single">
         行业类型              
@@ -75,7 +86,7 @@
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>      
+  </div>    
 </template>
 
 <!-- 行业类型大类 -->
