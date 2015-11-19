@@ -6,7 +6,7 @@ html,body {
   .full-page();
   font-family: @default-base-font-family;
   //font-size: @normel-font-size;
-  font-size: 14px;
+  font-size: 12px;
 }
 a {
  &:link {
@@ -21,6 +21,7 @@ body {
   margin: 0 auto;
   background-color: #eee;
 }
+
 .main-title {
   font-size: @large-font-size !important;
 }
@@ -103,8 +104,11 @@ ul {
   .padding-top-rem(10px);
   .padding-left-rem(10px);
   .padding-right-rem(10px);
+  font-size:@normel-font-size;
 }
-
+body>div {
+  font-size:@normel-font-size;  
+}
 .has-ui-control-bottom {
   .padding-bottom-rem(90px);  
 }
