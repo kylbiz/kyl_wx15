@@ -1,16 +1,3 @@
-Template.scope_segement.setTab = function(tab) {
-}
-    
-Template.scope_segement.onCreated(function(){
-  
-});
-
-Template.scope_segement.events({
-  'click #step':function(){
-    
-  }
-});
-
 Template.form.helpers({
   _dynamic:function(){
         return 'scope_segement';  
@@ -33,24 +20,30 @@ Template.scope_segement.helpers({
 });
 
 Template.scope_segement.onRendered(function(){
-    var atuoSwiper = new Swiper ('.swiper-container', {
+    var autoSwiper = new Swiper ('.swiper-container', {
 //      direction: 'vertical',
       loop: false
     });
     $("#step").click(function(){
-       atuoSwiper.slideNext();
+       autoSwiper.slideNext();
        return false;
     });
     
     $(".scope_segement_widget1 .module").click(function(){
-       atuoSwiper.slideNext();
+       autoSwiper.slideNext();
        return false;
     });
   
     $(".scope_segement_widget2 .module").click(function(){
-       atuoSwiper.slideNext();
+       autoSwiper.slideNext();
        return false;
     });  
-  
+    
+    /*
+    $(".scope_segement_widget3 #submit").click(function(){
+       autoSwiper.slideTo(0);
+       return false;
+    }); 
+    */
 })
 
