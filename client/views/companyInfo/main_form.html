@@ -64,7 +64,7 @@
       </div>      
     </div>
   </div>
-  <div class="module" id="step">
+  <div class="module">
     <div class="content divide">
       <div class="single">
         经营范围              
@@ -75,11 +75,14 @@
 -->
       </div>        
     </div>
-    <div class="content list-container">
+    <div class="content list-container divide">
         经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
         经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
         经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
         经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
+    </div>
+    <div class="adjust">
+      <button class="ui btn-default pull-right">调整经营范围</button>
     </div>
   </div>
   <div class="get">
@@ -91,51 +94,104 @@
 
 <!-- 行业类型大类 -->
 <template name="scope_segement_widget1">
+   <div class="PostList text-center">
+     <div class="main-title">选择行业</div>
+   </div>
     <div class="module">
       <div class="content">       
-        <div class="single">
-          行业类型大类              
+        <div class="single">       
+          行业类型大类a              
           <span class="pull-right">
             <i class="angle right icon"></i>
           </span>          
         </div>                        
       </div>
     </div> 
+    <div class="module">
+      <div class="content">       
+        <div class="single">    
+          行业类型大类b              
+          <span class="pull-right">
+            <i class="angle right icon"></i>
+          </span>          
+        </div>                        
+      </div>
+    </div> 
+    <div class="module">
+      <div class="content">       
+        <div class="single">        
+          行业类型大类c             
+          <span class="pull-right">
+            <i class="angle right icon"></i>
+          </span>          
+        </div>                        
+      </div>
+    </div>         
 </template>
 <!-- 行业类型细类 -->
 <template name="scope_segement_widget2">
-    <div class="module">
+   <div class="PostList text-center">
+     <div class="main-title">选择行业类型</div>
+   </div>    
+    <div class="module">     
       <div class="content">       
-        <div class="single">
-          行业类型小类              
+        <div class="single">        
+          选择行业类别              
           <span class="pull-right">
             <i class="angle right icon"></i>
           </span>          
         </div>                        
       </div>
-    </div> 
+    </div>
 </template>
 <!-- 确认经营范围 -->
 <template name="scope_segement_widget3">
-  <div class="module">
-    <div class="content">
-      <div class="key">经营范围</div>
-    </div>
-    <div class="content list-container">
-      <div class="list-group-horizonal">
-        <div class="list-group-item">1^
-          <div class="checkbox">
-            <input type="checkbox">
-          </div>
+<div class="PostList text-center">
+ <div class="main-title">确认经营范围</div>
+</div>  
+ 
+<div class="module">
+  <div class="content list-container">
+    <div class="list-group-horizonal">
+      <div class="list-group-item">1^
+        <div class="checkbox">
+          <input type="checkbox">
         </div>
-        <div class="list-group-item">2^</div>
-        <div class="list-group-item">3^</div>
-        <div class="list-group-item">4^</div>
-        <div class="list-group-item">5^</div>
-        <div class="list-group-item">6^</div>
-      </div>       
-    </div>
-  </div>     
+      </div>
+      <div class="list-group-item">2^
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>      
+      </div>
+      <div class="list-group-item">3^
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>      
+      </div>
+      <div class="list-group-item">4^
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>      
+      </div>
+      <div class="list-group-item">5^
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>      
+      </div>
+      <div class="list-group-item">6^
+        <div class="checkbox">
+          <input type="checkbox">
+        </div>      
+      </div>
+    </div>       
+  </div>
+</div>   
+  
+<div class="get">
+  <div>
+    <button class="ui btn-default" type="button">保存</button>
+  </div>
+</div>   
 </template>
 
 

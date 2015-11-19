@@ -62,7 +62,7 @@
      border-bottom:solid 1px #ddd; 
   }
   .list-container {
-     padding-top: 0 !important; 
+     //padding-top: 0 !important; 
      padding-bottom: 0 !important;     
   }
   .list-group-horizonal {
@@ -87,5 +87,23 @@
      float: left;
      margin-bottom: -1px;
      margin-right: -1px;
+  }
+  .icon-left {
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    color:@deep-gray;
+    .margin-right-rem(10px);
+    .selected {
+     color: @default-green; 
+    }    
+  }
+  .adjust  {
+    .make-row();
+    .padding-rem(15px);
+    .ui.btn-default {
+      border-radius: 4px;
+      -webkit-border-radius:4px;
+    }
   }
 }
