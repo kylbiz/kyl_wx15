@@ -156,9 +156,9 @@ body>div {
       font-size: @label-font-size;    
   }
   .icon {
-     width: 30px;
-     height: 30px;
-     background-image: url(/images/ui-icon.png);    
+     width: 26px;
+     height: 26px;
+     background-image: url(/images/ui-icon.png?version=1);    
      background-repeat: no-repeat;
      margin:0 !important;    
   }
@@ -166,13 +166,13 @@ body>div {
     
   }
   .icon.ui-shopcart {
-    background-position: -120px 0;  
+    background-position: -104px 0;  
   }
   
 }
 
 /* widget:ui-menu */
-@ui-menu-height:90px;
+@ui-menu-height:100px;
 .has-ui-menu {
   .padding-bottom-rem(@ui-menu-height);  
 }
@@ -182,6 +182,8 @@ body>div {
   left: 0;
   width: 100%;
   .height(@ui-menu-height);
+  .padding-top-rem(5px);
+  .padding-bottom-rem(5px);
   box-shadow: 0 0 5px #ccc;
   background: #fff;
   display: -webkit-box;
@@ -206,9 +208,9 @@ body>div {
      height: 100%;
     }
     .icon {
-       width: 30px;
-       height: 30px;
-       background-image: url(/images/ui-icon.png);    
+       width: 26px;
+       height: 26px;
+       background-image: url(/images/ui-icon.png?version=1);    
        background-repeat: no-repeat;
        margin:0 !important;           
     }
@@ -216,13 +218,13 @@ body>div {
       
     }
     .icon.ui-usercenter {
-      background-position: -30px 0;
+      background-position: -26px 0;
     }
     .icon.ui-localmarket {
-      background-position: -60px 0;
+      background-position: -52px 0;
     }
     .icon.ui-tools {
-      background-position: -90px 0;
+      background-position: -78px 0;
     }
   }
   ul li:last-child {
@@ -231,16 +233,16 @@ body>div {
   ul li.active {
     color:@default-background-color;
     .icon.ui-home {
-      background-position: 0 -30px;
+      background-position: 0 -26px;
     }
     .icon.ui-usercenter {
-      background-position: -30px -30px;
+      background-position: -26px -26px;
     }
     .icon.ui-localmarket {
-      background-position: -60px -30px;
+      background-position: -52px -26px;
     }
     .icon.ui-tools {
-      background-position: -90px -20px;
+      background-position: -78px -26px;
     }         
   }
 }

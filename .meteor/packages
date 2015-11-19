@@ -21,3 +21,5 @@ webapp
 momentjs:moment
 semantic:ui-icon
 fastclick
+
+ccorcos:swipe
