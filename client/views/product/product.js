@@ -54,6 +54,8 @@ Template.product.events({
 		Router.go('/shopcart');
 	},
   'click .submit':function() {
-    Router.go('/trade');
+      // Router.go('/trade');
+        Router.go('/weixinpay/');
+
   }
 });
