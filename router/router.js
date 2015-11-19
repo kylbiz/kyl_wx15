@@ -1,9 +1,10 @@
 // 项目客户端的路由控制及路由的权限判断
 
-Router.configure({
-	layoutTemplate: 'layoutTemplate',
-  loadingTemplate: 'loading'
-});
+// Router.route('/', function () {
+
+// 	this.redirect('/main');
+
+// });
 
 // 首页
 Router.route('/', {
@@ -16,7 +17,7 @@ Router.route('/', {
 
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
-			RegList[key]['type'] = 'registration';
+			RegList[key]['type'] = 'registration'
 		}
 
 		productsPreview = [
@@ -58,7 +59,9 @@ Router.route('/orderDetail');
 Router.route('/orderProcess');
 
 // 支付页
-Router.route('/trade');
+Router.route('/weixinpay', {
+	name: 'trade'
+});
 
 // 支付结果
 // Router.route('/payResult');
@@ -117,46 +120,3 @@ Router.route('/logout', function() {
 	Router.go('/');
 })
 
-
-// 登陆权限控制 这里需要判断两种条件
-// 微信帐号登录
-Router.onBeforeAction(function () {
-	console.log("WeChatUser", Session.get('WeChatUser'), this.params.query);
-	var openid = Session.get('WeChatUser')
-	if (openid) {
-		this.next();
-	} else if (openid = this.params.query.openid) {
-		Session.set('WeChatUser', openid);
-		this.next();
-	} else {
-		// this.render('errPage');
-		Router.go('/oauth'); // 
-	}
-}, {except: ['receive', 'oauth', 'createMenu']});
-
-// 开业啦帐号登录
-Router.onBeforeAction(function () {
-	console.log('loginUser');
-	if (Meteor.userId()) {
-		this.next();
-	} else {
-		this.render('login');
-	}
-}, {only: ['shopcart', 'trade', 'payResult', 'orderlist', 'orderDetail', 'orderProcess', 'home']});
-
-
-
-// test 微信添加按钮
-// Router.route('/createMenu', function() {
-// 	Meteor.call('createMenu', function (error, result) {
-// 		console.log('createMenu', error, result);
-// 	});
-// }, {where: 'server'});
-
-//填写公司注册详细内容
-Router.route('form');
-
-//填写地址
-Router.route('address');
-//地址通讯录
-Router.route('addressList');

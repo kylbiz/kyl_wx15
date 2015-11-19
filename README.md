@@ -343,14 +343,13 @@
 	        "createAt": ISODate("2015-10-20T10:15:44.322Z")
 	    },
 	    "cartId": "ZvhPpkDfjxunquXhK",
-	    "orderId": "2015102818115204108643"
+	    "orderId": "201510281811520620601804108643"
 	},
 	
 	```
 
 	
-	
-
+![baidu](https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png)
 
 ## 进度
 - Day 1 --[熟悉基本流程，环境搭建]
@@ -359,5 +358,53 @@
 - Day 4 --[购买流程，账号系统的基本实现]
 - Day 5 --[微信账号获取]
 - Day 6 --[微信账号绑定，相关产品collection梳理]
-- Day 7 --[]
+- Day 7 --[整合前端代码,登录验证码的实现]
+- Day 8 --[微信openid的获取，微信支付的实现，包括收货地址的获取]
+- Day 9 --[产品购买流程]
+-
+
+## 当前遗留问题
+- 微信支付 -- 生成订单时的保存与支付后的确认
+- 退款逻辑
+- 测试access_token oauth_token的get save
+- 共享收货地址的获取
+
+
+## 其他
+
+#### 微信
+appid --  --公众号唯一标识
+secret --APPID对应的接口密码, 用于 1.获取接口调用凭证`access_token`时使用； 2.`OAuth2.0`获取用户openId
+mch_id --微信支付商户收款号
+key --交易过程生成签名的密钥
+
+**微信支付**
+
+- 准备: 
+	- 申请商户账号，获取支付权限
+	- 配置oauth授权域名, 配置（测试）支付授权目录(在授权域名之下), 添加测试白名单
+- 发起支付请求
+	- 参数准备
+		- prepay_id: 发起统一下单
+		- paySign: access_token => jsapi_ticket => 签名
+	- H5调用
+
+	``` javaScript
+	WeixinJSBridge.invoke(
+       'getBrandWCPayRequest', {
+           "appId" ： "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
+           "timeStamp"：" 1395712654",         //时间戳，自1970年以来的秒数     
+           "nonceStr" ： "e61463f8efa94090b1f366cccfbbb444", //随机串     
+           "package" ： "prepay_id=u802345jgfjsdfgsdg888",     
+           "signType" ： "MD5",         //微信签名方式：     
+           "paySign" ： "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
+       },
+       function(res){     
+           if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+       }
+   ); 
+	```		
+	- JSSDK调用
+	
+
 
