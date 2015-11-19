@@ -5,7 +5,8 @@
 html,body {
   .full-page();
   font-family: @default-base-font-family;
-  font-size: @normel-font-size;
+  //font-size: @normel-font-size;
+  font-size: 14px;
 }
 a {
  &:link {
@@ -151,8 +152,8 @@ ul {
       font-size: @label-font-size;    
   }
   .icon {
-     width: 40px;
-     height: 40px;
+     width: 30px;
+     height: 30px;
      background-image: url(/images/ui-icon.png);    
      background-repeat: no-repeat;
      margin:0 !important;    
@@ -161,7 +162,7 @@ ul {
     
   }
   .icon.ui-shopcart {
-    background-position: -160px 0;  
+    background-position: -120px 0;  
   }
   
 }
@@ -201,8 +202,8 @@ ul {
      height: 100%;
     }
     .icon {
-       width: 40px;
-       height: 40px;
+       width: 30px;
+       height: 30px;
        background-image: url(/images/ui-icon.png);    
        background-repeat: no-repeat;
        margin:0 !important;           
@@ -211,13 +212,13 @@ ul {
       
     }
     .icon.ui-usercenter {
-      background-position: -40px 0;
+      background-position: -30px 0;
     }
     .icon.ui-localmarket {
-      background-position: -80px 0;
+      background-position: -60px 0;
     }
     .icon.ui-tools {
-      background-position: -120px 0;
+      background-position: -90px 0;
     }
   }
   ul li:last-child {
@@ -226,16 +227,16 @@ ul {
   ul li.active {
     color:@default-background-color;
     .icon.ui-home {
-      background-position: 0 -40px;
+      background-position: 0 -30px;
     }
     .icon.ui-usercenter {
-      background-position: -40px -40px;
+      background-position: -30px -30px;
     }
     .icon.ui-localmarket {
-      background-position: -80px -40px;
+      background-position: -60px -30px;
     }
     .icon.ui-tools {
-      background-position: -120px -40px;
+      background-position: -90px -20px;
     }         
   }
 }
@@ -247,7 +248,7 @@ ul {
     .widen-padding();
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    line-height: 48px;
+    .line-height(48px);
     vertical-align: middle;
     border-bottom: solid 1px #ddd;
     font-size: 18px !important;
@@ -280,7 +281,7 @@ ul {
     }
 
     .single {
-      line-height: 28px;
+      .line-height(28px);
       vertical-align: middle;
       width: 100%;
       i.icon {
