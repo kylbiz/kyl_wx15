@@ -120,3 +120,5 @@ Router.route('/logout', function() {
 	Router.go('/');
 })
 
+Router.route('/form');
+

@@ -22,6 +22,8 @@ Template.scope_segement.helpers({
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
 //      direction: 'vertical',
+      freeMode: false,
+      autoplayDisableOnInteraction: false,      
       loop: false
     });
     $("#step").click(function(){

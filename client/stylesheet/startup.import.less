@@ -33,7 +33,44 @@
       -webkit-box-align: center;      
     }
   }
+  .piece {
+    .padding-top-rem(10px); 
+    .padding-bottom-rem(10px); 
+  }  
+  .piece.pull {    
+     .make-row();
+     .key,.field {
+       .make-column(); 
+     }
+     ul>li {
+      //.padding-top-rem(10px); 
+      //.padding-bottom-rem(10px);        
+     }
+  }
+  .content.box-body {    
+    .key {
+      display: inline-block;
+      .line-height(36px);      
+      vertical-align: middle;         
+      .margin-right-rem(20px); 
+      .width(120px);
+      .ui-justify(36px);     
+    }
+    .field {
+      .line-height(36px);      
+      vertical-align: middle;        
+    }
+  }
 }
+
+.content.box-body {
+    border-top: solid 1px @deep-gray;      
+    display: none;
+    .segement {
+     border-bottom: solid 1px #ddd; 
+    }
+}  
+
 /*支付*/
 .get {
   .margin-top-rem(40px);
@@ -78,9 +115,10 @@
        .margin-right-rem(15px);   
      }
     }
-  }
+  }  
 }
 
+/*ui-tab*/
 .ui-tab {
   display: -webkit-box;  
   .margin-bottom-rem(10px);
@@ -88,6 +126,8 @@
   -webkit-box-flex:1;
   text-align: center;
   background: #fff;
+  font-weight: normal;
+  font-size: @middle-font-size;
   .slim-padding();
    >a {
     display: block;
@@ -99,3 +139,5 @@
    .margin-right-rem(10px);
  }
 }
+
+
