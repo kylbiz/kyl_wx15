@@ -11,7 +11,17 @@
     }        
     .region-container {
       display: -webkit-box; 
-      -webkit-box-flex:1;      
+      -webkit-box-flex:1; 
+      .box {
+        display: -webkit-box;
+      }
+      .left {
+        display: -webkit-box; 
+        -webkit-box-flex:1;        
+        .key,.value {
+         float: none; 
+        }
+      }
     }
     .region-content {
       display: -webkit-box;
