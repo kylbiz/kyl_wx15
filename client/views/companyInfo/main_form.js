@@ -1,6 +1,6 @@
 Template.form.helpers({
   _dynamic:function(){
-        return 'scope_segement';  
+        return 'resource_segement';  
   }
 });
 

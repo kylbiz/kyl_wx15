@@ -63,19 +63,23 @@ ul {
 }
 .widen-padding() {
   .padding-rem(20px);
+  .padding-top-rem(16px);
+  .padding-bottom-rem(16px);  
 }
 
 .ui.btn-default {
   .bridge();
   .text-center();
   .no-border();
-  .slim-padding();
+  //.slim-padding();
+  .widen-padding();
 }
 .ui.btn-primary {
   background-color: #fff;
   border: solid 1px @default-black;  
   .text-center();  
-  .slim-padding();  
+  //.slim-padding();  
+  .widen-padding();
 }
 
 .ui.btn-default.control {
@@ -110,13 +114,13 @@ body>div {
   font-size:@normel-font-size;  
 }
 .has-ui-control-bottom {
-  .padding-bottom-rem(90px);  
+  .padding-bottom-rem(80px);  
 }
 .ui.control-box {
   .text-center();
   background-color: #fff;
   box-shadow: 0 0 5px #ccc;
-  .height(90px);
+  .height(80px);
 //  .padding-top-rem(20px);
 //  .padding-bottom-rem(20px);
   width: 100%;
@@ -134,6 +138,7 @@ body>div {
    height: 100%;
    position: relative;
    cursor: pointer;
+   //font-size: @label-font-size;
    .ui.sumbit {
      width: 100% !important;
      display: block;
