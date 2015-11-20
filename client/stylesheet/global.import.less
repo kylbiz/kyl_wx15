@@ -55,12 +55,21 @@ ul {
 .hightlight {
   color:@default-hightlight-color;
 }
+
+.justify-padding() {
+  .padding-top-rem(6px);
+  .padding-bottom-rem(6px);
+  .padding-left-rem(20px);
+  .padding-right-rem(20px);
+}
+
 .slim-padding() {
   .padding-top-rem(12px);
   .padding-bottom-rem(12px);
   .padding-left-rem(20px);
   .padding-right-rem(20px);
 }
+
 .widen-padding() {
   .padding-rem(20px);
   .padding-top-rem(16px);
@@ -256,10 +265,8 @@ body>div {
   background-color: #fff;
   .margin-bottom-rem(10px);
   .main-title {
-    .widen-padding();
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    .line-height(48px);
+    .justify-padding();
+    .line-height(42px);
     vertical-align: middle;
     border-bottom: solid 1px #ddd;
     font-size: 18px !important;
