@@ -1,7 +1,7 @@
 <!-- 路由 -->
 <template name="form">
  <div class="main-container form">
-       {{> UI.dynamic template=_dynamic}}  
+       {{> UI.dynamic template=_dynamic}}
  </div>
 </template>
 
@@ -13,7 +13,7 @@
         <input type="text">
         <span class="pull-right">
             <i class="help circle icon"></i>
-        </span>        
+        </span>
     </div>
   </div>
   <div class="module">
@@ -24,7 +24,7 @@
         <div><input type="text" placeholder="请输入企业字号"></div>
         <div><input type="text" placeholder="请输入企业字号"></div>
         <div><input type="text" placeholder="请输入企业字号"></div>
-        <div><input type="text" placeholder="请输入企业字号"></div>          
+        <div><input type="text" placeholder="请输入企业字号"></div>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>   
+  </div>
 </template>
 
 <!-- 经营范围 -->
@@ -47,7 +47,7 @@
       <div class="swiper-wrapper">
           <!-- Slides -->
           {{#each pageNames}}
-          <div class="swiper-slide {{name}}">{{> UI.dynamic template=name}}</div>
+          <div class="swiper-slide {{name}} swiper-no-swiping">{{> UI.dynamic template=name}}</div>
           {{/each}}
       </div>
   </div>
@@ -57,23 +57,23 @@
   <div class="module" id="step">
     <div class="content">
       <div class="single">
-        行业类型              
+        行业类型
         <span class="pull-right">
           <i class="angle right icon"></i>
-        </span>           
-      </div>      
+        </span>
+      </div>
     </div>
   </div>
   <div class="module">
     <div class="content divide">
       <div class="single">
-        经营范围              
+        经营范围
 <!--
         <span class="pull-right">
           <i class="angle right icon"></i>
-        </span>           
+        </span>
 -->
-      </div>        
+      </div>
     </div>
     <div class="content list-container divide">
         经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
@@ -89,60 +89,60 @@
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>    
+  </div>
 </template>
 
 <!-- 行业类型大类 -->
 <template name="scope_segement_widget1">
    <div class="PostList text-center">
      <div class="main-title">
-     选择行业     
+     选择行业
      </div>
    </div>
     <div class="module">
-      <div class="content">       
-        <div class="single">       
-          行业类型大类a              
+      <div class="content">
+        <div class="single">
+          行业类型大类a
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>          
-        </div>                        
+          </span>
+        </div>
       </div>
-    </div> 
+    </div>
     <div class="module">
-      <div class="content">       
-        <div class="single">    
-          行业类型大类b              
+      <div class="content">
+        <div class="single">
+          行业类型大类b
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>          
-        </div>                        
+          </span>
+        </div>
       </div>
-    </div> 
+    </div>
     <div class="module">
-      <div class="content">       
-        <div class="single">        
-          行业类型大类c             
+      <div class="content">
+        <div class="single">
+          行业类型大类c
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>          
-        </div>                        
+          </span>
+        </div>
       </div>
-    </div>         
+    </div>
 </template>
 <!-- 行业类型细类 -->
 <template name="scope_segement_widget2">
    <div class="PostList text-center">
      <div class="main-title">选择行业类型</div>
-   </div>    
-    <div class="module">     
-      <div class="content">       
-        <div class="single">        
-          选择行业类别              
+   </div>
+    <div class="module">
+      <div class="content">
+        <div class="single">
+          选择行业类别
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>          
-        </div>                        
+          </span>
+        </div>
       </div>
     </div>
 </template>
@@ -150,8 +150,8 @@
 <template name="scope_segement_widget3">
 <div class="PostList text-center">
  <div class="main-title">确认经营范围</div>
-</div>  
- 
+</div>
+
 <div class="module">
   <div class="content list-container">
     <div class="list-group-horizonal">
@@ -163,37 +163,37 @@
       <div class="list-group-item">2^
         <div class="checkbox">
           <input type="checkbox">
-        </div>      
+        </div>
       </div>
       <div class="list-group-item">3^
         <div class="checkbox">
           <input type="checkbox">
-        </div>      
+        </div>
       </div>
       <div class="list-group-item">4^
         <div class="checkbox">
           <input type="checkbox">
-        </div>      
+        </div>
       </div>
       <div class="list-group-item">5^
         <div class="checkbox">
           <input type="checkbox">
-        </div>      
+        </div>
       </div>
       <div class="list-group-item">6^
         <div class="checkbox">
           <input type="checkbox">
-        </div>      
+        </div>
       </div>
-    </div>       
+    </div>
   </div>
-</div>   
-  
+</div>
+
 <div class="get">
   <div>
     <button class="ui btn-default" type="button" id="submit">保存</button>
   </div>
-</div>   
+</div>
 </template>
 
 
@@ -201,86 +201,104 @@
 <template name="resource_segement">
   <div class="module">
     <div class="content">
-      <span class="key">注册资金（万元）:</span>      
+      <span class="key">注册资金（万元）：</span>
       <input type="text" placeholder="请输入注册资金">
-    </div>    
-  </div>     
+    </div>
+  </div>
+  <div class="module">
+    <div class="content">
+      <div class="single">
+        新增股东信息
+        <div class="pull-right">
+          <i class="add square icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="module">
+    <div class="content">
+      <span class="key">股东：</span>
+      <span>
+        <ul>
+          <li><input type="text" placeholder="请输入股东姓名"></li>
+          <li><input type="text" placeholder="请输入出资比例"></li>
+        </ul>
+      </span>
+    </div>
+  </div>
+
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>     
+  </div>
 </template>
 
 <!-- 法人与监事 -->
 <template name="manager_segement">
   <div class="module">
     <div class="content">
-      <span class="key">法人:</span>            
+      <span class="key">法人:</span>
       <input type="text" placeholder="请输入法人姓名">
-     
-    </div>    
-  </div>  
+
+    </div>
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>      
+      <span class="key">身份证:</span>
       <input type="text" placeholder="请输入法人身份证">
     </div>
-  </div>   
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">监事:</span>      
+      <span class="key">监事:</span>
       <input type="text" placeholder="请输入监事姓名">
-    </div>    
-  </div>  
+    </div>
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>      
+      <span class="key">身份证:</span>
       <input type="text" placeholder="请输入监事身份证">
     </div>
-  </div>    
+  </div>
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>    
+  </div>
 </template>
 
 <!-- 财务负责人与经办人 -->
 <template name="others_segement">
-<div class="others"> 
+<div class="others">
   <div class="module">
     <div class="content">
-      <span class="key">财务负责人:</span>      
+      <span class="key">财务负责人:</span>
       <input type="text" placeholder="请输入财务负责人姓名">
-    </div>    
-  </div>  
+    </div>
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>      
+      <span class="key">身份证:</span>
       <input type="text" placeholder="请输入财务负责人身份证">
     </div>
-  </div>   
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">经办人:</span>      
+      <span class="key">经办人:</span>
       <input type="text" placeholder="请输入经办人姓名">
-    </div>    
-  </div>  
+    </div>
+  </div>
   <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>      
+      <span class="key">身份证:</span>
       <input type="text" placeholder="请输入经办人身份证">
     </div>
-  </div>    
+  </div>
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
-  </div>  
-</div>  
+  </div>
+</div>
 </template>
-
-
-
-

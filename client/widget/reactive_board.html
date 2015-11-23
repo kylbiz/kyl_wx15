@@ -30,7 +30,7 @@
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
+  </div>
 {{/reactive_board}}
 </template>
 
@@ -55,8 +55,8 @@
           <li class="selected">社保＋公积金开户</li>
           <li>社保＋公积金每月代缴</li>
         </ul>
-      </div>      
-    </div>  
+      </div>
+    </div>
     <div class="piece">
       <div class="key">时间：</div>
       <div class="field">
@@ -64,20 +64,20 @@
           <li class="selected">半年</li>
           <li>一年</li>
         </ul>
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">人数：</div>
       <div class="field">
         <input class="form-control" type="number" step="1" min="1" defaultValue="1" placeholder="1">
-      </div>      
-    </div>           
-          
+      </div>
+    </div>
+
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <!-- 财务代理选项 -->
@@ -100,18 +100,30 @@
           <li>小规模纳税人</li>
           <li>一般纳税人</li>
         </ul>
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
       <div class="field">
+<!--
         <ul class="cover">
           <li class="selected">此次公积金开户</li>
           <li>长春站重中之重缴</li>
            <li>社保＋公积金每月代缴</li>
         </ul>
-      </div>      
-    </div>  
+-->
+<div class="select-region">
+  <select name="" id="" class="form-control">
+    <option>此次公积金开户</option>
+    <option>长春站重中之重缴</option>
+    <option>公积金每月代缴</option>
+    <option>此次公积金开户</option>
+    <option>长春站重中之重缴</option>
+    <option>公积金每月代缴</option>
+  </select>
+</div>
+      </div>
+    </div>
     <div class="piece">
       <div class="key">时间：</div>
       <div class="field">
@@ -120,13 +132,13 @@
           <li class="selected">半年</li>
           <li>一年</li>
         </ul>
-      </div>      
-    </div>                  
+      </div>
+    </div>
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <!-- 流量记账 -->
@@ -147,9 +159,9 @@
       <div class="field">
         <ul class="half">
           <li>小规模纳税人</li>
-          <li>一般纳税人</li>        
+          <li>一般纳税人</li>
         </ul>
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
@@ -160,14 +172,14 @@
           <li>公积金每月代缴</li>
           <li>社保＋公积金每月代缴</li>
         </ul>
-      </div>      
-    </div>       
-  
+      </div>
+    </div>
+
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <template name="bank_board">
@@ -187,15 +199,15 @@
       <div class="field">
         <ul>
           <li>上海银行</li>
-          <li>花旗银行</li>        
+          <li>花旗银行</li>
         </ul>
-      </div>      
-    </div>       
+      </div>
+    </div>
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <!-- 新增收货地址 -->
@@ -209,13 +221,13 @@
       <div class="key">收货人：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="输入名字">
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">联系电话：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="手机号或固定电话">
-      </div>       
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择地区：</div>
@@ -225,19 +237,19 @@
       <div class="key">详细地址：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="街道门牌信息">
-      </div>      
-    </div> 
-    
+      </div>
+    </div>
+
     <div class="piece">
       <div class="key">邮政编号：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="邮政编号(选填)">
-      </div> 
-      </div>      
-    </div>                                  
-    
+      </div>
+      </div>
+    </div>
+
   <div class="control-box">
     <button type="button" class="ui btn-default submit">保存</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
