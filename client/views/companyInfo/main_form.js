@@ -1,6 +1,6 @@
 Template.form.helpers({
   _dynamic:function(){
-        return 'resource_segement';
+        return 'scope_segement';
   }
 });
 
@@ -19,25 +19,30 @@ Template.scope_segement.helpers({
   }
 });
 
+Template.scope_segement.swingToNext=function(swingObject){
+  swingObject.unlockSwipeToNext();
+  swingObject.slideNext();
+  swingObject.lockSwipeToNext();
+}
+
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      noSwiping : true,
-      // freeMode: false,
-      // autoplayDisableOnInteraction: false,
-      // loop: false
+      allowSwipeToNext:false,
+      loop:false
     });
+
     $("#step").click(function(){
-       autoSwiper.slideNext();
+       Template.scope_segement.swingToNext(autoSwiper);
        return false;
     });
 
     $(".scope_segement_widget1 .module").click(function(){
-       autoSwiper.slideNext();
+       Template.scope_segement.swingToNext(autoSwiper);
        return false;
     });
 
     $(".scope_segement_widget2 .module").click(function(){
-       autoSwiper.slideNext();
+       Template.scope_segement.swingToNext(autoSwiper);
        return false;
     });
 
