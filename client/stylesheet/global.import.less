@@ -55,27 +55,40 @@ ul {
 .hightlight {
   color:@default-hightlight-color;
 }
+
+.justify-padding() {
+  .padding-top-rem(6px);
+  .padding-bottom-rem(6px);
+  .padding-left-rem(20px);
+  .padding-right-rem(20px);
+}
+
 .slim-padding() {
   .padding-top-rem(12px);
   .padding-bottom-rem(12px);
   .padding-left-rem(20px);
   .padding-right-rem(20px);
 }
+
 .widen-padding() {
   .padding-rem(20px);
+  .padding-top-rem(16px);
+  .padding-bottom-rem(16px);  
 }
 
 .ui.btn-default {
   .bridge();
   .text-center();
   .no-border();
-  .slim-padding();
+  //.slim-padding();
+  .widen-padding();
 }
 .ui.btn-primary {
   background-color: #fff;
   border: solid 1px @default-black;  
   .text-center();  
-  .slim-padding();  
+  //.slim-padding();  
+  .widen-padding();
 }
 
 .ui.btn-default.control {
@@ -110,13 +123,13 @@ body>div {
   font-size:@normel-font-size;  
 }
 .has-ui-control-bottom {
-  .padding-bottom-rem(90px);  
+  .padding-bottom-rem(80px);  
 }
 .ui.control-box {
   .text-center();
   background-color: #fff;
   box-shadow: 0 0 5px #ccc;
-  .height(90px);
+  .height(80px);
 //  .padding-top-rem(20px);
 //  .padding-bottom-rem(20px);
   width: 100%;
@@ -134,6 +147,7 @@ body>div {
    height: 100%;
    position: relative;
    cursor: pointer;
+   //font-size: @label-font-size;
    .ui.sumbit {
      width: 100% !important;
      display: block;
@@ -156,9 +170,9 @@ body>div {
       font-size: @label-font-size;    
   }
   .icon {
-     width: 30px;
-     height: 30px;
-     background-image: url(/images/ui-icon.png);    
+     width: 26px;
+     height: 26px;
+     background-image: url(/images/ui-icon.png?version=1);    
      background-repeat: no-repeat;
      margin:0 !important;    
   }
@@ -166,13 +180,13 @@ body>div {
     
   }
   .icon.ui-shopcart {
-    background-position: -120px 0;  
+    background-position: -104px 0;  
   }
   
 }
 
 /* widget:ui-menu */
-@ui-menu-height:90px;
+@ui-menu-height:100px;
 .has-ui-menu {
   .padding-bottom-rem(@ui-menu-height);  
 }
@@ -182,6 +196,8 @@ body>div {
   left: 0;
   width: 100%;
   .height(@ui-menu-height);
+  .padding-top-rem(5px);
+  .padding-bottom-rem(5px);
   box-shadow: 0 0 5px #ccc;
   background: #fff;
   display: -webkit-box;
@@ -206,9 +222,9 @@ body>div {
      height: 100%;
     }
     .icon {
-       width: 30px;
-       height: 30px;
-       background-image: url(/images/ui-icon.png);    
+       width: 26px;
+       height: 26px;
+       background-image: url(/images/ui-icon.png?version=1);    
        background-repeat: no-repeat;
        margin:0 !important;           
     }
@@ -216,13 +232,13 @@ body>div {
       
     }
     .icon.ui-usercenter {
-      background-position: -30px 0;
+      background-position: -26px 0;
     }
     .icon.ui-localmarket {
-      background-position: -60px 0;
+      background-position: -52px 0;
     }
     .icon.ui-tools {
-      background-position: -90px 0;
+      background-position: -78px 0;
     }
   }
   ul li:last-child {
@@ -231,16 +247,16 @@ body>div {
   ul li.active {
     color:@default-background-color;
     .icon.ui-home {
-      background-position: 0 -30px;
+      background-position: 0 -26px;
     }
     .icon.ui-usercenter {
-      background-position: -30px -30px;
+      background-position: -26px -26px;
     }
     .icon.ui-localmarket {
-      background-position: -60px -30px;
+      background-position: -52px -26px;
     }
     .icon.ui-tools {
-      background-position: -90px -20px;
+      background-position: -78px -26px;
     }         
   }
 }
@@ -249,10 +265,8 @@ body>div {
   background-color: #fff;
   .margin-bottom-rem(10px);
   .main-title {
-    .widen-padding();
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    .line-height(48px);
+    .justify-padding();
+    .line-height(42px);
     vertical-align: middle;
     border-bottom: solid 1px #ddd;
     font-size: 18px !important;
@@ -261,8 +275,8 @@ body>div {
     .padding-rem(15px);
     display: -webkit-box;
     >.photo {
-      .width(60px);
-      .height(60px);
+      .width(80px);
+      .height(80px);
       background-color: #ccc;
       .margin-right-rem(10px);
     }
@@ -285,13 +299,14 @@ body>div {
     }
 
     .single {
-      .line-height(28px);
+      .height(36px);
+      .line-height(36px);
+      font-weight: bold;
       vertical-align: middle;
       width: 100%;
       i.icon {
         font-size: 24px;
-      }
-      i.angle.right.icon {
+        font-weight: normal;
         color: @deep-gray;
       }
       i.check.circle.icon {
@@ -319,8 +334,13 @@ body>div {
 
 .key {
     .margin-right-rem(10px);  
+    font-weight: bold;
 }
 
 .done i.check.circle.icon{
   color: @default-green;
+}
+
+.icon-right i.icon {
+  margin:0; 
 }

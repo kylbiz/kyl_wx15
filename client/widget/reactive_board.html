@@ -30,7 +30,7 @@
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
+  </div>
 {{/reactive_board}}
 </template>
 
@@ -47,15 +47,7 @@
       <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
-  <div class="ui-dist-content">
-    <div class="piece">
-      <div class="key">选择区域：</div>
-      <div class="field">
-        <ul>
-          <li class="selected">全区</li>
-        </ul>
-      </div>      
-    </div>
+  <div class="ui-dist-content assurance_board">
     <div class="piece">
       <div class="key">选择服务：</div>
       <div class="field" id="serSelect">
@@ -84,13 +76,11 @@
         </div>      
       </div>
     {{/if}}
-             
-          
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <!-- 财务代理选项 -->
@@ -114,7 +104,7 @@
             <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
           {{/each}}
         </ul>
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
@@ -137,12 +127,13 @@
           </ul>
         </div>      
       </div>                  
-  {{/if}}
+    {{/if}}
+
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 
@@ -167,7 +158,7 @@
             <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
           {{/each}}
         </ul>
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
@@ -182,8 +173,8 @@
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 
@@ -206,15 +197,15 @@
         <ul>
             {{#each $mapped productInfo}}
             <li class="{{#if $first}}selected{{/if}}">{{bank}}</li>
-          {{/each}}      
+          {{/each}}
         </ul>
-      </div>      
-    </div>       
+      </div>
+    </div>
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>
 
 <!-- 新增收货地址 -->
@@ -228,13 +219,13 @@
       <div class="key">收货人：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="输入名字">
-      </div>      
+      </div>
     </div>
     <div class="piece">
       <div class="key">联系电话：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="手机号或固定电话">
-      </div>       
+      </div>
     </div>
     <div class="piece">
       <div class="key">选择地区：</div>
@@ -244,19 +235,19 @@
       <div class="key">详细地址：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="街道门牌信息">
-      </div>      
-    </div> 
-    
+      </div>
+    </div>
+
     <div class="piece">
       <div class="key">邮政编号：</div>
       <div class="field">
         <input type="text" class="ghost-control" placeholder="邮政编号(选填)">
-      </div> 
-      </div>      
-    </div>                                  
-    
+      </div>
+      </div>
+    </div>
+
   <div class="control-box">
     <button type="button" class="ui btn-default submit">保存</button>
-  </div> 
-{{/reactive_board}}  
+  </div>
+{{/reactive_board}}
 </template>

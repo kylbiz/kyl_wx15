@@ -8,13 +8,27 @@
       .pull-left {
        width: 50%;       
       }
-    }    
+    }        
     .region-container {
       display: -webkit-box; 
-      -webkit-box-flex:1;      
+      -webkit-box-flex:1; 
+      .box {
+        display: -webkit-box;
+      }
+      .left {
+        display: -webkit-box; 
+        -webkit-box-flex:1;        
+        .key,.value {
+         float: none; 
+        }
+      }
     }
     .region-content {
       display: -webkit-box;
+      .field {
+       .line-height(36px);
+       vertical-align: middle;
+      }
     }
     .icon-left {
       display: -webkit-box;
@@ -33,7 +47,51 @@
       -webkit-box-align: center;      
     }
   }
+  .piece {
+    .padding-top-rem(5px); 
+    .padding-bottom-rem(5px); 
+  }  
+  .piece {    
+     .make-row();
+     .key,.field,.dot {
+      .make-column();
+      .line-height(36px);      
+      vertical-align: middle;            
+     }
+    
+  }
+  .content.box-body {    
+    .key {    
+      vertical-align: middle;         
+      .width(120px);
+      .ui-justify(36px);     
+    }
+    .field {
+       ul li {
+        .line-height(36px);      
+        vertical-align: middle;   
+        .margin-bottom-rem(5px);
+       }
+    }
+    .dot {
+      //.margin-left-rem(5px);
+      .margin-right-rem(20px);       
+    }
+    
+  }
 }
+
+.content.box-body {
+    border-top: solid 1px @deep-gray;      
+    display: none;
+    .segement {
+     border-bottom: solid 1px #ddd; 
+       &:last-child {
+        border-bottom:0;
+       }
+    }
+}  
+
 /*支付*/
 .get {
   .margin-top-rem(40px);
@@ -78,9 +136,10 @@
        .margin-right-rem(15px);   
      }
     }
-  }
+  }  
 }
 
+/*ui-tab*/
 .ui-tab {
   display: -webkit-box;  
   .margin-bottom-rem(10px);
@@ -88,6 +147,8 @@
   -webkit-box-flex:1;
   text-align: center;
   background: #fff;
+  font-weight: normal;
+  font-size: @middle-font-size;
   .slim-padding();
    >a {
     display: block;
@@ -99,3 +160,5 @@
    .margin-right-rem(10px);
  }
 }
+
+

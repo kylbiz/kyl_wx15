@@ -1,8 +1,11 @@
 //路由相关设置
 Router.configure({
-	layoutTemplate: 'layoutTemplate'
+	layoutTemplate: 'layoutTemplate',
+  loadingTemplate: 'loading',
+  //notFoundTemplate: 'notFoundTemplate',
 });
 
+    
 
 // 登陆权限控制 这里需要判断两种条件
 // 微信帐号登录
