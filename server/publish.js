@@ -3,12 +3,12 @@
  */
 
 Meteor.publish('products', function(project, opt) {
-	opt = opt || {}
+	opt = opt || {};
 	products = {
 		'registration': RegistrationLists.find(opt),
 		'finance': FinanceLists.find(opt),
 		'bookkeeping': BookkeepingLists.find(opt),
-		// 'bank': BankRegister, // 需定义为collection
+		'bank': BankLists.find(), // 需定义为collection
 		'assurance': AssuranceLists.find(),
 	};
 
@@ -20,8 +20,9 @@ Meteor.publish('products', function(project, opt) {
 
 		return products_preview;
 	}
-
 	return products[project];
 });
 
-
+Meteor.publish('shopcart', function () {
+	return ShopCart.find({});
+});

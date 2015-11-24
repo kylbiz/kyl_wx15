@@ -1,6 +1,7 @@
 // 购物车页
 Template.shopcart.helpers({
-  empty:function() {
-    return true;
+  list: function() {
+  	console.log("shopcart", ShopCart.find({}).fetch());
+    return {info: ShopCart.find({}).fetch()};
   }
 });

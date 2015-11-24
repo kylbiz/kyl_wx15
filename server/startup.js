@@ -3,21 +3,24 @@
 var registrationLists=[
   {
     name:'1元注册', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '金山', payment: 1, message: '注册时长25天，行业以文化创意类为主，办理时需要股东到场一次'},
       {zone: '松江', payment: 1, message: '注册时长20天，无其他要求'},
       {zone: '嘉定', payment: 1, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
       {zone: '奉贤', payment: 1, message: '注册时长20天，无其他要求'}
-    ]
+    ],
   },
   {
     name:'极速注册', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '虹口', payment: 1000, message: '核名通过并且提交资料后7个工作日'}
     ]
   },
   {
     name:'电商公司', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'}, 
       {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'}, 
@@ -31,6 +34,7 @@ var registrationLists=[
   },
   {
     name:'教育公司', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
       {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'}, 
@@ -42,6 +46,7 @@ var registrationLists=[
   },
   {
     name:'金融信息公司', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
       {zone: '嘉定', payment: 299, message: '注册时长20天，无其他要求'},
@@ -53,6 +58,7 @@ var registrationLists=[
   },
   {
     name:'移动互联网公司', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '虹口', payment: 299, message: '注册时长15天，无其他要求'}, 
       {zone: '杨浦', payment: 299, message: '注册时长20天，无其他要求'}, 
@@ -62,6 +68,7 @@ var registrationLists=[
   },
   {
     name:'文化传媒公司',
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'}, 
       {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'}, 
@@ -77,6 +84,7 @@ var registrationLists=[
   },
   {
     name:'商务服务公司',
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'}, 
       {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'}, 
@@ -92,6 +100,7 @@ var registrationLists=[
   },
   {
     name:'建筑设计公司',
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'}, 
       {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'}, 
@@ -107,6 +116,7 @@ var registrationLists=[
  },
  {
     name:'医疗公司', 
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
       {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'}
@@ -251,16 +261,6 @@ var bookkeepingLists = [
       {name: '无限量记账包', payment: 2000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
     ]
   },
-   {
-    bookkeepingType: 'small',
-    bookkeepingTypeName: '小规模纳税人',
-    lists: [
-      {name: '起步型记账包', payment: 300, description: '10张代开发票、20张记账凭证或40张记账凭证'},
-      {name: '成长型记账包', payment: 500, description: '20张代开发票、30张记账凭证或70张记账凭证'},
-      {name: '稳定型记账包', payment: 1000, description: '50张代开发票、60张记账凭证或160张记账凭证'},
-      {name: '无限量记账包', payment: 2000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
-    ]
-  },
   {
     bookkeepingType: 'common',
     bookkeepingTypeName: '一般纳税人',
@@ -271,6 +271,12 @@ var bookkeepingLists = [
       {name: '无限量记账包', payment: 3000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
     ]
   }
+];
+
+var bankLists = [
+  {bank: '中国银行', payment: 200},
+  {bank: '招商银行', payment: 200},
+  {bank: '上海银行', payment: 200}
 ];
 
 
@@ -334,6 +340,11 @@ Meteor.startup(function() {
       Business1.insert(businessesData1[i]);
     }
   };
+  if (BankLists.find().count() == 0) {
+    bankLists.forEach(function (list) {
+      BankLists.insert(list);
+    });
+  }
 
 })
 

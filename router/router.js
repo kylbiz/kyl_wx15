@@ -14,21 +14,20 @@ Router.route('/', {
 	},
 	data: function () {
 		// registration, bank, finance, assurance, bookkeeping
-
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
-			RegList[key]['type'] = 'registration'
+			RegList[key]['baseType'] = 'registration';
 		}
 
 		productsPreview = [
 			{title: '小白云工商注册', items: RegList},
 			{title: '小企财云', items: [
-				{name: '银行开户', price: '200', type: 'bank'},
-				{name: '财务代理', price: '300-1900', type: 'finance'},
-				{name: '流量记账包服务套餐', price: '300-3000', type: 'bookkeeping'}
+				{name: '银行开户', price: '200', baseType: 'bank'},
+				{name: '财务代理', price: '300-1900', baseType: 'finance'},
+				{name: '流量记账包服务套餐', price: '300-3000', baseType: 'bookkeeping'}
 			]},
 			{title: '小企人事', items: [
-				{name: '小企社保', type: 'assurance'}
+				{name: '小企社保', baseType: 'assurance'}
 			]},
 		];
 		return {products: productsPreview};
@@ -39,13 +38,10 @@ Router.route('/', {
 // 产品详情页
 Router.route('/product/:productType', {
 	name: 'product',
-	// waitOn: function () {
-	// 	Session.set('productType', this.params.productType);
-	// 	return Meteor.subscribe('products', this.params.productType);
-	// },
-	// data: function () {
-	// 	return ;
-	// },
+	waitOn: function () {
+		console.log(this.params.productType, this.params.query);
+		return Meteor.subscribe('products', this.params.productType);
+	}
 });
 
 
@@ -78,7 +74,12 @@ Router.route('/home');
 
 
 // 购物车
-Router.route('/shopcart');
+Router.route('/shopcart', {
+	name: 'shopcart',
+	waitOn: function () {
+		return Meteor.subscribe('shopcart');
+	}
+});
 
 
 

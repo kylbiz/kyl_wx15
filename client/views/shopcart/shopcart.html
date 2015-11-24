@@ -1,49 +1,38 @@
 <template name="shopcart">
-  {{#if empty}}
-    {{> emptyTemplate}}
+  {{#if list}}
+    {{#with list}}
+      {{> shopcart_content}}
+    {{/with}}
+    }
   {{else}}
-    {{> shopcart_content}}
+    {{> emptyTemplate}}
   {{/if}}
 </template>
 
 <template name="shopcart_content">
-  <div class="shopcart main-container has-ui-control-bottom">
-    <div class="module">
-      <div class="content">
-        <div class="left-segement">
-          <div class="photo-frame">
+  <div class="shopcart main-container has-ui-control-bottom">    
+    {{#each info}}
+      <div class="module">
+        <div class="content">
+          <div class="left-segement">
+            <div class="photo-frame">
 
+            </div>
+            <div class="tag">
+              <div class="title main">{{productType}}</div>
+              <div class="title">{{servicesNameList.name}}</div>
+              {{#each items}}
+                <div class="ui label">地区：{{servicesNameList.zone}}</div>
+              {{/each}}
+              <div class="price">&yen;{{moneyAmount}}</div>
+            </div>
           </div>
-          <div class="tag">
-            <div class="title main">互联网</div>
-            <div class="title">小企人事</div>
-            <div class="ui label">地区：一念之间</div>
-            <div class="price">&yen;800</div>
+          <div class="right-segement">
+            <i class="trash icon outline"></i>
           </div>
-        </div>
-        <div class="right-segement">
-          <i class="trash icon outline"></i>
         </div>
       </div>
-    </div>
-    <div class="module">
-      <div class="content">
-        <div class="left-segement">
-          <div class="photo-frame">
-
-          </div>
-          <div class="tag">
-            <div class="title main">互联网</div>
-            <div class="title">小企人事</div>
-            <div class="ui label">地区：一念之间</div>
-            <div class="price">&yen;800</div>
-          </div>
-        </div>
-        <div class="right-segement">
-          <i class="trash icon outline"></i>
-        </div>
-      </div>
-    </div>    
+    {{/each}} 
     {{> shopcart_controlBox}}
   </div>  
 </template>

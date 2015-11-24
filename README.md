@@ -348,9 +348,6 @@
 	
 	```
 
-	
-![baidu](https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png)
-
 ## 进度
 - Day 1 --[熟悉基本流程，环境搭建]
 - Day 2 --[access-token的获取]
@@ -361,7 +358,8 @@
 - Day 7 --[整合前端代码,登录验证码的实现]
 - Day 8 --[微信openid的获取，微信支付的实现，包括收货地址的获取]
 - Day 9 --[产品购买流程]
--
+- Day 10 --[购买产品的具体细节]
+- Day 11 --[购买具体-后半段，购买产品信息获取与数据库存储]
 
 ## 当前遗留问题
 - 微信支付 -- 生成订单时的保存与支付后的确认

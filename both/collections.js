@@ -21,11 +21,7 @@ FinanceLists = new Meteor.Collection('FinanceLists');
 BookkeepingLists = new Meteor.Collection('BookkeepingLists');
 
 // 财务产品 -- inside 银行开户 -- 未写入数据库
-BankRegister = [
-  {bank: '中国银行', payment: 200},
-  {bank: '招商银行', payment: 200},
-  {bank: '上海银行', payment: 200}
-];
+BankLists = new Meteor.Collection('BankLists');
 
 
 // 人事产品 -- inside 只有这一个产品

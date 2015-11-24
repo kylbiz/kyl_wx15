@@ -14,17 +14,17 @@
 
     </div>
     <div class="tag">
-      <div class="title">互联网公司注册</div>
-      <div class="price">&yen;1000</div>
+      <div class="title">{{productInfo.name}}</div>
+      <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
   <div class="ui-dist-content">
     <div class="key">选择区域：</div>
-    <div class="field">
+    <div class="field" id="zone">
       <ul>
-        <li class="selected">浦东</li>
-        <li>普陀</li>
-        <li>黄浦</li>
+        {{#each $mapped productInfo.services}}
+          <li class="{{#if $first}}selected{{/if}}">{{zone}}</li>
+        {{/each}}
       </ul>
     </div>
   </div>
@@ -44,7 +44,7 @@
     </div>
     <div class="tag">
       <div class="title">小企人事</div>
-      <div class="price">&yen;120-800</div>
+      <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
   <div class="ui-dist-content">
@@ -58,28 +58,33 @@
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
-      <div class="field">
+      <div class="field" id="serSelect">
         <ul>
-          <li class="selected">社保＋公积金开户</li>
-          <li>社保＋公积金每月代缴</li>
+          {{#each $mapped productInfo}}
+            <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
+          {{/each}}
         </ul>
       </div>      
-    </div>  
-    <div class="piece">
-      <div class="key">时间：</div>
-      <div class="field">
-        <ul>
-          <li class="selected">半年</li>
-          <li>一年</li>
-        </ul>
-      </div>      
-    </div>
-    <div class="piece">
-      <div class="key">人数：</div>
-      <div class="field">
-        <input type="text" class="form-control">
-      </div>      
-    </div>           
+    </div> 
+    {{#if items}}
+      <div class="piece">
+        <div class="key">时间：</div>
+        <div class="field" id='timeSelect'>
+          <ul>
+            {{#each $mapped items}}
+              <li class="{{#if $first}}selected{{/if}}">{{periodName}}</li>
+            {{/each}}
+          </ul>
+        </div>      
+      </div>
+      <div class="piece">
+        <div class="key">人数：</div>
+        <div class="field">
+          <input type="text" class="form-control" id="personNum" value={{personNum}}>
+        </div>      
+      </div>
+    {{/if}}
+             
           
   </div>
   <div class="control-box">
@@ -97,39 +102,42 @@
     </div>
     <div class="tag">
       <div class="title">财务代理</div>
-      <div class="price">&yen;500</div>
+      <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
   <div class="ui-dist-content">
     <div class="piece">
       <div class="key">服务类型：</div>
-      <div class="field">
+      <div class="field" id="agentTypSel">
         <ul>
-          <li>小规模纳税人</li>
-          <li>一般纳税人</li>
+          {{#each $mapped productInfo.serTypes}}
+            <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
+          {{/each}}
         </ul>
       </div>      
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
-      <div class="field">
+      <div class="field" id="agentSerSel">
         <ul>
-          <li class="selected">此次公积金开户</li>
-          <li>长春站重中之重缴</li>
-           <li>社保＋公积金每月代缴</li>
+          {{#each $mapped productInfo.list }}
+            <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
+          {{/each}}
         </ul>
-      </div>      
-    </div>  
-    <div class="piece">
-      <div class="key">时间：</div>
-      <div class="field">
-        <ul>
-          <li>季度</li>
-          <li class="selected">半年</li>
-          <li>一年</li>
-        </ul>
-      </div>      
-    </div>                  
+      </div>           
+    </div> 
+    {{#if periodNames}}
+      <div class="piece">
+        <div class="key">时间：</div>
+        <div class="field" id="agentTimeSel">
+          <ul>
+            {{#each $mapped periodNames}}
+              <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
+            {{/each}}
+          </ul>
+        </div>      
+      </div>                  
+  {{/if}}
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
@@ -137,7 +145,8 @@
 {{/reactive_board}}  
 </template>
 
-<!-- 流量记账 -->
+
+<!-- 流量包 -->
 <template name="package_board">
  {{#reactive_board}}
   <div class="des">
@@ -145,32 +154,31 @@
 
     </div>
     <div class="tag">
-      <div class="title">流量记账包服务套餐</div>
-      <div class="price">&yen;500</div>
+      <div class="title">流量计量包</div>
+      <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
   <div class="ui-dist-content">
     <div class="piece">
       <div class="key">服务类型：</div>
-      <div class="field">
+      <div class="field" id="packageType">
         <ul>
-          <li>小规模纳税人</li>
-          <li>一般纳税人</li>        
+          {{#each $mapped productInfo.bookkeepingTypeNames }}
+            <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
+          {{/each}}
         </ul>
       </div>      
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
-      <div class="field">
+      <div class="field" id="packageSer">
         <ul>
-          <li class="selected">此次公积金开户</li>
-          <li>长春站重中之重缴</li>
-          <li>公积金每月代缴</li>
-          <li>社保＋公积金每月代缴</li>
-        </ul>
-      </div>      
-    </div>       
-  
+          {{#each $mapped productInfo.list }}
+            <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
+          {{/each}}
+        </ul>  
+      </div>           
+    </div> 
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>
@@ -178,6 +186,8 @@
 {{/reactive_board}}  
 </template>
 
+
+<!-- 银行开户 -->
 <template name="bank_board">
  {{#reactive_board}}
   <div class="des">
@@ -186,16 +196,17 @@
     </div>
     <div class="tag">
       <div class="title">银行开户</div>
-      <div class="price">&yen;500</div>
+      <div class="price">&yen;{{payment}}</div>
     </div>
   </div>
   <div class="ui-dist-content">
     <div class="piece">
       <div class="key">开户银行：</div>
-      <div class="field">
+      <div class="field" id="bankSel">
         <ul>
-          <li>上海银行</li>
-          <li>花旗银行</li>        
+            {{#each $mapped productInfo}}
+            <li class="{{#if $first}}selected{{/if}}">{{bank}}</li>
+          {{/each}}      
         </ul>
       </div>      
     </div>       
