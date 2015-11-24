@@ -51,7 +51,7 @@
     <div class="piece">
       <div class="key">选择服务：</div>
       <div class="field" id="serSelect">
-        <ul>
+        <ul class="cover">
           {{#each $mapped productInfo}}
             <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
           {{/each}}
@@ -99,7 +99,7 @@
     <div class="piece">
       <div class="key">服务类型：</div>
       <div class="field" id="agentTypSel">
-        <ul>
+        <ul class="half">
           {{#each $mapped productInfo.serTypes}}
             <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
           {{/each}}
@@ -109,18 +109,20 @@
     <div class="piece">
       <div class="key">选择服务：</div>
       <div class="field" id="agentSerSel">
-        <ul>
-          {{#each $mapped productInfo.list }}
-            <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
-          {{/each}}
-        </ul>
+        <div class="select-region">
+          <select name="" id="" class="form-control">
+              {{#each productInfo.list }}
+              <option>{{name}}</option>
+              {{/each}}
+          </select>
+        </div>
       </div>           
     </div> 
     {{#if periodNames}}
       <div class="piece">
         <div class="key">时间：</div>
         <div class="field" id="agentTimeSel">
-          <ul>
+          <ul class="three">
             {{#each $mapped periodNames}}
               <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
             {{/each}}
@@ -153,7 +155,7 @@
     <div class="piece">
       <div class="key">服务类型：</div>
       <div class="field" id="packageType">
-        <ul>
+        <ul class="half">
           {{#each $mapped productInfo.bookkeepingTypeNames }}
             <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
           {{/each}}
@@ -194,7 +196,7 @@
     <div class="piece">
       <div class="key">开户银行：</div>
       <div class="field" id="bankSel">
-        <ul>
+        <ul class="cover">
             {{#each $mapped productInfo}}
             <li class="{{#if $first}}selected{{/if}}">{{bank}}</li>
           {{/each}}
