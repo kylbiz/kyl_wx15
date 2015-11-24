@@ -1,3 +1,10 @@
+Template.trade.helpers({
+    address: function () {
+        
+    }
+});
+
+
 Template.trade.events({
 	'click #wxbuy': function () {
 

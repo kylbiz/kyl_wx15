@@ -26,10 +26,14 @@ Router.onBeforeAction(function () {
 
 // 开业啦帐号登录
 Router.onBeforeAction(function () {
-	console.log('loginUser');
+	console.log('loginUser', Meteor.userId());
 	if (Meteor.userId()) {
 		this.next();
 	} else {
 		this.render('login');
 	}
-}, {only: ['shopcart', 'trade', 'payResult', 'orderlist', 'orderDetail', 'orderProcess', 'home']});
+}, {only: [
+	'shopcart', 'trade', 'payResult', 
+	'addressList', 'address',
+	'home','orderlist', 'orderDetail', 'orderProcess', 
+	]});

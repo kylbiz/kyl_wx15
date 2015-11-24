@@ -44,6 +44,19 @@ Router.route('/product/:productType', {
 	}
 });
 
+// 购物车
+Router.route('/shopcart', {
+	name: 'shopcart',
+	waitOn: function () {
+		return Meteor.subscribe('shopcart');
+	}
+});
+
+// 收货地址页
+Router.route('/addressList');
+// 添加收货地址
+Router.route('/address');
+
 
 // 订单中心界面
 Router.route('/orderList');
@@ -73,13 +86,6 @@ Router.route('/companyInfo');
 Router.route('/home');
 
 
-// 购物车
-Router.route('/shopcart', {
-	name: 'shopcart',
-	waitOn: function () {
-		return Meteor.subscribe('shopcart');
-	}
-});
 
 
 
