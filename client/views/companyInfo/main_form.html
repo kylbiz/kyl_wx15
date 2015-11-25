@@ -1,6 +1,6 @@
 <!-- 路由 -->
 <template name="form">
- <div class="main-container form">
+ <div class="main-container form {{_dynamic}}">
        {{> UI.dynamic template=_dynamic}}
  </div>
 </template>
@@ -47,7 +47,7 @@
       <div class="swiper-wrapper">
           <!-- Slides -->
           {{#each pageNames}}
-          <div class="swiper-slide {{name}}">{{> UI.dynamic template=name}}</div>
+          <div class="swiper-slide {{name}}">{{> UI.dynamic template=this}}</div>
           {{/each}}
       </div>
   </div>
@@ -201,7 +201,7 @@
 <template name="resource_segement">
   <div class="module">
     <div class="content">
-      <span class="key">注册资金（万元）：</span>
+      <span class="key">注册资金（万元）: </span>
       <input type="text" placeholder="请输入注册资金">
     </div>
   </div>
@@ -236,28 +236,27 @@
 
 <!-- 法人与监事 -->
 <template name="manager_segement">
-  <div class="module">
+  <div class="module group">
     <div class="content">
-      <span class="key">法人:</span>
+      <span class="key">法人</span>
+      <span class="dot"></span>
       <input type="text" placeholder="请输入法人姓名">
-
     </div>
-  </div>
-  <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>
+      <span class="key">身份证</span>
+      <span class="dot"></span>
       <input type="text" placeholder="请输入法人身份证">
     </div>
   </div>
-  <div class="module">
+  <div class="module group">
     <div class="content">
-      <span class="key">监事:</span>
+      <span class="key">监事</span>
+      <span class="dot"></span>
       <input type="text" placeholder="请输入监事姓名">
     </div>
-  </div>
-  <div class="module">
     <div class="content">
-      <span class="key">身份证:</span>
+      <span class="key">身份证</span>
+      <span class="dot"></span>
       <input type="text" placeholder="请输入监事身份证">
     </div>
   </div>
@@ -270,35 +269,46 @@
 
 <!-- 财务负责人与经办人 -->
 <template name="others_segement">
-<div class="others">
-  <div class="module">
+
+  <div class="module group">
     <div class="content">
-      <span class="key">财务负责人:</span>
-      <input type="text" placeholder="请输入财务负责人姓名">
+      <span class="key">财务负责人</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入负责人姓名">
     </div>
+    <div class="content">
+      <span class="key">身份证</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入负责人身份证">
+    </div> 
+    <div class="content">
+      <span class="key">手机号</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入负责人手机号">
+    </div>        
   </div>
-  <div class="module">
+  
+  <div class="module group">
     <div class="content">
-      <span class="key">身份证:</span>
-      <input type="text" placeholder="请输入财务负责人身份证">
+      <span class="key">企业联络人</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入联络人姓名">
     </div>
-  </div>
-  <div class="module">
     <div class="content">
-      <span class="key">经办人:</span>
-      <input type="text" placeholder="请输入经办人姓名">
-    </div>
-  </div>
-  <div class="module">
+      <span class="key">手机号</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入联络人手机号">
+    </div>     
     <div class="content">
-      <span class="key">身份证:</span>
-      <input type="text" placeholder="请输入经办人身份证">
-    </div>
+      <span class="key">邮箱</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="请输入联络人邮箱">
+    </div>          
   </div>
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
   </div>
-</div>
+
 </template>
