@@ -47,7 +47,7 @@
       <div class="swiper-wrapper">
           <!-- Slides -->
           {{#each pageNames}}
-          <div class="swiper-slide {{name}}">{{> UI.dynamic template=this}}</div>
+          <div class="swiper-slide {{name}}">{{> UI.dynamic template=name}}</div>
           {{/each}}
       </div>
   </div>
@@ -240,24 +240,24 @@
     <div class="content">
       <span class="key">法人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入法人姓名">
+      <input type="text" placeholder="姓名">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入法人身份证">
+      <input type="text" placeholder="身份证">
     </div>
   </div>
   <div class="module group">
     <div class="content">
       <span class="key">监事</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入监事姓名">
+      <input type="text" placeholder="姓名">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入监事身份证">
+      <input type="text" placeholder="身份证">
     </div>
   </div>
   <div class="get">
@@ -274,17 +274,17 @@
     <div class="content">
       <span class="key">财务负责人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入负责人姓名">
+      <input type="text" placeholder="姓名">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入负责人身份证">
+      <input type="text" placeholder="身份证">
     </div> 
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入负责人手机号">
+      <input type="text" placeholder="手机号">
     </div>        
   </div>
   
@@ -292,23 +292,53 @@
     <div class="content">
       <span class="key">企业联络人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入联络人姓名">
+      <input type="text" placeholder="姓名">
     </div>
+    <div class="content">
+      <span class="key">身份证</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="身份证">
+    </div>    
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入联络人手机号">
+      <input type="text" placeholder="手机号">
     </div>     
     <div class="content">
       <span class="key">邮箱</span>
       <span class="dot"></span>
-      <input type="text" placeholder="请输入联络人邮箱">
+      <input type="text" placeholder="邮箱">
     </div>          
-  </div>
+  </div>  
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
     </div>
   </div>
 
+</template>
+
+<template name="contractor_segement">
+  <div class="module group">
+    <div class="content">
+      <span class="key">资料对接人</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="姓名">
+    </div>   
+    <div class="content">
+      <span class="key">手机号</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="手机号">
+    </div>     
+    <div class="content">
+      <span class="key">邮箱</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="邮箱">
+    </div>          
+  </div>  
+  <div class="get">
+    <div>
+      <button class="ui btn-default" type="button">保存</button>
+    </div>
+  </div>  
 </template>

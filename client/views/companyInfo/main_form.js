@@ -6,7 +6,15 @@ Template.form.helpers({
 
 Template.scope_segement.helpers({
   pageNames:function(){
-    var pageNames = ['scope_segement_board','scope_segement_widget1', 'scope_segement_widget2','scope_segement_widget3'];
+    var pageNames = [{
+      name: 'scope_segement_board'
+    }, {	
+      name: 'scope_segement_widget1'
+    }, {	
+      name: 'scope_segement_widget2'	
+    }, {	
+      name: 'scope_segement_widget3'	
+    }];
     return pageNames;
   }
 });

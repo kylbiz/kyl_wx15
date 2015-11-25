@@ -123,3 +123,6 @@ Router.route('/logout', function() {
 
 Router.route('/form');
 
+Router.route('/address');
+
+Router.route('/addressList');
