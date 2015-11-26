@@ -9,10 +9,10 @@
           <div>
             <div class="piece box">
               <div class="left">
-                <span class="key">收货人：崔恒泽</span>
+                <span class="key">收货人：{{address.receiver}}</span>
               </div>
               <div class="left">
-                <span class="key">手机号：18521595051</span>
+                <span class="key">手机号：{{address.phone}}</span>
               </div>
             </div>
             <div class="piece">
@@ -22,28 +22,32 @@
             </div>
             <div class="region-content">
               <span class="field">
-              三条区三条路三条街三条门
-              三条区三条路三条街三条门
+              {{address.address}}
               </span>              
             </div>
           </div>
         </div>
         <div class="icon-right">
-          <i class="angle right icon"></i>
+          <i class="angle right icon" id='setAddress'></i>
         </div>
 
       </div>
     </div>
-    <div class="module">
-      <div class="content">
-        <div class="photo"></div>
-        <div class="info">
-          <div class="title">互联网公司注册</div>
-          <div class="region">地区虹口</div>
+  
+    {{#each payList}}
+      <div class="module">
+        <div class="content">
+          <div class="photo"></div>
+          <div class="info">
+            <div class="title">{{subtitle}}</div>
+            {{#each ext}}
+              <div class="region">{{this}}</div>
+            {{/each}}
+          </div>
+          <div class="price">&yen;{{payment}}</div>
         </div>
-        <div class="price">&yen;1000</div>
       </div>
-    </div>
+    {{/each}}
 
 <!--
     <div class="module">
@@ -62,7 +66,11 @@
 
     <div class="module">
       <div class="content">
-        <div class="single">优惠：</div>
+        <div class="single">优惠：
+          <span class="hightlight">
+            &yen;{{disc}}
+          </span>
+        </div>
       </div>
     </div>
 
@@ -70,7 +78,7 @@
       <div class="content center">
         <div class="single">合计:
           <span class="hightlight">
-           &yen;1000
+           &yen;{{allPayment}}
          </span>
         </div>
       </div>

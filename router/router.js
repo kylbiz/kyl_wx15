@@ -53,7 +53,19 @@ Router.route('/shopcart', {
 });
 
 // 收货地址页
-Router.route('/addressList');
+Router.route('/addressList', {
+	name: 'addressList',
+	waitOn: function () {
+		return Meteor.subscribe('userAddress');
+	},
+	onBeforeAction: function () {
+		if( UserAddress.find({}).count() ) {
+            this.next();   
+        } else { 
+            Router.go('address');
+        }
+	}
+});
 // 添加收货地址
 Router.route('/address');
 
@@ -69,12 +81,26 @@ Router.route('/orderProcess');
 
 // 支付页
 Router.route('/weixinpay', {
-	name: 'trade'
+	name: 'trade',
+	subscriptions: function () {
+		return Meteor.subscribe('userAddress');
+	},
+	waitOn: function () {
+		return Meteor.subscribe('shopcart');
+	},	
 });
 
 // 支付结果
 // Router.route('/payResult');
-Router.route('/paySuccess');
+Router.route('/paySuccess', {
+	name: "paySuccess",
+	subscriptions: function () {
+		return Meteor.subscribe('paylog', this.params.query.order);
+	},
+	data: function () {
+		return {info: PayLogs.findOne({}), style: this.params.query.style};
+	}
+});
 
 // 注册公司信息
 Router.route('/companyInfo');

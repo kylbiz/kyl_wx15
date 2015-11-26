@@ -1,7 +1,7 @@
 //项目中涉及的所有collection
 
 // 微信账号相关数据
-WeChatInfo = new Mongo.Collection('wechatinfo');
+WeChatInfo = new Meteor.Collection('wechatinfo');
 
 // 用户验证码存储
 UserCode = new Meteor.Collection('UserCode');
@@ -37,7 +37,10 @@ Business1 = new Meteor.Collection('BusinessesData1');
 
 
 // 订单
-Orders = new Mongo.Collection('orders');
+Orders = new Meteor.Collection('orders');
+
+// 支付记录
+PayLogs = new Meteor.Collection('PayLogs');
 
 // 购物车
 ShopCart = new Meteor.Collection('ShopCart');

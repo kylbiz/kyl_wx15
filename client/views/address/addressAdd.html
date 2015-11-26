@@ -1,0 +1,64 @@
+<template name="address">
+<div class="main-container address ui-board-content">
+  <div class="des text-center">
+    <div class="title">新增收货地址</div>
+  </div>
+  <div class="ui-dist-content address-plus">
+    <div class="piece">
+      <div class="key">收货人：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="输入名字" id="receiver">
+      </div>      
+    </div>
+    <div class="piece">
+      <div class="key">联系电话：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="手机号或固定电话" id="phone">
+      </div>       
+    </div>
+    <!-- <div class="piece">
+      <div class="key">选择地区：</div>
+      <div class="field">
+        
+        <select id="province">
+          <option value=null>省</option>
+          {{#each provinceList}}
+            <option value={{name}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <select id="city">
+          <option value=null>市</option>
+          {{#each cityList}}
+            <option value={{name}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <select name="" id="area">
+          <option value=null>区</option>
+          {{#each areaList}}
+            <option value={{name}}>{{name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div> -->
+    <div class="piece">
+      <div class="key">地址：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="详细地址" id="address">
+      </div>      
+    </div> 
+    
+    <div class="piece">
+      <div class="key">邮政编号：</div>
+      <div class="field">
+        <input type="text" class="ghost-control" placeholder="邮政编号(选填)" id="zipcode">
+      </div> 
+      </div>      
+    </div>                                  
+    
+    <div class="get offset">
+      <div>
+        <button class="ui btn-default" type="button" id="saveAddrBtn">保存</button>
+      </div>
+    </div> 
+</div>     
+</template>

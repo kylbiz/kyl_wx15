@@ -33,6 +33,10 @@
 	- `accounts-password`, `meteor-roles`
 	- 注意点: 用户取消关注后follwers列表中仍保存用户的openid 但是user信息中subscribe＝0，除openid外其他信息都清除,openid对应一个公众号永久不变
 
+#### 支付系统
+
+
+
 #### 产品数据
 - ShopCart -- 购物车
 
@@ -54,6 +58,7 @@
 	}
 }
 ```
+
 - UserAddress -- 收货地址
 
 ```javaScript
@@ -67,6 +72,152 @@
 	createAt: new Date()
 }
 ```
+
+- PayLogs --支付信息
+
+```javaScript
+// 支付前
+{
+  "_id": "sQzzdQFG45Mp9pRxp",
+  "openid": "sB8it9TbvAkJpr4gxqfIGdq82Wx9bIMsd7rLpgl8",
+  "userId": "R8hD74ADSLZtipL3A",
+  "shoplists": [{
+    "relationId": "201511091834289541522",
+    "money": "600",
+    "servicename": "财务代理"
+  }, {
+    "relationId": "201511091833437210568",
+    "money": "1",
+    "servicename": "公司注册"
+  }],
+  "moneyAmount": 60100,
+  "payed": false,
+  "addressInfo": {
+    "userId": "R8hD74ADSLZtipL3A",
+    "receiver": "刘遵坤",
+    "address": "上海市普陀区澳门路三维大厦21D",
+    "phone": "15618871296",
+    "tel": "",
+    "zipcode": "20000",
+    "createAt": {
+      "$date": "2015-11-09T10:34:07.219+0000"
+    }
+  },
+  "invoice": true,
+  "createTime": {
+    "$date": "2015-11-09T10:34:32.774+0000"
+  }
+}
+
+// 支付后
+{
+  "_id": "iSrrwd5iESh87Lj2q",
+  "openid": "vMeG7ipbP2boI4poiX0F7eNt8o6eTFQn3W1lG5Fg",
+  "userId": "R8hD74ADSLZtipL3A",
+  "shoplists": [{
+    "relationId": "201511111455135927459",
+    "money": "1",
+    "servicename": "公司注册"
+  }],
+  "moneyAmount": 100,
+  "payed": true,
+  "addressInfo": {
+    "userId": "R8hD74ADSLZtipL3A",
+    "receiver": "刘遵坤",
+    "address": "上海市普陀区澳门路三维大厦21D",
+    "phone": "15618871296",
+    "tel": "",
+    "zipcode": "20000",
+    "createAt": {
+      "$date": "2015-11-09T10:34:07.219+0000"
+    }
+  },
+  "invoice": false,
+  "createTime": {
+    "$date": "2015-11-11T06:55:19.454+0000"
+  },
+  "payedTime": {
+    "$date": "2015-11-11T06:56:09.192+0000"
+  },
+  "payInfos": {
+    "retryCounter": 0,
+    "transaction_id": "vMeG7ipbP2boI4poiX0F7eNt8o6eTFQn3W1lG5Fg",
+    "retry_counter": 0,
+    "transaction_fee": 100,
+    "channelType": "ALI",
+    "sub_channel_type": "ALI_WEB",
+    "optional": {
+      "relationIdLists": "201511111455135927459",
+      "invoice": "false"
+    },
+    "transaction_type": "PAY",
+    "notify_url": "http://www.kyl.biz/webhook",
+    "transactionId": "vMeG7ipbP2boI4poiX0F7eNt8o6eTFQn3W1lG5Fg",
+    "transactionType": "PAY",
+    "transactionFee": 100,
+    "tradeSuccess": true,
+    "notifyUrl": "http://www.kyl.biz/webhook",
+    "channel_type": "ALI",
+    "messageDetail": {
+      "bc_appid": "595e34c0-4185-4b60-ae67-afd7f8af3577_222f5193-4b72-487d-92e9-d63fb872d682",
+      "discount": "0.00",
+      "payment_type": "1",
+      "subject": "开业啦创业服务",
+      "trade_no": "2015111121001004580058938303",
+      "buyer_email": "1334416803@qq.com",
+      "gmt_create": "2015-11-11 14:56:05",
+      "notify_type": "trade_status_sync",
+      "quantity": "1",
+      "out_trade_no": "vMeG7ipbP2boI4poiX0F7eNt8o6eTFQn3W1lG5Fg",
+      "seller_id": "2088612207933748",
+      "notify_time": "2015-11-11 14:56:09",
+      "trade_status": "TRADE_SUCCESS",
+      "is_total_fee_adjust": "N",
+      "total_fee": "1.00",
+      "gmt_payment": "2015-11-11 14:56:09",
+      "seller_email": "kylbiz@163.com",
+      "price": "1.00",
+      "buyer_id": "2088502326264585",
+      "notify_id": "0fd9ab8ad2625e3e315b010ebc2063akh4",
+      "use_coupon": "N",
+      "sign_type": "MD5",
+      "sign": "ed3bd745f45d52a276bf12885781aebe",
+      "tradeSuccess": true
+    },
+    "message_detail": {
+      "bc_appid": "595e34c0-4185-4b60-ae67-afd7f8af3577_222f5193-4b72-487d-92e9-d63fb872d682",
+      "discount": "0.00",
+      "payment_type": "1",
+      "subject": "开业啦创业服务",
+      "trade_no": "2015111121001004580058938303",
+      "buyer_email": "1334416803@qq.com",
+      "gmt_create": "2015-11-11 14:56:05",
+      "notify_type": "trade_status_sync",
+      "quantity": "1",
+      "out_trade_no": "vMeG7ipbP2boI4poiX0F7eNt8o6eTFQn3W1lG5Fg",
+      "seller_id": "2088612207933748",
+      "notify_time": "2015-11-11 14:56:09",
+      "trade_status": "TRADE_SUCCESS",
+      "is_total_fee_adjust": "N",
+      "total_fee": "1.00",
+      "gmt_payment": "2015-11-11 14:56:09",
+      "seller_email": "kylbiz@163.com",
+      "price": "1.00",
+      "buyer_id": "2088502326264585",
+      "notify_id": "0fd9ab8ad2625e3e315b010ebc2063akh4",
+      "use_coupon": "N",
+      "sign_type": "MD5",
+      "sign": "ed3bd745f45d52a276bf12885781aebe",
+      "tradeSuccess": true
+    },
+    "trade_success": true,
+    "sign": "e99a570e3764d4e4ea6278789b7458a7",
+    "signAll": "39cbad8906e163d88d18055badb98a04",
+    "timestamp": 1.44722496E12
+  }
+}
+```
+
 - Orders -- 订单
 
 	**公司注册**
@@ -361,16 +512,20 @@
 - Day 9 --[产品购买流程]
 - Day 10 --[购买产品的具体细节]
 - Day 11 --[购买具体 -后半段，购买产品信息获取与数据库存储]
-- Day 12 --[产品购买全流程完毕 -购物车到支付订单的对接]
-- Day 13 --[资料填写，订单界面]
-- Day 14 --[个人用户界面等相关辅助界面]
-- Day 15 --[项目整理]
+- Day 12 --[产品购买全流程完毕 -购物车到地址设置到支付订单的对接] - not finish
+- Day 13 -- 请假
+- Day 14 --[产品购买全流程完毕 -购物车到地址设置到支付订单的对接]
+- Day 15 --[资料填写，订单界面]
+- Day 16 --[个人用户界面等相关辅助界面]
+- Day 17 --[项目整理]
 
 ## 当前遗留问题
 - 微信支付 -- 生成订单时的保存与支付后的确认
 - 退款逻辑
-- 测试access_token oauth_token的get save
+- 测试access_token oauth_token的get、save
 - 共享收货地址的获取
+- 支付过程中的标记与处理
+- 跳转去登录之后，回调过来的处理
 
 
 ## 其他

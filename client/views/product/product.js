@@ -137,7 +137,7 @@ Template.product.events({
             if (err) {
                 alert('shopcartAdd err', err);
             } else {
-                alert('shopcartAdd OK');
+                // alert('shopcartAdd OK');
                 Router.go('/shopcart');
             }
         });

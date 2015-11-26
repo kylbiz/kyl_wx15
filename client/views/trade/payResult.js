@@ -1,8 +1,8 @@
 Template.paySuccess.events({
 	'click #showOrder': function () {
-		Router.go('orderDetail');
+		Router.go('orderList');
 	}, 
-	'click #editOrder': function () {
-		Router.go('companyInfo');
-	}
+	// 'click #editOrder': function () {
+	// 	Router.go('companyInfo');
+	// }
 });

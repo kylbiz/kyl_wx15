@@ -1,48 +1,74 @@
 Template.trade.helpers({
     address: function () {
-        
-    }
+        Session.setDefault('addressId', UserAddress.findOne({})._id);
+        return UserAddress.findOne({_id: Session.get("addressId")}) || {};
+    },
+    payList: function () {
+        if (!ShopCart.find({}).count()) {
+            throw new Meteor.Error("shopcart empty", "Error: No ShopCart Data Found");
+        }
+
+        var payList = CommFunc.getShopCartInfo();
+
+        var allPayment = 0;
+        var shopcartIdList = [];
+        payList.forEach(function (info) {
+            allPayment += info.payment;
+            shopcartIdList.push(info.id);
+        });
+        Session.set('allPayment', allPayment);
+        Session.set('shopcartIdList', shopcartIdList);
+
+        return payList;
+    },
+    disc: function () {
+        return 0;
+    },
+    allPayment: function () {
+        return Session.get('allPayment');
+    },
 });
 
 
 Template.trade.events({
-	'click #wxbuy': function () {
+	'click #wxbuy': function (event, template) {
+        var shopcartIdList = Session.get('shopcartIdList');
+        var addressId = Session.get('addressId');
+        if (!shopcartIdList || !addressId) {
+          kylUtil.alert("数据错误");
+          return;
+        }
 
-    alert('支付成功');
-    Router.go('paySuccess');
-
-    // var order = {
-    //   body: '吮指原味鸡 * 1',
-    //   attach: '{"部位":"三角"}',
-    //   total_fee: 10,
-    //   openid: Session.get('WeChatUser'),
-    // };
-
-    // Meteor.call('getPayArgs', order, function (error, payargs) {
-    //   if (error) {
-    //     alert("get Pay args error: " + JSON.stringify(error));
-    //   } else {
-    //     console.log('payargs', payargs);
-    //     WeixinJSBridge.invoke('getBrandWCPayRequest', payargs, function(res){
-    //       if(res.err_msg == "get_brand_wcpay_request:ok"){
-    //         alert("支付成功");
-    //         Router.go('paySuccess');
-    //         // 这里可以跳转到订单完成页面向用户展示
-    //       }else{
-    //         alert("支付失败，请重试");
-    //       }
-    //     });
-    //   }
-    // });
-  },
-  'click #address':function () {
-     //当前地址数
-     var count=0;
-     if(!count==0) {
-       Router.go('address');
-     }
-     else {
-       Router.go('addressList');   
-     }
-  }
+        Meteor.call('getPayArgs', {
+                shopcartIdList: shopcartIdList, 
+                addressId: addressId, 
+                wechatOpenId: Session.get("WeChatUser")
+            }, function (error, result) {
+              if (error) {
+                console.log("error", error);
+                kylUtil.alert("警告", JSON.stringify(error));
+              } else {
+                console.log('getPayArgs ret', result);
+                WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
+                    console.log("pay result", res);
+                  if(res.err_msg == "get_brand_wcpay_request:ok"){
+                    console.log("支付成功");
+                    Router.go('paySuccess', {
+                        query: 'order=' + result.payOrderId + '&style=微信'
+                    });
+                  }else {
+                    console.log("支付失败，请重试");
+                    Router.go('shopcart');  
+                  }
+                });
+              }
+        });
+    },
+    'click #setAddress':function () {
+        if( UserAddress.find({}).count() ) {
+            Router.go('addressList');   
+        } else { 
+            Router.go('address');
+        }
+    }
 });
