@@ -17,7 +17,8 @@ Template.layoutTemplate.confirm=function(object){
   return {
       on: function (callback) {
           if (callback && callback instanceof Function) {
-              $('#confirm').find('.ok').click(function () { callback(true) });
+              $('#confirm').find('.submit').click(function () { callback(true);$('#confirm').modal('hide');});
+              $('#confirm').find('.cancel').click(function () { callback(false);$('#confirm').modal('hide'); });
           }
       }
   };  
