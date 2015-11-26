@@ -13,6 +13,14 @@ Template.layoutTemplate.confirm=function(object){
   $('#confirm').on('hide.bs.modal',function(event) {
     $(event.currentTarget).detach();
   });  
+  
+  return {
+      on: function (callback) {
+          if (callback && callback instanceof Function) {
+              $('#confirm').find('.ok').click(function () { callback(true) });
+          }
+      }
+  };  
 }
 
 Template.layoutTemplate.onRendered(function(){
