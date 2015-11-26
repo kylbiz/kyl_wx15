@@ -23,7 +23,7 @@ Template.layoutTemplate.confirm=function(object){
               confirmBox.find('#dialogCancel').click(function () { callback(false); confirmBox.modal('hide'); });
           }
       }
-  };  
+  }  
 }
 
 Template.layoutTemplate.onRendered(function(){

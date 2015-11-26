@@ -62,7 +62,7 @@
       <div class="piece">
         <div class="key">时间：</div>
         <div class="field" id='timeSelect'>
-          <ul>
+          <ul class="half">
             {{#each $mapped items}}
               <li class="{{#if $first}}selected{{/if}}">{{periodName}}</li>
             {{/each}}
@@ -72,7 +72,7 @@
       <div class="piece">
         <div class="key">人数：</div>
         <div class="field">
-          <input type="text" class="form-control" id="personNum" value={{personNum}}>
+          <input type="number" class="form-control" id="personNum" value={{personNum}} min="1" step="1">
         </div>      
       </div>
     {{/if}}

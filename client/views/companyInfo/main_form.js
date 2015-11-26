@@ -1,6 +1,15 @@
+Template.form.onCreated(function(){
+   var form = Session.get('form');
+console.log(Template.form._data());
+
+});
+
 Template.form.helpers({
   _dynamic:function(){
-        return Session.get('form');
+    var instance = Template.instance();
+    console.log(instance._data);
+    //return instance._data.
+    return Session.get('form');
   }
 });
 
@@ -8,12 +17,12 @@ Template.scope_segement.helpers({
   pageNames:function(){
     var pageNames = [{
       name: 'scope_segement_board'
-    }, {
+    }, {	
       name: 'scope_segement_widget1'
-    }, {
-      name: 'scope_segement_widget2'
-    }, {
-      name: 'scope_segement_widget3'
+    }, {	
+      name: 'scope_segement_widget2'	
+    }, {	
+      name: 'scope_segement_widget3'	
     }];
     return pageNames;
   }

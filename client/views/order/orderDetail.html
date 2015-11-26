@@ -1,5 +1,5 @@
 <template name="orderDetail">
-  <div class="startup main-container">
+  <div class="startup main-container has-ui-menu">
     <div class="ui-tab">
       <div class="left-tab">
         <a href="/orderDetail">订单详情</a>      
@@ -15,6 +15,7 @@
         </div>
 
         <div class="region-container">
+         <a href="/addressList">
           <div>
             <div class="piece box">
               <div class="left">
@@ -36,6 +37,7 @@
               </span>              
             </div>
           </div>
+         </a>
         </div>
         
         <div class="icon-right">
@@ -184,5 +186,6 @@
         </div>
       </div>
     </div>
+    {{> ui_menu }} 
   </div>  
 </template>

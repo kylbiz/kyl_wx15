@@ -3,10 +3,46 @@ if (typeof UI !== 'undefined') {
 		return (a === b); //Only text, numbers, boolean - not array & objects
 	});
 
+	UI.registerHelper('$eq', function(a, b) {
+		return (a === b);  
+	});
+  
 	UI.registerHelper('$active', function(a, b) {
 		return (a === b) ? 'active' : '';
 	});
 
+  UI.registerHelper('$exists', function (a) {
+    return ( a !== undefined);
+  });
+
+  UI.registerHelper('$lt', function (a, b) {
+    return (a < b);
+  });
+
+  UI.registerHelper('$gt', function (a, b) {
+    return (a > b);
+  });
+
+  UI.registerHelper('$lte', function (a, b) {
+    return (a <= b);
+  });
+
+  UI.registerHelper('$gte', function (a, b) {
+    return (a >= b);
+  });
+
+  UI.registerHelper('$and', function (a, b) {
+    return (a && b);
+  });
+
+  UI.registerHelper('$or', function (a, b) {
+    return (a || b);
+  });
+
+  UI.registerHelper('$not', function (a) {
+    return (!a);
+  });
+  
 	UI.registerHelper('$', function() {
 		return Helpers.superScope;
 	});
