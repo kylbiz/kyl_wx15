@@ -113,9 +113,6 @@ Router.route('/home');
 
 
 
-
-
-
 // 登录页
 Router.route('/login', {
 	name: 'login',
@@ -155,9 +152,6 @@ Router.route('/logout', function() {
 
 Router.route('/form');
 
-Router.route('/address');
-
-Router.route('/addressList');
 
 Router.route('/tools');
 
