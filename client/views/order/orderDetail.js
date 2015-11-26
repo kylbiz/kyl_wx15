@@ -2,6 +2,8 @@ Template.orderDetail.onRendered(function(){
     //collapse
     function collapse(){
         var el = $(this).children(".box-body");
+        if(el.is(':animated'))
+          return false;
         var toggle= $(this).find(".pull-right").first();
         if (toggle.hasClass("collapse")) {
             toggle.removeClass("collapse").addClass("expand");
