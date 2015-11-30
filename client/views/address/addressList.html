@@ -1,0 +1,55 @@
+<template name="addressList">
+  <div class="main-container addressList ui-board-content">
+    <div class="des text-center">
+      <div class="title">选择收货地址</div>
+    </div>
+    <div class="ui-dist-content">
+        {{#each addressList}}
+          <div class="module">
+            <div class="content cover">
+              <div class="icon-left">
+                <i class="radio icon {{#if sele _id }}selected{{/if}}" id="{{_id}}"></i>
+              </div>
+              <div class="region-container">
+                  <div>
+                    <div class="segement">
+                      <div class="pull-left">
+                        <span class="key">{{receiver}}</span>
+                      </div>
+                      <div class="pull-left">
+                        <span class="key">{{phone}}</span>
+                      </div>
+                    </div>
+                    <div class="region-content">
+                      <span>
+                    {{address}}
+                    </span>
+                    </div>
+                  </div>
+              </div>
+              <div class="icon-right">
+                <i class="angle right icon"></i>
+              </div>
+
+            </div>
+          </div>
+        {{/each}}      
+
+      <div class="get offset text-left">
+        <div>
+          <a href="/address">
+            <button class="ui btn-primary" type="button"><i class="add square icon"></i>新增收货地址</button>
+          </a>
+          <a href="#">
+            <button class="ui btn-primary" type="button"><i class="trash icon" id="delAddress"></i>删除该收货地址</button>
+          </a>
+        </div>
+      </div>
+      <div class="get">
+        <div>
+          <button class="ui btn-default" type="button" id="sureBtn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -9,27 +9,33 @@ Template.layoutTemplate.alert=function(object){
 Template.layoutTemplate.confirm=function(object){
   var template = Blaze.toHTMLWithData(Template.confirmTemplate,object);
   $("#Mount").html(template);
-  $('#confirm').modal('show');
-  $('#confirm').on('hide.bs.modal',function(event) {
-    $(event.currentTarget).detach();
-  });  
   
+  var confirmBox=$('#confirm');
+  confirmBox.modal('show');
+  confirmBox.on('hide.bs.modal',function(event) {
+    $(event.currentTarget).detach();
+  });
+
   return {
       on: function (callback) {
           if (callback && callback instanceof Function) {
-              $('#confirm').find('.submit').click(function () { callback(true);$('#confirm').modal('hide');});
-              $('#confirm').find('.cancel').click(function () { callback(false);$('#confirm').modal('hide'); });
+              confirmBox.find('#dialogSure').click(function () { callback(true);  confirmBox.modal('hide'); });
+              confirmBox.find('#dialogCancel').click(function () { callback(false); confirmBox.modal('hide'); });
           }
       }
-  };  
+  }  
 }
 
 Template.layoutTemplate.onRendered(function(){
-  //eg
-  /*
-  var message = {};
-  message.title = "hello";
-  message.content = "world";
-  Template.layoutTemplate.confirm(message);
-  */
+//  var message = {};
+//  message.title = "hello";
+//  message.content = "world";
+//  Template.layoutTemplate.confirm(message).on( function (e) {
+//        if(e){
+//         alert('yes'); 
+//        }
+//        else {
+//         alert('no'); 
+//        }
+//    });
 });

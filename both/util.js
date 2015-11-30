@@ -3,6 +3,15 @@ log = console.log;
 
 kylUtil = {};
 
+// 警告框
+kylUtil.alert = function (title, content) {
+    if (arguments.length == 1) {
+        content = title;
+        title = '提示';
+    }; 
+    Template.layoutTemplate.alert({title: title, content: content});
+}
+
 // 验证手机号
 kylUtil.verifyPhone = function(phone) {
     var phoneReg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;

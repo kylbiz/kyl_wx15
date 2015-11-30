@@ -13,6 +13,11 @@ Meteor.methods({
 		return ShopCart.insert(prePayInfo);
 		// return true;
 	},
+
+	shopcartDel: function ( id ) {
+		// var relationId = ShopCart.findOne({_id: id}).relationId;
+		return ShopCart.remove({userId: Meteor.userId(), _id: id});
+	}
 });
 
 
@@ -52,11 +57,11 @@ function handleRegist(serInfo) {
 
 	return {
 	    userId: Meteor.userId(),
-	    relationId: kylUtil.genOrderId(),     // 订单号
+	    // relationId: kylUtil.genOrderId(),     //  关联产品id 暂不使用
 	    productType: productTypeNames[serInfo.type],
 	    typeNameFlag: serInfo.type,
 	    moneyAmount: getPay(),
-	    servicesNameList: {
+	    servicesNameList: [{
 	    	name:  serInfo.name + '[' + serInfo.zone + ']', //"互联网公司[杨浦]", // 当前订单具体内容
             money: serInfo.pay,          //当前订单价格
             scale: 1,                 // 购买数量 
@@ -66,7 +71,7 @@ function handleRegist(serInfo) {
                     name: info.baseService || "'新版营业执照、新版营业执照副本、公司章、法人章、财务章'",
                 }
             ]
-	    },
+	    }],
 	    payed: false,
 	    canceled: false,
 	    finished: false,

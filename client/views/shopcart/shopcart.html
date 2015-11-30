@@ -3,7 +3,6 @@
     {{#with list}}
       {{> shopcart_content}}
     {{/with}}
-    }
   {{else}}
     {{> emptyTemplate}}
   {{/if}}
@@ -19,16 +18,16 @@
 
             </div>
             <div class="tag">
-              <div class="title main">{{productType}}</div>
-              <div class="title">{{servicesNameList.name}}</div>
-              {{#each items}}
-                <div class="ui label">地区：{{servicesNameList.zone}}</div>
+              <div class="title main">{{title}}</div>
+              <div class="title">{{subtitle}}</div>
+              {{#each ext}}
+                <div class="ui label">{{this}}</div>
               {{/each}}
-              <div class="price">&yen;{{moneyAmount}}</div>
+              <div class="price">&yen;{{payment}}</div>
             </div>
           </div>
           <div class="right-segement">
-            <i class="trash icon outline"></i>
+            <i class="trash icon outline" id="{{id}}"></i>
           </div>
         </div>
       </div>

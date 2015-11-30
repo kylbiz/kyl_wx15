@@ -24,5 +24,18 @@ Meteor.publish('products', function(project, opt) {
 });
 
 Meteor.publish('shopcart', function () {
-	return ShopCart.find({});
+	return ShopCart.find({userId: this.userId, payed: false}, {sort: {createTime: -1}});
+});
+
+Meteor.publish('userAddress', function () {
+	return UserAddress.find({userId: this.userId}, {sort: {createAt: -1}});
+});
+
+Meteor.publish('orders', function () {
+	return Orders.find({userId: this.userId}, {sort: {createTime: -1}});
+});
+
+Meteor.publish('paylog', function (openid) {
+	PayLogs.find({userId: this.userId, openid: openid, payed: true}, 
+		{fields: {moneyAmount: 1, openid: 1, }});
 });
