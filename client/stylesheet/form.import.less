@@ -117,7 +117,32 @@
       }
     }
   }
+  
+  .content.block {
+    display: block;
+  }
+  
+  .content.border {
+   border-bottom:solid 1px #ddd !important; 
+  }
+  .content .link {
+    color: @default-gray;
+    font-size: 14px;
+    display: block;
+    float: left;
+  }
+  
+  .module.oGroup {
+    .content {
+      border-bottom: dashed 1px #ccc;
+      &:last-child {
+       border: none; 
+      }
+    }
+  }
+  
 }
+
 
 .form.manager_segement {
   .key {
@@ -126,14 +151,29 @@
    margin-right: 0; 
   }
 }
-.form.others_segement,.form.contractor_segement {
+.form.others_segement,.form.contractor_segement,.form.shockholder {
   .key {
    width: 90px; 
    .o-ui-justify(@form-line-height);
    margin-right: 0;
   }
 }
+.form.shockholder {
+   .box {
+      display: -webkit-box;
+      -webkit-box-flex: 1;   
+   }
+}
 
+.form #altBox {
+  display: block;
+  display: none;
+  border-top: solid 1px #ddd;
+  .box {
+   min-width: 50%;
+   float: left;
+  }
+}
 /*列表*/
 .ui.list {
   .ui.control-box.single {

@@ -1,28 +1,27 @@
 <template name="orderDetail">
-  <div class="startup main-container has-ui-menu">
-    <div class="ui-tab">
-      <div class="left-tab">
-        <a href="/orderDetail">订单详情</a>      
-      </div>
-      <div class="right-tab">
-        <a href="/orderProcess">订单进度</a>
-      </div>
+ <div class="control-header">
+    <div class="icon-left">
+      <i class="angle left icon"></i>
+   </div>   
+    <div class="txt">
+      我的订单
     </div>
+ </div>
+  <div class="startup main-container has-ui-menu">     
     <div class="module">
       <div class="content cover">
         <div class="icon-left">
           <i class="marker icon"></i>
         </div>
-
         <div class="region-container">
          <a href="/addressList">
           <div>
             <div class="piece box">
               <div class="left">
-                <span class="key">收货人：</span>
+                <span class="key">收货人：收货人</span>
               </div>
               <div class="left">
-                <span class="key">手机号：</span>
+                <span class="key">手机号：15000000000</span>
               </div>
             </div>
             <div class="piece">
@@ -40,127 +39,60 @@
          </a>
         </div>
         
-        <div class="icon-right">
-          <i class="angle right icon"></i>
-        </div>
 
       </div>
     </div>
+    <a href="/orderProcess">
+    <div class="module">
+      <div class="content">
+        <div class="region-container">
+          <div>
+            <div class="piece key">您的资料已提交，正在核名</div>
+            <div class="piece">2011-11-11 11:11</div>
+          </div>
+        </div>        
+        <div class="icon-right">
+          <i class="angle right icon"></i>
+        </div>        
+      </div>
+    </div>
+    </a>
     <div class="module">
       <div class="content">
         <div class="photo"></div>
         <div class="info">
           <div class="title">互联网公司注册</div>
-          <div class="region">地区虹口</div>
+          <div class="region">地区:虹口</div>
         </div>
         <div class="price">&yen;1000</div>
       </div>
     </div>
-
-    <div class="module box">
+    <a href="/orderDescription">
+    <div class="module">
       <div class="content">
         <div class="single">
-          资料详情
-          <span class="pull-right expand">
+          公司注册资料详情
+          <span class="pull-right">
             <i class="angle right icon"></i>
           </span>
         </div>
       </div>
-      <div class="content box-body">        
-        <div class="unit">
-          <div class="segement">            
-            <div class="piece">
-              <span class="key">字号</span>
-              <span class="dot">:</span>
-              <span class="field">开业啦</span>
-            </div>
-            <div class="piece">
-              <span class="key">备选字号</span>
-              <span class="dot">:</span>              
-              <span class="field">
-                <ul>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                </ul>
-              </span>
-            </div>            
-          </div>
-          <div class="segement">
-            <div class="piece">
-              <span class="key">行业</span>
-              <span class="dot">:</span>              
-              <span class="field">互联网－－网络技术</span>
-            </div>             
-          </div>    
-          <div class="segement">
-            <div class="piece">
-              <span class="key">公司属性</span>
-              <span class="dot">:</span>              
-              <span class="field">有限公司</span>
-            </div>             
-          </div>   
-          <div class="segement">
-            <div class="piece">
-              <span class="key">股东</span>
-              <span class="dot">:</span>              
-              <span class="field">刘医生</span>
-            </div>    
-            <div class="piece">
-              <span class="key">出资额度</span>
-              <span class="dot">:</span>              
-              <span class="field">2万</span>
-            </div>         
-            
-            <div class="piece">
-              <span class="key">股东</span>
-              <span class="dot">:</span>              
-              <span class="field">刘一生</span>
-            </div>    
-            <div class="piece">
-              <span class="key">出资额度</span>
-              <span class="dot">:</span>              
-              <span class="field">1万</span>
-            </div>                                      
-          </div> 
-          <div class="segement">
-            <div class="piece">
-              <span class="key">注册资金</span>
-              <span class="dot">:</span>              
-              <span class="field">3万</span>              
-            </div>
-          </div>    
-          <div class="segement">
-            <div class="piece">
-              <span class="key">法人</span>
-              <span class="dot">:</span>              
-              <span class="field">3万</span>              
-            </div>
-            <div class="piece">
-              <span class="key">监事</span>
-              <span class="dot">:</span>              
-              <span class="field">3万</span>              
-            </div>            
-          </div>  
-          <div class="segement">
-            <div class="piece">
-              <span class="key">监事</span>
-              <span class="dot">:</span>              
-              <span class="field">3万</span>              
-            </div>            
-          </div>                                        
-        </div>        
-      </div>
     </div>
-
+    </a>
     <div class="module">
       <div class="content">
         <div class="unit">
+          <div class="piece main-title">
+            支付信息
+          </div>
           <div class="piece">
             <span class="key">订单编号：</span>
             <span class="field">111111</span>
           </div>
+          <div class="piece">
+            <span class="key">付款金额：</span>
+            <span class="field">111111</span>
+          </div>          
           <div class="piece">
             <span class="key">付款时间：</span>
             <span class="field">111111</span>
