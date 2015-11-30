@@ -24,9 +24,17 @@ Template.login.events({
 });
 
 
+Template.register.onCreated(function(){
+  Session.set('codeTime',0);
+});
+Template.register.helpers({
+  'codeTime':function(){
+   return Session.get('codeTime'); 
+  }  
+});
 Template.register.events({
 	// 获取验证码
-	'click #codeBtn': function (event, template) {
+	'click #codeBtn': function (event, template) {   
 		var phone = template.$('#phone').val() || "";
 		if (kylUtil.verifyPhone(phone)) {
 			Meteor.call('genereateUserCode', phone, function(err, codeValue) {
@@ -37,6 +45,20 @@ Template.register.events({
 						// $("[id=error]").show();       
 						alert(codeValue['message'] || "未知错误");           
 					}
+          else {
+          //60秒  
+              if (Session.get('codeTime') == 0) {
+                Session.set('codeTime', 60);
+                var runtime = setInterval(function () {
+                 if(Session.get('codeTime') > 0) {
+                    Session.set('codeTime',Session.get('codeTime')-1);
+                 }
+                }, 1000);
+              } else {
+                return false;
+              }
+            //clearInterval('codeTime')              
+          }
 				} else {
 					alert(codeValue['message'] || "未知错误");
 					// $("[id=error]").html(codeValue['message'] || "未知错误");           
