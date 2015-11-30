@@ -1,7 +1,7 @@
-Template.orderDetail.onRendered(function(){
+Template.orderDescription.onRendered(function(){
     //collapse
     function collapse(){
-        var el = $(this).children(".box-body");
+        var el = $(this).closest('.box').children(".box-body");
         if(el.is(':animated'))
           return false;
         var toggle= $(this).find(".pull-right").first();
@@ -17,5 +17,5 @@ Template.orderDetail.onRendered(function(){
             el.slideDown(200);
         }      
     }
-    $(document).on("click",".box",collapse);  
+    $(document).on("click",".box .single",collapse);  
 });

@@ -1,14 +1,5 @@
-Template.form.onCreated(function(){
-   var form = Session.get('form');
-console.log(Template.form._data());
-
-});
-
 Template.form.helpers({
   _dynamic:function(){
-    var instance = Template.instance();
-    console.log(instance._data);
-    //return instance._data.
     return Session.get('form');
   }
 });
