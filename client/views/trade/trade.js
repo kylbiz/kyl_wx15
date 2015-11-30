@@ -48,14 +48,10 @@ Template.trade.events({
                 console.log("error", error);
                 kylUtil.alert("警告", JSON.stringify(error));
               } else {
-                console.log('getPayArgs ret', result);
                 WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
-                    console.log("pay result", res);
                   if(res.err_msg == "get_brand_wcpay_request:ok"){
                     console.log("支付成功");
-                    Router.go('paySuccess', {
-                        query: 'order=' + result.payOrderId + '&style=微信'
-                    });
+                    Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
                   }else {
                     console.log("支付失败，请重试");
                     Router.go('shopcart');  

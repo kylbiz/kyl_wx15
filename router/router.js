@@ -1,11 +1,5 @@
 // 项目客户端的路由控制及路由的权限判断
 
-// Router.route('/', function () {
-
-// 	this.redirect('/main');
-
-// });
-
 // 首页
 Router.route('/', {
 	name: 'main',
@@ -14,6 +8,7 @@ Router.route('/', {
 	},
 	data: function () {
 		// registration, bank, finance, assurance, bookkeeping
+		console.log("this.params", this.params);
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
 			RegList[key]['baseType'] = 'registration';
@@ -39,7 +34,7 @@ Router.route('/', {
 Router.route('/product/:productType', {
 	name: 'product',
 	waitOn: function () {
-		console.log(this.params.productType, this.params.query);
+		console.log("product ", this.params.productType, this.params.query);
 		return Meteor.subscribe('products', this.params.productType);
 	}
 });
@@ -71,7 +66,15 @@ Router.route('/address');
 
 
 // 订单中心界面
-Router.route('/orderList');
+Router.route('/orderList', {
+	name: "orderList",
+	waitOn: function () {
+		return Meteor.subscribe('orders');
+	},
+	data: function () {
+
+	}
+});
 
 // 订单详情
 Router.route('/orderDetail');
@@ -80,7 +83,7 @@ Router.route('/orderDetail');
 Router.route('/orderProcess');
 
 // 支付页
-Router.route('/weixinpay', {
+Router.route('/weixinpay/', {
 	name: 'trade',
 	subscriptions: function () {
 		return Meteor.subscribe('userAddress');
@@ -91,21 +94,18 @@ Router.route('/weixinpay', {
 });
 
 // 支付结果
-// Router.route('/payResult');
 Router.route('/paySuccess', {
 	name: "paySuccess",
-	subscriptions: function () {
+	waitOn: function () {
 		return Meteor.subscribe('paylog', this.params.query.order);
 	},
 	data: function () {
 		return {info: PayLogs.findOne({}), style: this.params.query.style};
-	}
+	}			
 });
 
 // 注册公司信息
 Router.route('/companyInfo');
-
-
 
 
 // 个人中心

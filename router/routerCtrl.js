@@ -1,7 +1,7 @@
 //路由相关设置
 Router.configure({
 	layoutTemplate: 'layoutTemplate',
-  loadingTemplate: 'loading',
+  	loadingTemplate: 'loading',
   //notFoundTemplate: 'notFoundTemplate',
 });
 
@@ -33,7 +33,8 @@ Router.onBeforeAction(function () {
 		this.render('login');
 	}
 }, {only: [
-	'shopcart', 'trade', 'payResult', 
-	'addressList', 'address',
-	'home','orderlist', 'orderDetail', 'orderProcess', 
+	'shopcart', 'trade', 'payResult', 	//订单支付相关
+	'addressList', 'address',	//地址管理相关
+	'orderlist', 'orderDetail', 'orderProcess', // 订单管理相关
+	'home',	// 用户信息相关
 	]});

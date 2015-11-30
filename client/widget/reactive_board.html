@@ -108,11 +108,11 @@
     </div>
     <div class="piece">
       <div class="key">选择服务：</div>
-      <div class="field" id="agentSerSel">
+      <div class="field" >
         <div class="select-region">
-          <select name="" id="" class="form-control">
+          <select id="agentSerSel" class="form-control">
               {{#each productInfo.list }}
-              <option>{{name}}</option>
+              <option value={{name}}>{{name}}</option>
               {{/each}}
           </select>
         </div>

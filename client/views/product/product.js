@@ -22,17 +22,10 @@ Template.product.helpers({
 
          var products = {
             registration: function () {
-                //初始化数据
-                Session.set('zoneSelect', 0);
                 return {productInfo: RegistrationLists.findOne(params.query)};
             },
 
             assurance: function () {
-                // 初始化数据
-                Session.set('serSelect', 0);
-                Session.set('timeSelect', 0);
-                Session.set('personNum', 1); 
-
                 // var assInfo = AssuranceLists.find().fetch();
 
                 var services = [
@@ -135,9 +128,9 @@ Template.product.events({
 
         Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
             if (err) {
-                alert('shopcartAdd err', err);
+                console.log('shopcartAdd err', err);
+                kylUtil.alert("添加到购物车失败!");
             } else {
-                // alert('shopcartAdd OK');
                 Router.go('/shopcart');
             }
         });
@@ -158,8 +151,31 @@ function getServiceData () {
                 zone: Session.get("Sel_1_str"),
             };
         },
+        assurance: function () {
+            var info = {
+                type: type,
+                name: name,
+                server: Session.get("Sel_1_str"),
+                num: Session.get("Sel_3") || 1
+            };
+
+            var periodName = Session.get("Sel_2_str") || "";
+            if (periodName) {
+                info.periodName = periodName;
+            }
+
+            return info;
+        },
+        finance: function () {
+            return {
+                type: type,
+                name: name,
+                serverType: Session.get('Sel_1_str') || "",
+                server: Session.get('Sel_2_str') || "",
+                period: Session.get('Sel_3_str') || "",
+            }
+        }
     };
 
-    return handles[type]();
-        
+    return handles[type]();       
 }
