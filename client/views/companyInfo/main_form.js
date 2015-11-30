@@ -52,4 +52,14 @@ Template.scope_segement.onRendered(function(){
        return false;
     });
     */
-})
+});
+
+Template.resource_segement.events({
+  'click #plus':function(){
+    var template = Blaze.toHTML(Template.shockhoderInputBundle);
+    $("#plus-content").append(template);
+  },
+  'click i.icon.trash':function(e){
+    $(e.currentTarget).closest(".module").remove(); 
+  }
+});

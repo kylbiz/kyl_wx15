@@ -205,7 +205,7 @@
       <input type="text" placeholder="请输入注册资金">
     </div>
   </div>
-  <div class="module">
+  <div class="module" id="plus">
     <div class="content">
       <div class="single">
         新增股东信息
@@ -215,18 +215,9 @@
       </div>
     </div>
   </div>
-  <div class="module">
-    <div class="content">
-      <span class="key">股东：</span>
-      <span>
-        <ul>
-          <li><input type="text" placeholder="请输入股东姓名"></li>
-          <li><input type="text" placeholder="请输入出资比例"></li>
-        </ul>
-      </span>
-    </div>
+  <div id="plus-content">
+  {{> shockhoderInputBundle}}    
   </div>
-
   <div class="get">
     <div>
       <button class="ui btn-default" type="button">保存</button>
@@ -234,6 +225,22 @@
   </div>
 </template>
 
+<template name="shockhoderInputBundle">
+   <div class="module">
+    <div class="content block clearfix">
+      <span class="key pull-left">股东：</span>
+      <span class="pull-left">
+        <ul>
+          <li><input type="text" placeholder="请输入股东姓名"></li>
+          <li><input type="text" placeholder="请输入出资比例"></li>
+        </ul>
+      </span>
+      <div class="pull-right">
+        <i class="trash icon outline default"></i>
+      </div>      
+    </div>
+  </div> 
+</template>
 <!-- 法人与监事 -->
 <template name="manager_segement">
   <div class="module group">
