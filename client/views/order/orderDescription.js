@@ -1,7 +1,7 @@
 Template.orderDescription.onRendered(function(){
     //collapse
     function collapse(){
-        var el = $(this).closest('.box').children(".box-body");
+        var el = $(this).find("#altBox");
         if(el.is(':animated'))
           return false;
         var toggle= $(this).find(".pull-right").first();
@@ -17,5 +17,11 @@ Template.orderDescription.onRendered(function(){
             el.slideDown(200);
         }      
     }
-    $(document).on("click",".box .single",collapse);  
+    $(document).on("click","#alt",collapse);  
+});
+
+Template.orderDescription.events({
+  'click .oGroup .piece':function(){
+   Router.go('/shockholder');
+  }
 });
