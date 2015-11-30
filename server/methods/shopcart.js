@@ -23,6 +23,8 @@ function getShopcartInfo(serInfo) {
     	registration: handleRegist,
     	assurance: handleAssurance,
     	finance: handleFinance,
+    	bookkeeping: handleBookkeeping,
+    	bank: handleBank,
     };
     var diffInfo = handles[type](serInfo);
 
@@ -87,7 +89,7 @@ function handleRegist(serInfo) {
 	return {
 	    moneyAmount: pay,
 	    servicesNameList: [{
-	    	name:  serInfo.name + '[' + serInfo.zone + ']', //"互联网公司[杨浦]", // 当前订单具体内容
+	    	name:  serInfo.name, //"互联网公司[杨浦]", // 当前订单具体内容
             money: pay,          //当前订单价格
             scale: 1,                 // 购买数量 
             zone: serInfo.zone,
@@ -157,14 +159,77 @@ function handleFinance (serInfo) {
 		moneyAmount: pay,
 		servicesNameList: [{
 			name: serInfo.name,
+			money: pay,
 			scale: 1,
 			serverType: serInfo.serverType,
+			server: serInfo.server,
 			period: serInfo.period,
 			servicesContains: [{
 			}]
 		}]
 	}
 
+}
+
+// 流量记账包
+function handleBookkeeping (serInfo) {
+	var info = BookkeepingLists.findOne({
+		"bookkeepingTypeName": serInfo.serverType,
+		"lists.name": serInfo.server
+	});
+	if (!info) {
+		throw new Meteor.Error("内部数据错误");
+	}
+
+
+	var list = info.lists || [];
+	var pay = 0;
+	var description = "";
+	list.forEach(function (item) {
+		if (item.name == serInfo.server) {
+			pay = item.payment;
+			description = item.description;
+		}
+	});
+
+	return {
+		moneyAmount: pay,
+		servicesNameList: [{
+			name: serInfo.name,
+			money: pay,
+			scale: 1,
+			serverType: serInfo.serverType,
+			server: serInfo.server,
+			servicesContains: [{
+				name: description
+			}]
+		}]
+	}
+
+
+}
+
+
+// 银行开户
+function handleBank(serInfo) {
+	var info = BankLists.findOne({bank: serInfo.bank});
+	if (!info) {
+		throw new Meteor.Error("内部数据错误");
+	}
+
+	var pay = info.payment || 0;
+	return {
+		moneyAmount: pay,
+		servicesNameList: [{
+			name: serInfo.name,
+			money: pay,
+			scale: 1,
+			bank: info.bank,
+			servicesContains: [{
+				name: info.baseService
+			}]
+		}]
+	};
 }
 
 
