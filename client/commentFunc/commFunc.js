@@ -24,6 +24,24 @@ CommFunc.getShopCartInfo = function () {
 					'地区: ' + info.zone,
 				];
 			},
+			assurance: function () {
+				var ret = [
+					'服务: ' + info.server,
+				];
+
+				if(info.periodName) {
+					ret.push('时间: ' + info.periodName);
+					ret.push('人数: ' + info.scale);
+				}
+				return ret;
+			},
+			finance: function () {
+				return [
+					'类型: ' + info.name,
+					'服务: ' + info.serverType,
+					'时间: ' + info.period
+				];
+			},
 		};
 
 		return strMap[type]();

@@ -18,7 +18,6 @@ var payment = new Payment(initConfig);
 Meteor.methods({
 	// 获取支付参数 prepay_id
 	'getPayArgs': function (orderInfo) {
-		console.log("ffff ", new Date("20141030133525"));
 
 		var paylogInfo = beforePayHandle(orderInfo);
 		var order = getOrderData(paylogInfo, orderInfo.wechatOpenId, this.connection.clientAddress);
@@ -61,19 +60,24 @@ Meteor.methods({
 WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 	function (message, req, res, next) {
 		console.log('get wechat pay ret', message);	
-		// 校验签名
+		var Fiber = Npm.require("fibers");
+		Fiber(function () {
+			// 校验签名
 
-		// 后续处理
-		var result_code = message.result_code
-		if (result_code == "SUCCESS") {
-			var ret = paySuccessHandle(message);
-			console.log("paySuccessHandle --", ret);
-		} else if (result_code == "FAIL") {
-			var ret = payFailHandle(message);
-			console.log("payFailHandle --", ret);
-		}
+			// 后续处理
+			var result_code = message.result_code
+			if (result_code == "SUCCESS") {
+				var ret = paySuccessHandle(message);
+				console.log("paySuccessHandle --", ret);
+			} else if (result_code == "FAIL") {
+				var ret = payFailHandle(message);
+				console.log("payFailHandle --", ret);
+			}
 
-		res.reply('success');
+			res.reply('success');
+		}).run();
+
+		
 
 		// try {
 		// 	res.reply('success');
@@ -185,18 +189,21 @@ function paySuccessHandle(message) {
 	if (!ret) {
 		console.log('update paylog fail');
 		return false;
+	} else {
+		console.log("update paylog ok", ret);
 	}
 
 	var paylog = PayLogs.findOne({openid: openid});
 	if(!paylog || !paylog.hasOwnProperty('shoplists')) {
 		console.log('find paylog fail or no shoplists');
 		return false;
-	}	
+	}
+
 	var addressInfo = paylog.addressInfo || {};
 	var shoplists = paylog.shoplists;
 	shoplists.forEach(function (shoplist) {
 		var shopcartId = shoplist.shopcartId;
-		
+		console.log("shopcartId -", shopcartId);
 		// 更新购物车状态
 		var ret = ShopCart.update({_id: shopcartId}, {
 			$set: {
@@ -208,6 +215,8 @@ function paySuccessHandle(message) {
 		if (!ret) {
 			console.log("update ShopCart fail");
 			return false;
+		} else {
+			console.log("update ShopCart Ok", ret);
 		}
 
 		// 创建支付成功后的订单 order
@@ -216,14 +225,17 @@ function paySuccessHandle(message) {
 			console.log("find shopcart fail");
 			return false;
 		}
+
 		shopcartInfo.cartId = shopcartInfo._id;
-		delete cart._id;
+		delete shopcartInfo._id;
 		shopcartInfo.createTime = new Date();
 		shopcartInfo.orderId = kylUtil.genOrderId();
 		var order_id = Orders.insert(shopcartInfo);
 		if (!order_id) {
 			console.log("insert order fail");
 			return false;
+		} else {
+			console.log("insert order ok", order_id);
 		}
 		
 	});

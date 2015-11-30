@@ -62,6 +62,10 @@ kylUtil.rawWXSign = function(args) {
 
 };
 
+
+///////////////////////////// 之后改放到server中 /////////////////////////////
+
+// 生成订单
 kylUtil.genOrderId = function() {
     var date = new Date();
 
@@ -75,4 +79,18 @@ kylUtil.genOrderId = function() {
         return str;
     }
     return moment(date).format("YYYYMMDDHHmmssSSS") + randomNumber(4);
+}
+
+
+// 合并两个对象
+kylUtil.mergeTwoObj = function (mainObj, obj) {
+    // mainObj = mainObj || {};
+    // obj = obj || {};
+    Object.keys(obj).filter(function (key) {
+        return obj[key] !== undefined && obj[key] !== '';
+    }).map(function (key) {
+        mainObj[key] = obj[key];
+    });
+
+    return mainObj;
 }

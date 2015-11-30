@@ -36,6 +36,11 @@ Meteor.publish('orders', function () {
 });
 
 Meteor.publish('paylog', function (openid) {
-	PayLogs.find({userId: this.userId, openid: openid, payed: true}, 
-		{fields: {moneyAmount: 1, openid: 1, }});
+	return PayLogs.find({
+		userId: this.userId, openid: openid, payed: true
+	}, {
+		fields: {moneyAmount: 1, openid: 1}
+	});
 });
+
+
