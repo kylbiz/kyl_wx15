@@ -117,7 +117,31 @@
       }
     }
   }
+  
+  .content.block {
+    display: block;
+  }
+  
+  .content.border {
+   border-bottom:solid 1px #ddd !important; 
+  }
+  .content .link {
+    color: @default-gray;
+    font-size: 14px;
+    display: block;
+    float: left;
+  }
+  
+  .module.oGroup {
+    .content {
+      border-bottom: dashed 1px #ccc;
+      &:last-child {
+       border: none; 
+      }
+    }
+  }
 }
+
 
 .form.manager_segement {
   .key {
