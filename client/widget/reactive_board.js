@@ -57,17 +57,14 @@ Template.registration_board.events({
 // 社保
 
 Template.assurance_board.onRendered(function () {
-    // 保留上次
-    // $("#timeSelect li").eq(Session.get('timeSelect')).addClass("selected").siblings().removeClass("selected");
-    // $("#serSelect li").eq(Session.get('serSelect')).addClass("selected").siblings().removeClass("selected");
-    // $("#personNum").val(Session.get('personNum') || 1);
-
     // 监听人数变化
     $(document).delegate("#personNum", "change", function () {
         var num = $("#personNum").val() || 1;
         Session.set('Sel_3', num);
     });
 
+    // 计算花费
+    // 这里更好的办法应该是使用 `Track.afterFlush` 具体使用时有问题之后再研究
     this.autorun(function () {
         var Sel_1 = Session.get('Sel_1');
         var Sel_2 = Session.get('Sel_2');
@@ -150,11 +147,9 @@ Template.agent_board.onRendered(function () {
 
             var payment = 0;
             var info = FinanceLists.findOne({'financeTypeName': typ, 'serviceTypeName': ser}) || [];
-            // console.log("afterFlush", typ, ser, period, info);
             var lists = info.lists || [];
             lists.forEach(function (value) {
                 if (value.period == period) {
-                    console.log('ddd',payment, value.payment);
                     payment = value.payment;
                 }
             });
@@ -205,8 +200,11 @@ Template.agent_board.events({
 Template.package_board.onRendered(function () {
     // 计算花费
     this.autorun(function () {
-        var typ = $("#packageType li").eq(Session.get('packageType')).html();
-        var ser = $("#packageSer li").eq(Session.get('packageSer')).html();
+        var typ = $("#packageType li").eq(Session.get('Sel_1')).html() || "";
+        var ser = $("#packageSer li").eq(Session.get('Sel_2')).html() || "";
+
+        Session.set("Sel_1_str", typ);
+        Session.set("Sel_2_str", ser);
 
         var info = BookkeepingLists.findOne({bookkeepingTypeName: typ});
         var lists = info.lists;
@@ -218,24 +216,24 @@ Template.package_board.onRendered(function () {
             }
         });
 
-        Session.set('packagePay', payment);
+        Session.set('Pay', payment);
     });
 });
 
 
 Template.package_board.helpers({
     payment: function () {
-        return Session.get('packagePay') || 0;
+        return Session.get('Pay') || 0;
     }
 });
 
 
 Template.package_board.events({
     'click #packageType li': function (event, template) {
-        Session.set('packageType', $(event.currentTarget).index());
+        Session.set('Sel_1', $(event.currentTarget).index());
     },
     'click #packageSer li': function (event, template) {
-        Session.set('packageSer', $(event.currentTarget).index());
+        Session.set('Sel_2', $(event.currentTarget).index());
     }
 });
 
@@ -246,22 +244,23 @@ Template.package_board.events({
 Template.bank_board.onRendered(function () {
 
     this.autorun(function () {
-        var bankName = $("#bankSel li").eq(Session.get('bankSel')).html();
+        var bankName = $("#bankSel li").eq(Session.get('Sel_1')).html() || "";
+        Session.set('Sel_1_str', bankName);
         var info = BankLists.findOne({bank: bankName});
 
-        Session.set("bankPay", info.payment);
+        Session.set("Pay", info.payment);
     });
 });
 
 Template.bank_board.helpers({
     payment: function () {
-        return Session.get("bankPay") || 0;
+        return Session.get("Pay") || 0;
     }
 });
 
 Template.bank_board.events({
     'click #bankSel': function (event) {
-        Session.set('bankSel', $(event.currentTarget).index());
+        Session.set('Sel_1', $(event.currentTarget).index());
         
     }
 });

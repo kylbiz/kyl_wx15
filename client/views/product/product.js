@@ -17,6 +17,7 @@ Template.product.helpers({
         }[type];
     },
 
+    // 产品选项信息
     product: function () {
          var params = Router.current().params;
 
@@ -27,7 +28,6 @@ Template.product.helpers({
 
             assurance: function () {
                 // var assInfo = AssuranceLists.find().fetch();
-
                 var services = [
                     {name: '社保+公积金开户', type: "account", payment: 500 }, 
                     {name: '社保+公积金每月代缴', type: "fees",  items: [
@@ -40,11 +40,6 @@ Template.product.helpers({
             },
 
             finance: function () {
-                // 初始化数据
-                Session.set('agentTypSel', 0);
-                Session.set('agentSerSel', 0);
-                Session.set('agentTimeSel', 0);
-
                 var services = {
                     serTypes: ["一般纳税人", "小规模纳税人"],
                     list: [
@@ -60,11 +55,6 @@ Template.product.helpers({
             },
 
             bookkeeping: function () {
-                // 初始化数据
-                Session.set('packageType', 0);
-                Session.set('packageSer', 0);
-
-
                 var services = {
                     bookkeepingTypeNames: ["小规模纳税人", "一般纳税人"],
                     list: [{
@@ -88,9 +78,6 @@ Template.product.helpers({
             },
 
             bank: function () {
-                // 初始化数据
-                Session.set('bankSel', 0);
-
                 return {productInfo: BankLists.find({}).fetch()};
             }
 
@@ -123,7 +110,6 @@ Template.product.events({
             Router.go('/login');
             return;
         }
-
         console.log('seceive data', getServiceData());
 
         Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
@@ -173,6 +159,21 @@ function getServiceData () {
                 serverType: Session.get('Sel_1_str') || "",
                 server: Session.get('Sel_2_str') || "",
                 period: Session.get('Sel_3_str') || "",
+            }
+        },
+        bookkeeping: function () {
+            return {
+                type: type,
+                name: name,
+                serverType: Session.get('Sel_1_str') || "",
+                server: Session.get("Sel_2_str") || "", 
+            }
+        },
+        bank: function () {
+            return {
+                type: type,
+                name: name,
+                bank: Session.get('Sel_1_str') || "", 
             }
         }
     };

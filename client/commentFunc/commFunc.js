@@ -9,7 +9,8 @@ CommFunc.getShopCartInfo = function () {
 	  	var infoExt = getInfoExt(type, info);
 	  	listExt.push({
 	  		id: infoBase._id,
-	  		title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount, 
+	  		// title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount, 
+	  		title: info.name, payment: infoBase.moneyAmount, 
 	  		ext: infoExt
 	  	});
   	});
@@ -42,6 +43,17 @@ CommFunc.getShopCartInfo = function () {
 					'时间: ' + info.period
 				];
 			},
+			bookkeeping: function () {
+				return [
+					'类型: ' + info.serverType,
+					'服务: ' + info.server
+				];
+			},
+			bank: function () {
+				return [
+					'银行: ' + info.bank
+				]
+			}
 		};
 
 		return strMap[type]();

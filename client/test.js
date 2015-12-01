@@ -7,3 +7,10 @@ andy_open_id = 'oPw1ptwXVwobI7hmFUijqQ4UVBqE';
 cc_open_id = 'oPw1pt-G9AFNYyRGmC7uZ7qpW3OE';
 
 Session.set('WeChatUser', cc_open_id);
+
+// {
+// 	"wechat-api": "1.19.0",
+// 	"wechat-crypto": "0.0.2",
+// 	"wechat-oauth": "1.1.0",
+// 	"wechat-pay": "0.2.2"
+// }

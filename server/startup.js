@@ -274,9 +274,9 @@ var bookkeepingLists = [
 ];
 
 var bankLists = [
-  {bank: '中国银行', payment: 200},
-  {bank: '招商银行', payment: 200},
-  {bank: '上海银行', payment: 200}
+  {bank: '中国银行', payment: 200, baseService: '银行开户许可证明'},
+  {bank: '招商银行', payment: 200, baseService: '银行开户许可证明'},
+  {bank: '上海银行', payment: 200, baseService: '银行开户许可证明'}
 ];
 
 

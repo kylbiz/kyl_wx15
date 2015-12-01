@@ -1,7 +1,12 @@
 Template.trade.helpers({
     address: function () {
-        Session.setDefault('addressId', UserAddress.findOne({})._id);
-        return UserAddress.findOne({_id: Session.get("addressId")}) || {};
+        if (UserAddress.find().count() > 0) {
+            Session.setDefault('addressId', UserAddress.findOne({})._id);
+            return UserAddress.findOne({_id: Session.get("addressId")}) || {};
+        } else {
+            console.log('no address data');
+        }
+        
     },
     payList: function () {
         if (!ShopCart.find({}).count()) {
