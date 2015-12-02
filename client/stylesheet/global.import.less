@@ -409,7 +409,7 @@ i.icon.default {
   border-radius: 16px;
   box-sizing: border-box;
   height: 32px;
-  background: #e5e5e5;
+//  background: #e5e5e5;
   z-index: 0;
   margin: 0;
   padding: 0;
@@ -461,11 +461,12 @@ i.icon.default {
   width: 100%;
   height: 100%;
   -webkit-appearance: none;
-//  -moz-appearance: none;
-//  -ms-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
   border: none;
   box-shadow: none;
+  background: none;
   &:focus {
     outline: none;
     box-shadow: none;
@@ -486,4 +487,16 @@ i.icon.default {
 
 .switch-outlook {
   margin-right: 15px; 
+}
+
+.cover-img {
+  line-height: 0;
+  img {    
+    width: 100%;
+    height: auto; 
+  }
+}
+
+.img-container {
+  line-height: 0;  
 }

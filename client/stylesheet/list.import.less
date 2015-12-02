@@ -27,22 +27,32 @@
     .padding-right-rem(10px);
     width: 50%;
     float: left;
+    .margin-bottom-rem(15px);
     .box {
-      .height(180px);
+      //.height(180px);
       background-color: #fff;
       position: relative;
+      background-size: cover;
+      -webkit-background-size:cover;
+      background-position: center center;
+    }
+    .box {
+      img {
+       width: 100%;
+       height: auto;
+      }
     }
     .price {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
+      text-align: left;
+      padding: 10px 15px;
       color:@default-hightlight-color;
+      border-top:solid 1px #ddd;
     }
     .title {
-      font-size:18px;
+//      font-size:18px;
       text-align: left;
-      .padding-top-rem(15px);
-      .padding-bottom-rem(15px);
+      padding: 5px 15px;
+      color: @default-gray;      
     }
   }
    
