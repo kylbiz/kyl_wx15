@@ -6,9 +6,6 @@ WeChatInfo = new Meteor.Collection('wechatinfo');
 // 用户验证码存储
 UserCode = new Meteor.Collection('UserCode');
 
-// 所有产品 -- 废弃
-// Products = new Mongo.Collection('products');
-
 
 // 注册公司相关产品 outside + inside
 RegistrationLists = new Meteor.Collection('RegistrationLists');
@@ -28,14 +25,6 @@ BankLists = new Meteor.Collection('BankLists');
 AssuranceLists = new Meteor.Collection('AssuranceLists');
 
 
-// 公司类型
-BusinessTypeLists = new Meteor.Collection('BusinessTypeLists');
-// 公司类型 子类型 科技类
-Business = new Meteor.Collection('BusinessesData');
-// 公司类型 子类型 服务类
-Business1 = new Meteor.Collection('BusinessesData1');
-
-
 // 订单
 Orders = new Meteor.Collection('orders');
 
@@ -47,5 +36,13 @@ ShopCart = new Meteor.Collection('ShopCart');
 
 // 用户地址
 UserAddress = new Meteor.Collection('UserAddress');
+
+
+// 公司行业类型
+BusinessTypeLists = new Meteor.Collection('BusinessTypeLists');
+
+// 公司细分类型及经营范围
+Business = new Meteor.Collection('Business');	// 包含基础经营范围
+Business1 = new Meteor.Collection('Business1');	// 包含附加经营范围
 
 

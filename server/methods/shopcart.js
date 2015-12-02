@@ -25,6 +25,7 @@ function getShopcartInfo(serInfo) {
     	finance: handleFinance,
     	bookkeeping: handleBookkeeping,
     	bank: handleBank,
+    	invoice: false,		// 是否要发票，之后实现
     };
     var diffInfo = handles[type](serInfo);
 
@@ -49,8 +50,10 @@ function commInfo(serInfo) {
 	    productType: productTypeNames[serInfo.type],
 	    typeNameFlag: serInfo.type,
 	    payed: false,
-	    canceled: false,
-	    finished: false,
+	    deleted: false,
+	    ordered: false,
+	    // canceled: false,
+	    // finished: false,
 	    host: 'KYLWX', //来源
 	    createTime: new Date(),
 	};
