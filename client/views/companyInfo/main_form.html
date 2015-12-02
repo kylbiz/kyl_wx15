@@ -59,6 +59,8 @@
       <div class="single">
         行业类型
         <span class="pull-right">
+          {{industryBig}}
+          {{industrySmall}}
           <i class="angle right icon"></i>
         </span>
       </div>
@@ -85,7 +87,7 @@
   </div>
   <div class="get">
     <div>
-      <button class="ui btn-default" type="button">保存</button>
+      <button class="ui btn-default" type="button" id="saveBtn">保存</button>
     </div>
   </div>
 </template>
@@ -109,38 +111,8 @@
       </div>
     </div>
   {{/each}}
-
-    <!-- <div class="module">
-      <div class="content">
-        <div class="single">
-          行业类型大类a
-          <span class="pull-right">
-            <i class="angle right icon"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="module">
-      <div class="content">
-        <div class="single">
-          行业类型大类b
-          <span class="pull-right">
-            <i class="angle right icon"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="module">
-      <div class="content">
-        <div class="single">
-          行业类型大类c
-          <span class="pull-right">
-            <i class="angle right icon"></i>
-          </span>
-        </div>
-      </div>
-    </div> -->
 </template>
+
 <!-- 行业类型细类 -->
 <template name="scope_segement_widget2">
    <div class="PostList text-center">
@@ -158,17 +130,8 @@
         </div>
       </div>
    {{/each}}
-    <!-- <div class="module">
-      <div class="content">
-        <div class="single">
-          选择行业类别
-          <span class="pull-right">
-            <i class="angle right icon"></i>
-          </span>
-        </div>
-      </div>
-    </div> -->
 </template>
+
 <!-- 确认经营范围 -->
 <template name="scope_segement_widget3">
 <div class="PostList text-center">
@@ -178,43 +141,20 @@
 <div class="module">
   <div class="content list-container">
     <div class="list-group-horizonal">
-      <div class="list-group-item">1^
-        <div class="checkbox">
-          <input type="checkbox">
+      {{#each scopes}}
+        <div class="list-group-item">{{this}}
+          <div class="checkbox">
+            <input type="checkbox" value="{{this}}" checked>
+          </div>
         </div>
-      </div>
-      <div class="list-group-item">2^
-        <div class="checkbox">
-          <input type="checkbox">
-        </div>
-      </div>
-      <div class="list-group-item">3^
-        <div class="checkbox">
-          <input type="checkbox">
-        </div>
-      </div>
-      <div class="list-group-item">4^
-        <div class="checkbox">
-          <input type="checkbox">
-        </div>
-      </div>
-      <div class="list-group-item">5^
-        <div class="checkbox">
-          <input type="checkbox">
-        </div>
-      </div>
-      <div class="list-group-item">6^
-        <div class="checkbox">
-          <input type="checkbox">
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 </div>
 
 <div class="get">
   <div>
-    <button class="ui btn-default" type="button" id="submit">保存</button>
+    <button class="ui btn-default" type="button" id="submitBtn">保存</button>
   </div>
 </div>
 </template>

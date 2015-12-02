@@ -12,8 +12,28 @@ Meteor.methods({
 		// 对插入数据的校验
 		var keysAllow = {
 			companyName: function (data) {
-				return (orderInfo.typeNameFlag == "registration");
+				return isRegComp();
 			},
+			industryBig: function (data) {
+				// 需进一步校验
+
+				return isRegComp(); 
+			},
+			industrySmall: function (data) {
+				// 需进一步校验
+
+				return isRegComp(); 
+			},
+			businessScope: function (data) {
+				// 需进一步校验
+				
+				return isRegComp(); 
+			}
+		}
+
+		// 判断是不是注册公示order
+		function isRegComp() {
+			return (orderInfo.typeNameFlag == "registration");
 		}
 
 		for (key in info) {
