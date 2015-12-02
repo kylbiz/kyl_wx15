@@ -5,7 +5,7 @@
     </div>
     <div class="ui-dist-content">
         {{#each addressList}}
-          <div class="module">
+          <div class="module header">
             <div class="content cover">
               <div class="icon-left">
                 <i class="radio icon {{#if sele _id }}selected{{/if}}" id="{{_id}}"></i>
@@ -27,11 +27,23 @@
                     </div>
                   </div>
               </div>
+<!--
               <div class="icon-right">
                 <i class="angle right icon"></i>
               </div>
+-->
 
             </div>
+          </div>
+          <div class="module control">
+             <div class="content">
+                <div class="action">
+                  <div>
+                    <i class="edit icon"></i>修改
+                  </div>                                
+                </div>
+                <div class="action"><i class="add square icon"></i>删除</div>
+             </div>
           </div>
         {{/each}}      
 
@@ -40,9 +52,11 @@
           <a href="/address">
             <button class="ui btn-primary" type="button"><i class="add square icon"></i>新增收货地址</button>
           </a>
+<!--
           <a href="#">
             <button class="ui btn-primary" type="button"><i class="trash icon" id="delAddress"></i>删除该收货地址</button>
           </a>
+-->
         </div>
       </div>
       <div class="get">

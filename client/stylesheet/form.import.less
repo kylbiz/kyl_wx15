@@ -67,11 +67,13 @@
      //padding-top: 0 !important; 
      //padding-bottom: 0 !important;     
   }
-  .list-container.divide {
+  .list-container.divide,.list-container.content {
      line-height: 28px; 
   }
+  
   .list-group-horizonal {
-      display: inline-block;
+      display: block;
+      margin: 0 auto;
   }
   .list-group-item {
     position: relative;
@@ -79,9 +81,13 @@
     .padding-left-rem(15px);
     //.padding-right-rem(15px);
     .padding-right-rem(60px);
+    .padding-top-rem(5px);
+    .padding-bottom-rem(5px);
     background-color: #fff;
     border: 1px solid #ddd;
-    min-width: 100px;
+    max-width: 480px;
+    width: 100%;
+    font-size: 15px;
     .checkbox {
       position: absolute;
       right: 15px;
@@ -89,9 +95,9 @@
     }
   }  
   .list-group-horizonal>.list-group-item {
-     float: left;
-     margin-bottom: -1px;
-     margin-right: -1px;
+//     float: left;
+//     margin-bottom: -1px;
+//     margin-right: -1px;
   }
   .icon-left {
     float: left;

@@ -1,5 +1,123 @@
 <template name="tools">
-  <div class="tools main-container">
-  核名
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+  body {
+   background-color: #f2f2f2; 
+  }
+  .container {
+   width: auto !important;
+  }
+  </style>
+<!--
+  <header class="nav-bar">
+    <h1> 企信自助查询系统 </h1>
+  </header>  
+-->
+  <div class="main-container has-ui-menu">
+    <div class="reserve">
+      <section class="container">
+        <div role="tabpanel" class="row">
+          <div class="reserve-tab">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="http://m.yiqicha.net/#home" class="img-circle" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-search"></span></a><span class="caret"></span>
+              </li>
+              <li role="presentation"><a href="http://m.yiqicha.net/#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span></a><span class="caret"></span>
+              </li>
+              <li role="presentation"><a href="http://m.yiqicha.net/#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-print"></span></a><span class="caret"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content col-xs-10 col-xs-offset-1 reserve-tab-con">
+            <div role="tabpanel" class="tab-pane active fade in" id="home">
+              <form>
+                <div class="row">
+                  <h1 class="text-center">在线核名</h1>
+                  <p class="text-center">公司名称预检系统</p>
+                  <ul class="reserve-panel">
+                    <li class="reserve-panel-item">
+                      <div class="form-group clearfix">
+                        <div class="col-xs-2"><span class="glyphicon glyphicon-hand-right"></span>
+                        </div>
+                        <div class="col-xs-10">
+                          <input type="text" name="keywords" id="text" placeholder="请输入企业名称">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <input type="submit" class="btn btn-kyl btn-block mt30 " value="马上查询">
+                </div>
+              </form>
+
+              <div class="row help-block">
+                <hr>
+                <p class="text-left">注：本系统只提供公司字号查询参考，查名结果以当地工商信息为准。</p>
+              </div>
+              <div class="row">
+                <div class="pull-left">
+                  <p>累计查询次数：38606</p>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="profile">
+              <form>
+                <div class="row">
+                  <h1 class="text-center">名称核准</h1>
+                  <p class="text-center">企业名称核准状态</p>
+                  <ul class="reserve-panel">
+                    <li class="reserve-panel-item">
+                      <div class="form-group clearfix">
+                        <div class="col-xs-2"><span class="glyphicon glyphicon-hand-right"></span>
+                        </div>
+                        <div class="col-xs-10">
+                          <input type="text" name="keywords" id="text" placeholder="请输入企业名称">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <input type="submit" class="btn btn-kyl btn-block mt30" value="马上查询">
+                </div>
+              </form>
+              <div class="row help-block">
+                <hr>
+                <p class="text-left">注：本系统只提供名称核准状态参考，确切信息以当地工商信息为准。</p>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade row" id="messages">
+              <form>
+                <div class="row">
+                  <h1 class="text-center">工商出证</h1>
+                  <p class="text-center">工商执照办理状态</p>
+                  <ul class="reserve-panel">
+                    <li class="reserve-panel-item">
+                      <div class="form-group clearfix">
+                        <div class="col-xs-2"><span class="glyphicon glyphicon-hand-right"></span>
+                        </div>
+                        <div class="col-xs-10">
+                          <input type="text" name="keywords" id="text" placeholder="请输入企业名称">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <input type="submit" class="btn btn-kyl btn-block mt30" value="马上查询">
+                </div>
+              </form>
+              <div class="row help-block">
+                <hr>
+                <p class="text-left">注：本系统只提供工商营业执照办理状态参考，确切信息以当地工商信息为准。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    {{> ui_menu }}
+
   </div>
 </template>
