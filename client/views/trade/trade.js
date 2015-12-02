@@ -94,5 +94,14 @@ Template.trade.events({
         } else { 
             Router.go('address');
         }
+    },
+    'change .control.switch':function (e) {
+        var smart = $(e.currentTarget).prop("checked");
+        if(smart==true) {
+          $(".switch-outlook").text("是");
+        }
+        else {
+          $(".switch-outlook").text("否");
+        }
     }
 });

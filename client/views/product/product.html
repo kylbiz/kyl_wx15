@@ -1,15 +1,22 @@
 <template name='product'>
 	<div class="main main-container has-ui-control-bottom">
       <div class="board">
+        <div class="cover-img">
+          <img src="{{_img}}" alt="">
+        </div>        
+      </div>
+      <div class="board">
         <div class="main-title">互联网注册公司</div>
         <div class="field">
             <div class="key">注册区域</div>
             <div class="value">注册区域x</div>
         </div>
+<!--
         <div class="notify">
           <div class="key">基础服务</div>
           <div class="value">基础服务</div>
         </div>
+-->
 <!--
         <div class="select list">
           <div class="key">选择服务</div>
@@ -26,7 +33,9 @@
         <div class="price">&yen;500-1000</div>
       </div>
       <div class="dist-content">
-        here to catch
+         <div class="cover-img">
+            <img src="{{_des}}" alt="">
+         </div>
       </div>
       {{> controlBox }}
   </div>  

@@ -1,12 +1,7 @@
 <template name="orderDetail">
- <div class="control-header">
-    <div class="icon-left">
-      <i class="angle left icon"></i>
-   </div>   
-    <div class="txt">
-      我的订单
-    </div>
- </div>
+ {{#control_nav}}
+   我的订单
+ {{/control_nav}}
   <div class="startup main-container has-ui-menu">     
     <div class="module">
       <div class="content cover">
@@ -105,7 +100,12 @@
     </div>
     <div class="module">
       <div class="content">
-        <div class="single">优惠：</div>
+        <div class="single">
+          发票
+          <span class="pull-right default-right">
+            需要发票           
+          </span>        
+        </div>
       </div>
     </div>
 

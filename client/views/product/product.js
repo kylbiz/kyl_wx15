@@ -1,11 +1,41 @@
 // 产品说明页
 
 Template.product.helpers({
-    des: function() {
-        // 产品的描述
-        return {}
+  
+    _des: function() {
+        var type = Router.current().params.productType;
+        if(type=='bookkeeping') {
+          type='finance';
+        }
+        var origin = '/images/'+type+'_scene.jpg';
+        return origin;
     },
-
+    _img: function(){
+      var img = {
+          '1元注册': 'oneyuan',  
+          '极速注册': '',        
+          '电商公司': '',              
+          '教育公司': '',        
+          '金融信息公司': '', 
+          '移动互联网公司': '',
+          '文化传媒公司': '',
+          '商务服务公司': '',
+          '建筑设计公司': '',
+          '医疗公司': '',
+          '银行开户': '',
+          '财务代理': '',
+          '流量计帐包套餐服务': '',
+          '小企社保': ''
+      }[this.name];
+      if(img) {
+        img = '/images/'+img+'.png';
+      }
+      else {
+        //img = 'http://placehold.it/640x320'; 
+        img = 'http://placehold.it/296x296';
+      }
+      return img;
+    },  
     _dynamic: function() {
         var type = Router.current().params.productType;
         return {
