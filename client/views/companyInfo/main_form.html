@@ -59,8 +59,10 @@
       <div class="single">
         行业类型
         <span class="pull-right">
-          {{industryBig}}
-          {{industrySmall}}
+          <span class="default-right">
+            {{industryBig}}
+            {{industrySmall}}
+          </span>
           <i class="angle right icon"></i>
         </span>
       </div>
@@ -92,29 +94,6 @@
   </div>
 </template>
 
-<template name="adjust_scope_segement_widget">
-   <div class="PostList text-center">
-     <div class="main-title">
-     选择行业
-     </div>
-   </div>     
-    <div class="ui-tab">
-      <div class="left-tab">
-        <a href="#box_tab2" data-toggle="tab"><i class="fa fa-laptop"></i> <span class="hidden-inline-mobile">A</span></a> 
-      </div>
-      <div class="right-tab">
-        <a href="#box_tab2" data-toggle="tab"><i class="fa fa-laptop"></i> <span class="hidden-inline-mobile">B</span></a>
-      </div>
-    </div>
-    <div class="tab-content">
-       <div class="tab-pane fade in active" id="box_tab1">  
-a
-        </div>
-        <div class="tab-pane" id="box_tab2">  
-b
-        </div> 
-    </div>             
-</template>
 <!-- 行业类型大类 -->
 <template name="scope_segement_widget1">
    <div class="PostList text-center">
@@ -134,6 +113,50 @@ b
       </div>
     </div>
   {{/each}}
+
+  {{>changeScopeSegement}}
+</template>
+<!-- 调整经营范围 -->
+<template name="changeScopeSegement">
+   <div class="PostList text-center">
+     <div class="main-title">
+     选择行业
+     </div>
+   </div>     
+    <div class="ui-tab">
+      <div class="left-tab">
+        <a href="#box_tab1" data-toggle="tab">A</a> 
+      </div>
+      <div class="right-tab">
+        <a href="#box_tab2" data-toggle="tab">B</a>
+      </div>
+    </div>
+    <div class="tab-content">
+       <div class="tab-pane fade in active" id="box_tab1">  
+        <div class="module">
+          <div class="content">
+            <div class="single">
+              a类
+              <span class="pull-right">
+                <i class="angle right icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="tab-pane fade" id="box_tab2">  
+        <div class="module">
+          <div class="content">
+            <div class="single">
+              b类
+              <span class="pull-right">
+                <i class="angle right icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        </div> 
+    </div>             
 </template>
 
 <!-- 行业类型细类 -->

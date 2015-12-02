@@ -381,7 +381,8 @@ i.icon.default {
 }
 .default-right {
   font-weight: normal;
-  color: @deep-gray;  
+  //color: @deep-gray; 
+  color: @default-gray;
 }
 
 /*label-switch*/
@@ -508,3 +509,11 @@ i.icon.default {
    width: 100%;
   }
 }
+
+.tab-content > .tab-pane {
+  display: none;
+}        
+
+.tab-content > .active {
+  display: block;
+} 
