@@ -8,7 +8,6 @@ Template.shopcart.helpers({
   }
 });
 
-
 Template.shopcart.events({
 	'click .trash': function (event) {
 		var id = $(event.currentTarget).context.id;
@@ -27,5 +26,12 @@ Template.shopcart.events({
 		});
 
 	},
+});
+
+// 底部控制
+Template.shopcart_controlBox.events({
+	'click #trade': function () {
+		Router.go("/weixinpay/");
+	}
 });
 

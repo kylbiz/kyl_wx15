@@ -1,7 +1,19 @@
 CommFunc = {};
 
+// 获取所购买商品的显示数据 在购物车页/结算页需要用
 CommFunc.getShopCartInfo = function () {
-	var list = ShopCart.find({}).fetch();
+	var list = ShopCart.find({}) || [];
+	return productShowInfo(list) || [];
+}
+
+// 获取所购买商品的显示数据 在订单中心页需要用
+CommFunc.getOrderInfo = function () {
+	var list = Orders.find({}) || [];
+	return productShowInfo(list) || [];
+}
+
+// 组合产品需要显示的内容
+function productShowInfo (list) {
 	var listExt = [];
   	list.forEach(function (infoBase) {
   		var type = infoBase.typeNameFlag;
@@ -9,6 +21,8 @@ CommFunc.getShopCartInfo = function () {
 	  	var infoExt = getInfoExt(type, info);
 	  	listExt.push({
 	  		id: infoBase._id,
+	  		orderId: infoBase.orderId || false,	//购物车中无该选项
+	  		payed: infoBase.payed,
 	  		// title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount, 
 	  		title: info.name, payment: infoBase.moneyAmount, 
 	  		ext: infoExt

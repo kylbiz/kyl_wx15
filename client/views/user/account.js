@@ -6,7 +6,13 @@ Template.login.events({
 		if (phone && password) {
 			Meteor.loginWithPassword(phone, password, function (error, result) {
 				if (error) {
-					alert('login err' + error);
+					console.log(error, "------");
+					var msg = "登录失败";
+					if (error.reason == "User not found") {
+						msg = "用户不存在";
+					}
+					kylUtil.alert("", msg);
+
 					Router.go('login');
 				} else {
 

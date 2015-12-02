@@ -71,9 +71,9 @@ Router.route('/orderList', {
 	waitOn: function () {
 		return Meteor.subscribe('orders');
 	},
-	data: function () {
-
-	}
+	// data: function () {
+	// 	return Orders.find({}).fetch();
+	// }
 });
 
 // 订单详情
@@ -89,7 +89,8 @@ Router.route('/weixinpay/', {
 		return Meteor.subscribe('userAddress');
 	},
 	waitOn: function () {
-		return Meteor.subscribe('shopcart');
+		var orderId = this.params.query.orderid || false;
+		return Meteor.subscribe('shopcart', orderId);
 	},	
 });
 
@@ -105,7 +106,9 @@ Router.route('/paySuccess', {
 });
 
 // 注册公司信息
-Router.route('/companyInfo');
+Router.route('/companyInfo', {
+	name: 'companyInfo'
+});
 
 
 // 个人中心
@@ -148,9 +151,15 @@ Router.route('/logout', function() {
 		}
 	});
 	Router.go('/');
-})
+});
 
-Router.route('/form');
+// 公司信息填写
+Router.route('/form/:item', {
+	name: "form",
+	subscriptions: function () {
+		Meteor.subscribe("companyIndustry");
+	}
+});
 
 
 Router.route('/tools');

@@ -23,8 +23,9 @@ Meteor.publish('products', function(project, opt) {
 	return products[project];
 });
 
-Meteor.publish('shopcart', function () {
-	return ShopCart.find({userId: this.userId, payed: false}, {sort: {createTime: -1}});
+Meteor.publish('shopcart', function (orderId) {
+	orderId = orderId || false;
+	return ShopCart.find({userId: this.userId, payed: false, ordered: orderId}, {sort: {createTime: -1}});
 });
 
 Meteor.publish('userAddress', function () {
@@ -43,4 +44,17 @@ Meteor.publish('paylog', function (openid) {
 	});
 });
 
+//
+Meteor.publish('companyIndustry', function () {
+	return [BusinessTypeLists.find({}), Business.find({}), Business1.find({})];
+});
+
+// 公司所属大行业
+// Meteor.publish('compTypBase', function () {
+// 	return BusinessTypeLists.find({});
+// });
+// // 公司所属细分行业及经营范围
+// Meteor.publish('compTypDetail', function (base) {
+// 	return Business.find({industryBig: base});
+// });
 

@@ -10,7 +10,9 @@ Template.trade.helpers({
     },
     payList: function () {
         if (!ShopCart.find({}).count()) {
-            throw new Meteor.Error("shopcart empty", "Error: No ShopCart Data Found");
+            // throw new Meteor.Error("shopcart empty", "Error: No ShopCart Data Found");
+            console.log("shopcart empty");
+            return [];
         }
 
         var payList = CommFunc.getShopCartInfo();
@@ -26,11 +28,12 @@ Template.trade.helpers({
 
         return payList;
     },
+    
     disc: function () {
         return 0;
     },
     allPayment: function () {
-        return Session.get('allPayment');
+        return Session.get('allPayment') || 0;
     },
 });
 
@@ -39,9 +42,15 @@ Template.trade.events({
 	'click #wxbuy': function (event, template) {
         var shopcartIdList = Session.get('shopcartIdList');
         var addressId = Session.get('addressId');
-        if (!shopcartIdList || !addressId) {
-          kylUtil.alert("数据错误");
-          return;
+        if (!addressId || !shopcartIdList || shopcartIdList.length <= 0) {
+            var msg = "数据错误!";
+            if (!addressId) {
+                msg = "请添加地址!";
+            } else if (!shopcartIdList || shopcartIdList.length <= 0) {
+                msg = "请添加商品!";
+            }
+            kylUtil.alert(msg);
+            return;
         }
 
         Meteor.call('getPayArgs', {
@@ -53,15 +62,29 @@ Template.trade.events({
                 console.log("error", error);
                 kylUtil.alert("警告", JSON.stringify(error));
               } else {
-                WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
-                  if(res.err_msg == "get_brand_wcpay_request:ok"){
-                    console.log("支付成功");
-                    Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
-                  }else {
-                    console.log("支付失败，请重试");
-                    Router.go('shopcart');  
-                  }
+                // WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
+                //   if(res.err_msg == "get_brand_wcpay_request:ok"){
+                //     console.log("支付成功");
+                //     Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
+                //   }else {
+                //     console.log("支付失败，请重试");
+                //     Router.go('shopcart');  
+                //   }
+                // });
+
+                Meteor.call("payOKTest", {
+                    out_trade_no: result.payOrderId,
+                    des: "test"
+                }, function(err, res) {
+                    if (!err) {
+                        console.log("支付成功");
+                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
+                    } else {
+                        console.log("支付失败，请重试");
+                        Router.go('shopcart');
+                    }
                 });
+
               }
         });
     },

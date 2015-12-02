@@ -305,7 +305,6 @@ Meteor.startup(function() {
     })
   };
 
-
   if(RegistrationLists.find().count() === 0) {
     registrationLists.forEach(function(list) {
       RegistrationLists.insert(list);

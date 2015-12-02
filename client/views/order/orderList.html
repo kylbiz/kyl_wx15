@@ -1,68 +1,43 @@
 <template name="orderList">
   <div class="localmarket main-container has-ui-menu">
-    <div class="module">
-      <div class="main-title">订单编号：130008000</div>
-      <div class="content">
-        <div class="photo"></div>
-        <div class="info">
-          <div class="name">互联网公司注册</div>
-          <div class="region">地区虹口</div>
+    {{#each orders}}
+      <div class="module">
+        <div class="main-title">订单编号：{{orderId}}</div>
+        <div class="content">
+          <div class="photo"></div>
+          <div class="info">
+            <div class="name">{{title}}</div>
+            {{#each ext}}
+              <div class="region">{{this}}</div>
+            {{/each}}
+          </div>
+          <div class="price">&yen;{{payment}}</div>
         </div>
-        <div class="price">&yen;1000</div>
-      </div>
-      <div class="master">
-        <div class="btn-box">
-          <a href="＃">
-              <button type="button" class="btn-default">付款</button>
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- module -->
-    <div class="module">
-      <div class="main-title">订单编号：130008000</div>
-      <div class="content">
-        <div class="photo"></div>
-        <div class="info">
-          <div class="name">互联网公司注册</div>
-          <div class="region">地区虹口</div>
-        </div>
-        <div class="price">&yen;1000</div>
-      </div>
-      <div class="master">
-        <div class="btn-box">
-          <a href="/orderDetail">
-          <button type="button" class="btn-primary">查看详情</button>            
-          </a>
-        </div>
-        <div class="btn-box">
-          <a href="/companyInfo">
-          <button type="button" class="btn-default">提交资料</button>            
-          </a>
-        </div>        
-      </div>
-    </div>
-    <!--/ module -->
-    <!-- module -->
-    <div class="module">
-      <div class="main-title">订单编号：130008000</div>
-      <div class="content">
-        <div class="photo"></div>
-        <div class="info">
-          <div class="name">互联网公司注册</div>
-          <div class="region">地区虹口</div>
-        </div>
-        <div class="price">&yen;1000</div>
-      </div>
-      <div class="master">
-        <div class="btn-box">
-          <a href="/orderDetail">
-          <button type="button" class="btn-primary">查看详情</button>            
-          </a>
+        <div class="master">
+            {{#if payed}}
+              <div class="btn-box">
+                  <a href="/orderDetail?orderid={{orderId}}">
+                    <button type="button" class="btn-primary">查看详情</button>            
+                  </a>
+              </div>
+              {{#if uploadInfo orderId}}
+                <div class="btn-box">
+                  <a href="/companyInfo?orderid={{orderId}}">
+                    <button type="button" class="btn-default">提交资料</button>            
+                  </a>
+                </div> 
+              {{/if}}
+              
+            {{else}}
+              <div class="btn-box">
+                <a href="＃">
+                  <button type="button" class="btn-default">付款</button>
+                </a>
+              </div>
+            {{/if}}
         </div>
       </div>
-    </div>
-    <!--/ module -->    
+    {{/each}}  
     {{> ui_menu }}    
   </div>
 </template>

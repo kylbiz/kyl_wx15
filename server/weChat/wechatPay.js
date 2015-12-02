@@ -39,19 +39,30 @@ Meteor.methods({
 
 	// 退款
 	'refund': function (params) {
-		params = {
-			out_trade_no: "kfc001",				//商户自定义订单号
-			out_refund_no: 'kfc001_refund',		//商户自定义退单号
-			total_fee: 10 * 100,				//订单总金额
-			refund_fee: 10 * 100				//退款金额
-		};
+		// params = {
+		// 	out_trade_no: "kfc001",				//商户自定义订单号
+		// 	out_refund_no: 'kfc001_refund',		//商户自定义退单号
+		// 	total_fee: 10 * 100,				//订单总金额
+		// 	refund_fee: 10 * 100				//退款金额
+		// };
 
-		payment.refund(params, function(err, result){
-			/**
-			* 微信收到正确的请求后会给用户退款提醒
-			* 这里一般不用处理，有需要的话有err的时候记录一下以便排查
-			*/
-		});
+		// payment.refund(params, function(err, result){
+		// 	/**
+		// 	* 微信收到正确的请求后会给用户退款提醒
+		// 	* 这里一般不用处理，有需要的话有err的时候记录一下以便排查
+		// 	*/
+		// });
+	},
+
+	// 本地测试
+	'payOKTest': function (msg) {
+		console.log('payOK', msg);
+		// msg = {
+		// 	out_trade_no: "",
+		// 	des: "test",
+		// }
+
+		return paySuccessHandle(msg);
 	}
 });
 
@@ -127,28 +138,63 @@ function beforePayHandle(orderInfo) {
 
 	var out_trade_no = kylUtil.genOrderId();	// 支付统一订单号
 
-	var infoList = [];
-	var moneyAll = 0;
+	var infoList = [];	// 产品简要信息list
+	var moneyAll = 0;	// 订单总金额
 	orderInfo.shopcartIdList.forEach(function (shopcartId) {
 		var info = ShopCart.findOne({userId: userId, _id: shopcartId});
 		if (!info) {
 			throw new Meteor.Error("数据错误", '订单数据查找失败');
 		}
 
+		var orderId = kylUtil.genOrderId();
+
+		// 创建产品订单 order
+		info.cartId = info._id;
+		delete info._id;
+		delete info.deleted;
+		delete info.ordered;
+		info.canceled = false;
+		info.finished = false;
+		info.userConfirmed = false;
+		info.createTime = new Date();
+		info.openid = out_trade_no;
+		info.cartId = shopcartId;
+		info.orderId = orderId;
+		info.addressInfo = address;
+		var order_id = Orders.insert(info);
+		if (!order_id) {
+			console.log("insert order fail");
+			return false;
+		} else {
+			console.log("insert order ok", order_id);
+		}
+
+		// 更新购物车信息
+		var shopcart_ret = ShopCart.update({_id: shopcartId}, {$set: {ordered: orderId}});
+		if (!shopcart_ret) {
+			console.log('update ShopCart fail');
+		} else {
+			console.log('update shopcart ok');
+		}
+
+
+		// 获取单个产品的支付log信息
 		paylogInfo = {
 			shopcartId: shopcartId,
+			orderId: orderId,
 			money: info.moneyAmount,
 			servicename: info.productType,
 			// relationId: info.relationId,	// 创建时添加，则这边就添加 
 		};
-
 		moneyAll += info.moneyAmount;
 		infoList.push(paylogInfo);
+
 	});
 	// if (!infoList || infoList.length == 0) {
 	// 	throw new Meteor.Error("数据错误", "无订单数据");
 	// }
 
+	// 添加支付log到数据库
 	var paylog = {
 	  openid: out_trade_no,
 	  userId: userId,
@@ -156,7 +202,7 @@ function beforePayHandle(orderInfo) {
 	  moneyAmount: moneyAll,
 	  payed: false,
 	  addressInfo: address,
-	  invoice: false,
+	  invoice: false,	// 是否要发票，之后实现
 	  createTime: new Date()
 	};
 
@@ -219,24 +265,38 @@ function paySuccessHandle(message) {
 			console.log("update ShopCart Ok", ret);
 		}
 
-		// 创建支付成功后的订单 order
-		var shopcartInfo = ShopCart.findOne({_id: shopcartId});
-		if (!shopcartInfo) {
-			console.log("find shopcart fail");
-			return false;
-		}
-
-		shopcartInfo.cartId = shopcartInfo._id;
-		delete shopcartInfo._id;
-		shopcartInfo.createTime = new Date();
-		shopcartInfo.orderId = kylUtil.genOrderId();
-		var order_id = Orders.insert(shopcartInfo);
-		if (!order_id) {
-			console.log("insert order fail");
+		// 更新订单信息
+		ret = Orders.update({cartId: shopcartId}, {
+			$set: {
+				payed: true,
+				payedTime: payedTime,
+			}
+		});
+		if (!ret) {
+			console.log('update order fail');
 			return false;
 		} else {
-			console.log("insert order ok", order_id);
+			console.log('update order ok', ret);
 		}
+
+		// // 创建支付成功后的订单 order
+		// var shopcartInfo = ShopCart.findOne({_id: shopcartId});
+		// if (!shopcartInfo) {
+		// 	console.log("find shopcart fail");
+		// 	return false;
+		// }
+
+		// shopcartInfo.cartId = shopcartInfo._id;
+		// delete shopcartInfo._id;
+		// shopcartInfo.createTime = new Date();
+		// shopcartInfo.orderId = kylUtil.genOrderId();
+		// var order_id = Orders.insert(shopcartInfo);
+		// if (!order_id) {
+		// 	console.log("insert order fail");
+		// 	return false;
+		// } else {
+		// 	console.log("insert order ok", order_id);
+		// }
 		
 	});
 

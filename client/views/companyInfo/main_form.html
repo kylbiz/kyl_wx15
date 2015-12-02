@@ -10,7 +10,7 @@
   <div class="module">
     <div class="content helper">
         <span class="key">企业字号:</span>
-        <input type="text">
+        <input type="text" id="mainName">
         <span class="pull-right">
             <i class="help circle icon"></i>
         </span>
@@ -19,7 +19,7 @@
   <div class="module">
     <div class="content">
       <span class="key">备选字号:</span>
-      <div class="box-container">
+      <div class="box-container" id="alternativeName">
         <div><input type="text" placeholder="请输入企业字号"></div>
         <div><input type="text" placeholder="请输入企业字号"></div>
         <div><input type="text" placeholder="请输入企业字号"></div>
@@ -36,7 +36,7 @@
   </div>
   <div class="get">
     <div>
-      <button class="ui btn-default" type="button">保存</button>
+      <button class="ui btn-default" type="button" id='saveBtn'>保存</button>
     </div>
   </div>
 </template>
@@ -76,11 +76,9 @@
       </div>
     </div>
     <div class="content list-container divide">
-        经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
-        经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
-        经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
-        经营范围,经营范围,经营范围,经营范围,经营范围,经营范围,
+        {{scopeStr}}
     </div>
+
     <div class="adjust">
       <button class="ui btn-default pull-right">调整经营范围</button>
     </div>
@@ -99,7 +97,20 @@
      选择行业
      </div>
    </div>
+  {{#each compTypBase}}
     <div class="module">
+      <div class="content">
+        <div class="single">
+          {{name}}
+          <span class="pull-right">
+            <i class="angle right icon"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+
+    <!-- <div class="module">
       <div class="content">
         <div class="single">
           行业类型大类a
@@ -128,14 +139,26 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
 </template>
 <!-- 行业类型细类 -->
 <template name="scope_segement_widget2">
    <div class="PostList text-center">
      <div class="main-title">选择行业类型</div>
    </div>
-    <div class="module">
+   {{#each compTypDetail}}
+     <div class="module">
+        <div class="content">
+          <div class="single">
+            {{industrySmall}}
+            <span class="pull-right">
+              <i class="angle right icon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+   {{/each}}
+    <!-- <div class="module">
       <div class="content">
         <div class="single">
           选择行业类别
@@ -144,7 +167,7 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
 </template>
 <!-- 确认经营范围 -->
 <template name="scope_segement_widget3">
