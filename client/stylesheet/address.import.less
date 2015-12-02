@@ -35,8 +35,19 @@
   }
 }
 .addressList {
+  .module.header {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
   .module {
     border: solid 1px #ddd;
+    .action {
+     width: 50%;
+     text-align: center;
+     &:first-child {
+      border-right: solid 1px #ddd; 
+     }
+    }
     .key {
       .margin-right-rem(10px);      
     }
@@ -77,8 +88,13 @@
       -webkit-box-pack: end;
       -webkit-box-align: center;      
     }
-    i.add.square.icon {
-      font-size: 24px; 
-    }
   }
+  .get {
+    button {
+     width: 100%; 
+    }
+    i.add.square.icon {
+//       font-size: 24px; 
+    }
+  }  
 }

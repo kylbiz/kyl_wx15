@@ -10,13 +10,22 @@ Template.addressList.helpers({
 
 
 Template.addressList.events({
-  'click .module .radio':function(event,template){
+//  'click .module .radio':function(event,template){
+//    $('.module .radio').removeClass("selected");
+//    $(event.currentTarget).addClass("selected");
+//    console.log("id  ", $(event.currentTarget).context.id);
+//    Session.set('addressId', $(event.currentTarget).context.id);
+//    return false;
+//  },
+  'click .module.header':function(event,template){
+    event.stopPropagation();
+    var self=$(event.currentTarget).find(".radio").first();
     $('.module .radio').removeClass("selected");
-    $(event.currentTarget).addClass("selected");
-    console.log("id  ", $(event.currentTarget).context.id);
-    Session.set('addressId', $(event.currentTarget).context.id);
+    self.addClass("selected");
+    console.log("id  ", self.prop("id"));
+    Session.set('addressId', self.prop("id"));
     return false;
-  },
+  },  
   'click #delAddress': function  () {
   		var id = Session.get('addressId');
   		if (id) {
