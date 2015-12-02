@@ -32,8 +32,12 @@ Meteor.publish('userAddress', function () {
 	return UserAddress.find({userId: this.userId}, {sort: {createAt: -1}});
 });
 
-Meteor.publish('orders', function () {
-	return Orders.find({userId: this.userId}, {sort: {createTime: -1}});
+Meteor.publish('orders', function (orderId) {
+	var cond = {userId: this.userId};
+	if (orderId) {
+		cond.orderId = orderId;
+	}
+	return Orders.find(cond, {sort: {createTime: -1}});
 });
 
 Meteor.publish('paylog', function (openid) {
@@ -45,7 +49,7 @@ Meteor.publish('paylog', function (openid) {
 });
 
 //
-Meteor.publish('companyIndustry', function () {
+Meteor.publish('companyIndustry', function () {	
 	return [BusinessTypeLists.find({}), Business.find({}), Business1.find({})];
 });
 

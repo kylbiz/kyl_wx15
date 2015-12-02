@@ -1,7 +1,7 @@
 <!-- 路由 -->
 <template name="form">
  <div class="main-container form {{_dynamic}}">
-       {{> UI.dynamic template=_dynamic}}
+       {{> UI.dynamic template=_dynamic }}
  </div>
 </template>
 
@@ -10,7 +10,7 @@
   <div class="module">
     <div class="content helper">
         <span class="key">企业字号:</span>
-        <input type="text" id="mainName">
+        <input type="text" id="mainName" value={{companyName.mainName}}>
         <span class="pull-right">
             <i class="help circle icon"></i>
         </span>
@@ -20,11 +20,11 @@
     <div class="content">
       <span class="key">备选字号:</span>
       <div class="box-container" id="alternativeName">
-        <div><input type="text" placeholder="请输入企业字号"></div>
-        <div><input type="text" placeholder="请输入企业字号"></div>
-        <div><input type="text" placeholder="请输入企业字号"></div>
-        <div><input type="text" placeholder="请输入企业字号"></div>
-        <div><input type="text" placeholder="请输入企业字号"></div>
+        <div><input type="text" placeholder="备选企业字号1" value={{companyName.alternativeName1}}></div>
+        <div><input type="text" placeholder="备选企业字号2" value={{companyName.alternativeName2}}></div>
+        <div><input type="text" placeholder="备选企业字号3" value={{companyName.alternativeName3}}></div>
+        <div><input type="text" placeholder="备选企业字号4" value={{companyName.alternativeName4}}></div>
+        <div><input type="text" placeholder="备选企业字号5" value={{companyName.alternativeName5}}></div>
       </div>
     </div>
   </div>
@@ -46,9 +46,10 @@
   <div class="swiper-container">
       <div class="swiper-wrapper">
           <!-- Slides -->
-          {{#each pageNames}}
-          <div class="swiper-slide {{name}}">{{> UI.dynamic template=name}}</div>
-          {{/each}}
+            {{#each pageNames}}
+                <div class="swiper-slide {{name}}">{{> UI.dynamic template=name data=data}}</div>
+            {{/each}}
+          
       </div>
   </div>
 </template>
@@ -60,8 +61,8 @@
         行业类型
         <span class="pull-right">
           <span class="default-right">
-            {{industryBig}}
-            {{industrySmall}}
+            {{industryBigStr industryBig}}
+            {{industrySmallStr industrySmall}}
           </span>
           <i class="angle right icon"></i>
         </span>
@@ -79,9 +80,11 @@
 -->
       </div>
     </div>
+    {{#if scopeStr businessScope}}
     <div class="content list-container divide">
-        {{scopeStr}}
+        {{scopeStr businessScope}}
     </div>
+    {{/if}}
 
     <div class="adjust">
       <button class="ui btn-default pull-right">调整经营范围</button>
@@ -211,7 +214,7 @@
   <div class="module">
     <div class="content">
       <span class="key">注册资金（万元）: </span>
-      <input type="text" placeholder="请输入注册资金" id="money">
+      <input type="text" placeholder="请输入注册资金" id="money" value={{companyMoney}}>
     </div>
   </div>
   <div class="module" id="plus">
@@ -225,7 +228,7 @@
     </div>
   </div>
   <div id="plus-content">
-  {{> shockhoderInputBundle}}    
+    {{> shockhoderInputBundle}}    
   </div>
   <div class="get">
     <div>
@@ -256,29 +259,29 @@
     <div class="content">
       <span class="key">法人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="姓名">
+      <input type="text" placeholder="姓名" id="legalPersonName">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="身份证">
+      <input type="text" placeholder="身份证" id="legalPersonId">
     </div>
   </div>
   <div class="module group">
     <div class="content">
       <span class="key">监事</span>
       <span class="dot"></span>
-      <input type="text" placeholder="姓名">
+      <input type="text" placeholder="姓名" id="supervisorName">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="身份证">
+      <input type="text" placeholder="身份证" id="supervisorId">
     </div>
   </div>
   <div class="get">
     <div>
-      <button class="ui btn-default" type="button">保存</button>
+      <button class="ui btn-default" type="button" id="saveBtn">保存</button>
     </div>
   </div>
 </template>
@@ -290,76 +293,81 @@
     <div class="content">
       <span class="key">财务负责人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="姓名">
+      <input type="text" placeholder="姓名" id="finaName">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="身份证">
+      <input type="text" placeholder="身份证" id="finaId">
     </div> 
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
-      <input type="text" placeholder="手机号">
-    </div>        
+      <input type="text" placeholder="手机号" id="finaPhone">
+    </div>
+    <div class="content">
+      <span class="key">邮箱</span>
+      <span class="dot"></span>
+      <input type="text" placeholder="邮箱" id="finaEmail">
+    </div>         
   </div>
   
   <div class="module group">
     <div class="content">
       <span class="key">企业联络人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="姓名">
+      <input type="text" placeholder="姓名" id="liaName">
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
-      <input type="text" placeholder="身份证">
+      <input type="text" placeholder="身份证" id="liaId">
     </div>    
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
-      <input type="text" placeholder="手机号">
+      <input type="text" placeholder="手机号" id="liaPhone">
     </div>     
     <div class="content">
       <span class="key">邮箱</span>
       <span class="dot"></span>
-      <input type="text" placeholder="邮箱">
+      <input type="text" placeholder="邮箱" id="liaEmail">
     </div>          
   </div>  
   <div class="get">
     <div>
-      <button class="ui btn-default" type="button">保存</button>
+      <button class="ui btn-default" type="button" id="saveBtn">保存</button>
     </div>
   </div>
-
 </template>
 
+<!-- 资料对接人 -->
 <template name="contractor_segement">
   <div class="module group">
     <div class="content">
       <span class="key">资料对接人</span>
       <span class="dot"></span>
-      <input type="text" placeholder="姓名">
+      <input type="text" placeholder="姓名" id="consName">
     </div>   
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
-      <input type="text" placeholder="手机号">
+      <input type="text" placeholder="手机号" id="consPhone">
     </div>     
     <div class="content">
       <span class="key">邮箱</span>
       <span class="dot"></span>
-      <input type="text" placeholder="邮箱">
+      <input type="text" placeholder="邮箱" id="consEmail">
     </div>    
     <div class="content">
       <span class="key">Q&nbsp;&nbsp;&nbsp;Q</span>
       <span class="dot"></span>
-      <input type="text" placeholder="qq">
+      <input type="text" placeholder="(可选)" id="consQQ">
     </div>          
   </div>  
   <div class="get">
     <div>
-      <button class="ui btn-default" type="button">保存</button>
+      <button class="ui btn-default" type="button" id="saveBtn">保存</button>
     </div>
   </div>  
 </template>

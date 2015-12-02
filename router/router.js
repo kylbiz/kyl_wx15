@@ -157,8 +157,15 @@ Router.route('/logout', function() {
 Router.route('/form/:item', {
 	name: "form",
 	subscriptions: function () {
-		Meteor.subscribe("companyIndustry");
-	}
+		return Meteor.subscribe("companyIndustry");
+	},
+	waitOn: function () {
+		var orderId = this.params.query.orderid || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	},
 });
 
 
