@@ -10,29 +10,33 @@ Template.product.helpers({
         var origin = '/images/'+type+'_scene.jpg';
         return origin;
     },
+    _name: function() {
+      var name = Router.current().params.query.name;
+      return name;
+    },
     _img: function(){
+      var name = Router.current().params.query.name;
       var img = {
           '1元注册': 'oneyuan',  
-          '极速注册': '',        
-          '电商公司': '',              
-          '教育公司': '',        
-          '金融信息公司': '', 
-          '移动互联网公司': '',
-          '文化传媒公司': '',
-          '商务服务公司': '',
-          '建筑设计公司': '',
-          '医疗公司': '',
-          '银行开户': '',
-          '财务代理': '',
-          '流量计帐包套餐服务': '',
-          '小企社保': ''
-      }[this.name];
+          '极速注册': 'jisu',        
+          '电商公司': 'dianshang',              
+          '教育公司': 'jiaoyu',        
+          '金融信息公司': 'jingrong', 
+          '移动互联网公司': 'hulianwang',
+          '文化传媒公司': 'wenhua',
+          '商务服务公司': 'shangwu',
+          '建筑设计公司': 'jianzhu',
+          '医疗公司': 'yiliao',
+          '银行开户': 'icon_bank',
+          '财务代理': 'icon_finance',
+          '流量记账包服务套餐': 'icon_packpage',
+          '小企社保': 'icon_assurance'
+      }[name];
       if(img) {
-        img = '/images/'+img+'.png';
+        img = '/images/icon/'+img+'.png';
       }
       else {
-        //img = 'http://placehold.it/640x320'; 
-        img = 'http://placehold.it/296x296';
+        img = 'http://fpoimg.com/640x320';
       }
       return img;
     },  
