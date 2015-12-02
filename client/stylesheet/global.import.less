@@ -18,7 +18,7 @@ a {
 }
 body {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto !important;
   background-color: #eee;
 }
 
@@ -186,7 +186,7 @@ body>div {
 }
 
 /* widget:ui-menu */
-@ui-menu-height:100px;
+@ui-menu-height:80px;
 .has-ui-menu {
   .padding-bottom-rem(@ui-menu-height);  
 }
@@ -203,13 +203,46 @@ body>div {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
   -webkit-box-pack: center;
-  -webkit-box-align: center;  
+  -webkit-box-align: center; 
+  .menu-icon {
+      .height(60px);
+      .width(60px);
+      background-size: cover;
+      -webkit-background-size: cover;
+  }
+  .menu-icon.home {
+      background-image: url(/images/menu/menu_home.png);
+  }
+  .menu-icon.local {
+      background-image: url(/images/menu/menu_local.png);
+  }  
+  .menu-icon.usercenter {
+      background-image: url(/images/menu/menu_usercenter.png);
+  }   
+  .menu-icon.tools {
+      background-image: url(/images/menu/menu_tools.png);
+  }     
+  .active {
+    .menu-icon.home {
+        background-image: url(/images/menu/menu_home_hover.png);
+    }
+    .menu-icon.local {
+        background-image: url(/images/menu/menu_local_hover.png);
+    }  
+    .menu-icon.usercenter {
+        background-image: url(/images/menu/menu_usercenter_hover.png);
+    }   
+    .menu-icon.tools {
+        background-image: url(/images/menu/menu_tools_hover.png);
+    }    
+  }
   ul {
     .make-row();
     width: 100%;
   }
   ul li {
     width: 25%;
+    text-align: center;
     .make-column();
     //.height(40px);
     vertical-align: middle;
@@ -220,6 +253,10 @@ body>div {
      display: block;
      width: 100%;
      height: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;       
     }
     .icon {
        width: 26px;
