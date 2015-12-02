@@ -4,6 +4,42 @@ Template.form.helpers({
   }
 });
 
+
+
+//////////////////////////////////////////////////////////////
+// 企业名
+//////////////////////////////////////////////////////////////
+Template.name_segement.events({
+    'click #saveBtn': function (event, template) {
+        var orderId = Router.current().params.query.orderid || "";
+        if (!orderId) {
+            kylUtil.alert("数据错误，请退出重登!");
+            return;
+        }
+
+        var companyName = {};
+        var mainName = $("#mainName").val() || "";
+        if (!mainName) {
+            kylUtil.alert("企业首选字号必须填!");
+            return;
+        }
+        companyName.mainName = mainName;
+
+        $("#alternativeName").find("input").each(function(index, element){
+            var name = $(element).val() || "";
+            if (name) {
+                companyName["alternativeName" + (parseInt(index) + 1)] = name;
+            }
+        })
+
+        updateOrder(orderId, {companyName: companyName});
+    }
+});
+
+
+//////////////////////////////////////////////////////////////
+// 类型及经营范围
+//////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
         var pageNames = [{
@@ -17,44 +53,6 @@ Template.scope_segement.helpers({
         }];
         return pageNames;
     },
-    
-});
-
-Template.scope_segement_board.helpers({
-    industryBig: function () {
-        Session.setDefault('industryBig', "");
-        return Session.get('industryBig') || "--";
-    },
-    industrySmall: function () {
-        Session.setDefault('industrySmall', "");
-        return Session.get('industrySmall') || "--";
-    },
-    scopeStr: function() {
-        Session.setDefault('businessScope', "");       
-        return Session.get('businessScope') || "--";
-    }
-});
-
-Template.scope_segement_board.events({
-    'click #saveBtn': function () {
-        var orderId = Router.current().params.query.orderid || "";
-        var industryBig = Session.get('industryBig');
-        var industrySmall = Session.get('industrySmall');
-        var businessScope = Session.get('businessScope')
-        if (!orderId) {
-            kylUtil.alert("数据错误，请退出重登!");
-            return;
-        } else if (!industryBig || !industrySmall || !businessScope) {
-            kylUtil.alert("各项请填写完整！");
-            return;
-        }
-
-        updateOrder(orderId, {
-            industryBig: industryBig,
-            industrySmall: industrySmall,
-            businessScope: businessScope,
-        });
-    }
 });
 
 Template.scope_segement.swingToNext=function(swingObject){
@@ -100,57 +98,44 @@ Template.scope_segement.onRendered(function(){
         autoSwiper.slideTo(0);
         $('body').animate({scrollTop:0},600);
     });
-
-});
-
-Template.resource_segement.events({
-  'click #plus':function(){
-    var template = Blaze.toHTML(Template.shockhoderInputBundle);
-    $("#plus-content").append(template);
-  },
-  'click i.icon.trash':function(e){
-    $(e.currentTarget).closest(".module").remove(); 
-  }
 });
 
 
-
-//////////////////////////////////////////////////////////////
-// 企业名
-//////////////////////////////////////////////////////////////
-Template.name_segement.events({
-    'click #saveBtn': function (event, template) {
-        var orderId = Router.current().params.query.orderid || "";
-        if (!orderId) {
-            kylUtil.alert("数据错误，请退出重登!");
-            return;
-        }
-
-        var companyName = {};
-        var mainName = $("#mainName").val() || "";
-        if (!mainName) {
-            kylUtil.alert("企业首选字号必须填!");
-            return;
-        }
-        companyName.mainName = mainName;
-
-        $("#alternativeName").find("input").each(function(index, element){
-            var name = $(element).val() || "";
-            if (name) {
-                companyName["alternativeName" + (parseInt(index) + 1)] = name;
-            }
-        })
-
-        updateOrder(orderId, {companyName: companyName});
+Template.scope_segement_board.helpers({
+    industryBig: function () {
+        Session.setDefault('industryBig', "");
+        return Session.get('industryBig') || "--";
+    },
+    industrySmall: function () {
+        Session.setDefault('industrySmall', "");
+        return Session.get('industrySmall') || "--";
+    },
+    scopeStr: function() {
+        Session.setDefault('businessScope', "");       
+        return Session.get('businessScope') || "--";
     }
 });
 
+Template.scope_segement_board.events({
+    'click #saveBtn': function () {
+        var orderId = Router.current().params.query.orderid || "";
+        var industryBig = Session.get('industryBig');
+        var industrySmall = Session.get('industrySmall');
+        var businessScope = Session.get('businessScope')
+        if (!orderId) {
+            kylUtil.alert("数据错误，请退出重登!");
+            return;
+        } else if (!industryBig || !industrySmall || !businessScope) {
+            kylUtil.alert("各项请填写完整！");
+            return;
+        }
 
-//////////////////////////////////////////////////////////////
-// 类型及经营范围
-//////////////////////////////////////////////////////////////
-Template.scope_segement.events({
-
+        updateOrder(orderId, {
+            industryBig: industryBig,
+            industrySmall: industrySmall,
+            businessScope: businessScope,
+        });
+    }
 });
 
 // 行业大类
@@ -210,3 +195,23 @@ function updateOrder(orderId, info, callBack) {
         }
     });
 }
+
+
+
+//////////////////////////////////////////////////////////////
+// 注册资金与股东信息
+//////////////////////////////////////////////////////////////
+Template.resource_segement.events({
+    'click #saveBtn': function () {
+        var companyMoney = $("#money").val() || "";
+        
+    },
+    'click #plus': function() {
+        var template = Blaze.toHTML(Template.shockhoderInputBundle);
+        $("#plus-content").append(template);
+    },
+    'click i.icon.trash': function(e) {
+        $(e.currentTarget).closest(".module").remove();
+    }
+});
+
