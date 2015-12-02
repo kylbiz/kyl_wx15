@@ -43,3 +43,27 @@
     {{> ui_menu }}    
   </div>
 </template>
+
+<template name="localEmptyTemplate">
+  <div class="main-container has-ui-menu emptyTemplate">
+    <div class="text-center">
+      <div>
+        <div class="photo" style="width:50%">
+<!--          <img src="/images/menu/menu_local_hover.png" alt="">-->
+        </div>
+        <div class="des">
+          <p>您的订单是空的</p>
+          <p>赶紧逛逛吧！</p>
+        </div>
+        <div class="get">
+           <div>
+            <a href="/">
+             <button class="ui btn-default ui-default" type="button">随便逛逛</button>              
+            </a>
+           </div>
+        </div>
+      </div>
+    </div>
+    {{> ui_menu}}
+  </div>
+</template>

@@ -169,3 +169,9 @@ Router.route('/forget');
 Router.route('/orderDescription');
 
 Router.route('/shockholder');
+
+Router.route('/context');
+
+Router.route('/aboutus');
+
+Router.route('/localEmptyTemplate');
