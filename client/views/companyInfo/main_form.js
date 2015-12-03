@@ -45,14 +45,7 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-<<<<<<< HEAD
-        var pageNames = [{             
-            name: 'scope_segement_widget3',
-            data: this
-        }, {          
-=======
-        var pageNames = [{    
->>>>>>> 441eb631c5897b79a993ffadbaeacea87a7e7dfc
+        var pageNames = [{
             name: 'exchangeScopeSegement',
             data: this  
         }, {          
