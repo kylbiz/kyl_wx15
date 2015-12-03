@@ -22,6 +22,19 @@ Template.orderList.events({
 			// Session.set("businessScope", null);
 			Router.go('companyInfo', {}, { query: 'orderid=' + orderId });
 		}
+	},
+	'click #goToPay': function (event) {
+		var orderId = $(event.currentTarget).val() || "";
+		if (orderId) {
+			var orderInfo = Orders.findOne({orderId: orderId});
+			if (orderInfo && !orderInfo.payed) {
+				console.log("goToPay", orderId);
+				
+				return;
+			}
+		}
+
+		kylUtil.alert("警告", "订单信息非法!");
 	}
 });
 

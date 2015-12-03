@@ -25,14 +25,17 @@ Template.name_segement.events({
         }
         companyName.mainName = mainName;
 
-        $("#alternativeName").find("input").each(function(index, element){
+        var index = 1;
+        $("#alternativeName").find("input").each(function(id, element){
             var name = $(element).val() || "";
             if (name) {
-                companyName["alternativeName" + (parseInt(index) + 1)] = name;
+                companyName["alternativeName" + index] = name;
+                index += 1;
             }
         })
 
-        updateOrder({companyName: companyName});
+        var compType = $("#compType").html().trim() || "有限责任公司";
+        updateOrder({companyName: companyName, companyType: compType});
     }
 });
 
@@ -199,7 +202,7 @@ Template.changeScopeSegement.events({
 
 
 Template.scope_segement_widget3.events({
-    "click #submitBtn": function () {
+    "click #submitBtn": function (event) {
         var businessScope = [];
         $('input[type="checkbox"]').each(function(index, element) {
             var elem = $(element);

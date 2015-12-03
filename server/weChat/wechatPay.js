@@ -148,47 +148,98 @@ function beforePayHandle(orderInfo) {
 
 		var orderId = kylUtil.genOrderId();
 
-		// 创建产品订单 order
-		info.cartId = info._id;
-		delete info._id;
-		delete info.deleted;
-		delete info.ordered;
-		info.canceled = false;
-		info.finished = false;
-		info.userConfirmed = false;
-		info.createTime = new Date();
-		info.invoice = orderInfo.invoice;
-		info.openid = out_trade_no;
-		info.cartId = shopcartId;
-		info.orderId = orderId;
-		info.addressInfo = address;
-		var order_id = Orders.insert(info);
-		if (!order_id) {
-			console.log("insert order fail");
-			return false;
+		if (!info.ordered) {
+			// 第一次付款
+			if (!createOrder()) {
+				throw new Meteor.Error("生成订单失败");
+			}
+			updateShopCart();
 		} else {
-			console.log("insert order ok", order_id);
+			// 已下过单
+			orderId = info.ordered;
+			if (!updateOrder()) {
+				throw new Meteor.Error("重新下单失败");
+			}
 		}
+
+		// 获取产品支付log
+		getProdPayLog();
+
+		// 创建订单
+		function createOrder () {
+			info.cartId = info._id;
+			delete info._id;
+			delete info.deleted;
+			delete info.ordered;
+			info.canceled = false;
+			info.finished = false;
+			info.userConfirmed = false;
+			info.createTime = new Date();
+			info.invoice = orderInfo.invoice;
+			info.openid = out_trade_no;
+			info.cartId = shopcartId;
+			info.orderId = orderId;
+			info.addressInfo = address;
+			var order_id = Orders.insert(info);
+			if (!order_id) {
+				console.log("insert pay order fail");
+				return false;
+			} else {
+				console.log("insert pay order ok", order_id);
+			}
+
+			return true;
+		}
+
+		// 更新订单
+		function updateOrder () {
+			var orderInfo = Orders.findOne({orderId: orderId});
+			if (!orderInfo && orderInfo.payed) {
+				return false;
+			}
+
+			var order_ret = Orders.update({orderId: orderId}, {
+				$set: {
+					invoice: orderInfo.invoice,
+					openid: out_trade_no,
+					addressInfo: address
+				}
+			});
+			if (!order_ret) {
+				console.log("update pay order fail");
+				return false;
+			} else {
+				console.log("update pay order ok", order_ret);
+			}
+
+			return true;
+		} 
 
 		// 更新购物车信息
-		var shopcart_ret = ShopCart.update({_id: shopcartId}, {$set: {ordered: orderId}});
-		if (!shopcart_ret) {
-			console.log('update ShopCart fail');
-		} else {
-			console.log('update shopcart ok');
+		function updateShopCart() {
+			var shopcart_ret = ShopCart.update({_id: shopcartId}, {$set: {ordered: orderId}});
+			if (!shopcart_ret) {
+				console.log('update ShopCart fail');
+				return false;
+			} else {
+				console.log('update shopcart ok');
+			}
+
+			return true;
 		}
-
-
+		
 		// 获取单个产品的支付log信息
-		paylogInfo = {
-			shopcartId: shopcartId,
-			orderId: orderId,
-			money: info.moneyAmount,
-			servicename: info.productType,
-			// relationId: info.relationId,	// 创建时添加，则这边就添加 
-		};
-		moneyAll += info.moneyAmount;
-		infoList.push(paylogInfo);
+		function getProdPayLog() {
+			paylogInfo = {
+				shopcartId: shopcartId,
+				orderId: orderId,
+				money: info.moneyAmount,
+				servicename: info.productType,
+				// relationId: info.relationId,	// 创建时添加，则这边就添加 
+			};
+			moneyAll += info.moneyAmount;
+			infoList.push(paylogInfo);			
+		}
 
 	});
 	// if (!infoList || infoList.length == 0) {
@@ -211,7 +262,7 @@ function beforePayHandle(orderInfo) {
 
 	var ret = PayLogs.insert(paylog); 
 	if (!ret) {
-		throw new Meteor.Error("数据错误", "内部数据处理失败");
+		throw new Meteor.Error("下单失败！");
 	} else {
 		console.log("insert PayLogs success", ret);
 	}
@@ -225,20 +276,36 @@ function paySuccessHandle(message) {
 	var openid = message.out_trade_no;
 	var payedTime = new Date();
 
+	// 检测订单信息
+	// var orderInfoOld = Orders.find();
+
 	// 更新paylog状态
-	var ret = PayLogs.update({openid: openid}, {
-		$set: {
-			payed: true,
-			payedTime: payedTime,
-			wxpayInfos: message
+	function updatePayLog() {
+		var ret = PayLogs.update({openid: openid}, {
+			$set: {
+				payed: true,
+				payedTime: payedTime,
+				wxpayInfos: message
+			}
+		}, {multi: true});
+		if (!ret) {
+			console.log('update paylog fail');
+			return false;
+		} else {
+			console.log("update paylog ok", ret);
 		}
-	});
-	if (!ret) {
-		console.log('update paylog fail');
-		return false;
-	} else {
-		console.log("update paylog ok", ret);
+
+		return true;
 	}
+
+	// 更新购物车状态
+	function updateShopcart() {
+		
+	}
+
+	// 更新订单状态
+
+	
 
 	var paylog = PayLogs.findOne({openid: openid});
 	if(!paylog || !paylog.hasOwnProperty('shoplists')) {
@@ -251,6 +318,7 @@ function paySuccessHandle(message) {
 	shoplists.forEach(function (shoplist) {
 		var shopcartId = shoplist.shopcartId;
 		console.log("shopcartId -", shopcartId);
+
 		// 更新购物车状态
 		var ret = ShopCart.update({_id: shopcartId}, {
 			$set: {

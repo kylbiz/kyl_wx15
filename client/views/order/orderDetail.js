@@ -17,7 +17,10 @@ Template.orderDetail.helpers({
 	},
 	lastUpdateTime: function (isRegComp) {
 		if (isRegComp) {
-			var updateTime = this.productProgress.updateTime;
+			var updateTimes = this.productProgress.updateTimes || [];
+			var status = this.productProgress.status || 0;
+			var updateTime = updateTimes[status];
+
 			if (!updateTime) {
 				return "未知";
 			}

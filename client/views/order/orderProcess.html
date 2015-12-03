@@ -4,20 +4,25 @@
  {{/control_nav}} 
   <div class="process main-container has-ui-menu">
    <div class="container">
-<!--
-      <div class="ui-tab">
-        <div class="left-tab">
-          <a href="/orderDetail">订单详情</a>      
-        </div>
-        <div class="right-tab">
-          <a href="/orderProcess">订单进度</a>
-        </div>
-      </div>
--->
       <div class="separator">        
       </div>
       <div class="box-container">
-        <div class="piece done">
+        {{#each $mapped processList}}
+            <div class="piece {{#if doing $index}}done{{/if}}">
+              <div class="fiuld">
+                <div class="line"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="content">
+               <div>
+                <div class="key">{{name}}</div>
+                
+                <div class="time">{{updateTime $index}}</div>             
+               </div>
+              </div>
+            </div>
+        {{/each}}
+<!--         <div class="piece done">
           <div class="fiuld">
             <div class="line"></div>
             <div class="dot"></div>
@@ -29,6 +34,7 @@
            </div>
           </div>
         </div>
+
         <div class="piece">
           <div class="fiuld">
             <div class="line">
@@ -79,9 +85,8 @@
              <div class="time">2015.6.20</div>
            </div>            
           </div>
-        </div>
-      </div>
-           
+        </div> -->
+      </div>           
    </div>
    {{> ui_menu }} 
   </div>

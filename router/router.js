@@ -64,33 +64,6 @@ Router.route('/addressList', {
 // 添加收货地址
 Router.route('/address');
 
-
-// 订单中心界面
-Router.route('/orderList', {
-	name: "orderList",
-	waitOn: function () {
-		return Meteor.subscribe('orders');
-	},
-	// data: function () {
-	// 	return Orders.find({}).fetch();
-	// }
-});
-
-// 订单详情
-Router.route('/orderDetail', {
-	name: "orderDetail",
-	waitOn: function () {
-		var orderId = this.params.query.orderid || "empty";
-		return Meteor.subscribe("orders", orderId);
-	},
-	data: function () {
-		return Orders.findOne({});
-	},
-});
-
-// 订单进度
-Router.route('/orderProcess');
-
 // 支付页
 Router.route('/weixinpay/', {
 	name: 'trade',
@@ -122,7 +95,6 @@ Router.route('/companyInfo', {
 
 // 个人中心
 Router.route('/home');
-
 
 
 // 登录页
@@ -177,12 +149,54 @@ Router.route('/form/:item', {
 	},
 });
 
+// 订单中心界面
+Router.route('/orderList', {
+	name: "orderList",
+	waitOn: function () {
+		return Meteor.subscribe('orders');
+	}
+});
+
+// 订单详情
+Router.route('/orderDetail', {
+	name: "orderDetail",
+	waitOn: function () {
+		var orderId = this.params.query.orderid || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	},
+});
+
+// 订单进度
+Router.route('/orderProcess/:orderId', {
+	name: "orderProcess",
+	waitOn: function () {
+		var orderId = this.params.orderId || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	}
+});
+
+// 公司注册详情
+Router.route('/orderDesc/:orderId', {
+	name: 'orderDescription',
+	waitOn: function () {
+		var orderId = this.params.orderId || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	}
+});
 
 Router.route('/tools');
 
 Router.route('/forget');
 
-Router.route('/orderDescription');
 
 Router.route('/shockholder');
 

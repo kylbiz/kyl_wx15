@@ -20,6 +20,20 @@ Template.orderDescription.onRendered(function(){
     $(document).on("click","#alt",collapse);  
 });
 
+Template.orderDescription.helpers({
+    alertNameCount: function (companyName) {
+        delete companyName.mainName;
+        var count = 0;
+        for (key in companyName) {
+            if (companyName[key]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+});
+
 Template.orderDescription.events({
   'click .oGroup .piece':function(){
    Router.go('/shockholder');

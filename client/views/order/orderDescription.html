@@ -8,7 +8,7 @@
       <div class="single">
         行业
         <div class="pull-right">
-         管理类－>企业管理
+         {{industryBig}} -- {{industrySmall}}
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="single">
         字号
         <div class="pull-right">
-         开业啦
+         {{companyName.mainName}}
         </div>
       </div>
     </div>
@@ -28,16 +28,21 @@
       <div class="single">
         备选字号
         <div class="pull-right collapse">
-            <div class="link">5</div> <i class="angle right icon"></i>
+            <div class="link">{{alertNameCount companyName}}</div> 
+            {{#if alertNameCount companyName}}
+              <i class="angle right icon"></i>
+            {{/if}}
         </div>
       </div>
     </div>
     <div class="content clearfix" id="altBox">
-      <div class="box">boxboxboxboxbox</div>
-      <div class="box">boxboxboxboxbox</div>
-      <div class="box">boxboxboxboxbox</div>
-      <div class="box">boxboxboxboxbox</div>
-      <div class="box">boxboxboxboxbox</div>
+      {{#if alertNameCount companyName}}
+        <div class="box">{{companyName.alternativeName1}}</div>
+        <div class="box">{{companyName.alternativeName2}}</div>
+        <div class="box">{{companyName.alternativeName3}}</div>
+        <div class="box">{{companyName.alternativeName4}}</div>
+        <div class="box">{{companyName.alternativeName5}}</div>
+      {{/if}}
     </div>
   </div>  
   <div class="module">
@@ -45,7 +50,7 @@
       <div class="single">
         公司属性
         <div class="pull-right">
-            有限责任公司
+            {{companyType}}
         </div>
       </div>
     </div>
@@ -55,7 +60,7 @@
       <div class="single">
        注册资本（万）
         <div class="pull-right">
-            100
+            {{companyMoney}}
         </div>
       </div>
     </div>
@@ -87,13 +92,13 @@
     <div class="content block">
        法人
         <div class="pull-right">
-            100
+            {{legalPerson.legalPersonName}}
         </div>    
     </div>
     <div class="content block">    
        身份证
         <div class="pull-right">
-            100
+            {{legalPerson.legalPersonId}}
         </div>   
     </div>
   </div>
@@ -102,13 +107,13 @@
     <div class="content block">
        监事
         <div class="pull-right">
-            100
+            {{supervisor.supervisorName}}
         </div>    
     </div>
     <div class="content block">    
        身份证
         <div class="pull-right">
-            100
+            {{supervisor.supervisorId}}
         </div>   
     </div>
   </div>     
@@ -117,19 +122,25 @@
     <div class="content block">
        财务负责人
         <div class="pull-right">
-            100
+            {{contractor.financialStaff.financialStaffName}}
         </div>    
+    </div>
+    <div class="content block">    
+       身份证
+        <div class="pull-right">
+            {{contractor.financialStaff.financialStaffId}}
+        </div>   
     </div>
     <div class="content block">    
        手机号
         <div class="pull-right">
-            100
+            {{contractor.financialStaff.financialStaffPhone}}
         </div>   
     </div>
     <div class="content block">    
        邮箱
         <div class="pull-right">
-            100
+            {{contractor.financialStaff.financialStaffEmail}}
         </div>   
     </div>    
   </div>                        
@@ -138,28 +149,56 @@
     <div class="content block">
        企业联络人
         <div class="pull-right">
-            100
+            {{contractor.liaisons.liaisonsName}}
         </div>    
+    </div>
+    <div class="content block">    
+       身份证
+        <div class="pull-right">
+            {{contractor.liaisons.liaisonsId}}
+        </div>   
     </div>
     <div class="content block">    
        手机号
         <div class="pull-right">
-            100
+            {{contractor.liaisons.liaisonsPhone}}
         </div>   
     </div>
     <div class="content block">    
        邮箱
         <div class="pull-right">
-            100
+            {{contractor.liaisons.liaisonsEmail}}
+        </div>   
+    </div>     
+  </div>
+
+  <div class="module group">
+    <div class="content block">
+       资料对接人
+        <div class="pull-right">
+            {{consigner.consignerName}}
+        </div>    
+    </div>
+    <div class="content block">    
+       手机号
+        <div class="pull-right">
+            {{consigner.consignerPhone}}
+        </div>   
+    </div>
+    <div class="content block">    
+       邮箱
+        <div class="pull-right">
+            {{consigner.consignerEmail}}
         </div>   
     </div>  
     <div class="content block">    
        QQ
         <div class="pull-right">
-            100
+            {{consigner.consignerQQ}}
         </div>   
     </div>        
-  </div>  
+  </div> 
+
    {{> ui_menu }}                 
  </div>
 
