@@ -45,11 +45,18 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
+<<<<<<< HEAD
         var pageNames = [{             
             name: 'scope_segement_widget3',
             data: this
         }, {          
+=======
+        var pageNames = [{    
+>>>>>>> 441eb631c5897b79a993ffadbaeacea87a7e7dfc
             name: 'exchangeScopeSegement',
+            data: this  
+        }, {          
+            name: 'scope_segement_widget3',
             data: this
         }, {          
             name: 'scope_segement_board',
@@ -59,9 +66,6 @@ Template.scope_segement.helpers({
             data: this
         }, {
             name: 'scope_segement_widget2',
-            data: this
-        }, {
-            name: 'scope_segement_widget3',
             data: this
         }];
         return pageNames;
@@ -128,21 +132,25 @@ Template.scope_segement.onRendered(function(){
         Session.set('industryBig', industryBig);
         Template.scope_segement.swingToNext(autoSwiper);      
     });
-    
-    $(document).on("click",".exchangeScopeSegement .module",function(){      
-        Template.scope_segement.swingToPrev(autoSwiper);     
-    })    
-
+      
     $(document).on("click",".scope_segement_widget2 .module",function(){
         // industrySmall
         var industrySmall = $(this).find(".single").first().text().trim() || "";
-        Session.set("industrySmall", industrySmall);
-        Template.scope_segement.swingToNextStep(autoSwiper);   
+        Session.set("industrySmall", industrySmall);  
+        Template.scope_segement.swingToBack(autoSwiper);
     });
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
         Template.scope_segement.swingToBack(autoSwiper);
     });
+    
+    $(".scope_segement_widget3 #addBtn").click(function(){
+        Template.scope_segement.swingToPrev(autoSwiper);
+    });
+  
+    $(document).on("click",".exchangeScopeSegement .module",function(){      
+        Template.scope_segement.swingToNext(autoSwiper);     
+    });  
 });
 
 
