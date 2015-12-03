@@ -157,6 +157,7 @@ function beforePayHandle(orderInfo) {
 		info.finished = false;
 		info.userConfirmed = false;
 		info.createTime = new Date();
+		info.invoice = orderInfo.invoice;
 		info.openid = out_trade_no;
 		info.cartId = shopcartId;
 		info.orderId = orderId;
@@ -202,7 +203,7 @@ function beforePayHandle(orderInfo) {
 	  moneyAmount: moneyAll,
 	  payed: false,
 	  addressInfo: address,
-	  invoice: false,	// 是否要发票，之后实现
+	  invoice: orderInfo.invoice,
 	  createTime: new Date()
 	};
 

@@ -54,7 +54,8 @@ Template.trade.events({
         }
 
         Meteor.call('getPayArgs', {
-                shopcartIdList: shopcartIdList, 
+                shopcartIdList: shopcartIdList,
+                invoice: Session.get('invoice') || false, 
                 addressId: addressId, 
                 wechatOpenId: Session.get("WeChatUser")
             }, function (error, result) {
@@ -103,5 +104,7 @@ Template.trade.events({
         else {
           $(".switch-outlook").text("否");
         }
+
+        Session.set("invoice", smart);
     }
 });

@@ -6,6 +6,7 @@ CommFunc.getShopCartInfo = function () {
 	return productShowInfo(list) || [];
 }
 
+
 // 获取所购买商品的显示数据 在订单中心页需要用
 CommFunc.getOrderInfo = function () {
 	var list = Orders.find({}) || [];

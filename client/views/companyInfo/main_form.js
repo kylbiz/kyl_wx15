@@ -138,7 +138,7 @@ Template.scope_segement.onRendered(function(){
         var industrySmall = $(this).find(".single").first().text().trim() || "";
         Session.set("industrySmall", industrySmall);
         Template.scope_segement.swingToNextStep(autoSwiper);   
-    })
+    });
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
         Template.scope_segement.swingToBack(autoSwiper);
@@ -231,17 +231,13 @@ Template.exchangeScopeSegement.events({
     }
 });
 
-
 Template.scope_segement_widget3.events({
     "click #submitBtn": function () {
         var businessScope = [];
-        $('input[type="checkbox"]').each(function(index, element) {
-            var elem = $(element);
-            if (elem.prop("checked")) {
-                businessScope.push(elem.val());
-            }
+        $('input[type="checkbox"]:checked').each(function(index, element) {
+            businessScope.push($(element).val());
         });
-
+        console.log(businessScope);
         if (businessScope.length == 0) {
             kylUtil.alert("请至少选择一项经营范围!");
             return;
