@@ -45,11 +45,8 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{
+        var pageNames = [{             
             name: 'scope_segement_widget3',
-            data: this    
-        }, {               
-            name: 'scope_segement_widget2',
             data: this
         }, {          
             name: 'exchangeScopeSegement',
@@ -98,7 +95,7 @@ Template.scope_segement.swingToNextStep=function(swingObject){
 Template.scope_segement.swingToBack=function(swingObject){
   swingObject.unlockSwipeToPrev();
   swingObject.unlockSwipeToNext();
-  swingObject.slideTo(3);
+  swingObject.slideTo(2);
   $('body').animate({scrollTop:0},600);
   swingObject.lockSwipeToPrev();
   swingObject.lockSwipeToNext();  
@@ -106,7 +103,7 @@ Template.scope_segement.swingToBack=function(swingObject){
 
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      initialSlide: 3,
+      initialSlide: 2,
       loop:false,
       autoHeight: true,
       watchSlidesProgress : true
@@ -237,10 +234,13 @@ Template.exchangeScopeSegement.events({
 Template.scope_segement_widget3.events({
     "click #submitBtn": function (event) {
         var businessScope = [];
-        $('input[type="checkbox"]:checked').each(function(index, element) {
-            businessScope.push($(element).val());
+        $('input[type="checkbox"]').each(function(index, element) {
+            if ($(element).prop("checked")) {
+                businessScope.push($(element).val());
+            }
         });
         console.log(businessScope);
+
         if (businessScope.length == 0) {
             kylUtil.alert("请至少选择一项经营范围!");
             return;
