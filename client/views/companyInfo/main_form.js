@@ -45,7 +45,7 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{    
+        var pageNames = [{
             name: 'exchangeScopeSegement',
             data: this  
         }, {          
@@ -235,10 +235,13 @@ Template.exchangeScopeSegement.events({
 Template.scope_segement_widget3.events({
     "click #submitBtn": function (event) {
         var businessScope = [];
-        $('input[type="checkbox"]:checked').each(function(index, element) {
-            businessScope.push($(element).val());
+        $('input[type="checkbox"]').each(function(index, element) {
+            if ($(element).prop("checked")) {
+                businessScope.push($(element).val());
+            }
         });
         console.log(businessScope);
+
         if (businessScope.length == 0) {
             kylUtil.alert("请至少选择一项经营范围!");
             return;

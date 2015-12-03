@@ -279,6 +279,13 @@ function paySuccessHandle(message) {
 	// 检测订单信息
 	// var orderInfoOld = Orders.find();
 
+	updatePayLog();
+
+	updateShopcart();
+
+	updateOrder();
+
+
 	// 更新paylog状态
 	function updatePayLog() {
 		var ret = PayLogs.update({openid: openid}, {
@@ -300,47 +307,46 @@ function paySuccessHandle(message) {
 
 	// 更新购物车状态
 	function updateShopcart() {
-		
+		var paylog = PayLogs.findOne({openid: openid});
+		if(!paylog || !paylog.hasOwnProperty('shoplists')) {
+			console.log('find paylog fail or no shoplists');
+			return false;
+		}
+		// var addressInfo = paylog.addressInfo || {};
+
+		var shoplists = paylog.shoplists;
+		shoplists.forEach(function (shoplist) {
+			var shopcartId = shoplist.shopcartId;
+			console.log("shopcartId -", shopcartId);
+
+			// 更新购物车状态
+			var ret = ShopCart.update({_id: shopcartId}, {
+				$set: {
+					payed: true,
+					openid: openid,
+					payedTime: payedTime
+				}
+			});
+			if (!ret) {
+				console.log("update ShopCart fail");
+				return false;
+			} else {
+				console.log("update ShopCart Ok", ret);
+			}		
+		});
+
+		return true;
 	}
 
 	// 更新订单状态
-
-	
-
-	var paylog = PayLogs.findOne({openid: openid});
-	if(!paylog || !paylog.hasOwnProperty('shoplists')) {
-		console.log('find paylog fail or no shoplists');
-		return false;
-	}
-
-	var addressInfo = paylog.addressInfo || {};
-	var shoplists = paylog.shoplists;
-	shoplists.forEach(function (shoplist) {
-		var shopcartId = shoplist.shopcartId;
-		console.log("shopcartId -", shopcartId);
-
-		// 更新购物车状态
-		var ret = ShopCart.update({_id: shopcartId}, {
-			$set: {
-				payed: true,
-				openid: openid,
-				payedTime: payedTime
-			}
-		});
-		if (!ret) {
-			console.log("update ShopCart fail");
-			return false;
-		} else {
-			console.log("update ShopCart Ok", ret);
-		}
-
+	function updateOrder() {
 		// 更新订单信息
-		ret = Orders.update({cartId: shopcartId}, {
+		var ret = Orders.update({openid: openid}, {
 			$set: {
 				payed: true,
 				payedTime: payedTime,
 			}
-		});
+		}, {multi: true});
 		if (!ret) {
 			console.log('update order fail');
 			return false;
@@ -348,27 +354,9 @@ function paySuccessHandle(message) {
 			console.log('update order ok', ret);
 		}
 
-		// // 创建支付成功后的订单 order
-		// var shopcartInfo = ShopCart.findOne({_id: shopcartId});
-		// if (!shopcartInfo) {
-		// 	console.log("find shopcart fail");
-		// 	return false;
-		// }
-
-		// shopcartInfo.cartId = shopcartInfo._id;
-		// delete shopcartInfo._id;
-		// shopcartInfo.createTime = new Date();
-		// shopcartInfo.orderId = kylUtil.genOrderId();
-		// var order_id = Orders.insert(shopcartInfo);
-		// if (!order_id) {
-		// 	console.log("insert order fail");
-		// 	return false;
-		// } else {
-		// 	console.log("insert order ok", order_id);
-		// }
-		
-	});
-
+		return true;	
+	}
+	
 	return true;
 }
 
