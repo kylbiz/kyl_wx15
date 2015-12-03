@@ -97,6 +97,15 @@ Template.scope_segement.onRendered(function(){
         return false;        
     })
 
+    $(document).on("click",".changeScopeSegement .module",function(){
+        // industrySmall
+        // var industrySmall = $(this).find(".single").first().text().trim() || "";
+        // Session.set("industrySmall", industrySmall);
+
+        Template.scope_segement.swingToNext(autoSwiper);
+        $('body').animate({scrollTop:0},600);
+        return false;        
+    })
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
         autoSwiper.slideTo(0);
@@ -121,6 +130,9 @@ Template.scope_segement_board.helpers({
 });
 
 Template.scope_segement_board.events({
+    'click #chagScopeBtn': function () {
+        var chagScopeDiv = $("#chagScope").show();
+    },
     'click #saveBtn': function () {
         var orderId = Router.current().params.query.orderid || "";
         var industryBig = Session.get('industryBig');
@@ -164,6 +176,32 @@ Template.scope_segement_widget3.helpers({
         return scopesInfo.content || [];
     }
 });
+// 调整经营范围
+Template.changeScopeSegement.helpers({
+    scopeChange: function () {
+        return Business1.find({}).fetch();
+    },
+    businessSmall_0: function () {
+        return Business1.find({}).fetch()[0].businessSmall;
+    },
+    businessSmall_1: function () {
+        return Business1.find({}).fetch()[1].businessSmall;
+    },
+});
+Template.changeScopeSegement.events({
+    'click #box_tab0 .single': function (event, template) {
+        // console.log(events);
+        console.log("box_tab0", $(event.currentTarget).context.innerText );
+    },
+    'click #box_tab1 .single': function (event, template) {
+
+    },
+    'click .ui-tab .tab':function(e){
+        var self = $(e.currentTarget);
+        self.addClass("active").siblings().removeClass("active");
+    }
+});
+
 
 Template.scope_segement_widget3.events({
     "click #submitBtn": function () {
