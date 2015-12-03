@@ -15,6 +15,23 @@
   </div>
 </template>
 
+<template name="hello">
+  <div class="ui-dialog" id="hello" role="dialog">
+    <div class="ui-dialog-content ui-board-shockholder">
+      <div class="ui-dialog-box field">
+          <h4>选择股东类型</h4>
+          <ul class="half">            
+              <li class="selected">半年</li>            
+              <li>一年</li>            
+          </ul>
+      </div>
+      <div class="ui-dialog-control ui-btn-group">
+        <button type="button" data-role="button" class="select" id="dialogSure">确认</button>
+        <button type="button" data-role="button" id="dialogCancel">取消</button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <template name="alertTemplate">
   <div class="ui-dialog" id="alert" role="dialog">

@@ -216,11 +216,17 @@
 
 <!-- 注册资金与股东信息 -->
 <template name="resource_segement">
+ {{> hello }}
   <div class="module">
     <div class="content">
       <span class="key">注册资金（万元）: </span>
       <input type="text" placeholder="请输入注册资金" id="money" value={{companyMoney}}>
     </div>
+  </div>
+  <div id="plus-content">
+    {{#each holders}}
+      {{> shockhoderInputBundle}}
+    {{/each}}
   </div>
   <div class="module" id="plus">
     <div class="content">
@@ -231,12 +237,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="plus-content">
-    {{#each holders}}
-      {{> shockhoderInputBundle}}
-    {{/each}}
-  </div>
+  </div>  
   <div class="get">
     <div>
       <button class="ui btn-default" type="button" id="saveBtn">保存</button>

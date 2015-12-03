@@ -256,6 +256,9 @@ Template.scope_segement_widget3.events({
 //////////////////////////////////////////////////////////////
 // 注册资金与股东信息
 //////////////////////////////////////////////////////////////
+//Template.resource_segement.onRendered(function(){
+//  $("#hello").modal("show");
+//});
 Template.resource_segement.events({
     'click #saveBtn': function () {
         var companyMoney = $("#money").val() || "";
