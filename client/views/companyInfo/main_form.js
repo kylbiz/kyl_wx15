@@ -45,14 +45,11 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{
-            name: 'scope_segement_widget3',
-            data: this    
-        }, {               
-            name: 'scope_segement_widget2',
-            data: this
-        }, {          
+        var pageNames = [{    
             name: 'exchangeScopeSegement',
+            data: this  
+        }, {          
+            name: 'scope_segement_widget3',
             data: this
         }, {          
             name: 'scope_segement_board',
@@ -62,9 +59,6 @@ Template.scope_segement.helpers({
             data: this
         }, {
             name: 'scope_segement_widget2',
-            data: this
-        }, {
-            name: 'scope_segement_widget3',
             data: this
         }];
         return pageNames;
@@ -98,7 +92,7 @@ Template.scope_segement.swingToNextStep=function(swingObject){
 Template.scope_segement.swingToBack=function(swingObject){
   swingObject.unlockSwipeToPrev();
   swingObject.unlockSwipeToNext();
-  swingObject.slideTo(3);
+  swingObject.slideTo(2);
   $('body').animate({scrollTop:0},600);
   swingObject.lockSwipeToPrev();
   swingObject.lockSwipeToNext();  
@@ -106,7 +100,7 @@ Template.scope_segement.swingToBack=function(swingObject){
 
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      initialSlide: 3,
+      initialSlide: 2,
       loop:false,
       autoHeight: true,
       watchSlidesProgress : true
@@ -131,21 +125,25 @@ Template.scope_segement.onRendered(function(){
         Session.set('industryBig', industryBig);
         Template.scope_segement.swingToNext(autoSwiper);      
     });
-    
-    $(document).on("click",".exchangeScopeSegement .module",function(){      
-        Template.scope_segement.swingToPrev(autoSwiper);     
-    })    
-
+      
     $(document).on("click",".scope_segement_widget2 .module",function(){
         // industrySmall
         var industrySmall = $(this).find(".single").first().text().trim() || "";
-        Session.set("industrySmall", industrySmall);
-        Template.scope_segement.swingToNextStep(autoSwiper);   
+        Session.set("industrySmall", industrySmall);  
+        Template.scope_segement.swingToBack(autoSwiper);
     });
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
         Template.scope_segement.swingToBack(autoSwiper);
     });
+    
+    $(".scope_segement_widget3 #addBtn").click(function(){
+        Template.scope_segement.swingToPrev(autoSwiper);
+    });
+  
+    $(document).on("click",".exchangeScopeSegement .module",function(){      
+        Template.scope_segement.swingToNext(autoSwiper);     
+    });  
 });
 
 
