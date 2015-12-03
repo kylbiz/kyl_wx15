@@ -12,6 +12,23 @@ kylUtil.alert = function (title, content) {
     Template.layoutTemplate.alert({title: title, content: content});
 }
 
+// 确认框
+kylUtil.confirm = function (title, content, callBack) {
+    if (arguments.length == 2) {
+        callBack = content;
+        content = title;
+        title = '提示';
+    };
+
+    Template.layoutTemplate.confirm({
+        title: title, content: content
+    }).on( function (e) {
+       if(e){
+          callBack(); 
+       }
+    });
+}
+
 // 验证手机号
 kylUtil.verifyPhone = function(phone) {
     var phoneReg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
