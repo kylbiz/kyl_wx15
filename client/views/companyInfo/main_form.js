@@ -46,6 +46,15 @@ Template.name_segement.events({
 Template.scope_segement.helpers({
     pageNames: function() {
         var pageNames = [{
+            name: 'scope_segement_widget3',
+            data: this    
+        }, {               
+            name: 'scope_segement_widget2',
+            data: this
+        }, {          
+            name: 'exchangeScopeSegement',
+            data: this
+        }, {          
             name: 'scope_segement_board',
             data: this
         }, {
@@ -66,49 +75,76 @@ Template.scope_segement.swingToNext=function(swingObject){
   swingObject.unlockSwipeToNext();
   swingObject.slideNext();
   swingObject.lockSwipeToNext();
+  $('body').animate({scrollTop:0},600);
+}
+
+Template.scope_segement.swingToPrev=function(swingObject){
+  swingObject.unlockSwipeToPrev();
+  swingObject.slidePrev();
+  swingObject.lockSwipeToPrev();
+  $('body').animate({scrollTop:0},600);
+}
+
+Template.scope_segement.swingToNextStep=function(swingObject){
+   if(swingObject.progress>0.5) {
+     Template.scope_segement.swingToNext(swingObject);
+   }
+   else {
+     Template.scope_segement.swingToPrev(swingObject);
+   }
+    
+}
+
+Template.scope_segement.swingToBack=function(swingObject){
+  swingObject.unlockSwipeToPrev();
+  swingObject.unlockSwipeToNext();
+  swingObject.slideTo(3);
+  $('body').animate({scrollTop:0},600);
+  swingObject.lockSwipeToPrev();
+  swingObject.lockSwipeToNext();  
 }
 
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      allowSwipeToNext:false,
-      loop:false
+      initialSlide: 3,
+      loop:false,
+      autoHeight: true,
+      watchSlidesProgress : true
     });
-
+    autoSwiper.lockSwipeToNext();
+    autoSwiper.lockSwipeToPrev();
+  
+    //选择行业
     $("#step").click(function(){
        Template.scope_segement.swingToNext(autoSwiper);
        return false;
     });
-
-
+    //调整行业
+    $("#exchangeBtn").click(function(){
+       Template.scope_segement.swingToPrev(autoSwiper);
+       return false;
+    });
+    
     $(document).on("click",".scope_segement_widget1 .module",function(){
         // industryBig
         var industryBig = $(this).find(".single").first().text().trim() || "";
         Session.set('industryBig', industryBig);
-
-        Template.scope_segement.swingToNext(autoSwiper);
-        $('body').animate({scrollTop:0},600);
-        return false;        
-    })
+        Template.scope_segement.swingToNext(autoSwiper);      
+    });
+    
+    $(document).on("click",".exchangeScopeSegement .module",function(){      
+        Template.scope_segement.swingToPrev(autoSwiper);     
+    })    
 
     $(document).on("click",".scope_segement_widget2 .module",function(){
         // industrySmall
         var industrySmall = $(this).find(".single").first().text().trim() || "";
         Session.set("industrySmall", industrySmall);
-
-        Template.scope_segement.swingToNext(autoSwiper);
-        $('body').animate({scrollTop:0},600);
-        return false;        
-    })
-
-    // $(document).on("click",".changeScopeSegement .module",function(){
-    //     Template.scope_segement.swingToNext(autoSwiper);
-    //     $('body').animate({scrollTop:0},600);
-    //     return false;        
-    // })
+        Template.scope_segement.swingToNextStep(autoSwiper);   
+    });
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
-        autoSwiper.slideTo(0);
-        $('body').animate({scrollTop:0},600);
+        Template.scope_segement.swingToBack(autoSwiper);
     });
 });
 
@@ -129,9 +165,6 @@ Template.scope_segement_board.helpers({
 });
 
 Template.scope_segement_board.events({
-    'click #chagScopeBtn': function () {
-        var chagScopeDiv = $("#chagScope").show();
-    },
     'click #saveBtn': function () {
         var orderId = Router.current().params.query.orderid || "";
         var industryBig = Session.get('industryBig');
@@ -176,7 +209,7 @@ Template.scope_segement_widget3.helpers({
     }
 });
 // 调整经营范围
-Template.changeScopeSegement.helpers({
+Template.exchangeScopeSegement.helpers({
     scopeChange: function () {
         return Business1.find({}).fetch();
     },
@@ -187,7 +220,8 @@ Template.changeScopeSegement.helpers({
         return Business1.find({}).fetch()[1].businessSmall;
     },
 });
-Template.changeScopeSegement.events({
+
+Template.exchangeScopeSegement.events({
     'click #box_tab0 .single': function (event, template) {
         console.log("box_tab0", $(event.currentTarget).context.innerText );
     },
@@ -200,17 +234,13 @@ Template.changeScopeSegement.events({
     }
 });
 
-
 Template.scope_segement_widget3.events({
     "click #submitBtn": function (event) {
         var businessScope = [];
-        $('input[type="checkbox"]').each(function(index, element) {
-            var elem = $(element);
-            if (elem.prop("checked")) {
-                businessScope.push(elem.val());
-            }
+        $('input[type="checkbox"]:checked').each(function(index, element) {
+            businessScope.push($(element).val());
         });
-
+        console.log(businessScope);
         if (businessScope.length == 0) {
             kylUtil.alert("请至少选择一项经营范围!");
             return;

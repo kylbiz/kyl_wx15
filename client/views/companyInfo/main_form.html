@@ -69,9 +69,6 @@
       </div>
     </div>
   </div>
-  <div id="chagScope" class="changeScopeSegement" hidden>
-    {{> changeScopeSegement}}
-  </div>
   <div class="module">
     <div class="content divide">
       <div class="single">
@@ -90,7 +87,7 @@
     {{/if}}
 
     <div class="adjust">
-      <button class="ui btn-default pull-right" id="chagScopeBtn">调整经营范围</button>
+      <button class="ui btn-default pull-right" id="exchangeBtn">调整经营范围</button>
     </div>
   </div>
   <div class="get">
@@ -141,7 +138,7 @@
 </template>
 
 <!-- 调整经营范围 -->
-<template name="changeScopeSegement">
+<template name="exchangeScopeSegement">
    <div class="PostList text-center">
      <div class="main-title">
      选择行业
@@ -198,7 +195,7 @@
         {{#each scopes}}
           <div class="list-group-item">{{this}}
             <div class="checkbox">
-              <input type="checkbox" value="{{this}}" checked>
+              <input type="checkbox" value="{{this}}">
             </div>
           </div>
         {{/each}}
