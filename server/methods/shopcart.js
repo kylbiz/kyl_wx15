@@ -103,7 +103,8 @@ function handleRegist(serInfo) {
             ]
 	    }],
 	    productProgress: {  // 公司注册需要该字段说明进度
-	            status: 0
+	            status: 0,
+	            updateTime: new Date()
 	    }
 	};
 }

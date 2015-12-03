@@ -77,7 +77,16 @@ Router.route('/orderList', {
 });
 
 // 订单详情
-Router.route('/orderDetail');
+Router.route('/orderDetail', {
+	name: "orderDetail",
+	waitOn: function () {
+		var orderId = this.params.query.orderid || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	},
+});
 
 // 订单进度
 Router.route('/orderProcess');
@@ -107,7 +116,7 @@ Router.route('/paySuccess', {
 
 // 注册公司信息
 Router.route('/companyInfo', {
-	name: 'companyInfo'
+	name: 'companyInfo',
 });
 
 

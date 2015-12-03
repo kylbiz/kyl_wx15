@@ -161,7 +161,6 @@ kylUtil.rawWXSign = function(args) {
     // return string;
 
     kylUtil.md5();
-
 };
 
 

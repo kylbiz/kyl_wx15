@@ -97,15 +97,11 @@ Template.scope_segement.onRendered(function(){
         return false;        
     })
 
-    $(document).on("click",".changeScopeSegement .module",function(){
-        // industrySmall
-        // var industrySmall = $(this).find(".single").first().text().trim() || "";
-        // Session.set("industrySmall", industrySmall);
-
-        Template.scope_segement.swingToNext(autoSwiper);
-        $('body').animate({scrollTop:0},600);
-        return false;        
-    })
+    // $(document).on("click",".changeScopeSegement .module",function(){
+    //     Template.scope_segement.swingToNext(autoSwiper);
+    //     $('body').animate({scrollTop:0},600);
+    //     return false;        
+    // })
 
     $(".scope_segement_widget3 #submitBtn").click(function(){
         autoSwiper.slideTo(0);
@@ -190,7 +186,6 @@ Template.changeScopeSegement.helpers({
 });
 Template.changeScopeSegement.events({
     'click #box_tab0 .single': function (event, template) {
-        // console.log(events);
         console.log("box_tab0", $(event.currentTarget).context.innerText );
     },
     'click #box_tab1 .single': function (event, template) {
