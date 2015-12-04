@@ -45,7 +45,10 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{
+        var pageNames = [{          
+            name: 'scope_segement_widget4',
+            data: this
+        }, {              
             name: 'exchangeScopeSegement',
             data: this  
         }, {          
@@ -92,7 +95,7 @@ Template.scope_segement.swingToNextStep=function(swingObject){
 Template.scope_segement.swingToBack=function(swingObject){
   swingObject.unlockSwipeToPrev();
   swingObject.unlockSwipeToNext();
-  swingObject.slideTo(2);
+  swingObject.slideTo(3);
   $('body').animate({scrollTop:0},600);
   swingObject.lockSwipeToPrev();
   swingObject.lockSwipeToNext();  
@@ -100,7 +103,7 @@ Template.scope_segement.swingToBack=function(swingObject){
 
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      initialSlide: 2,
+      initialSlide: 3,
       loop:false,
       autoHeight: true,
       watchSlidesProgress : true
@@ -141,8 +144,15 @@ Template.scope_segement.onRendered(function(){
         Template.scope_segement.swingToPrev(autoSwiper);
     });
   
+    $(".scope_segement_widget4 #submitBtn").click(function(){
+        autoSwiper.unlockSwipeToNext();
+        autoSwiper.slideTo(2);
+        autoSwiper.lockSwipeToNext();
+        $('body').animate({scrollTop:0},600);
+    });
+  
     $(document).on("click",".exchangeScopeSegement .module",function(){      
-        Template.scope_segement.swingToNext(autoSwiper);     
+        Template.scope_segement.swingToPrev(autoSwiper);     
     });  
 });
 

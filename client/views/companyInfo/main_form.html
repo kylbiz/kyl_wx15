@@ -213,6 +213,32 @@
   </div>
 </template>
 
+<!-- 新增经营范围确认 -->
+<template name="scope_segement_widget4">
+  <div class="PostList text-center">
+   <div class="main-title">确认经营范围</div>
+  </div>
+
+  <div class="module">
+    <div class="content list-container">
+      <div class="list-group-horizonal">
+        {{#each scopes}}
+          <div class="list-group-item">{{this}}
+            <div class="checkbox">
+              <input type="checkbox" value="{{this}}" checked>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="get offset">
+    <div>
+      <button class="ui btn-default" type="button" id="submitBtn">保存</button>
+    </div>
+  </div>
+</template>
 
 <!-- 注册资金与股东信息 -->
 <template name="resource_segement">
