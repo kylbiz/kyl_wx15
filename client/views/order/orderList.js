@@ -29,7 +29,7 @@ Template.orderList.events({
 			var orderInfo = Orders.findOne({orderId: orderId});
 			if (orderInfo && !orderInfo.payed) {
 				console.log("goToPay", orderId);
-				
+				Router.go("trade", {}, {query: "orderid=" + orderId});
 				return;
 			}
 		}

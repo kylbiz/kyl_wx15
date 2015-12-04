@@ -6,7 +6,7 @@ Template.layoutTemplate.alert=function(object){
     $(event.currentTarget).detach();
   });  
 }
-Template.layoutTemplate.confirm=function(object){
+Template.layoutTemplate.confirm=function(object) {
   var template = Blaze.toHTMLWithData(Template.confirmTemplate,object);
   $("#Mount").html(template);
   

@@ -27,22 +27,16 @@
                     </div>
                   </div>
               </div>
-<!--
-              <div class="icon-right">
-                <i class="angle right icon"></i>
-              </div>
--->
-
             </div>
           </div>
           <div class="module control">
              <div class="content">
-                <div class="action">
+                <div class="action" id="editAddr" addrId="{{_id}}">
                   <div>
                     <i class="edit icon"></i>修改
                   </div>                                
                 </div>
-                <div class="action"><i class="add square icon"></i>删除</div>
+                <div class="action" id="delAddr" addrId="{{_id}}"><i class="add square icon"></i>删除</div>
              </div>
           </div>
         {{/each}}      
@@ -52,11 +46,6 @@
           <a href="/address">
             <button class="ui btn-primary" type="button"><i class="add square icon"></i>新增收货地址</button>
           </a>
-<!--
-          <a href="#">
-            <button class="ui btn-primary" type="button"><i class="trash icon" id="delAddress"></i>删除该收货地址</button>
-          </a>
--->
         </div>
       </div>
       <div class="get">
