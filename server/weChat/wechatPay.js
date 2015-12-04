@@ -277,7 +277,8 @@ function paySuccessHandle(message) {
 	var payedTime = new Date();
 
 	// 检测订单信息
-	// var orderInfoOld = Orders.find();
+	var allPayed = true;
+	var orderInfoOld = Orders.find();
 
 	updatePayLog();
 

@@ -3,7 +3,7 @@
     <img src="/images/banner.jpg?v=wechat" alt="">
     <div class="set-center">
       <img src="/images/avator.png" alt="">
-      <p>15044444222</p>
+      <p>{{currentUser.username}}</p>
     </div>
   </div>  
   <div class="usercenter main-container has-ui-menu">
@@ -33,9 +33,9 @@
     </div>  
     <div class="get">
       <div>
-       <a href="/logout">
-        <button class="ui btn-default" type="button">退出</button>
-       </a>  
+       <!-- <a href="/logout"> -->
+        <button class="ui btn-default" type="button" id="logout">退出</button>
+       <!-- </a>   -->
       </div>
     </div>           
     {{> ui_menu }}

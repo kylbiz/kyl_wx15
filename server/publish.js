@@ -25,11 +25,16 @@ Meteor.publish('products', function(project, opt) {
 
 Meteor.publish('shopcart', function (orderId) {
 	orderId = orderId || false;
+	console.log("shopcart --", orderId, ShopCart.find({ordered: orderId}).fetch() );
 	return ShopCart.find({userId: this.userId, payed: false, ordered: orderId}, {sort: {createTime: -1}});
 });
 
-Meteor.publish('userAddress', function () {
-	return UserAddress.find({userId: this.userId}, {sort: {createAt: -1}});
+Meteor.publish('userAddress', function (addrId) {
+	var cond = {userId: this.userId};
+	if (addrId) {
+		cond._id = addrId;
+	}
+	return UserAddress.find(cond, {sort: {createAt: -1}});
 });
 
 Meteor.publish('orders', function (orderId) {

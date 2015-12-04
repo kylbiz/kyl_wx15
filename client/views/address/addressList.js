@@ -39,11 +39,25 @@ Template.addressList.events({
                             kylUtil.alert('警告', error);
                         } else {
                             console.log('remove address', result);
-                            Session.setDefault('addressId', UserAddress.findOne({})._id);
+                            var count = UserAddress.find({}).count();
+                            if (count == 0) {
+                                delete Session.keys.addressId;
+                                Router.go("address");
+                            } else {
+                                if (id == Session.get("addressId")) {
+                                    Session.set('addressId', UserAddress.findOne({})._id);
+                                }
+                            }
                         }
                     }); 
                }
             });
+        }
+    },
+    'click #editAddr': function (event) {
+        var id = $(event.currentTarget).attr("addrId") || "";
+        if (id) {
+            Router.go("address", {}, {query: "addrId=" + id});
         }
     },
     'click #sureBtn': function() {

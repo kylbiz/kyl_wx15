@@ -5,8 +5,7 @@ Template.trade.helpers({
             return UserAddress.findOne({_id: Session.get("addressId")}) || {};
         } else {
             console.log('no address data');
-        }
-        
+        }        
     },
     payList: function () {
         if (!ShopCart.find({}).count()) {

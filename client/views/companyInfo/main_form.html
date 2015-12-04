@@ -147,7 +147,7 @@
     <div class="ui-tab">
       {{#each $mapped scopeChange}}
         <div class="{{#if $first}}left-tab active{{else}}right-tab{{/if}} tab" >
-          <a href="#box_tab{{$index}}" data-toggle="tab">{{businessBig}}</a> 
+          <a href="#box_tab{{$index}}" data-toggle="tab" class="addScopeSel">{{businessBig}}</a> 
         </div>
       {{/each}}
     </div>
@@ -195,7 +195,7 @@
         {{#each scopes}}
           <div class="list-group-item">{{this}}
             <div class="checkbox">
-              <input type="checkbox" value="{{this}}" checked>
+              <input type="checkbox" value="{{this}}">
             </div>
           </div>
         {{/each}}
@@ -207,9 +207,11 @@
     <div>
       <button class="ui btn-default" type="button" id="submitBtn">保存</button>
     </div>
+    <!-- {{#if notAddScope}} -->
     <div>
       <button class="ui btn-default ui-primary" type="button" id="addBtn">增加经营范围</button>
     </div>
+    <!-- {{/if}} -->
   </div>
 </template>
 
@@ -246,20 +248,51 @@
 </template>
 
 <template name="shockhoderInputBundle">
-   <div class="module">
-    <div class="content block clearfix">
-      <span class="key pull-left">股东：</span>
-      <span class="pull-left">
-        <ul>
-          <li><input type="text" placeholder="请输入股东姓名"></li>
-          <li><input type="text" placeholder="请输入出资比例"></li>
-        </ul>
-      </span>
-      <div class="pull-right">
-        <i class="trash icon outline default"></i>
-      </div>      
-    </div>
-  </div> 
+    {{#if selectType}}
+      <div class="module">
+        <div class="content block clearfix">
+          <span class="key pull-left">公司股东：</span>
+          <span class="pull-left">
+            <ul>
+              <li><input type="text" placeholder="请输入公司名"></li>
+              <li><input type="text" placeholder="请输入出资额"></li>
+              <li><input type="text" placeholder="请输入占股比例">%</li>
+            </ul>
+          </span>
+          <div class="pull-right">
+            <i class="trash icon outline default"></i>
+          </div>      
+        </div>
+      </div> 
+    {{else}}
+      <div class="module">
+        <div class="content block clearfix">
+          <span class="key pull-left">个人股东：</span>
+          <span class="pull-left">
+            <ul>
+              <li><input type="text" placeholder="请输入姓名"></li>
+              <li>
+                <select id="sexSel">
+                  <option value=null>请选择性别</option>
+                  <option value="男">男</option>
+                  <option value="女">女</option>
+                </select>
+              </li>
+              <li><input type="text" placeholder="请输入身份证号"></li>
+              <li><input type="text" placeholder="请输入户籍地址"></li>
+              <li><input type="text" placeholder="请输入出资额"></li>
+              <li><input type="text" placeholder="请输入占股比例">%</li>
+            </ul>
+          </span>
+          <div class="pull-right">
+            <i class="trash icon outline default"></i>
+          </div>      
+        </div>
+      </div>
+    {{/if}}
+
+
+   
 </template>
 <!-- 法人与监事 -->
 <template name="manager_segement">

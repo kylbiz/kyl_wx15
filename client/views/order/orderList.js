@@ -17,6 +17,9 @@ Template.orderList.events({
 			delete Session.keys.industryBig;
 			delete Session.keys.industrySmall;
 			delete Session.keys.businessScope;
+			delete Session.keys.businessBig;
+			delete Session.keys.businessSmall;
+			
 			// Session.set("industryBig", null);
 			// Session.set("industrySmall", null);
 			// Session.set("businessScope", null);

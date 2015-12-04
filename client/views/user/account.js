@@ -1,3 +1,5 @@
+
+// 登录
 Template.login.events({
 	"click #loginBtn": function (event, template) {
 		var phone = template.$('#phone').val();
@@ -6,7 +8,6 @@ Template.login.events({
 		if (phone && password) {
 			Meteor.loginWithPassword(phone, password, function (error, result) {
 				if (error) {
-					console.log(error, "------");
 					var msg = "登录失败";
 					if (error.reason == "User not found") {
 						msg = "用户不存在";
@@ -15,7 +16,6 @@ Template.login.events({
 
 					Router.go('login');
 				} else {
-
 					// 检测当前用户是否有微信账号绑定
 					Meteor.call('checkWeChatBind', Session.get('WeChatUser'), function (error, result) {
 						console.log('checkWeChatBind', error, result);
@@ -29,15 +29,17 @@ Template.login.events({
 	},
 });
 
-
+// 注册
 Template.register.onCreated(function(){
   Session.set('codeTime',0);
 });
+
 Template.register.helpers({
-  'codeTime':function(){
+  'codeTime': function(){
    return Session.get('codeTime'); 
   }  
 });
+
 Template.register.events({
 	// 获取验证码
 	'click #codeBtn': function (event, template) {   
@@ -48,8 +50,8 @@ Template.register.events({
 				if(!err && codeValue && codeValue['codestatus'] && codeValue['message']) {
 					if(codeValue['codestatus'] === 0 || codeValue['codestatus'] === 2) {
 						// $("[id=error]").html(codeValue['message'] || "未知错误");           
-						// $("[id=error]").show();       
-						alert(codeValue['message'] || "未知错误");           
+						// $("[id=error]").show();
+						kylUtil.alert(codeValue['message'] || "注册失败");           
 					}
           else {
           //60秒  
@@ -112,6 +114,13 @@ Template.register.events({
 			alert('输入有误');
 		}
 	},
+});
+
+// 找回密码
+Template.forget.events({
+	'click #resetPwdBtn': function () {
+
+	}
 });
 
 

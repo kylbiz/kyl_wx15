@@ -8,7 +8,7 @@ Router.route('/', {
 	},
 	data: function () {
 		// registration, bank, finance, assurance, bookkeeping
-		console.log("this.params", this.params);
+		console.log("main params", this.params);
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
 			RegList[key]['baseType'] = 'registration';
@@ -62,7 +62,20 @@ Router.route('/addressList', {
 	}
 });
 // 添加收货地址
-Router.route('/address');
+Router.route('/address', {
+	name: "address",
+	waitOn: function () {
+		var addrId = this.params.query.addrId;
+		if (addrId) {
+			return Meteor.subscribe('userAddress', addrId);	
+		} else {
+			return [];
+		}
+	},
+	data: function () {
+		return UserAddress.findOne({});
+	}
+});
 
 // 支付页
 Router.route('/weixinpay/', {
@@ -94,7 +107,9 @@ Router.route('/companyInfo', {
 
 
 // 个人中心
-Router.route('/home');
+Router.route('/home', {
+	name: "home",
+});
 
 
 // 登录页
@@ -121,17 +136,6 @@ Router.route('/register', {
       this.next();      
     }
   }  
-});
-
-
-// 注销
-Router.route('/logout', function() {
-	Meteor.logout(function(err) {
-		if (err) {
-			console.log("logout fail");
-		}
-	});
-	Router.go('/');
 });
 
 // 公司信息填写

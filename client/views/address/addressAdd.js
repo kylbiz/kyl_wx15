@@ -1,3 +1,10 @@
+Template.address.helpers({
+	isEdit: function () {
+		return this._id;
+	}
+});
+
+
 Template.address.events({
 	'click #saveAddrBtn': function (event, template) {
 		var addressInfo = {
@@ -19,13 +26,27 @@ Template.address.events({
 			addressInfo.zipcode = zipcode;
 		}
 
-		Meteor.call('addressAdd', addressInfo, function (error, result) {
-			if (error) {
-				kylUtil.alert('警告', error);
-			} else {
-				Router.go('/addressList');
-			}
+		if (this && this._id) {
+			Meteor.call('addressUpdate', this._id, addressInfo, function (error, result) {
+				if (error) {
+					console.log("update address fail", error);
+					kylUtil.alert('警告', "修改地址失败");
+				} else {
+					Router.go('/addressList');
+				}
+			});
+		} else {
+			Meteor.call('addressAdd', addressInfo, function (error, result) {
+				if (error) {
+					console.log("add address fail", error);
+					kylUtil.alert('警告', "添加地址失败");
+				} else {
+					Router.go('/addressList');
+				}
 		});
+		}
+
+		
 
 
 

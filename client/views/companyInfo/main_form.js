@@ -115,7 +115,11 @@ Template.scope_segement.onRendered(function(){
     });
     //调整行业
     $("#exchangeBtn").click(function(){
-       Template.scope_segement.swingToPrev(autoSwiper);
+        if (Session.get('industryBig') && Session.get('industrySmall')) {
+           Template.scope_segement.swingToPrev(autoSwiper);
+        } else {
+            kylUtil.alert("请先选择行业类型");
+        }
        return false;
     });
     
@@ -141,7 +145,10 @@ Template.scope_segement.onRendered(function(){
         Template.scope_segement.swingToPrev(autoSwiper);
     });
   
-    $(document).on("click",".exchangeScopeSegement .module",function(){      
+    $(document).on("click",".exchangeScopeSegement .module",function(){
+        var businessSmall = $(this).find(".single").first().text().trim() || "";
+        Session.set("businessSmall", businessSmall);
+        console.log("businessSmall --", businessSmall);
         Template.scope_segement.swingToNext(autoSwiper);     
     });  
 });
@@ -158,7 +165,7 @@ Template.scope_segement_board.helpers({
     },
     scopeStr: function(businessScope) {
         Session.setDefault('businessScope', businessScope || "");       
-        return Session.get('businessScope') || "--";
+        return Session.get('businessScope') || "";
     }
 });
 
@@ -199,14 +206,107 @@ Template.scope_segement_widget2.helpers({
 })
 // 经营范围
 Template.scope_segement_widget3.helpers({
+    notAddScope: function () {
+        return !(Session.get("businessSmall") || false);
+    },
     scopes: function () {
-        var industryBig = Session.get('industryBig');
-        var industrySmall = Session.get('industrySmall');
-        var scopesInfo = Business.findOne({industrySmall: industrySmall, industryBig: industryBig}) || {};
-        return scopesInfo.content || [];
+        var businessBig = Session.get("businessBig");
+        var businessSmall = Session.get("businessSmall");
+
+        console.log(businessBig, businessSmall);
+
+        var scopes = [];
+
+        if (businessSmall) {
+            var scopesInfo = Business1.findOne({"businessSmall.cate": businessSmall}) || {};
+            var infos = scopesInfo.businessSmall || [];
+            console.log("scope business", infos, businessBig, businessSmall);
+            for (key in infos) {
+                var info = infos[key];
+                console.log("infos", info, info.cate, businessSmall);                    
+                if (info.cate == businessSmall) {
+                    scopes = info.content;
+                }
+            }
+        } else { 
+            // var businessScope = Session.get('businessScope');
+            // var industryBig = Session.get('industryBig');
+            // var industrySmall = Session.get('industrySmall');
+            // var scopesInfo = Business.findOne({industryBig: industryBig, industrySmall: industrySmall}) || {};
+            // console.log("scope industry", scopesInfo);
+            // scopes = scopesInfo.content || [];
+            return Session.get('businessScope') || [];
+        }
+
+        return scopes || [];
     }
 });
+
+Template.scope_segement_widget3.events({
+    "click #submitBtn": function () {
+        var scopes = Session.get("businessScope") || [];
+        var scopeChecked = [];
+        $('input[type="checkbox"]').each(function(index, element) {
+            if ($(element).prop("checked")) {
+                scopeChecked.push($(element).val());
+            }
+        });
+        console.log(scopeChecked);
+
+        for (key in scopeChecked) {
+            var str = scopeChecked[key];
+            if (scopes.indexOf(str) < 0) {
+                scopes.push(str);
+            }
+        }
+
+        Session.set("businessBig", null);
+        Session.set("businessSmall", null);
+
+        if (scopes.length == 0) {
+            kylUtil.alert("请至少选择一项经营范围!");
+            return;
+        }
+
+        Session.set('businessScope', scopes);        
+    },
+    "click #addBtn": function () {
+        var scopes = Session.get("businessScope") || [];
+        var scopeChecked = [];
+        $('input[type="checkbox"]').each(function(index, element) {
+            if ($(element).prop("checked")) {
+                scopeChecked.push($(element).val());
+            }
+        });
+        console.log(scopeChecked);
+
+        for (key in scopeChecked) {
+            var str = scopeChecked[key];
+            if (scopes.indexOf(str) < 0) {
+                scopes.push(str);
+            }
+        }
+
+        Session.set("businessBig", null);
+        Session.set("businessSmall", null);
+
+        if (scopes.length == 0) {
+            kylUtil.alert("请至少选择一项经营范围!");
+            return;
+        }
+
+        Session.set('businessScope', scopes);
+    }
+});
+
 // 调整经营范围
+Template.exchangeScopeSegement.onRendered(function () {
+    // default 
+    var businessBig = $('.ui-tab .active .addScopeSel').html().trim() || "";
+    Session.set('businessBig', businessBig);
+});
+
+
 Template.exchangeScopeSegement.helpers({
     scopeChange: function () {
         return Business1.find({}).fetch();
@@ -226,29 +326,16 @@ Template.exchangeScopeSegement.events({
     'click #box_tab1 .single': function (event, template) {
 
     },
-    'click .ui-tab .tab':function(e){
+    'click .ui-tab .tab': function(e) {
         var self = $(e.currentTarget);
         self.addClass("active").siblings().removeClass("active");
+
+        var businessBig = $('.ui-tab .active .addScopeSel').html().trim() || "";
+        console.log("businessBig --", businessBig);
+        Session.set('businessBig', businessBig);
     }
 });
 
-Template.scope_segement_widget3.events({
-    "click #submitBtn": function (event) {
-        var businessScope = [];
-        $('input[type="checkbox"]').each(function(index, element) {
-            if ($(element).prop("checked")) {
-                businessScope.push($(element).val());
-            }
-        });
-        console.log(businessScope);
-
-        if (businessScope.length == 0) {
-            kylUtil.alert("请至少选择一项经营范围!");
-            return;
-        }
-        Session.set('businessScope', businessScope);
-    }
-});
 
 
 
@@ -256,9 +343,9 @@ Template.scope_segement_widget3.events({
 //////////////////////////////////////////////////////////////
 // 注册资金与股东信息
 //////////////////////////////////////////////////////////////
-//Template.resource_segement.onRendered(function(){
-//  $("#hello").modal("show");
-//});
+Template.resource_segement.onRendered(function(){
+    // $("#hello").modal("show");
+});
 Template.resource_segement.events({
     'click #saveBtn': function () {
         var companyMoney = $("#money").val() || "";

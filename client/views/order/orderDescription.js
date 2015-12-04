@@ -22,6 +22,7 @@ Template.orderDescription.onRendered(function(){
 
 Template.orderDescription.helpers({
     alertNameCount: function (companyName) {
+        companyName = companyName || {}
         delete companyName.mainName;
         var count = 0;
         for (key in companyName) {

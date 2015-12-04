@@ -1,19 +1,19 @@
 <template name="address">
 <div class="main-container address ui-board-content">
   <div class="des text-center">
-    <div class="title">新增收货地址</div>
+    <div class="title">{{#if isEdit}}修改{{else}}新增{{/if}}收货地址</div>
   </div>
   <div class="ui-dist-content address-plus">
     <div class="piece">
       <div class="key">收货人：</div>
       <div class="field">
-        <input type="text" class="ghost-control" placeholder="输入名字" id="receiver">
+        <input type="text" class="ghost-control" placeholder="输入名字" id="receiver" value="{{receiver}}">
       </div>      
     </div>
     <div class="piece">
       <div class="key">联系电话：</div>
       <div class="field">
-        <input type="text" class="ghost-control" placeholder="手机号或固定电话" id="phone">
+        <input type="text" class="ghost-control" placeholder="手机号或固定电话" id="phone" value="{{phone}}">
       </div>       
     </div>
     <!-- <div class="piece">
@@ -43,14 +43,14 @@
     <div class="piece">
       <div class="key">地址：</div>
       <div class="field">
-        <input type="text" class="ghost-control" placeholder="详细地址" id="address">
+        <input type="text" class="ghost-control" placeholder="详细地址" id="address" value="{{address}}">
       </div>      
     </div> 
     
     <div class="piece">
       <div class="key">邮政编号：</div>
       <div class="field">
-        <input type="text" class="ghost-control" placeholder="邮政编号(选填)" id="zipcode">
+        <input type="text" class="ghost-control" placeholder="邮政编号(选填)" id="zipcode" value="{{zipcode}}">
       </div> 
       </div>      
     </div>                                  
