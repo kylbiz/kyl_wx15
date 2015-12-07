@@ -17,6 +17,7 @@
 - client
 - server
 - public
+- packages
 
 
 ## 功能实现
@@ -264,63 +265,75 @@
 	    },
 	    "cartId": "zibfHHSukqhLZ6ytr",  //该订单在购物车中的 _id
 	    "orderId": "2015102018161495003750",  //当前订单 的orderId 
-	    "businessScope": [     //经营范围
-	        "技术开发",
-	        "技术咨询",
-	        "技术转让",
-	        "技术服务，化工原料及产品（除危险化学品",
-	        "监控化学品",
-	        "烟花爆竹",
-	        "民用爆炸物品",
-	        "易制毒化学品）",
-	        "纺织原料",
-	        "洗涤用品",
-	        "实验室设备",
-	        "一类医疗器械批发零售"
+	    "industryBig": "管理类",
+	    "industrySmall": "投资管理",
+	    "businessScope": [
+	        "投资管理",
+	        "投资管理咨询",
+	        "企业管理服务",
+	        "供应链管理",
+	        "企业管理咨询",
+	        "商务咨询",
+	        "投资信息咨询",
+	        "市场信息咨询与调查（不得从事社会调查，社会调研，民意调查，民意测验）",
+	        "企业形象策划",
+	        "市场营销策划"
 	    ],
-	    "industryBig": "科技类", //大分类
-	    "industrySmall": "生物科技",// 小分类
+	    "companyMoney": "200",
+	    "companyName": {
+	        "mainName": "开业啦",
+	        "alternativeName1": "备用字号1",
+	        "alternativeName2": "备用字号2",
+	        "alternativeName3": "备用字号3",
+	        "alternativeName4": "备用字号4"
+	    },
 	    "holders": [
+	        {
+	            "selectType": 1,
+	            "holderType": "企业",
+	            "holderName": "开业啦（上海）网络技术有限公司",
+	            "moneyPercent": "50",
+	            "money": "100",
+	            "holderId": "4481122321"
+	        },
 	        {
 	            "selectType": 0,
 	            "holderType": "自然人",
 	            "sex": "男",
-	            "code": "411502199006029612", //身份证
-	            "address": "上海市普陀区",
+	            "code": "411502199002567896",
+	            "address": "上海市普陀区澳门路三维大厦21D",
 	            "holderName": "刘遵坤",
-	            "moneyPercent": "10", //占股比例
-	            "money": "100", //出资额
-	            "holderId": "1268204128"
-	        },
-	        {
-	            "selectType": 1,
-	            "holderType": "企业",
-	            "holderName": "开业啦（上海）网络科技有限公司",
-	            "moneyPercent": "80",
-	            "money": "200",
-	            "holderId": "2338548297"
+	            "moneyPercent": "50",
+	            "money": "100",
+	            "holderId": "2786837871"
 	        }
 	    ],
-	    "companyName": {  //注册公司名称
-	        "mainName": "卡也来", //名称
-	        "alternativeName1": "", // 备用名称，共有四个
-	        "alternativeName2": "",
-	        "alternativeName3": "",
-	        "alternativeName4": ""
+	    "legalPerson": {
+	        "legalPersonName": "法人",
+	        "legalPersonId": "411502199006029612"
 	    },
-	    "contractor": {  //企业联络人
+	    "supervisor": {
+	        "supervisorName": "监事",
+	        "supervisorId": "411502199006029613"
+	    },
+	    "contractor": {
 	        "liaisons": {
-	            "liaisonsName": "啊",
+	            "liaisonsName": "企业联络人",
 	            "liaisonsId": "411502199006029612",
 	            "liaisonsPhone": "15618871296",
 	            "liaisonsEmail": "liuzk552@gmail.com"
 	        },
-	        "financialStaff": { // 财务联络人
-	            "financialStaffName": "b",
-	            "financialStaffId": "411502199006029613",
-	            "financialStaffPhone": "15618871296",
+	        "financialStaff": {
+	            "financialStaffName": "财务负责人",
+	            "financialStaffId": "411502199006029614",
+	            "financialStaffPhone": "15618871258",
 	            "financialStaffEmail": "zunkun.liu@kyl.biz"
 	        }
+	    },
+	    "consigner": {
+	        "consignerName": "资料对接人",
+	        "consignerPhone": "15618871296",
+	        "consignerEmail": "liuzunkun@gmail.com"
 	    }
 	}
 	
@@ -517,17 +530,20 @@
 - Day 14 --[产品购买全流程完毕 -购物车到地址设置到支付订单的对接] - not finish
 - Day 15 --[产品购买全流程完毕 -购物车到地址设置到支付订单的对接, 所有产品的购买]
 - Day 16 --[所有产品的购买流程]
-- Day 17 --[资料填写，订单界面]
-- Day 18 --[个人用户界面， 产品介绍等相关辅助界面]
-- Day 19 --[项目整理]
+- Day 17 --[订单列表，订单详情] - not finish
+- Day 18 --[订单列表，订单详情] - not finish
+- Day 19 --[订单详情, 修改地址, 修改密码]
+- Day 20 --[图片，股东，经营范围，忘记密码，登录转路由，支付范围路由] - not finish
+- Day 21 --[图片, 忘记密码，登录转路由]
 
 ## 当前遗留问题
-- 退款逻辑
-- 测试 access_token oauth_token的get、save
-- 共享收货地址的获取
-- 支付过程中的标记与处理
 - 跳转去登录之后，回调过来的处理
 - 支付成功后，在支付成功页，点击浏览器的返回按钮，跳转到订单详情页面
+- 经营范围 - 资讯类无数据
+- 退款逻辑
+- 测试 access_token oauth_token的 get、save
+- 共享收货地址的获取
+- 支付过程中的标记与处理
 
 
 ## 其他
