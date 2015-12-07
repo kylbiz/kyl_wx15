@@ -1,5 +1,11 @@
 // 项目客户端的路由控制及路由的权限判断
 
+
+
+// priceGeneral = {
+// 	''
+// }
+
 // 首页
 Router.route('/', {
 	name: 'main',
@@ -12,17 +18,19 @@ Router.route('/', {
 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
 		for (var key in RegList) {
 			RegList[key]['baseType'] = 'registration';
+			RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
+
 		}
 
 		productsPreview = [
 			{title: '小白云工商注册', items: RegList},
 			{title: '小企财云', items: [
-				{name: '银行开户', price: '200', baseType: 'bank'},
-				{name: '财务代理', price: '300-1900', baseType: 'finance'},
-				{name: '流量记账包服务套餐', price: '300-3000', baseType: 'bookkeeping'}
+				{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
+				{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
+				{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
 			]},
 			{title: '小企人事', items: [
-				{name: '小企社保', baseType: 'assurance'}
+				{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
 			]},
 		];
 		return {products: productsPreview};
@@ -86,7 +94,7 @@ Router.route('/weixinpay/', {
 	waitOn: function () {
 		var orderId = this.params.query.orderid || false;
 		return Meteor.subscribe('shopcart', orderId);
-	},	
+	}	
 });
 
 // 支付结果
@@ -116,8 +124,12 @@ Router.route('/home', {
 Router.route('/login', {
 	name: 'login',
 	onBeforeAction: function () {
+		console.log('login fuck');
 		if (Meteor.userId()) {
-			Router.go('/');
+			// Router.go('/');
+			console.log("fuck --", this.params.redirectUrl, decodeURIComponent(this.params.redirectUrl));
+			var redirectUrl = decodeURIComponent(this.params.query.redirectUrl || "/");
+			Router.go(decodeURIComponent(redirectUrl));
 		} else {
 			this.next();
 		}
@@ -197,12 +209,24 @@ Router.route('/orderDesc/:orderId', {
 	}
 });
 
+// 公司股东的信息
+Router.route('/shockholder', {
+	name: 'shockholder',
+	waitOn: function () {
+		var query = this.params.query;
+		var orderId = query.orderId || "empty";
+		return Meteor.subscribe("orders", orderId)
+	},
+	data: function () {
+		return Orders.findOne({});
+	}
+});
+
 Router.route('/tools');
 
 Router.route('/forget');
 
 
-Router.route('/shockholder');
 
 Router.route('/context');
 

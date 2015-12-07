@@ -70,22 +70,16 @@
     <div class="content block border">
       <div class="single">股东</div>
     </div>
-    <div class="content piece">
-      <div class="single">
-        路人甲
-        <div class="pull-right">
-            <span class="link">查看详情</span><i class="angle right icon"></i>
+    {{#each holders}}
+      <div class="content piece" holderId="{{holderId}}" orderId="{{orderId}}">
+        <div class="single">
+          {{holderName}}
+          <div class="pull-right">
+              <span class="link">查看详情</span><i class="angle right icon"></i>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="content piece">
-      <div class="single">
-        路人乙
-        <div class="pull-right">
-            <span class="link">查看详情</span><i class="angle right icon"></i>
-        </div>
-      </div>
-    </div>    
+    {{/each}}
   </div>
     
   <div class="module group">

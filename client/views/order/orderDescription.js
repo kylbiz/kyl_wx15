@@ -36,7 +36,10 @@ Template.orderDescription.helpers({
 });
 
 Template.orderDescription.events({
-  'click .oGroup .piece':function(){
-   Router.go('/shockholder');
+  'click .oGroup .piece':function(event){
+    var orderId = Router.current().params.orderId || '';
+
+
+    Router.go('shockholder', {},{query:  "orderId=" + orderId + "&holderId=" + this.holderId});
   }
 });

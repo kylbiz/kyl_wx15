@@ -2,37 +2,57 @@
  {{#control_nav}}
    股东
  {{/control_nav}}  
- <div class="form shockholder main-container">   
-    <div class="module group">
-      <div class="content">
-        <span class="key">姓名</span>
-        <span class="dot"></span>
-        <span>王志明</span>
-      </div>
-      <div class="content">
-        <span class="key">证件号</span>
-        <span class="dot"></span>
-        <span>ddd</span>
-      </div>
-      <div class="content">
-          <span class="key">户籍地址</span>
+ <div class="form shockholder main-container"> 
+    {{#if holder.selectType}}
+      <div class="module group">
+        <div class="content">
+          <span class="key">姓名</span>
           <span class="dot"></span>
-          <div class="box">
-            <div>
-              户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址户籍地址
+          <span>{{holder.holderName}}</span>
+        </div>
+        <div class="content">
+          <span class="key">占股比例</span>
+          <span class="dot"></span>
+          <span>{{holder.moneyPercent}}</span>
+        </div>  
+        <div class="content">
+          <span class="key">出资额</span>
+          <span class="dot"></span>
+          <span>{{holder.money}}万元</span>
+        </div>                
+      </div>
+    {{else}}
+      <div class="module group">
+        <div class="content">
+          <span class="key">姓名</span>
+          <span class="dot"></span>
+          <span>{{holder.holderName}}</span>
+        </div>
+        <div class="content">
+          <span class="key">证件号</span>
+          <span class="dot"></span>
+          <span>{{holder.code}}</span>
+        </div>
+        <div class="content">
+            <span class="key">户籍地址</span>
+            <span class="dot"></span>
+            <div class="box">
+              <div>
+                {{holder.address}}
+              </div>
             </div>
-          </div>
+        </div> 
+        <div class="content">
+          <span class="key">占股比例</span>
+          <span class="dot"></span>
+          <span>{{holder.moneyPercent}}</span>
+        </div>  
+        <div class="content">
+          <span class="key">出资额</span>
+          <span class="dot"></span>
+          <span>{{holder.money}}万元</span>
+        </div>                
       </div> 
-      <div class="content">
-        <span class="key">占股比例</span>
-        <span class="dot"></span>
-        <span>ddd</span>
-      </div>  
-      <div class="content">
-        <span class="key">出资额</span>
-        <span class="dot"></span>
-        <span>11万元</span>
-      </div>                
-    </div>   
+    {{/if}}   
  </div>
 </template>

@@ -115,6 +115,28 @@ Meteor.methods({
 		}
 	}, 
 
+	// 密码重置
+	'passwordReset': function (phone, password, code) {
+
+		if (!kylUtil.verifyPhone(phone) || !password || !code) {
+			throw new Meteor.Error("输入信息有误", 'Error: input info illegal');
+		}
+
+		var oldInfo = Meteor.users.findOne({'profile.phone': phone}) || {};
+		var userId = oldInfo._id || false;
+		if (!userId) {
+			throw new Meteor.Error("该用户不存在，请前往注册", "Error: user not found");
+		}
+
+
+		if (!codeVerification(phone, code, new Date())) {
+			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
+		}
+
+		console.log('update user', phone, password, code);		
+		return Accounts.setPassword(userId, password);
+	},
+
 	// 检测微信与Web账号的绑定
 	'checkWeChatBind': function(wechat_openid) {
 		Meteor.users.upsert({_id: Meteor.userId()}, {$set: {'profile.wechat_openid': wechat_openid}});

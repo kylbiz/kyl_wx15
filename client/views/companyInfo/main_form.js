@@ -348,14 +348,12 @@ Template.resource_segement.events({
         var holders = [];
         var moneyAll = 0;
         var percentAll = 0;
-        var ret_status = true;
+        var ret_status = [true, 'ok'];
+        var holdersCode = [];
 
         console.log("resource_segement saveBtn");
         var holderTemplate = $(".hodlerSpace .content");
         holderTemplate.each(function (index, elem) {
-
-            console.log("elem", $(elem));
-
             var selectType = parseInt($(elem).attr("holder") || "998");
             console.log("fsdfsdf", selectType);
             var holderType = "";
@@ -374,10 +372,6 @@ Template.resource_segement.events({
             moneyInt = parseInt(money);
             percentInt = parseInt(moneyPercent);
 
-            console.log("dadas", holderName, money, moneyInt, percentInt, (holderName 
-                && moneyInt && moneyInt >= 0  
-                && percentInt && percentInt > 0 && percentInt <= 100));
-
             if ( holderName 
                 && moneyInt && moneyInt >= 0  
                 && percentInt && percentInt > 0 && percentInt <= 100) {
@@ -386,7 +380,7 @@ Template.resource_segement.events({
                     selectType: selectType,
                     holderType: holderType,
                     holderName: holderName,
-                    money: holderName,
+                    money: money,
                     moneyPercent: moneyPercent,
                     holderId: kylUtil.randomNumber(10)
                 }
@@ -397,45 +391,25 @@ Template.resource_segement.events({
                     var code = $(elem).find('#code').val() || "";
                     var address = $(elem).find('#address').val() || "";
 
+                    if (sex && code && address) {
+                        if (!kylUtil.verifyIDCard(code)) {
+                            ret_status = [false, "股东身份证信息有误"];
+                            return;
+                        }
 
-                    // console.log("sssss", sex, code, address, kylUtil.verifyIDCard(code));
-                    if (sex && kylUtil.verifyIDCard(code) && address) {
+                        if (holdersCode.indexOf(code) >= 0) {
+                            ret_status = [false, "股东不可重复"];
+                            return;
+                        }
+                        holdersCode.push(code);
+
                         holder.sex = sex;
                         holder.code = code;
                         holder.address = address;
                     } else {
-                        kylUtil.alert("请填写有效股东信息1");
+                        ret_status = [false, "请填入有效信息"];
                         return;
                     }
-
-                    // kylUtil.checkData({
-                    //     sex: sex,
-                    //     code: code,
-                    //     address: address
-                    // }, {
-                    //     sex: function () {
-                    //         // return sex;
-                    //         if (sex) {
-                    //             return [true];
-                    //         } else {
-                    //             return [false, "请输入性别"];
-                    //         }
-                    //     },
-                    //     code: function () {
-                    //         if( kylUtil.verifyPhone(code) ) {
-                    //             return [true];
-                    //         } else {
-                    //             return [false, "身份证信息错误"];
-                    //         }
-                    //     },
-                    //     address: function () {
-                    //         if (address) {
-                    //             return [true];
-                    //         } else {
-                    //             return [false, "请输入地址"]; 
-                    //         }
-                    //     }
-                    // });
                 }
 
                 moneyAll += moneyInt;
@@ -443,13 +417,19 @@ Template.resource_segement.events({
                 holders.push(holder);
 
             } else {
-                ret_status = false;
+                ret_status = [false, '请填入有效信息'];
                 return;
             }
         });
+        
+        if (!ret_status[0]) {
+            kylUtil.alert(ret_status[1]);
+            return;
+        }
 
-        if (!ret_status || holders.length == 0) {
-            kylUtil.alert("请填写有效股东信息2");
+        if (holders.length == 0) {
+            console.log("ret_status", ret_status, holders.length, holders);
+            kylUtil.alert("请填写有效股东信息");
             return;
         }
 
@@ -485,7 +465,11 @@ Template.resource_segement.events({
 
 Template.shockhoderInputBundle.helpers({
     theSex: function (sexNow, sexStr) {
-        return (sexNow && sexStr && (sexNow == sexStr));
+        console.log("thesex", sexNow, sexStr);
+        if ((sexNow && sexStr && (sexNow == sexStr))) {
+            return "selected"
+        }
+        return "";
     }
 });
 

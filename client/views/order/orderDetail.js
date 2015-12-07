@@ -15,6 +15,9 @@ Template.orderDetail.helpers({
 			return statusStr[status] || "未知";
 		}
 	},
+	_img: function (name) {
+		return kylUtil.getImg(name);
+	},
 	lastUpdateTime: function (isRegComp) {
 		if (isRegComp) {
 			var updateTimes = this.productProgress.updateTimes || [];

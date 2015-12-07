@@ -1,3 +1,8 @@
+// Template.trade.onRendered(function () {
+//     Session.set('allPayment', 0);
+//     Session.set('shopcartIdList', []);
+// });
+
 Template.trade.helpers({
     address: function () {
         if (UserAddress.find().count() > 0) {
@@ -9,7 +14,8 @@ Template.trade.helpers({
     },
     payList: function () {
         if (!ShopCart.find({}).count()) {
-            // throw new Meteor.Error("shopcart empty", "Error: No ShopCart Data Found");
+            Session.set('allPayment', 0);
+            Session.set('shopcartIdList', []);
             console.log("shopcart empty");
             return [];
         }

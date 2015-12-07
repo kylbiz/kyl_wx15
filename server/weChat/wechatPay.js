@@ -142,8 +142,8 @@ function beforePayHandle(orderInfo) {
 	var moneyAll = 0;	// 订单总金额
 	orderInfo.shopcartIdList.forEach(function (shopcartId) {
 		var info = ShopCart.findOne({userId: userId, _id: shopcartId});
-		if (!info) {
-			throw new Meteor.Error("数据错误", '订单数据查找失败');
+		if (!info || info.payed) {
+			throw new Meteor.Error("数据错误", '订单数据有误');
 		}
 
 		var orderId = kylUtil.genOrderId();

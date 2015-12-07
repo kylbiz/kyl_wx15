@@ -53,7 +53,11 @@
         <div><input type="password" class="form-control" id="password" placeholder="新密码"></div>
         <div class="code">
           <input type="text" class="form-control" id="verifyCode" placeholder="验证码">
-          <span id="codeBtn">发送验证码</span>
+          {{#if $eq codeTime 0}}
+            <span id="codeBtn">发送验证码</span>  
+            {{else}}
+            <span>{{codeTime}}秒可再次发送</span>
+          {{/if}}
         </div>
         <div><button type="button" class="ui btn-default" id="resetPwdBtn" >确认</button></div>
       </div>

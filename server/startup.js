@@ -284,7 +284,7 @@ var businessTypeLists = [
   {num: 0, name: '管理类'},
   {num: 1, name: '科技类'},
   {num: 2, name: '广告类'},
-  {num: 3, name: '资讯类'},
+  {num: 3, name: '咨询类'},
   {num: 4, name: '贸易类'},
   {num: 5, name: '工程类'},
   {num: 6, name: '服务类'},

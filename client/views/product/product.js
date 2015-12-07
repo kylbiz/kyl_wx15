@@ -50,6 +50,10 @@ Template.product.helpers({
             bank: 'bank_board'                  //银行开户
         }[type];
     },
+    _price: function () {
+      console.log("Router.current().params._name", Router.current().params.query.name);
+      return kylUtil.getPriceGeneral(Router.current().params.query.name);
+    },
 
     // 产品选项信息
     product: function () {
@@ -144,7 +148,8 @@ Template.product.events({
     'click .submit': function(event, template) {
 
         if (!Meteor.userId()) {
-            Router.go('/login');
+            console.log("product", Router.current());
+            Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(Router.current().url) });
             return;
         }
         console.log('seceive data', getServiceData());

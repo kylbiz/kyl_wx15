@@ -23,7 +23,10 @@ Template.companyInfo.events({
         	} else {
         		if (!res.userConfirmed) {
         			kylUtil.alert(res.msg);
-        		}
+        		} else {
+                    kylUtil.alert(res.msg);
+                    Router.go('orderList');
+                }
         	}
         });
     }

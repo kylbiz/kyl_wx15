@@ -26,15 +26,15 @@ Router.onBeforeAction(function () {
 
 // 开业啦帐号登录
 Router.onBeforeAction(function () {
-	console.log('loginUser', Meteor.userId());
+	console.log('loginUser', Meteor.userId(), this.originalUrl);
 	if (Meteor.userId()) {
 		this.next();
 	} else {
-		this.render('login');
+		Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(this.originalUrl)});
 	}
 }, {only: [
 	'shopcart', 'trade', 'payResult', 	//订单支付相关
 	'addressList', 'address',	//地址管理相关
-	'orderlist', 'orderDetail', 'orderProcess', // 订单管理相关
+	'orderList', 'orderDetail', 'orderProcess', // 订单管理相关
 	'home',	// 用户信息相关
 	]});

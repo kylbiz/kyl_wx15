@@ -3,12 +3,34 @@ log = console.log;
 
 kylUtil = {};
 
+// 产品价格
+kylUtil.getPriceGeneral = function (name) {
+    var price = {
+        '1元注册': '1',  
+        '极速注册': '1000',        
+        '电商公司': '299',              
+        '教育公司': '299',        
+        '金融信息公司': '299', 
+        '移动互联网公司': '299',
+        '文化传媒公司': '299',
+        '商务服务公司': '299',
+        '建筑设计公司': '299',
+        '医疗公司': '299',
+        '银行开户': '200',
+        '财务代理': '300-1900',
+        '流量记账包服务套餐': '300-3000',
+        '小企社保': '120-500'
+    }[name] || 0;
+
+    return price;
+}
+
 // 产品图片url
 kylUtil.getImg = function (name) {
     var img = {
         '1元注册': 'oneyuan',  
         '极速注册': 'jisu',        
-        '电商公司': 'dianshang',              
+        '电商公司': '299',              
         '教育公司': 'jiaoyu',        
         '金融信息公司': 'jingrong', 
         '移动互联网公司': 'hulianwang',
@@ -167,6 +189,17 @@ kylUtil.verifyIDCard = function(code) {
         }
         return info;
     }
+}
+
+// 验证邮编
+kylUtil.verifyZipCode = function (code) {
+    var pattern =/^[0-9]{6}$/;
+
+    if (code && pattern.exec(code)) {
+        return true;
+    }
+
+    return false;
 }   
 
 // 生成15长的随机字符串
