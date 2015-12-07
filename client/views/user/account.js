@@ -68,13 +68,13 @@ Template.register.events({
             //clearInterval('codeTime')              
           }
 				} else {
-					alert(codeValue['message'] || "未知错误");
+					kylUtil.alert(codeValue['message'] || "未知错误");
 					// $("[id=error]").html(codeValue['message'] || "未知错误");           
 					// $("[id=error]").show();        
 				}
 			});	
 		} else {
-			alert("输入的手机号有误");
+			kylUtil.alert("输入的手机号有误");
 		}
 	},
 
@@ -87,17 +87,18 @@ Template.register.events({
 
 		// 校验手机号
 		if (!kylUtil.verifyPhone(phone)) {
-			alert("输入的手机号有误");
+			kylUtil.alert("输入的手机号有误");
 			return;
 		}
 
 		if (phone && password && verifyCode) {			
 			Meteor.call('UserRegistration', phone, password, Session.get('WeChatUser'), verifyCode, function (error, result) {
 				if (error) {
-					alert('UserRegistration err' + error);
+					console.log('UserRegistration err' + error);
+					kylUtil.alert('注册失败');
 					// Router.go('login');
 				} else {
-					alert('UserRegistration OK' + result);
+					kylUtil.alert('注册成功');
 					// Meteor.call('sendRegistrationInfos', phone); // 发送成功注册消息
 					Meteor.loginWithPassword(phone, password, function(err) {
 						if(err) {
@@ -111,7 +112,7 @@ Template.register.events({
 				}
 			});
 		} else {
-			alert('输入有误');
+			kylUtil.alert('输入有误');
 		}
 	},
 });

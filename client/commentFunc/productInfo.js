@@ -19,13 +19,17 @@ function productShowInfo (list) {
   	list.forEach(function (infoBase) {
   		var type = infoBase.typeNameFlag;
   		var info = infoBase.servicesNameList[0];
+	  	var _img = kylUtil.getImg(info.name);
 	  	var infoExt = getInfoExt(type, info);
+
 	  	listExt.push({
 	  		id: infoBase._id,
 	  		orderId: infoBase.orderId || false,	//购物车中无该选项
 	  		payed: infoBase.payed,
 	  		// title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount, 
-	  		title: info.name, payment: infoBase.moneyAmount, 
+	  		_img: _img,
+	  		title: info.name,
+	  		payment: infoBase.moneyAmount, 
 	  		ext: infoExt
 	  	});
   	});
