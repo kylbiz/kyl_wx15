@@ -6,6 +6,7 @@ Template.layoutTemplate.alert=function(object){
     $(event.currentTarget).detach();
   });  
 }
+
 Template.layoutTemplate.confirm=function(object) {
   var template = Blaze.toHTMLWithData(Template.confirmTemplate,object);
   $("#Mount").html(template);
@@ -21,6 +22,39 @@ Template.layoutTemplate.confirm=function(object) {
           if (callback && callback instanceof Function) {
               confirmBox.find('#dialogSure').click(function () { callback(true);  confirmBox.modal('hide'); });
               confirmBox.find('#dialogCancel').click(function () { callback(false); confirmBox.modal('hide'); });
+          }
+      }
+  }  
+}
+
+Template.layoutTemplate.select=function(object) {
+  // object = {
+  //   title: "标题",
+  //   options: [
+  //     {name: "name", value="value"}
+  //   ]
+  // }
+  var template = Blaze.toHTMLWithData(Template.selectTemplate, object);
+  $("#Mount").html(template);
+  
+  var selectBox=$('#select');
+  selectBox.modal('show');
+  selectBox.on('hide.bs.modal',function(event) {
+    $(event.currentTarget).detach();
+  });
+
+  return {
+      on: function (callback) {
+          if (callback && callback instanceof Function) {
+              selectBox.find('#dialogSure').click(function () { 
+                var seleVal = selectBox.find("#selOpts .selected").attr("value") || null;
+                callback(true, seleVal);  
+                selectBox.modal('hide'); 
+              });
+              selectBox.find('#dialogCancel').click(function () { 
+                callback(false, null); 
+                selectBox.modal('hide'); 
+              });
           }
       }
   }  

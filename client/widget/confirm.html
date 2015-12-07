@@ -1,4 +1,4 @@
-<template name="confirmTemplate">
+<template name="confirmTemplate"> 
   <div class="ui-dialog" id="confirm" role="dialog">
     <div class="ui-dialog-content">
       <div class="ui-dialog-box">
@@ -15,14 +15,21 @@
   </div>
 </template>
 
-<template name="hello">
-  <div class="ui-dialog" id="hello" role="dialog">
+<template name="selectTemplate">
+  <script type="text/javascript">
+    function selHandle (ele) {
+      $(ele).addClass("selected").siblings().removeClass("selected");
+    }
+  </script>
+
+  <div class="ui-dialog" id="select" role="dialog">
     <div class="ui-dialog-content ui-board-shockholder">
       <div class="ui-dialog-box field">
-          <h4>选择股东类型</h4>
-          <ul class="half">            
-              <li class="selected">半年</li>            
-              <li>一年</li>            
+          <h4>{{title}}</h4>
+          <ul class="half" id="selOpts">
+            {{#each $mapped options}}
+              <li class="{{#if $first}}selected{{/if}}" value={{value}} onclick="selHandle(this)">{{name}}</li>
+            {{/each}}
           </ul>
       </div>
       <div class="ui-dialog-control ui-btn-group">

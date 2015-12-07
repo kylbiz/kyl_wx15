@@ -3,6 +3,34 @@ log = console.log;
 
 kylUtil = {};
 
+// 产品图片url
+kylUtil.getImg = function (name) {
+    var img = {
+        '1元注册': 'oneyuan',  
+        '极速注册': 'jisu',        
+        '电商公司': 'dianshang',              
+        '教育公司': 'jiaoyu',        
+        '金融信息公司': 'jingrong', 
+        '移动互联网公司': 'hulianwang',
+        '文化传媒公司': 'wenhua',
+        '商务服务公司': 'shangwu',
+        '建筑设计公司': 'jianzhu',
+        '医疗公司': 'yiliao',
+        '银行开户': 'icon_bank',
+        '财务代理': 'icon_finance',
+        '流量记账包服务套餐': 'icon_packpage',
+        '小企社保': 'icon_assurance'
+    }[name];
+    if(img) {
+      img = '/images/icon/'+img+'.png';
+    }
+    else {
+        img = 'http://fpoimg.com/296x296'; 
+//      img = 'http://lorempixel.com/296/296/';
+    }
+    return img;
+}
+
 // 警告框
 kylUtil.alert = function (title, content) {
     if (arguments.length == 1) {
@@ -13,21 +41,21 @@ kylUtil.alert = function (title, content) {
 }
 
 // 确认框
-kylUtil.confirm = function (title, content, callBack) {
-    if (arguments.length == 2) {
-        callBack = content;
-        content = title;
-        title = '提示';
-    };
+// kylUtil.confirm = function (title, content, callBack) {
+//     if (arguments.length == 2) {
+//         callBack = content;
+//         content = title;
+//         title = '提示';
+//     };
 
-    Template.layoutTemplate.confirm({
-        title: title, content: content
-    }).on( function (e) {
-       if(e){
-          callBack(); 
-       }
-    });
-}
+//     Template.layoutTemplate.confirm({
+//         title: title, content: content
+//     }).on( function (e) {
+//        if(e){
+//           callBack(); 
+//        }
+//     });
+// }
 
 // 验证手机号
 kylUtil.verifyPhone = function(phone) {
@@ -180,23 +208,40 @@ kylUtil.rawWXSign = function(args) {
     kylUtil.md5();
 };
 
+kylUtil.randomNumber = function (number) {
+    number = number || 0;
+    var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    var str = "";
+    for (var i = 0; i < number; i++) {
+        pos = Math.round(Math.random() * (arr.length - 1));
+        str += arr[pos];
+    }
+    return str;
+}
+
+
+kylUtil.checkData = function (data, checkReg) {
+    data = data || {};
+    for (key in data) {
+        var info = data[key];
+        var ret = checkReg[key](info);
+        if (!ret[0]) {
+            kylUtil.alert(ret[1]);
+            return false;
+        } 
+    }
+
+    return true;
+}
+
+
 
 ///////////////////////////// 之后改放到server中 /////////////////////////////
 
 // 生成订单
 kylUtil.genOrderId = function() {
     var date = new Date();
-
-    function randomNumber(number) {
-        var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        var str = "";
-        for (var i = 0; i < number; i++) {
-            pos = Math.round(Math.random() * (arr.length - 1));
-            str += arr[pos];
-        }
-        return str;
-    }
-    return moment(date).format("YYYYMMDDHHmmssSSS") + randomNumber(4);
+    return moment(date).format("YYYYMMDDHHmmssSSS") + kylUtil.randomNumber(4);
 }
 
 

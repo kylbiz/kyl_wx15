@@ -6,7 +6,7 @@ html,body {
   .full-page();
   font-family: @default-base-font-family;
   //font-size: @normel-font-size;
-  font-size: 12px;
+  font-size: 12px !important;
 }
 a {
  &:link {
@@ -105,6 +105,11 @@ ul {
 
 .shadow-object {
   visibility:hidden;
+}
+
+.hidden-object {
+  display: none;
+  opacity: 0;
 }
 
 .list() {

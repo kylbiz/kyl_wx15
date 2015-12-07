@@ -1,3 +1,9 @@
+// Template.reactive_board.helpers({
+//     _img: function (name) {
+//         return kylUtil.getImg(name);
+//     }
+// });
+
 // 选项选中变色
 Template.reactive_board.events({
     'click .field li': function (event, template) {

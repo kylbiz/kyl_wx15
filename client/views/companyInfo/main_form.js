@@ -45,7 +45,10 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{
+        var pageNames = [{          
+            name: 'scope_segement_widget4',
+            data: this
+        }, {              
             name: 'exchangeScopeSegement',
             data: this  
         }, {          
@@ -92,7 +95,7 @@ Template.scope_segement.swingToNextStep=function(swingObject){
 Template.scope_segement.swingToBack=function(swingObject){
   swingObject.unlockSwipeToPrev();
   swingObject.unlockSwipeToNext();
-  swingObject.slideTo(2);
+  swingObject.slideTo(3);
   $('body').animate({scrollTop:0},600);
   swingObject.lockSwipeToPrev();
   swingObject.lockSwipeToNext();  
@@ -100,7 +103,7 @@ Template.scope_segement.swingToBack=function(swingObject){
 
 Template.scope_segement.onRendered(function(){
     var autoSwiper = new Swiper ('.swiper-container', {
-      initialSlide: 2,
+      initialSlide: 3,
       loop:false,
       autoHeight: true,
       watchSlidesProgress : true
@@ -133,7 +136,13 @@ Template.scope_segement.onRendered(function(){
     $(document).on("click",".scope_segement_widget2 .module",function(){
         // industrySmall
         var industrySmall = $(this).find(".single").first().text().trim() || "";
-        Session.set("industrySmall", industrySmall);  
+        Session.set("industrySmall", industrySmall);
+        var industryBig = Session.get("industryBig");
+
+        var scopes = Business.findOne({industryBig: industryBig, industrySmall: industrySmall}) || {};
+        Session.set("businessScope", scopes.content || []);
+
+
         Template.scope_segement.swingToBack(autoSwiper);
     });
 
@@ -148,9 +157,15 @@ Template.scope_segement.onRendered(function(){
     $(document).on("click",".exchangeScopeSegement .module",function(){
         var businessSmall = $(this).find(".single").first().text().trim() || "";
         Session.set("businessSmall", businessSmall);
-        console.log("businessSmall --", businessSmall);
-        Template.scope_segement.swingToNext(autoSwiper);     
-    });  
+        Template.scope_segement.swingToPrev(autoSwiper);
+    });     
+
+    $(".scope_segement_widget4 #submitBtn").click(function(){
+        autoSwiper.unlockSwipeToNext();
+        autoSwiper.slideTo(2);
+        autoSwiper.lockSwipeToNext();
+        $('body').animate({scrollTop:0},600);
+    }); 
 });
 
 
@@ -204,108 +219,43 @@ Template.scope_segement_widget2.helpers({
         return Business.find({industryBig: industryBig}).fetch() || [];
     }
 })
+
 // 经营范围
 Template.scope_segement_widget3.helpers({
-    notAddScope: function () {
-        return !(Session.get("businessSmall") || false);
-    },
     scopes: function () {
-        var businessBig = Session.get("businessBig");
-        var businessSmall = Session.get("businessSmall");
-
-        console.log(businessBig, businessSmall);
-
-        var scopes = [];
-
-        if (businessSmall) {
-            var scopesInfo = Business1.findOne({"businessSmall.cate": businessSmall}) || {};
-            var infos = scopesInfo.businessSmall || [];
-            console.log("scope business", infos, businessBig, businessSmall);
-            for (key in infos) {
-                var info = infos[key];
-                console.log("infos", info, info.cate, businessSmall);                    
-                if (info.cate == businessSmall) {
-                    scopes = info.content;
-                }
-            }
-        } else { 
-            // var businessScope = Session.get('businessScope');
-            // var industryBig = Session.get('industryBig');
-            // var industrySmall = Session.get('industrySmall');
-            // var scopesInfo = Business.findOne({industryBig: industryBig, industrySmall: industrySmall}) || {};
-            // console.log("scope industry", scopesInfo);
-            // scopes = scopesInfo.content || [];
-            return Session.get('businessScope') || [];
-        }
-
-        return scopes || [];
+        return Session.get('businessScope') || [];
     }
 });
 
 Template.scope_segement_widget3.events({
     "click #submitBtn": function () {
-        var scopes = Session.get("businessScope") || [];
         var scopeChecked = [];
         $('input[type="checkbox"]').each(function(index, element) {
             if ($(element).prop("checked")) {
-                scopeChecked.push($(element).val());
+                console.log("$(element).val()", $(element).val());
+                var str = $(element).val();
+                if (scopeChecked.indexOf(str) < 0) {
+                    scopeChecked.push(str);
+                }
             }
         });
-        console.log(scopeChecked);
 
-        for (key in scopeChecked) {
-            var str = scopeChecked[key];
-            if (scopes.indexOf(str) < 0) {
-                scopes.push(str);
-            }
-        }
-
-        Session.set("businessBig", null);
-        Session.set("businessSmall", null);
-
-        if (scopes.length == 0) {
+        if (scopeChecked.length == 0) {
             kylUtil.alert("请至少选择一项经营范围!");
             return;
         }
-
-        Session.set('businessScope', scopes);        
-    },
-    "click #addBtn": function () {
-        var scopes = Session.get("businessScope") || [];
-        var scopeChecked = [];
-        $('input[type="checkbox"]').each(function(index, element) {
-            if ($(element).prop("checked")) {
-                scopeChecked.push($(element).val());
-            }
-        });
-        console.log(scopeChecked);
-
-        for (key in scopeChecked) {
-            var str = scopeChecked[key];
-            if (scopes.indexOf(str) < 0) {
-                scopes.push(str);
-            }
-        }
-
-        Session.set("businessBig", null);
-        Session.set("businessSmall", null);
-
-        if (scopes.length == 0) {
-            kylUtil.alert("请至少选择一项经营范围!");
-            return;
-        }
-
-        Session.set('businessScope', scopes);
+        console.log("widget3", scopeChecked);
+        Session.set('businessScope', scopeChecked);        
     }
 });
 
-// 调整经营范围
+
+// 调整经营范围 类型
 Template.exchangeScopeSegement.onRendered(function () {
-    // default 
+    // set default 
     var businessBig = $('.ui-tab .active .addScopeSel').html().trim() || "";
     Session.set('businessBig', businessBig);
 });
-
 
 Template.exchangeScopeSegement.helpers({
     scopeChange: function () {
@@ -331,11 +281,55 @@ Template.exchangeScopeSegement.events({
         self.addClass("active").siblings().removeClass("active");
 
         var businessBig = $('.ui-tab .active .addScopeSel').html().trim() || "";
-        console.log("businessBig --", businessBig);
         Session.set('businessBig', businessBig);
     }
 });
 
+// 增加经营范围
+Template.scope_segement_widget4.helpers({
+    isSeled: function (str) {
+        var businessScope = Session.get("businessScope") || [];
+        if (businessScope.indexOf(str) >= 0){
+            return "checked";
+        }
+        return "";
+    },
+    scopes: function () {
+        var businessBig = Session.get("businessBig");
+        var businessSmall = Session.get("businessSmall");
+
+        var scopeInfo = Business1.findOne({businessBig: businessBig, "businessSmall.cate": businessSmall}) || {};
+        var info = scopeInfo.businessSmall || [];
+        for (key in info) {
+            if (info[key].cate == businessSmall) {
+                return info[key].content || [];
+            }
+        }
+
+        return [];
+    }
+});
+
+Template.scope_segement_widget4.events({
+    "click #submitBtn" : function () {
+        var businessScope = Session.get("businessScope") || [];
+        $('input[type="checkbox"]').each(function(index, element) {
+            var str = $(element).val() || "";
+            var checked = $(element).prop("checked");
+            var index = businessScope.indexOf(str);
+            if (str && checked && index < 0) {
+                businessScope.push(str);
+            }
+
+            if (str && !checked && index >= 0) {
+                businessScope.pop(index);
+            }
+        });
+        console.log("widget4 save", businessScope);
+
+        Session.set("businessScope", businessScope);
+    }
+})
 
 
 
@@ -343,20 +337,155 @@ Template.exchangeScopeSegement.events({
 //////////////////////////////////////////////////////////////
 // 注册资金与股东信息
 //////////////////////////////////////////////////////////////
-Template.resource_segement.onRendered(function(){
-    // $("#hello").modal("show");
-});
 Template.resource_segement.events({
     'click #saveBtn': function () {
         var companyMoney = $("#money").val() || "";
+        if (!companyMoney && !parseInt(companyMoney) ) {
+            kylUtil.alert("请正确填写注册资金");
+            return;
+        }
 
+        var holders = [];
+        var moneyAll = 0;
+        var percentAll = 0;
+        var ret_status = true;
+
+        console.log("resource_segement saveBtn");
+        var holderTemplate = $(".hodlerSpace .content");
+        holderTemplate.each(function (index, elem) {
+
+            console.log("elem", $(elem));
+
+            var selectType = parseInt($(elem).attr("holder") || "998");
+            console.log("fsdfsdf", selectType);
+            var holderType = "";
+            if (selectType == 0) {
+                holderType = "自然人";
+            } else if (selectType == 1) {
+                holderType = "企业";
+            } else {
+                kylUtil.alert("数据错误");
+                return;
+            }
+
+            var holderName = $(elem).find('#name').val() || "";
+            var money = $(elem).find('#money').val() || "";
+            var moneyPercent = $(elem).find('#percent').val() || "";
+            moneyInt = parseInt(money);
+            percentInt = parseInt(moneyPercent);
+
+            console.log("dadas", holderName, money, moneyInt, percentInt, (holderName 
+                && moneyInt && moneyInt >= 0  
+                && percentInt && percentInt > 0 && percentInt <= 100));
+
+            if ( holderName 
+                && moneyInt && moneyInt >= 0  
+                && percentInt && percentInt > 0 && percentInt <= 100) {
+
+                var holder = {
+                    selectType: selectType,
+                    holderType: holderType,
+                    holderName: holderName,
+                    money: holderName,
+                    moneyPercent: moneyPercent,
+                    holderId: kylUtil.randomNumber(10)
+                }
+
+
+                if (selectType == 0) {
+                    var sex = $(elem).find('#sexSel').val() || "";
+                    var code = $(elem).find('#code').val() || "";
+                    var address = $(elem).find('#address').val() || "";
+
+
+                    // console.log("sssss", sex, code, address, kylUtil.verifyIDCard(code));
+                    if (sex && kylUtil.verifyIDCard(code) && address) {
+                        holder.sex = sex;
+                        holder.code = code;
+                        holder.address = address;
+                    } else {
+                        kylUtil.alert("请填写有效股东信息1");
+                        return;
+                    }
+
+                    // kylUtil.checkData({
+                    //     sex: sex,
+                    //     code: code,
+                    //     address: address
+                    // }, {
+                    //     sex: function () {
+                    //         // return sex;
+                    //         if (sex) {
+                    //             return [true];
+                    //         } else {
+                    //             return [false, "请输入性别"];
+                    //         }
+                    //     },
+                    //     code: function () {
+                    //         if( kylUtil.verifyPhone(code) ) {
+                    //             return [true];
+                    //         } else {
+                    //             return [false, "身份证信息错误"];
+                    //         }
+                    //     },
+                    //     address: function () {
+                    //         if (address) {
+                    //             return [true];
+                    //         } else {
+                    //             return [false, "请输入地址"]; 
+                    //         }
+                    //     }
+                    // });
+                }
+
+                moneyAll += moneyInt;
+                percentAll += percentInt;
+                holders.push(holder);
+
+            } else {
+                ret_status = false;
+                return;
+            }
+        });
+
+        if (!ret_status || holders.length == 0) {
+            kylUtil.alert("请填写有效股东信息2");
+            return;
+        }
+
+        if (moneyAll > parseInt(companyMoney)) {
+            kylUtil.alert("股东出资总额不得大于注册资金");
+            return;
+        }
+
+        if (percentAll > 100) {
+            kylUtil.alert("股东占股比例总和不得大于100%");
+            return;
+        }
+
+        updateOrder({companyMoney: companyMoney, holders: holders});
     },
     'click #plus': function() {
-        var template = Blaze.toHTML(Template.shockhoderInputBundle);
-        $("#plus-content").append(template);
+        Template.layoutTemplate.select({
+            title: "选择股东类型", 
+            options: [{name: "自然人", value: 0}, {name: "企业", value: 1}]
+        }).on(function (ret, selVal) {
+            if (ret) {
+                console.log("fuck sel", selVal, typeof(selVal));
+
+                var template = Blaze.toHTMLWithData(Template.shockhoderInputBundle, {selectType: parseInt(selVal)});
+                $("#plus-content").append(template);                
+            }
+        });
     },
     'click i.icon.trash': function(e) {
         $(e.currentTarget).closest(".module").remove();
+    }
+});
+
+Template.shockhoderInputBundle.helpers({
+    theSex: function (sexNow, sexStr) {
+        return (sexNow && sexStr && (sexNow == sexStr));
     }
 });
 

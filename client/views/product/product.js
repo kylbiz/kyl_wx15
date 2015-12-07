@@ -54,10 +54,13 @@ Template.product.helpers({
     // 产品选项信息
     product: function () {
          var params = Router.current().params;
+         var productName = params.query.name || "default";
+         var _img = kylUtil.getImg(productName);
+
 
          var products = {
             registration: function () {
-                return {productInfo: RegistrationLists.findOne(params.query)};
+                return {productInfo: RegistrationLists.findOne(params.query), _img: _img};
             },
 
             assurance: function () {
@@ -70,7 +73,7 @@ Template.product.helpers({
                         ]
                     },
                 ];
-                return {productInfo: services};
+                return {productInfo: services, _img: _img};
             },
 
             finance: function () {
@@ -85,7 +88,7 @@ Template.product.helpers({
                     ]
                 };
 
-                return {productInfo: services};
+                return {productInfo: services, _img: _img};
             },
 
             bookkeeping: function () {
@@ -108,11 +111,11 @@ Template.product.helpers({
                 };
 
 
-                return {productInfo: services };
+                return {productInfo: services, _img: _img };
             },
 
             bank: function () {
-                return {productInfo: BankLists.find({}).fetch()};
+                return {productInfo: BankLists.find({}).fetch(), _img: _img};
             }
 
          };
