@@ -30,7 +30,7 @@
     text-align: center;
   }
   .photo-frame {
-    background-color:#ccc;
+    border: solid 1px #ccc;
     .margin-right-rem(15px);
     float:left;
     .width(80px);
@@ -127,7 +127,12 @@
      .padding-rem(5px);
     }
   }
-
+  //下拉框
+  .select-region {
+      select.form-control {
+        width: 100%;
+      }
+  }
 }
 .ui-board-content {
     .field ul.half li {
@@ -167,39 +172,59 @@
        text-align: center;
        max-width: 480px;
     }
-    .select-region {
-      position: relative;
-      //display: inline-block;
-      &:before,
-      &:after
-          {
-              content: "\25BC";
-              position: absolute;
-              right: 10px;
-              top: 12px;
-              // -webkit-text-size-adjust:none;
-              font-size: 12px;
-              transform:scale(0.875);
-          }
-      /* Down arrow */
-      &:after
-        {
-            content: "\25B2";
-            top: auto;
-            bottom: 12px;
-        }
+}
+
+//下拉框
+.select-region {
+  position: relative;
+  //display: inline-block;
+  &:before,
+  &:after
+      {
+          content: "\25BC";
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          // -webkit-text-size-adjust:none;
+          font-size: 12px;
+          transform:scale(0.875);
+      }
+  /* Down arrow */
+  &:after
+    {
+        content: "\25B2";
+        top: auto;
+        bottom: 12px;
     }
+}
+
+.select-region {
     select.form-control {
-      width: 100%;
+      width: auto;
       text-transform: none;
       background-color: #fff;
-     -webkit-appearance: none;
-     -moz-appearance: none;
-     -ms-appearance: none;
-     appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
     }
+}
 
-
+.resource_segement {
+    .select-region {
+      &:before {
+        top:-2px; 
+      }
+      &:after {
+        bottom: -2px;
+      }
+    }
+    select.form-control {
+      padding: 0 !important;
+      border-radius: 0;
+      width: 132px;
+      text-indent: 15px;
+    }  
 }
 
 .ghost-control {
