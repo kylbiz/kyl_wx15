@@ -6,11 +6,11 @@ var oauthAPI = new OAuth(WXConfig.appID, WXConfig.appsecret, getOAuthToken, save
 
 
 // OAuth 传参 3
-function getOAuthToken(callback) {
+function getOAuthToken(openid, callback) {
     // 传入一个获取全局token的方法
     console.log('getOAuthToken');   
     // var fs = Npm.require('fs');
-    // fs.readFile('oauth_token.txt', 'utf8', function (err, txt) {
+    // fs.readFile(openid + ':oauth_token.txt', 'utf8', function (err, txt) {
     //     // if (err) {return callback(err);}
     //     console.log('get oauth_token', txt);
     //     if (err) {
@@ -20,17 +20,25 @@ function getOAuthToken(callback) {
     //     }
     // });
 
-    var info = WeChatInfo.findOne({key: 'oauth_token'}) || {};
-    callback(null, info.value);
+    var Fiber = Npm.require("fibers");
+    Fiber(function () {
+        var info = WeChatInfo.findOne({name: 'oauth_token', openid: openid}) || {};
+        callback(null, info.token);
+    }).run();
 }
 
 // OAuth 传参 4
-function saveOAuthToken(token, callback) {
-    console.log("saveOAuthToken");
+function saveOAuthToken(openid, token, callback) {
+    console.log("saveOAuthToken", token);
     // var fs = Npm.require('fs');
-    // fs.writeFile('oauth_token.txt', JSON.stringify(token), callback);
+    // fs.writeFile(openid + ':oauth_token.txt', JSON.stringify(token), callback);
 
-    WeChatInfo.upsert({key: 'oauth_token'}, {$set: {'value': token}}, callback); 
+    var Fiber = Npm.require("fibers");
+    Fiber(function () {
+        WeChatInfo.upsert({name: 'oauth_token', openid: openid}, {
+            $set: {name: 'oauth_token', openid: openid, token: token}
+        }, callback); 
+    }).run();
 }
 
 
@@ -41,6 +49,7 @@ WebApp.connectHandlers.use("/oauth", function(req, res, next) {
     if (!code) {
         // 获取code
         // 调转到 /oauthAPI
+        console.log("go to get code");
         var wxOAuthUrl = oauthAPI.getAuthorizeURL(WXConfig.host + '/oauth', 'KYLBIZ', 'snsapi_base');
         res.writeHead(302, {
             'Location': wxOAuthUrl
@@ -51,20 +60,38 @@ WebApp.connectHandlers.use("/oauth", function(req, res, next) {
         // 获取openid
         // 调转到首页
 
-        var result = Async.runSync(function(callback) {
-            oauthAPI.getAccessToken(code, callback);
+        console.log("go to get token by code", code);
+        oauthAPI.getAccessToken(code, function (error, result) {
+            console.log("get token back", error, result);
+
+            if (error) {
+                throw new Meteor.Error(error, 'get oauth access_token fail');
+            } else {
+                console.log("get oauth access_token ", result);
+                var openId = result.data.openid;
+                res.writeHead(302, {
+                    'Location': WXConfig.host + '?openid=' + openId
+                });
+                
+                res.end();
+            }
         });
 
-        if (result.error) {
-            throw new Meteor.Error(result.error, 'get oauth access_token fail');
-        } else {
-            console.log("get oauth access_token ", result.result);
-            var openId = result.result.data.openid;
-            res.writeHead(302, {
-                'Location': WXConfig.host + '?openid=' + openId
-            });
+        // var result = Async.runSync(function(callback) {
+        //     oauthAPI.getAccessToken(code, callback);
+        // });
+        // console.log('get token result', result)
+
+        // if (result.error) {
+        //     throw new Meteor.Error(result.error, 'get oauth access_token fail');
+        // } else {
+        //     console.log("get oauth access_token ", result.result);
+        //     var openId = result.result.data.openid;
+        //     res.writeHead(302, {
+        //         'Location': WXConfig.host + '?openid=' + openId
+        //     });
             
-            res.end();
-        }
+        //     res.end();
+        // }
     }
 });

@@ -111,6 +111,13 @@ Router.route('/paySuccess', {
 // 注册公司信息
 Router.route('/companyInfo', {
 	name: 'companyInfo',
+	waitOn: function () {
+		var orderId = this.params.query.orderid || "empty";
+		return Meteor.subscribe("orders", orderId);
+	},
+	data: function () {
+		return Orders.findOne({});
+	},
 });
 
 
@@ -124,10 +131,7 @@ Router.route('/home', {
 Router.route('/login', {
 	name: 'login',
 	onBeforeAction: function () {
-		console.log('login fuck');
 		if (Meteor.userId()) {
-			// Router.go('/');
-			console.log("fuck --", this.params.redirectUrl, decodeURIComponent(this.params.redirectUrl));
 			var redirectUrl = decodeURIComponent(this.params.query.redirectUrl || "/");
 			Router.go(decodeURIComponent(redirectUrl));
 		} else {

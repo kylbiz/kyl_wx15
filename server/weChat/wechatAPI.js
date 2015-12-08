@@ -20,8 +20,12 @@ function getToken(callback) {
   //   }
   // });
 
-    var info = WeChatInfo.findOne({key: 'access_token'}) || {};
-    callback(null, info.value);
+    var Fiber = Npm.require("fibers");
+    Fiber(function () {
+        var info = WeChatInfo.findOne({name: 'access_token'}) || {};
+        callback(null, info.token);
+    }).run();
+
 }
 
 // wechatAPI 传参 4
@@ -32,7 +36,10 @@ function saveToken(token, callback) {
   // var fs = Npm.require('fs');
   // fs.writeFile('access_token.txt', JSON.stringify(token), callback);
 
-    WeChatInfo.upsert({key: 'access_token'}, {$set: {'value': token}}, callback); 
+    var Fiber = Npm.require("fibers");
+    Fiber(function () {
+        WeChatInfo.upsert({name: 'access_token'}, {$set: {name: 'access_token', token: token}}, callback); 
+    }).run();
 }
 
 // 具体数据获取的方法
@@ -87,31 +94,6 @@ Meteor.methods({
         }
 
         return usersInfo;
-    },
-
-    wxOAuth: function (code) {
-
-        if (!code) {
-            console.log('wxOAuth get code');
-            var wxOAuthUrl = oauthAPI.getAuthorizeURL(WXConfig.redirect_uri, 'KYLBIZ', 'snsapi_base');
-            // 获取 code
-            var ret =  HTTP.get(wxOAuthUrl);
-            console.log('get code ret', ret);
-            return ret.content;
-        } else {
-            console.log('wxOAuth get openid');
-            var result = Async.runSync(function(callback) {
-                oauthAPI.getAccessToken(code, callback);
-            });
-
-            if (result.error) {
-                throw new Meteor.Error(result.error, 'get oauth access_token fail');
-            } else {
-                console.log("get oauth access_token ", result.result);
-                return result.result.data.openid;
-            }
-        }
-        
     }
 });
 

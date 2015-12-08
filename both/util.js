@@ -63,21 +63,17 @@ kylUtil.alert = function (title, content) {
 }
 
 // 确认框
-// kylUtil.confirm = function (title, content, callBack) {
-//     if (arguments.length == 2) {
-//         callBack = content;
-//         content = title;
-//         title = '提示';
-//     };
+kylUtil.confirm = function (title, content, callBack) {
+    if (arguments.length == 2) {
+        callBack = content;
+        content = title;
+        title = '提示';
+    };
 
-//     Template.layoutTemplate.confirm({
-//         title: title, content: content
-//     }).on( function (e) {
-//        if(e){
-//           callBack(); 
-//        }
-//     });
-// }
+    Template.layoutTemplate.confirm({
+        title: title, content: content
+    }).on( callBack );
+}
 
 // 验证手机号
 kylUtil.verifyPhone = function(phone) {
@@ -206,8 +202,6 @@ kylUtil.verifyZipCode = function (code) {
 kylUtil.verifyCompanyName = function (name) {
     var pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
     var strList = [];
-
-    console.log("verifyCompanyName", name);
     
     if (name && typeof(name) == 'string' && name.length >= 2) {
         var retStatus = 1;

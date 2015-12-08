@@ -63,8 +63,12 @@ Template.register.events({
 		if (phone && password && verifyCode) {			
 			Meteor.call('UserRegistration', phone, password, Session.get('WeChatUser'), verifyCode, function (error, result) {
 				if (error) {
-					console.log('UserRegistration err' + error);
-					kylUtil.alert('注册失败');
+					console.log('UserRegistration err' + error.error, error.message, error.details);
+					if (error.error == 403) {
+						kylUtil.alert("该手机号已被注册");
+					} else {
+						kylUtil.alert(error.error);
+					}
 					// Router.go('login');
 				} else {
 					kylUtil.alert('注册成功');
@@ -101,6 +105,7 @@ Template.forget.helpers({
 Template.forget.events({
 	'click #codeBtn': function (event, template) {
 		var phone = template.$('#phone').val() || "";
+		var password = template.$('#password').val() || "";
 		if (!kylUtil.verifyPhone(phone)) {
 			kylUtil.alert("输入的手机号有误");
 			return;
@@ -131,16 +136,18 @@ Template.forget.events({
 			return;
 		}
 
-		Meteor.call('passwordReset', phone, password, verifyCode, function (error, result) {
+		Meteor.call('passwordReset', phone, password, verifyCode, Package.sha.SHA256(password),
+			function (error, result) {
 			if (error) {
 				kylUtil.alert(error.error);
+				if (error.details && error.details == 'gotologin') {
+					Router.go('login');
+				}
 			} else {
 				console.log("resetPassword", result);
 				loginFunc(phone, password);
-
 			}
 		});
-
 	}
 });
 

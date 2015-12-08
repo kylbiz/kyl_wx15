@@ -91,9 +91,9 @@ Meteor.methods({
 	// 注册
 	'UserRegistration': function(phone, password, wechat_openid, code) {
 		// 验证码校验
-		if (!codeVerification(phone, code, new Date())) {
-			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
-		}
+		// if (!codeVerification(phone, code, new Date())) {
+		// 	throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
+		// }
 
 		var options = {
 			username: phone,
@@ -105,19 +105,20 @@ Meteor.methods({
 	        }
 		};
 
+		// if (Meteor.users.findOne({username: phone})) {
+		// 	throw new Meteor.Error("该号码已被注册");
+		// }
+
 		var userId = Accounts.createUser(options);
 		if (userId) {
-			console.log("createUser ok");
 			return 'OK';
 		} else {
-			console.log("createUser fail");
-			throw new Meteor.Error("createUser fail", 'Error createUser fail');
+			throw new Meteor.Error("注册用户失败", 'Error createUser fail');
 		}
 	}, 
 
 	// 密码重置
-	'passwordReset': function (phone, password, code) {
-
+	'passwordReset': function (phone, password, code, digest) {
 		if (!kylUtil.verifyPhone(phone) || !password || !code) {
 			throw new Meteor.Error("输入信息有误", 'Error: input info illegal');
 		}
@@ -129,12 +130,16 @@ Meteor.methods({
 		}
 
 
-		if (!codeVerification(phone, code, new Date())) {
-			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
-		}
+		// if (!codeVerification(phone, code, new Date())) {
+		// 	throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
+		// }
 
-		console.log('update user', phone, password, code);		
-		return Accounts.setPassword(userId, password);
+		var checkPwdRet = Accounts._checkPassword(oldInfo, {digest: digest, algorithm: 'sha-256'});
+		if (!checkPwdRet.error) {
+			throw new Meteor.Error("新密码与原密码一致，请前往登录", "Error: the new password is same with the old", 'gotologin');
+		}		
+		Accounts.setPassword(userId, password);
+		return true;
 	},
 
 	// 检测微信与Web账号的绑定
@@ -147,6 +152,8 @@ Meteor.methods({
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 // 验证短信发送的频次校验
 function codeGenerateLegal(phone) {

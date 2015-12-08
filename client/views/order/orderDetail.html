@@ -71,18 +71,20 @@
     {{/each}}
 
     {{#if isRegComp}}
-      <a href="/orderDesc/{{orderId}}">
-        <div class="module">
-          <div class="content">
-            <div class="single">
-              公司注册资料详情
-              <span class="pull-right">
-                <i class="angle right icon"></i>
-              </span>
+      {{#if userConfirmed}}
+        <a href="/orderDesc/{{orderId}}">
+          <div class="module">
+            <div class="content">
+              <div class="single">
+                公司注册资料详情
+                <span class="pull-right">
+                  <i class="angle right icon"></i>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      {{/if}}
     {{/if}}
 
     <div class="module">

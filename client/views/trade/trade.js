@@ -68,28 +68,32 @@ Template.trade.events({
                 console.log("error", error);
                 kylUtil.alert("警告", JSON.stringify(error));
               } else {
-                // WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
-                //   if(res.err_msg == "get_brand_wcpay_request:ok"){
-                //     console.log("支付成功");
-                //     Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
-                //   }else {
-                //     console.log("支付失败，请重试");
-                //     Router.go('shopcart');  
-                //   }
-                // });
-
-                Meteor.call("payOKTest", {
-                    out_trade_no: result.payOrderId,
-                    des: "test"
-                }, function(err, res) {
-                    if (!err) {
-                        console.log("支付成功");
-                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
-                    } else {
-                        console.log("支付失败，请重试");
-                        Router.go('shopcart');
-                    }
+                if (!WeixinJSBridge) {
+                    kylUtil.alert("请在微信中使用");
+                    return;
+                }
+                WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
+                  if(res.err_msg == "get_brand_wcpay_request:ok"){
+                    console.log("支付成功");
+                    Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
+                  }else {
+                    console.log("支付失败，请重试");
+                    Router.go('shopcart');  
+                  }
                 });
+
+                // Meteor.call("payOKTest", {
+                //     out_trade_no: result.payOrderId,
+                //     des: "test"
+                // }, function(err, res) {
+                //     if (!err) {
+                //         console.log("支付成功");
+                //         Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
+                //     } else {
+                //         console.log("支付失败，请重试");
+                //         Router.go('shopcart');
+                //     }
+                // });
 
               }
         });

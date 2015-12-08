@@ -324,13 +324,13 @@
   
   <div class="module hodlerSpace">
     {{#if selectType}}       
-        <div class="content block clearfix solid-bottom" holder={{selectType}}>
+        <div class="content block clearfix solid-bottom">
           <span class="pull-left bold">公司股东</span>
           <div class="pull-right">
             <i class="trash icon outline default"></i>
           </div>      
         </div>     
-        <div class="module group">
+        <div class="module group" holder={{selectType}}>
           <div class="content">
             <span class="key">公司名</span>
             <span class="dot"></span>
@@ -348,13 +348,13 @@
           </div> 
         </div>                
       {{else}}       
-      <div class="content block clearfix solid-bottom" holder={{selectType}}>
+      <div class="content block clearfix solid-bottom">
         <span class="pull-left bold">个人股东</span>
         <div class="pull-right">
           <i class="trash icon outline default"></i>
         </div>      
       </div>       
-      <div class="module group">
+      <div class="module group" holder={{selectType}}>
         <div class="content">
           <span class="key">股东姓名</span>
           <span class="dot"></span>
