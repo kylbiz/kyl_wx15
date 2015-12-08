@@ -200,6 +200,36 @@ kylUtil.verifyZipCode = function (code) {
     }
 
     return false;
+}
+
+// 验证公司名
+kylUtil.verifyCompanyName = function (name) {
+    var pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+    var strList = [];
+
+    console.log("verifyCompanyName", name);
+    
+    if (name && typeof(name) == 'string' && name.length >= 2) {
+        var retStatus = 1;
+        var msg = 'ok';
+        for (key in name) {
+            var str = name[key];
+            console.log(str, pattern.exec(str));
+            if (!pattern.exec(str)) {
+                return [-1, '公司名只能使用中文'];
+            }
+
+            if (strList.indexOf(str) >= 0) {
+                retStatus = 0;
+                msg = '公司名包含叠字，不易通过，请慎用';
+            }
+            strList.push(str);
+        }
+
+        return [retStatus, msg]
+    }
+
+    return [-1, '公司名不得少于两个中文'];
 }   
 
 // 生成15长的随机字符串
@@ -208,7 +238,7 @@ kylUtil.createNonceStr = function(num) {
     return Math.random().toString(36).substr(2, 15);
 };
 
-//
+// 生成字符串
 kylUtil.createTimestamp = function() {
     return parseInt(new Date().getTime() / 1000) + '';
 };

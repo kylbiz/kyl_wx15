@@ -18,24 +18,64 @@ Template.name_segement.events({
         }
 
         var companyName = {};
+        var nameList = [];
         var mainName = $("#mainName").val() || "";
         if (!mainName) {
             kylUtil.alert("企业首选字号必须填!");
             return;
         }
+
+        var verifRet = kylUtil.verifyCompanyName(mainName);
+        var haveAlert = false;
+        if (verifRet[0] < 0) {
+            kylUtil.alert(verifRet[1] || "企业名有误");
+            return; 
+        } else if (verifRet[0] == 0) {
+            haveAlert = true;
+            kylUtil.alert(verifRet[1]);
+        }
         companyName.mainName = mainName;
 
+
+        console.log("ddddddd");
+
         var index = 1;
+        var retMsg = [1, 'ok'];
         $("#alternativeName").find("input").each(function(id, element){
             var name = $(element).val() || "";
             if (name) {
+                if (nameList.indexOf(name) >= 0) {
+                    kylUtil.alert();
+                    retMsg = [-1, '请勿输入重复的名称'];
+                    return;
+                }
+
+                retMsg = kylUtil.verifyCompanyName(name);
+                if (retMsg[0] < 0) {
+                    return;
+                }
+
+                nameList.push(name);
                 companyName["alternativeName" + index] = name;
                 index += 1;
             }
         })
 
         var compType = $("#compType").html().trim() || "有限责任公司";
-        updateOrder({companyName: companyName, companyType: compType});
+        if (retMsg[0] < 0) {
+            kylUtil.alert(retMsg[1]);
+        } else if (retMsg[0] == 0) {
+            Template.layoutTemplate.confirm({
+                title: "警告",
+                content: retMsg[1]
+            }).on(function (ret) {
+                if (ret) {
+                    updateOrder({companyName: companyName, companyType: compType});
+                }
+            });
+        } else {
+            updateOrder({companyName: companyName, companyType: compType});
+        }
     }
 });
 
