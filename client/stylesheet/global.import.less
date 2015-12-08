@@ -319,7 +319,7 @@ body>div {
     >.photo {
       .width(80px);
       .height(80px);
-      background-color: #ccc;
+      border: solid 1px #ccc;
       .margin-right-rem(10px);
     }
     >.info,>.price {
@@ -384,7 +384,7 @@ body>div {
 }
 
 .done i.check.circle.icon{
-  color: @default-green;
+  color: @default-green !important;
 }
 
 .icon-right i.icon {
@@ -559,3 +559,7 @@ i.icon.default {
 .tab-content > .active {
   display: block;
 } 
+
+.solid-bottom {
+  border-bottom: solid 1px @default-black;
+}
