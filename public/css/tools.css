@@ -109,7 +109,7 @@ ul, ol, li {
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
   bottom: -20px;
-  left: 5px;
+  left: 10px;
 }
 .reserve .nav-tabs>li.active>.caret {
   display: block;
