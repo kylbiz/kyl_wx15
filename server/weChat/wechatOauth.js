@@ -95,3 +95,22 @@ WebApp.connectHandlers.use("/oauth", function(req, res, next) {
         // }
     }
 });
+
+
+
+// 根据用户的openid获取用户信息
+Meteor.methods({
+    getOAuthToken: function (openid) {
+        var ret = Async.runSync(function(callback) {
+            oauthAPI.getTokenSafe(openid, callback);
+        });
+
+        if (ret.error) {
+            console.log("getOAuthToken error-", ret.error);
+            throw new Meteor.Error(ret.error.name);
+        } else {            
+            console.log("getOAuthToken ", ret.result);
+            return ret.result;
+        }
+    }
+});

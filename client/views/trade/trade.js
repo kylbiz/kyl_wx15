@@ -1,7 +1,9 @@
-// Template.trade.onRendered(function () {
-//     Session.set('allPayment', 0);
-//     Session.set('shopcartIdList', []);
-// });
+Template.trade.onRendered(function () {
+    // Session.set('allPayment', 0);
+    // Session.set('shopcartIdList', []);
+
+    wechatGetAddr();
+});
 
 Template.trade.helpers({
     address: function () {
@@ -68,32 +70,34 @@ Template.trade.events({
                 console.log("error", error);
                 kylUtil.alert("警告", JSON.stringify(error));
               } else {
-                if (!WeixinJSBridge) {
-                    kylUtil.alert("请在微信中使用");
-                    return;
-                }
-                WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
-                  if(res.err_msg == "get_brand_wcpay_request:ok"){
-                    console.log("支付成功");
-                    Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
-                  }else {
-                    console.log("支付失败，请重试");
-                    Router.go('shopcart');  
-                  }
-                });
-
-                // Meteor.call("payOKTest", {
-                //     out_trade_no: result.payOrderId,
-                //     des: "test"
-                // }, function(err, res) {
-                //     if (!err) {
-                //         console.log("支付成功");
-                //         Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
-                //     } else {
-                //         console.log("支付失败，请重试");
-                //         Router.go('shopcart');
-                //     }
+                // var WeixinJSBridge = WeixinJSBridge || false;
+                // if (!WeixinJSBridge) {
+                //     kylUtil.alert("请在微信中使用");
+                //     return;
+                // }
+                // WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
+                //   if(res.err_msg == "get_brand_wcpay_request:ok"){
+                //     console.log("支付成功");
+                //     Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
+                //   }else {
+                //     console.log("支付失败，请重试");
+                //     kylUtil.alert("支付失败，请重试");
+                //     Router.go('orderList');  
+                //   }
                 // });
+
+                Meteor.call("payOKTest", {
+                    out_trade_no: result.payOrderId,
+                    des: "test"
+                }, function(err, res) {
+                    if (!err) {
+                        console.log("支付成功");
+                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
+                    } else {
+                        console.log("支付失败，请重试");
+                        Router.go('shopcart');
+                    }
+                });
 
               }
         });
@@ -117,3 +121,35 @@ Template.trade.events({
         Session.set("invoice", smart);
     }
 });
+
+
+function wechatGetAddr() {
+    console.log('Router.current()' );
+    var openid = Session.get('WeChatUser');
+    var url = window.location.href;
+    console.log('wechatGetAddr', openid, url);
+    Meteor.call('getPayAddrArgs', openid, url, function (err, result) {
+        if (err) {
+            console.log("getWXAddrArgs fail", err);
+            kylUtil.alert("获取收货地址失败");
+        } else {
+            console.log('getWXAddrArgs ok', result);
+            if (result) {
+                var weixinJSBridge = WeixinJSBridge || false;
+                if (!weixinJSBridge) {
+                    kylUtil.alert('获取地址失败，请在微信中使用');
+                    return;
+                }
+                
+                WeixinJSBridge.invoke('editAddress', result, function (res) {
+                    //若res中所带的返回值不为空，则表示用户选择该返回值作为收货地址。
+                    //否则若返回空，则表示用户取消了这一次编辑收货地址。
+                    console.log('editAddress ret', res);
+                    kylUtil.alert('获取地址信息', res.err_msg, res.addressDetailInfo)        
+                });
+            } else {
+                console.log('getWXAddrArgs fuck');
+            }
+        }
+    });
+}
