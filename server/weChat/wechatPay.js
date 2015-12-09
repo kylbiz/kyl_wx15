@@ -61,7 +61,6 @@ Meteor.methods({
 		// 	out_trade_no: "",
 		// 	des: "test",
 		// }
-
 		return paySuccessHandle(msg);
 	}
 });
@@ -86,9 +85,7 @@ WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 			}
 
 			res.reply('success');
-		}).run();
-
-		
+		}).run();		
 
 		// try {
 		// 	res.reply('success');
@@ -97,9 +94,6 @@ WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 		// }
 	}
 ));
-
-
-
 
 
 // 获取微信支付所需的数据
@@ -114,7 +108,7 @@ function getOrderData (paylog, wechatOpenId, ip) {
 		body: '开业啦微信订单',	// 商品描述
 		detail: '产品: ' + detail,	// 可选
 		attach: '{"userId": "'+ paylog.userId + '" }',//在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
-		total_fee: 1, // paylog.moneyAmount,
+		total_fee: parseInt(paylog.moneyAmount) * 100,
 		out_trade_no: paylog.openid, 	// 
 		openid: wechatOpenId,
 		spbill_create_ip: ip, 
@@ -280,10 +274,13 @@ function paySuccessHandle(message) {
 	var allPayed = true;
 	var orderInfoOld = Orders.find();
 
+	// 更新paylog状态
 	updatePayLog();
 
+	// 更新购物车状态
 	updateShopcart();
 
+	// 更新订单状态
 	updateOrder();
 
 

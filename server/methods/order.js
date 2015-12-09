@@ -1,7 +1,7 @@
 var checkItemsStr = {
 	companyName: "企业名",
-	industryBig : "企业分类",
-	industrySmall: "企业分类", 
+	industryBig : "企业行业",
+	industrySmall: "企业行业", 
 	businessScope: "经营范围", 
 	companyMoney: "注册资金",
 	holders: "股东",
@@ -32,8 +32,7 @@ Meteor.methods({
 		}
 
 	},
-	'orderIsComplete': function (orderId) {
-
+	orderConfirm: function (orderId) {
 		var orderInfo = Orders.findOne({orderId: orderId});
 		if (!orderInfo) {
 			throw new Meteor.Error("数据错误");
@@ -42,6 +41,7 @@ Meteor.methods({
 		var ret = {userConfirmed: false, msg: "资料未填写完整, 不可提交"};
 		var checkRet = checkData(orderInfo, orderInfo, true);
 		if (checkRet.result) {
+			Orders.update({orderId: orderId}, {$set: {userConfirmed: true}});
 			ret = {userConfirmed: true, msg: "提交成功"};
 		} else {
 			ret = {userConfirmed: false, msg: checkItemsStr[checkRet.key] + "信息未填写完整, 不可提交"};

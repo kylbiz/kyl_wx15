@@ -15,15 +15,20 @@ Template.address.events({
 
 		for (key in addressInfo) {
 			if (!addressInfo[key]) {
-				Template.layoutTemplate.alert({
-					title: "提示", 
-					content: {receiver: '收货人', phone: '电话',	address: '地址'}[key] + "不可为空"});
+				var msg = {receiver: '收货人', phone: '电话',	address: '地址'}[key] + "不可为空";
+				kylUtil.alert(msg);
 				return;
 			}
 		}
 		var zipcode = $('#zipcode').val();
 		if (zipcode) {
 			addressInfo.zipcode = zipcode;
+		}
+
+		var phone = parseInt(addressInfo.phone);
+		if (!phone || !kylUtil.verifyPhone(phone)) {
+			kylUtil.alert("输入手机号有误");
+			return;
 		}
 
 		if (this && this._id) {

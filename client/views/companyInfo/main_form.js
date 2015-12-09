@@ -18,24 +18,63 @@ Template.name_segement.events({
         }
 
         var companyName = {};
+        var nameList = [];
         var mainName = $("#mainName").val() || "";
         if (!mainName) {
             kylUtil.alert("企业首选字号必须填!");
             return;
         }
+
+        var retMsg = kylUtil.verifyCompanyName(mainName);
+        var needAlert = [1, 'ok'];
+        if (retMsg[0] < 0) {
+            kylUtil.alert(verifRet[1] || "首选企业名有误");
+            return; 
+        } else if (retMsg[0] == 0) {
+            needAlert = retMsg;
+        }
+        nameList.push(mainName);
         companyName.mainName = mainName;
 
         var index = 1;
         $("#alternativeName").find("input").each(function(id, element){
             var name = $(element).val() || "";
             if (name) {
+                if (nameList.indexOf(name) >= 0) {
+                    kylUtil.alert();
+                    needAlert = [-1, '请勿输入重复的名称'];
+                    return;
+                }
+
+                var retMsg = kylUtil.verifyCompanyName(name);
+                if (retMsg[0] < 0) {
+                    needAlert = retMsg;
+                    return;
+                } else if (retMsg[0] == 0){
+                    needAlert = retMsg;
+                }
+
+                nameList.push(name);
                 companyName["alternativeName" + index] = name;
                 index += 1;
             }
-        })
+        });
 
         var compType = $("#compType").html().trim() || "有限责任公司";
-        updateOrder({companyName: companyName, companyType: compType});
+        if (needAlert[0] < 0) {
+            kylUtil.alert(needAlert[1]);
+        } else if (needAlert[0] == 0) {
+            Template.layoutTemplate.confirm({
+                title: "警告",
+                content: needAlert[1]
+            }).on(function (ret) {
+                if (ret) {
+                    updateOrder({companyName: companyName, companyType: compType});
+                }
+            });
+        } else {
+            updateOrder({companyName: companyName, companyType: compType});
+        }
     }
 });
 
@@ -349,13 +388,18 @@ Template.resource_segement.events({
         var moneyAll = 0;
         var percentAll = 0;
         var ret_status = [true, 'ok'];
+        // var ret_status = [false, 'ok'];
         var holdersCode = [];
 
         console.log("resource_segement saveBtn");
-        var holderTemplate = $(".hodlerSpace .content");
+        var holderTemplate = $(".hodlerSpace .group");
+        // holderTemplate.each(function (index, elem) {
+        //     console.log("index", index, elem);
+        // });
+
         holderTemplate.each(function (index, elem) {
             var selectType = parseInt($(elem).attr("holder") || "998");
-            console.log("fsdfsdf", selectType);
+
             var holderType = "";
             if (selectType == 0) {
                 holderType = "自然人";
@@ -372,8 +416,10 @@ Template.resource_segement.events({
             moneyInt = parseInt(money);
             percentInt = parseInt(moneyPercent);
 
-            if ( holderName 
-                && moneyInt && moneyInt >= 0  
+            console.log("holderName", holderName, moneyInt, percentInt);
+
+            if (holderName 
+                && moneyInt >= 0  
                 && percentInt && percentInt > 0 && percentInt <= 100) {
 
                 var holder = {
@@ -407,7 +453,7 @@ Template.resource_segement.events({
                         holder.code = code;
                         holder.address = address;
                     } else {
-                        ret_status = [false, "请填入有效信息"];
+                        ret_status = [false, "请填入有效个人信息"];
                         return;
                     }
                 }
@@ -417,7 +463,7 @@ Template.resource_segement.events({
                 holders.push(holder);
 
             } else {
-                ret_status = [false, '请填入有效信息'];
+                ret_status = [false, '请填入有效公司信息'];
                 return;
             }
         });
@@ -433,13 +479,13 @@ Template.resource_segement.events({
             return;
         }
 
-        if (moneyAll > parseInt(companyMoney)) {
-            kylUtil.alert("股东出资总额不得大于注册资金");
+        if (moneyAll != parseInt(companyMoney)) {
+            kylUtil.alert("股东出资总额应等于注册资金");
             return;
         }
 
-        if (percentAll > 100) {
-            kylUtil.alert("股东占股比例总和不得大于100%");
+        if (percentAll != 100) {
+            kylUtil.alert("股东占股比例总和应等于100%");
             return;
         }
 
@@ -451,8 +497,6 @@ Template.resource_segement.events({
             options: [{name: "自然人", value: 0}, {name: "企业", value: 1}]
         }).on(function (ret, selVal) {
             if (ret) {
-                console.log("fuck sel", selVal, typeof(selVal));
-
                 var template = Blaze.toHTMLWithData(Template.shockhoderInputBundle, {selectType: parseInt(selVal)});
                 $("#plus-content").append(template);                
             }
