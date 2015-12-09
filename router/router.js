@@ -237,3 +237,5 @@ Router.route('/context');
 Router.route('/aboutus');
 
 Router.route('/localEmptyTemplate');
+
+Router.route('/index');
