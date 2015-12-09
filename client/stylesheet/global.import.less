@@ -163,7 +163,7 @@ body>div {
   }
   .submit-box {
      .bridge();  
-     font-size: @huge-font-size;    
+     font-size: @large-font-size;    
   }
   .home-box {
      border-right: solid 1px #ddd;  
@@ -175,17 +175,20 @@ body>div {
       font-size: @label-font-size;    
   }
   .icon {
-     width: 26px;
-     height: 26px;
-     background-image: url(/images/ui-icon.png?version=1);    
+    .height(60px);
+    .width(60px);
+     background-size: cover;
+     -webkit-background-size: cover;
+//   background-image: url(/images/ui-icon.png?version=1);    
      background-repeat: no-repeat;
      margin:0 !important;    
   }
   .icon.ui-home {
-    
+    background-image: url(/images/menu/control_home.png);
   }
   .icon.ui-shopcart {
-    background-position: -104px 0;  
+    background-image: url(/images/menu/control_shopcart.png);
+//    background-position: -104px 0;  
   }
   
 }
