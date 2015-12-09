@@ -42,7 +42,7 @@ Router.route('/', {
 Router.route('/product/:productType', {
 	name: 'product',
 	waitOn: function () {
-		console.log("product ", this.params.productType, this.params.query);
+		// console.log("product ", this.params.productType, this.params.query);
 		return Meteor.subscribe('products', this.params.productType);
 	}
 });
@@ -69,6 +69,7 @@ Router.route('/addressList', {
         }
 	}
 });
+
 // 添加收货地址
 Router.route('/address', {
 	name: "address",

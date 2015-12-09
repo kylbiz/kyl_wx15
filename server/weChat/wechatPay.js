@@ -37,6 +37,36 @@ Meteor.methods({
 
 	},
 
+	// 获取共享收货地址
+	'getPayAddrArgs': function (openid, url) {
+		// var token = Meteor.call('getOAuthToken', openid);
+		// if (!token) {
+		// 	throw new Meteor.Error('getWechatAddr fail', 'Error: oauth access token no found');
+		// }
+		var token = "abcd";
+
+
+		var timeStamp = kylUtil.createTimestamp();
+		var nonceStr = kylUtil.createNonceStr()
+
+		var addrSign = kylUtil.getWXSign({
+			appId: WXConfig.appID,
+			url: url,
+			timestamp: timeStamp,
+			noncestr: nonceStr,
+			accessToken: token,
+		});
+
+		return {
+		    "appId": WXConfig.appID,
+		    "scope": "jsapi_address",
+		    "signType": "sha1",
+		    "addrSign": addrSign,
+		    "timeStamp": timeStamp,
+		    "nonceStr": nonceStr,
+	    }
+	},
+
 	// 退款
 	'refund': function (params) {
 		// params = {
@@ -54,7 +84,7 @@ Meteor.methods({
 		// });
 	},
 
-	// 本地测试
+	// 本地测试支付
 	'payOKTest': function (msg) {
 		console.log('payOK', msg);
 		// msg = {

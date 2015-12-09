@@ -226,45 +226,7 @@ kylUtil.verifyCompanyName = function (name) {
     return [-1, '公司名不得少于两个中文'];
 }   
 
-// 生成15长的随机字符串
-kylUtil.createNonceStr = function(num) {
-    num = num || 15;
-    return Math.random().toString(36).substr(2, 15);
-};
-
-// 生成字符串
-kylUtil.createTimestamp = function() {
-    return parseInt(new Date().getTime() / 1000) + '';
-};
-
-
-kylUtil.md5 = function(str) {
-    var crypto = Npm.require('crypto');
-    var md5sum = crypto.createHash('md5');
-    md5sum.update(str);
-    str = md5sum.digest('hex');
-    return str;
-};
-
-
-kylUtil.rawWXSign = function(args) {
-    var keys = Object.keys(args);
-    keys = keys.sort()
-    var newArgs = {};
-    keys.forEach(function(key) {
-        newArgs[key.toLowerCase()] = args[key];
-    });
-
-    var string = '';
-    for (var k in newArgs) {
-        string += '&' + k + '=' + newArgs[k];
-    }
-    string = string.substr(1);
-    // return string;
-
-    kylUtil.md5();
-};
-
+// 生成随机数字串
 kylUtil.randomNumber = function (number) {
     number = number || 0;
     var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -276,7 +238,18 @@ kylUtil.randomNumber = function (number) {
     return str;
 }
 
+// 生成15长的随机字符串
+kylUtil.createNonceStr = function(num) {
+    num = num || 15;
+    return Math.random().toString(36).substr(2, 15);
+};
 
+// 生成时间戳
+kylUtil.createTimestamp = function() {
+    return parseInt(new Date().getTime() / 1000) + '';
+};
+
+// 验证数据合法性的统一调用 暂未实现！！！
 kylUtil.checkData = function (data, checkReg) {
     data = data || {};
     for (key in data) {
@@ -289,6 +262,18 @@ kylUtil.checkData = function (data, checkReg) {
     }
 
     return true;
+}
+
+
+// 等到绝对url 格式： http://www.baidu.com/path/to
+kylUtil.getAbsoluteUrl = function (pathname) {
+    if (pathname.charAt(0) == '/') {
+        return Meteor.absoluteUrl() + pathname.substring(1);
+    } else if (pathname.slice(0, 7) == 'http://') {
+        return pathname;
+    }
+
+    throw new Meteor.Error('kylUtil.getAbsoluteUrl fail', 'Error: pathname is illegal');
 }
 
 
@@ -314,5 +299,68 @@ kylUtil.mergeTwoObj = function (mainObj, obj) {
 
     return mainObj;
 }
+
+
+// var createNonceStr = function () {
+//   return Math.random().toString(36).substr(2, 15);
+// };
+
+// var createTimestamp = function () {
+//   return parseInt(new Date().getTime() / 1000) + '';
+// };
+
+// var raw = function (args) {
+//   var keys = Object.keys(args);
+//   keys = keys.sort()
+//   var newArgs = {};
+//   keys.forEach(function (key) {
+//     newArgs[key.toLowerCase()] = args[key];
+//   });
+
+//   var string = '';
+//   for (var k in newArgs) {
+//     string += '&' + k + '=' + newArgs[k];
+//   }
+//   string = string.substr(1);
+//   return string;
+// };
+
+// 签名加密
+kylUtil.getWXSign = function(args) {
+    var str = kylUtil.rawWX(args);
+    console.log('getWXSign original str', str);
+    return kylUtil.crypto('sha1', str);
+}
+
+kylUtil.crypto = function (type, str) {
+    // type = sha1 / md5
+    var crypto = Npm.require('crypto');
+    var sum = crypto.createHash(type);
+    sum.update(str);
+    str = sum.digest('hex');
+    return str;
+}
+
+
+kylUtil.rawWX = function(args) {
+    var keys = Object.keys(args);
+    keys = keys.sort()
+    var newArgs = {};
+    keys.forEach(function(key) {
+        newArgs[key.toLowerCase()] = args[key];
+    });
+
+    var string = '';
+    for (var k in newArgs) {
+        string += '&' + k + '=' + newArgs[k];
+    }
+    string = string.substr(1);
+    return string;
+};
+
+
+// var crypto = require('crypto');
+// var sha1 = crypto.createHash('sha1');
+// sha1.update('hello');
 
 
