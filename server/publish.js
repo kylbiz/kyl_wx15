@@ -3,6 +3,11 @@
  */
 
 Meteor.publish('products', function(project, opt) {
+	if (!project) {
+		return [];
+	}
+
+
 	opt = opt || {};
 	products = {
 		'registration': RegistrationLists.find(opt),
@@ -17,9 +22,11 @@ Meteor.publish('products', function(project, opt) {
 		for (key in products) {
 			products_preview.push(products[key]);
 		}
-
 		return products_preview;
+	} else if (project == 'finances') {
+		return [FinanceLists.find(), BookkeepingLists.find(), BankLists.find()];
 	}
+
 	return products[project];
 });
 
