@@ -1,13 +1,62 @@
-// 项目客户端的路由控制及路由的权限判断
+// 产品的路由
 
-
-
-// priceGeneral = {
-// 	''
-// }
-
-// 首页
+// 公司首页
 Router.route('/', {
+	name: 'index',
+});
+
+// 大分类产品
+Router.route('/products/:products', {
+	name: 'products',
+	waitOn: function () {
+		var type = this.params.products || false;
+		console.log("products", type);
+		return Meteor.subscribe('products', type);
+	},
+	data: function () {
+
+		// productsPreview = [
+		// 	{title: '小白云工商注册', items: RegList},
+		// 	{title: '小企财云', items: [
+		// 		{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
+		// 		{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
+		// 		{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
+		// 	]},
+		// 	{title: '小企人事', items: [
+		// 		{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
+		// 	]},
+		// ];
+
+		var type = this.params.products
+		return {
+			registration: function () {
+				console.log("RegistrationLists", RegistrationLists.find({}));
+				var RegList = RegistrationLists.find({}, {name: true}).fetch();
+				for (var key in RegList) {
+					RegList[key]['baseType'] = 'registration';
+					RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
+				}
+				return {title: '小白云工商注册', items: RegList};
+			},
+			finances: function () {
+				return {title: '小企财云', items: [
+					{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
+					{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
+					{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
+				]};
+			},
+			assurance: function () {
+				return {title: '小企人事', items: [
+					{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
+				]};
+			}
+		}[type]();
+	}
+
+})
+
+// 产品中心首页
+Router.route('/main', {
 	name: 'main',
 	waitOn: function () {
 		return Meteor.subscribe('products', 'preview_all');
@@ -19,7 +68,6 @@ Router.route('/', {
 		for (var key in RegList) {
 			RegList[key]['baseType'] = 'registration';
 			RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
-
 		}
 
 		productsPreview = [
@@ -238,5 +286,3 @@ Router.route('/context');
 Router.route('/aboutus');
 
 Router.route('/localEmptyTemplate');
-
-Router.route('/index');

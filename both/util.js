@@ -30,7 +30,7 @@ kylUtil.getImg = function (name) {
     var img = {
         '1元注册': 'oneyuan',  
         '极速注册': 'jisu',        
-        '电商公司': '299',              
+        '电商公司': 'dianshang',              
         '教育公司': 'jiaoyu',        
         '金融信息公司': 'jingrong', 
         '移动互联网公司': 'hulianwang',

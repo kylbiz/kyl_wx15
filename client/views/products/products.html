@@ -1,9 +1,5 @@
-<template name="main">
-  <div class="cover-img">
-    <img src="/images/banner.jpg?v=wechat" alt="">
-  </div> 
+<template name="products">
   <div class="PostList has-ui-menu main-container">
-    {{#each products }}
     <div class="main-title">
       <span></span>{{title}}
     </div>
@@ -28,7 +24,6 @@
         {{/each}}
       </ul>
     </div>
-    {{/each}}
   </div>
   {{> ui_menu }}
 </template>
