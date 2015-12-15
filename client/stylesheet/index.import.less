@@ -1,5 +1,5 @@
 .bridge-gray {
-  background-color: #d7d7d7; 
+  background-color: #f5f5f5; 
 }
 .index {
   header {
@@ -36,25 +36,33 @@
     height: 100%;
   }
   .main-root-container {
-    .padding-rem(28px); 
-    background-color: #f5f5f5;
+    //.padding-rem(28px); 
+    background-color: #fff;
   }
   ul.main_root {
    .make-row();
-   .margin-bottom-rem(-28px);
+   //.margin-bottom-rem(28px);
+   margin-top: -1px;   
    overflow: hidden;
+    
    >li {
    .make-column();
    width: 33.33333333333333%;
+   border: solid 1px #dededf;
+   //margin-right: -1px;
+   margin-bottom: -1px; 
+   border-left-color: #fff;
    text-align: center;
      >div {
       display: inline-block;
       cursor: pointer;
      }
-   .margin-bottom-rem(28px);
+     //.margin-bottom-rem(28px);
+     .padding-top-rem(28px);
+     .padding-bottom-rem(28px);
      .icon {
       margin: 0 auto;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       .height(100px);
       .width(100px);    
       img {
@@ -68,13 +76,14 @@
    }  
   }
   .root-module { 
-    @root-module-padding:20px;
-    @photo-px-size:100px;       
+    @root-module-padding:15px;
+    @photo-px-size:90px;       
     @segement-padding-left:unit((unit(@root-module-padding)+unit(@photo-px-size)),px);
+    margin-bottom: 15px;
     position: relative;
+    background-color: #fff;
     .clearfix();
-    .padding-rem(@root-module-padding);
-     border-bottom: solid 1px #ccc; 
+     //border-bottom: solid 2px #ccc; 
     .photo-frame {
      border-radius: 4px;
      -webkit-border-radius: 4px;
@@ -83,33 +92,60 @@
      .width(@photo-px-size);
      .margin-right-rem(@root-module-padding); 
      position: absolute;
-     z-index: 20;
+     z-index: 20;      
     }
+    .bar {
+      .padding-left-rem(@root-module-padding);   
+      .padding-right-rem(@root-module-padding); 
+      line-height: 48px;
+      vertical-align: middle;
+     }
+     .content {
+      .padding-rem(@root-module-padding);
+       //padding-right: 0;     
+      .make-row();
+       position: relative;
+     }    
+    //@right-container-width:60px;
     .segement {
       position: relative;
       .padding-left-rem(@segement-padding-left);
+      //箭头距离
+      padding-right: 14px;
       float: left;
+      //padding-right: @right-container-width;
+      .min-height(@photo-px-size);
+      display: -webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-box-pack: justify;
+      -webkit-box-align: start;      
+      //.padding-top-rem(15px);
+      //.padding-bottom-rem(15px);
     }
     .title {
       margin-bottom: 7px;
       font-weight: 700;
-    }
+    }    
     .des {
-      font-size: 12px;      
+      font-size: 14px; 
+      line-height: 18px;
+      vertical-align: top;
       color: @font-gray;
-      margin-bottom: 8px; 
-      padding-right: 14px;
+      margin-bottom: 4px; 
     }
     .icon-right-container {
       position: absolute;
-      width: 27px;
+//      width: 27px;
+      //min-width: @right-container-width;
+      text-align: left;
       height: 100%;
       top: 0;
       right: 0;
       .padding-right-rem(@root-module-padding);
       display: -webkit-box;    
       -webkit-box-align: center;
-      -webkit-box-pack: end;        
+      -webkit-box-pack: end;   
+      color: @default-background-color;
     }
     
     .angle-right {
@@ -119,7 +155,17 @@
      display: inline-block;
      font-size: 0;
     }
-  
+//    @triangle-direction:top right;
+//    @triangle-size:@huge-size;
+//    @triangle-color:@default-background-color;
+//    @triangle-origin:corner;
+    .triangle-right {
+//     .triangle(@triangle-direction, @triangle-size, @triangle-color, @triangle-origin);
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+    }
   }
   .label-item {
     .make-row();
@@ -131,9 +177,23 @@
      border-radius: 4px;
      -webkit-border-radius: 4px;
      margin-right: 5px;
-     font-size: 10px;
+     //font-size: 10px;
+     font-size: 12px;  
      color: @font-gray;
-     margin-bottom: 5px;
+     //margin-bottom: 5px;
     }
+  }  
+  .bar {
+     .make-row();
+     border-bottom: solid 1px #ddd;
+     .title {
+      float: left;
+      margin-bottom: 0;
+     }
+     .price {
+      float: right;
+      font-weight: 700;
+      color: @default-background-color;
+     }
   }
 }
