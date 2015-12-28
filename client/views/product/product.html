@@ -1,31 +1,141 @@
 <template name='product'>
-	<div class="main main-container has-ui-control-bottom">
-      <div class="board">
-        <div class="cover-img">
-          <img src="{{_img}}" alt="">
-        </div>        
-      </div>
-      <div class="board">
-        <div class="main-title">{{_name}}</div>
-        <div class="price">&yen;{{_price}}</div>
-        <div class="notify">
-          <div class="key">您将获得:</div>
-          <div class="value">
-新版营业执照、新版营业执照副本、公司章、法人章、财务章
-<!--/财务
-法人一证通、办税人联系卡（无发票）
-法人一证通、办税人联系卡、金税盘、发票章、发票（有发票）
--->
-<!--/社保
-缴费卡、社保证、法人一证通、公积金核定表
--->                            
-          </div>
-        </div>        
-      </div>
-      <div class="dist-content">
+	<div class="main main-container has-ui-control-bottom product">
+    <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg">
+      <div class="cover-center">
          <div class="cover-img">
-            <img src="{{_des}}" alt="">
+           <img src="/images/product/reg_icon.png" alt="">
          </div>
+         <div class="cover-title">小白云</div>
+         <div class="cover-subtitle">工商注册系统</div>           
+      </div>        
+    </div>            
+    <div class="index">      
+      <div class="root-module">
+        <div class="content">
+            <div class="photo-frame">
+              <img src="/images/list/r1.png" alt="">
+            </div>
+            <div class="segement">
+              <div class="title">
+                {{_name}}
+              </div>
+              <div class="des">推荐APP开发、智能硬件等互联网类公司</div>
+            </div>
+            <div class="icon-right-container">
+               &yen;{{_price}}
+            </div>                  
+        </div>
+        <!--安置活动标签-->
+        <div class="triangle-right">
+        </div>
+      </div>      
+    </div>
+            
+      <!-- 文案部分 -->        
+      <div class="dist">
+        <div class="section">
+         <div class="ui-title">
+           服务说明
+         </div>
+         <div class="ui-content">
+            <div class="notify-box">
+             <div class="list">
+             <span class="map">1</span>
+             提供公司注册咨询服务
+             </div>
+             <div class="list">
+             <span class="map">2</span>
+             提供企业字号指导，帮助您提高名称核准率</div>
+             <div class="list">
+             <span class="map">3</span>
+             制作工商材料</div>
+             <div class="list">
+             <span class="map">4</span>
+             提交材料至工商局（共4次)</div>
+             <div class="list">
+             <span class="map">5</span>
+             刻章（公司章、法人章、财务章)</div>  
+             <div class="list">
+             <span class="map">6</span>
+             赠送精美礼盒</div>
+            </div>          
+         </div>          
+        </div>
+        
+        <div class="section">
+         <div class="ui-title">
+           服务流程
+         </div>
+         <div class="ui-content">
+           <div class="dist-list-box">
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map">1</span>在线下单                 
+               </div>
+               <div class="pull-right">
+                 <span class="time">60秒</span>
+                 <span class="ui-icon"></span>
+               </div>
+               
+             </div>
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map">2</span>名称核准                 
+               </div>
+               <div class="pull-right">
+                 <span class="time">10分钟</span>
+                 <span class="ui-icon"></span>
+               </div>               
+             </div>  
+             
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map">3</span>名称核准                 
+               </div>
+               <div class="pull-right">
+                 <span class="time">5个工作日</span>
+                 <span class="ui-icon"></span>
+               </div>               
+             </div> 
+                     
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map">4</span>工商登记                 
+               </div>
+               <div class="pull-right">
+                 <span class="time">10个工作日</span>
+                 <span class="ui-icon"></span>
+               </div>               
+             </div> 
+             
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map">5</span>领取执照                
+               </div>
+               <div class="pull-right">
+                 <span class="time">1-2个工作日</span>
+                 <span class="ui-icon"></span>
+               </div>               
+             </div> 
+             <div class="list">
+               <div class="pull-left">
+                 <span class="map last">6</span>后续事项                
+               </div>
+               <div class="pull-right">
+                 <span class="ui-icon"></span>
+               </div>               
+             </div>                                                                               
+           </div>
+         </div>          
+        </div>        
+<div class="section">
+  <div class="ui-title">服务承诺</div>
+  <div class="ui-content">
+    <div class="promise-box">
+      <img src="/images/product/promise.png" alt="">
+    </div>    
+  </div>
+</div>
       </div>
       {{> controlBox }}
   </div>  
