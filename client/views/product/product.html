@@ -1,6 +1,6 @@
 <template name='product'>
   <div class="main main-container has-ui-control-bottom product">
-    <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg">
+    <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg)">
       <div class="cover-center">
         <div class="cover-img">
           <img src="/images/product/reg_icon.png" alt="">
@@ -33,7 +33,7 @@
 
     <!-- 文案部分 -->
     <div class="dist">
-       {{> dist_agent }}
+       {{> dist_reg }}
     </div>
     {{> controlBox }}
   </div>
@@ -52,6 +52,7 @@
   </div>  
 </template>
 
+<!-- 公司注册 -->
 <template name="dist_reg">
   <div class="section">
     <div class="ui-title">
@@ -195,7 +196,7 @@
                     <i class="icon icon1"></i>营业执照(副本)
                   </div>
                   <div class="photo">
-                    <img src="/images/product/get_2.png?v=1" alt="">
+                    <img src="/images/product/get_2.png?v=1.0" alt="">
                   </div>
                 </div>
               </div>
@@ -203,7 +204,7 @@
                 <div class="cell">
                   <div class="title"><i class="icon icon2"></i>公司章</div>
                   <div class="photo">
-                    <img src="/images/product/get_3.png?v=1" alt="">
+                    <img src="/images/product/get_3.png?v=1.0" alt="">
                   </div>
                 </div>
                 <div class="cell">
@@ -211,7 +212,7 @@
                     <i class="icon icon3"></i>财务章
                   </div>
                   <div class="photo">
-                    <img src="/images/product/get_4.png?v=1" alt="">
+                    <img src="/images/product/get_4.png?v=1.0" alt="">
                   </div>
                 </div>
                 <div class="cell">
@@ -254,7 +255,7 @@
   {{ >dist_promise }}
 </template>
 
-
+<!-- 代理记账 -->
 <template name="dist_agent">
   <div class="section">
     <div class="ui-title">
@@ -405,4 +406,353 @@
   </div>
   
   {{ >dist_promise }}  
+</template>
+
+<!-- 银行开户 -->
+<template name="dist_bank">
+  <div class="section">
+    <div class="ui-title">
+      服务说明
+    </div>
+    <div class="ui-content">
+      <div class="notify-box">
+        <div class="list">
+          <span class="map">1</span> 银行预约服务 
+        </div>
+        <div class="list">
+          <span class="map">2</span> 银行开户服务 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="ui-title">
+      服务流程
+    </div>
+    <div class="ui-content">
+      <div class="dist-list-box">
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">1</span> 在线下单
+            </div>
+            <div class="pull-right">
+              <span class="time">60秒</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                在线微信下单支付，方便快捷
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">2</span> 银行预约
+            </div>
+            <div class="pull-right">
+              <span class="time">1个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                由专业人员前往指定银行办理预约手续
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">3</span> 提交资料  
+            </div>
+            <div class="pull-right">
+              <span class="time">1个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                将开户所需材料提交到银行申请开户 
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">4</span> 领取证书
+            </div>
+            <div class="pull-right">
+              <span class="time">7-10个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                材料由开户银行提交至人民银行审核完毕后下方开户许可证 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {{ >dist_promise }}    
+</template>
+
+<!-- 社保人事  -->
+<template name="dist_security">
+  <div class="section">
+    <div class="ui-title">
+      服务说明
+    </div>
+    <div class="ui-content">
+      <div class="notify-box">
+        <div class="list">
+          <span class="map">1</span> 社保、公积金开户服务  
+        </div>
+        <div class="list">
+          <span class="map">2</span> 企业招退工、社保代缴服务  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="ui-title">
+      服务流程
+    </div>
+    <div class="ui-content">
+      <div class="dist-list-box">
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">1</span> 在线下单
+            </div>
+            <div class="pull-right">
+              <span class="time">60秒</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                在线微信下单支付，方便快捷
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">2</span> 提交材料
+            </div>
+            <div class="pull-right">
+              <span class="time">10分钟</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                提交开户/代缴所需材料 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">3</span> 社保开户  
+            </div>
+            <div class="pull-right">
+              <span class="time">30个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                由专业人员前往社保局办理开户手续，并完成开户缴费。  
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">4</span> 社保代缴
+            </div>
+            <div class="pull-right">
+              <span class="time">30个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                由专业人员前往社保局办理代缴手续，并完成代缴缴费。 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {{ >dist_promise }}    
+</template>
+
+
+<!-- 商标注册  -->
+<template name="dist_trademark">
+  <div class="section">
+    <div class="ui-title">
+      服务说明
+    </div>
+    <div class="ui-content">
+      <div class="notify-box">
+        <div class="list">
+          <span class="map">1</span> 在线检索服务 
+        </div>
+        <div class="list">
+          <span class="map">2</span> 制作商标受理材料 
+        </div>
+        <div class="list">
+          <span class="map">3</span> 提交商标总局  
+        </div>  
+        <div class="list">
+          <span class="map">4</span> 邮寄证书（商标受理书、商标证书）  
+        </div>               
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="ui-title">
+      服务流程
+    </div>
+    <div class="ui-content">
+      <div class="dist-list-box">
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">1</span> 在线下单
+            </div>
+            <div class="pull-right">
+              <span class="time">60秒</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                在线微信下单支付，方便快捷
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">2</span> 商标核险
+            </div>
+            <div class="pull-right">
+              <span class="time">1个工作日</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                由专业人员为您查询商标风险，并提供合适的保护方案  
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">3</span> 提交材料   
+            </div>
+            <div class="pull-right">
+              <span class="time"> 10分钟</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                提交申请商标所需材料   
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">4</span> 上报申请  
+            </div>
+            <div class="pull-right">
+              <span class="time">4个月</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                将制作好的材料提交到商标局，并拿到受理通知书  
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="list-container">
+          <div class="list">
+            <div class="pull-left">
+              <span class="map">5</span> 完成注册   
+            </div>
+            <div class="pull-right">
+              <span class="time">10个月</span>
+              <span class="ui-icon"></span>
+            </div>
+          </div>
+
+          <div class="spread-content">
+            <div class="spread-army">
+              <div class="text">
+                完成商标注册，拿到商标注册证书 
+              </div>
+            </div>
+          </div>
+        </div>
+                
+      </div>
+    </div>
+  </div>
+  
+  {{ >dist_promise }}    
 </template>
