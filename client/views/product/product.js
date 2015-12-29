@@ -222,3 +222,9 @@ function getServiceData () {
 
     return handles[type]();       
 }
+
+Template.product.onRendered(function(){
+    $(".dist-list-box .list").click(function(){
+      $(this).closest('.list-container').toggleClass("open");
+    });
+});

@@ -1,28 +1,56 @@
 .board.gallery {
-  color: #fff; 
+  color: #fff;
   background-color: #ccc;
   .height(280px);
   .webkit-box-inline-center();
   .background-size-cover();
   background-position: center center;
-  text-align: center;  
+  text-align: center;
   .cover-img {
-    margin-bottom: 12px; 
-    .height(128px);
-    .width(128px);
+    margin-bottom: 10px;
+    .height(100px);
+    .width(100px);
     display: inline-block;
   }
   .cover-title {
-    font-size: 36px;
+    font-size: @huge-font-size;
     margin-bottom: 2px;
   }
   .cover-subtitle {
-    font-size: 20px;
+    font-size: @middle-font-size;
+  }
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
   }
 }
 
 .product {
-  padding: 0 !important; 
+  padding: 0 !important;
   .section {
     .margin-bottom-rem(20px);
     background-color: #fff;
@@ -43,7 +71,7 @@
     border-radius: 6px;
     -webkit-border-radius: 6px;
     //background-color: #efefef;
-    background-color: rgba(239,239,239,.7);
+    background-color: #F3F5F7;
     .list {
       border-bottom: solid 1px #d7d7d7;
       color: #666;
@@ -53,14 +81,14 @@
       .padding-left-rem(15px);
       font-size: 13px;
       &:last-child {
-       border-bottom: 0; 
-      }            
+        border-bottom: 0;
+      }
     }
     .map {
       width: 20px;
       height: 20px;
       border-radius: 10px;
-      -webkit-border-radius: 10px;  
+      -webkit-border-radius: 10px;
       text-align: center;
       line-height: 20px;
       vertical-align: middle;
@@ -72,21 +100,21 @@
       vertical-align: 1px;
     }
   }
-  
   .section .dist-list-box {
-
-    .list {
+    .list-container {
+      .margin-bottom-rem(15px);
+      background-color: #F3F5F7;
       border-radius: 6px;
       -webkit-border-radius: 6px;      
-      .margin-bottom-rem(15px);
-      background-color: rgba(239,239,239,.7);
+    }
+    .list {
       color: #666;
       .height(72px);
       .line-height(72px);
       overflow: hidden;
       .padding-left-rem(15px);
       .padding-right-rem(15px);
-      font-size: @label-font-size; 
+      font-size: @label-font-size;
       .time {
         font-size: 12px;
         color: #999;
@@ -100,36 +128,149 @@
         background-image: url(../images/product/up-arrow-box.png);
         background-repeat: no-repeat;
         vertical-align: middle;
-      }
+      }    
     }
     .map {
-      width: 20px;
-      height: 20px;
-      border-radius: 10px;
-      -webkit-border-radius: 10px;  
-      text-align: center;
-      line-height: 20px;
-      vertical-align: middle;
-      color: #fff;
-      font-size: 13px;
-      display: inline-block;
-      background-color: #E8423A;
-      margin-right: 5px;
-      vertical-align: 1px;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        text-align: center;
+        line-height: 20px;
+        vertical-align: middle;
+        color: #fff;
+        font-size: 13px;
+        display: inline-block;
+        background-color: #E8423A;
+        margin-right: 5px;
+        vertical-align: 1px;
     }
     .map.last {
       background-color: #3C98E6;
     }
+    .spread-content {
+        display: none;
+        -webkit-animation-name: fadeInDown;
+        animation-name: fadeInDown;  
+        vertical-align: middle;
+        .padding-top-rem(20px);
+        .padding-bottom-rem(20px);
+        .padding-left-rem(25px);
+        .padding-right-rem(25px);
+        border-top: solid 1px #d7d7d7;
+        .cover-img {
+         .margin-top-rem(15px); 
+          border-top: solid 1px #d7d7d7;
+          .margin-left-rem(-25px);
+          .margin-right-rem(-25px); 
+          .padding-rem(20px);  
+          padding-bottom: 0;
+          line-height: normal;
+          .title {
+           .margin-bottom-rem(10px); 
+           color: #666;
+           font-size: @label-font-size;
+           display: inline-block;
+           padding-left: 28px;
+           padding-right: 28px;
+           position: relative;
+           line-height: 24px;
+           vertical-align: middle;
+           .icon {
+            position: absolute;
+            left: 0;
+            top: -2px;
+            .background-size-contain();
+            height: 24px;
+            width: 24px;            
+           }
+           .icon1 {
+            background-image: url(../images/product/get_icon_1.png);             
+           }
+           .icon2 {
+            background-image: url(../images/product/get_icon_2.png);             
+           }  
+           .icon3 {
+            background-image: url(../images/product/get_icon_3.png);             
+           }    
+           .icon4 {
+            background-image: url(../images/product/get_icon_4.png);             
+           }               
+          }
+          .photo {
+           line-height: 0; 
+          }
+          .large {
+            .margin-bottom-rem(20px);           
+          }
+          .large,.small {
+            .make-row(); 
+            text-align: center;
+          }
+          .large .cell {
+            width: 50%;
+            float: left;
+            img {
+              width: 48%;
+              min-width: 60px;
+              max-width: 120px;
+            }
+          }
+          
+          .small .cell {
+           width: 33.33333333333333%;
+           float: left;
+            img {
+              width: 48%;
+              min-width: 64px;
+              max-width: 128px;
+            }            
+          }
+        }
+        .spread-army {
+          .line-height(24px);
+          position: relative;
+          &:before {
+           content: '';
+           display: inline-block;
+           width: 10px;
+           height: 10px;            
+           border-radius:5px;
+           -webkit-border-radius:5px;
+           background-color: #666; 
+           position: absolute;
+           z-index: 20;
+           top: 3px;
+           left: 0;
+          }
+          .text {
+           color: #666;
+           font-size: 13px;
+           padding-left: 20px;
+            
+          }
+        }
+    }  
+    .list-container.open {
+      .list {     
+        
+      }
+      .ui-icon {
+        background-image: url(../images/product/down-arrow-box.png);
+      }
+      .spread-content {
+        display: block; 
+      }
+    }
   }
-  
   .section .promise-box {
     border-radius: 6px;
-    -webkit-border-radius: 6px;    
-    background-color: rgba(239,239,239,.7);
+    -webkit-border-radius: 6px;
+    background-color: #F3F5F7;    
     text-align: center;
     .padding-rem(32px);
     img {
-       max-width: 100%; 
+      max-width: 100%;
     }
   }
 }
