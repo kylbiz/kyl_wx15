@@ -47,7 +47,7 @@ Meteor.methods({
 
 
 		var timeStamp = kylUtil.createTimestamp();
-		var nonceStr = kylUtil.createNonceStr()
+		var nonceStr = kylUtil.createNonceStr();
 
 		var addrSign = kylUtil.getWXSign({
 			appId: WXConfig.appID,
@@ -64,7 +64,7 @@ Meteor.methods({
 		    "addrSign": addrSign,
 		    "timeStamp": timeStamp,
 		    "nonceStr": nonceStr,
-	    }
+	    };
 	},
 
 	// 退款

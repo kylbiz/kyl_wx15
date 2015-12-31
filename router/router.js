@@ -2,7 +2,7 @@
 
 // 公司首页
 Router.route('/', {
-	name: 'index',
+	name: 'index'
 });
 
 // 大分类产品
@@ -10,27 +10,12 @@ Router.route('/products/:products', {
 	name: 'products',
 	waitOn: function () {
 		var type = this.params.products || false;
-		console.log("products", type);
 		return Meteor.subscribe('products', type);
 	},
 	data: function () {
-
-		// productsPreview = [
-		// 	{title: '小白云工商注册', items: RegList},
-		// 	{title: '小企财云', items: [
-		// 		{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
-		// 		{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
-		// 		{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
-		// 	]},
-		// 	{title: '小企人事', items: [
-		// 		{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
-		// 	]},
-		// ];
-
-		var type = this.params.products
+		var type = this.params.products;
 		return {
 			registration: function () {
-				console.log("RegistrationLists", RegistrationLists.find({}));
 				var RegList = RegistrationLists.find({}, {name: true}).fetch();
 				for (var key in RegList) {
 					RegList[key]['baseType'] = 'registration';
@@ -49,41 +34,54 @@ Router.route('/products/:products', {
 				return {title: '小企人事', items: [
 					{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
 				]};
+			},
+			trademark: function () {
+				return {title: '商标注册', items: [
+					{name: '商标注册', price: kylUtil.getPriceGeneral('商标注册'), baseType: 'trademark'}
+				]};
 			}
 		}[type]();
-	}
-
-})
-
-// 产品中心首页
-Router.route('/main', {
-	name: 'main',
-	waitOn: function () {
-		return Meteor.subscribe('products', 'preview_all');
 	},
-	data: function () {
-		// registration, bank, finance, assurance, bookkeeping
-		console.log("main params", this.params);
-		var RegList = RegistrationLists.find({}, {name: true}).fetch();
-		for (var key in RegList) {
-			RegList[key]['baseType'] = 'registration';
-			RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
+	onBeforeAction: function () {
+		var data = this.data() || {};
+		var items = data.items || [];
+		if (items.length === 1) {
+			this.redirect('/product/' + items[0].baseType + '?name=' + items[0].name);
+		} else {
+			this.next();
 		}
-
-		productsPreview = [
-			{title: '小白云工商注册', items: RegList},
-			{title: '小企财云', items: [
-				{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
-				{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
-				{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
-			]},
-			{title: '小企人事', items: [
-				{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
-			]},
-		];
-		return {products: productsPreview};
-	},
+	}
 });
+
+// 产品中心首页 !!! 废弃
+// Router.route('/main', {
+// 	name: 'main',
+// 	waitOn: function () {
+// 		return Meteor.subscribe('products', 'preview_all');
+// 	},
+// 	data: function () {
+// 		// registration, bank, finance, assurance, bookkeeping
+// 		console.log("main params", this.params);
+// 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
+// 		for (var key in RegList) {
+// 			RegList[key]['baseType'] = 'registration';
+// 			RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
+// 		}
+
+// 		productsPreview = [
+// 			{title: '小白云工商注册', items: RegList},
+// 			{title: '小企财云', items: [
+// 				{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
+// 				{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
+// 				{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
+// 			]},
+// 			{title: '小企人事', items: [
+// 				{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
+// 			]},
+// 		];
+// 		return {products: productsPreview};
+// 	},
+// });
 
 
 // 产品详情页
@@ -92,6 +90,9 @@ Router.route('/product/:productType', {
 	waitOn: function () {
 		// console.log("product ", this.params.productType, this.params.query);
 		return Meteor.subscribe('products', this.params.productType);
+	},
+	data: function () {
+		return {productName: this.params.query.name};
 	}
 });
 
@@ -111,8 +112,8 @@ Router.route('/addressList', {
 	},
 	onBeforeAction: function () {
 		if( UserAddress.find({}).count() ) {
-            this.next();   
-        } else { 
+            this.next();
+        } else {
             Router.go('address');
         }
 	}
@@ -124,7 +125,7 @@ Router.route('/address', {
 	waitOn: function () {
 		var addrId = this.params.query.addrId;
 		if (addrId) {
-			return Meteor.subscribe('userAddress', addrId);	
+			return Meteor.subscribe('userAddress', addrId);
 		} else {
 			return [];
 		}
@@ -143,7 +144,7 @@ Router.route('/weixinpay/', {
 	waitOn: function () {
 		var orderId = this.params.query.orderid || false;
 		return Meteor.subscribe('shopcart', orderId);
-	}	
+	}
 });
 
 // 支付结果
@@ -154,7 +155,7 @@ Router.route('/paySuccess', {
 	},
 	data: function () {
 		return {info: PayLogs.findOne({}), style: this.params.query.style};
-	}			
+	}
 });
 
 // 注册公司信息
@@ -198,9 +199,9 @@ Router.route('/register', {
     if(Meteor.userId()) {
       Router.go('/');
     } else {
-      this.next();      
+      this.next();
     }
-  }  
+  }
 });
 
 // 公司信息填写
@@ -223,7 +224,8 @@ Router.route('/orderList', {
 	name: "orderList",
 	waitOn: function () {
 		return Meteor.subscribe('orders');
-	}
+	},
+	// onBeforeAction
 });
 
 // 订单详情
@@ -268,7 +270,7 @@ Router.route('/shockholder', {
 	waitOn: function () {
 		var query = this.params.query;
 		var orderId = query.orderId || "empty";
-		return Meteor.subscribe("orders", orderId)
+		return Meteor.subscribe("orders", orderId);
 	},
 	data: function () {
 		return Orders.findOne({});
@@ -279,14 +281,7 @@ Router.route('/tools');
 
 Router.route('/forget');
 
-
-
 Router.route('/context');
 
 Router.route('/aboutus');
 
-//空我的订单暂存区，用后删除
-Router.route('/localEmptyTemplate');
-
-//新产品页暂存区，预览见images->list->preview.jpg,用后删除
-Router.route('/mList');

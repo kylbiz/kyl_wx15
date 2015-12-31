@@ -15,11 +15,12 @@ Meteor.publish('products', function(project, opt) {
 		'bookkeeping': BookkeepingLists.find(opt),
 		'bank': BankLists.find(), // 需定义为collection
 		'assurance': AssuranceLists.find(),
+		'trademark': TradeMark.find(),
 	};
 
 	if (project == 'preview_all') {
 		products_preview = [];
-		for (key in products) {
+		for (var key in products) {
 			products_preview.push(products[key]);
 		}
 		return products_preview;
@@ -61,7 +62,7 @@ Meteor.publish('paylog', function (openid) {
 });
 
 //
-Meteor.publish('companyIndustry', function () {	
+Meteor.publish('companyIndustry', function () {
 	return [BusinessTypeLists.find({}), Business.find({}), Business1.find({})];
 });
 

@@ -25,7 +25,8 @@ function getShopcartInfo(serInfo) {
     	finance: handleFinance,
     	bookkeeping: handleBookkeeping,
     	bank: handleBank,
-    	invoice: false,		// 是否要发票，之后实现
+        trademark: handlesTrademark
+    	// invoice: false,		// 是否要发票，之后实现
     };
     var diffInfo = handles[type](serInfo);
 
@@ -42,6 +43,7 @@ function commInfo(serInfo) {
         'assurance': '社保代理',
         'bookkeeping': '流量记账包服务套餐',
         'bank': '银行开户',
+        'trademark': '商标注册',
     };
 
 	return {
@@ -94,7 +96,7 @@ function handleRegist(serInfo) {
 	    servicesNameList: [{
 	    	name:  serInfo.name, //"互联网公司[杨浦]", // 当前订单具体内容
             money: pay,          //当前订单价格
-            scale: 1,                 // 购买数量 
+            scale: 1,                 // 购买数量
             zone: serInfo.zone,
             servicesContains: [      // 订单中包含，也就是详细信息
                 {
@@ -112,7 +114,7 @@ function handleRegist(serInfo) {
 
 // 社保数据处理
 function handleAssurance(serInfo) {
-	
+
 	var info = AssuranceLists.findOne({name: serInfo.server, periodName: serInfo.periodName});
 	if (!info) {
 		throw new Meteor.Error("内部数据错误");
@@ -134,7 +136,7 @@ function handleAssurance(serInfo) {
 
 	if (info.periodName) {
 		ret.servicesNameList[0].periodName = info.periodName;
-		ret.servicesNameList[0].period = info.period || 0;	
+		ret.servicesNameList[0].period = info.period || 0;
 	}
 
 	return ret;
@@ -143,7 +145,7 @@ function handleAssurance(serInfo) {
 // 财务代理
 function handleFinance (serInfo) {
 	var info = FinanceLists.findOne({
-			"financeTypeName": serInfo.serverType, 
+			"financeTypeName": serInfo.serverType,
 			"serviceTypeName": serInfo.server,
 			"lists.period": serInfo.period
 		});
@@ -171,7 +173,7 @@ function handleFinance (serInfo) {
 			servicesContains: [{
 			}]
 		}]
-	}
+	};
 
 }
 
@@ -208,11 +210,8 @@ function handleBookkeeping (serInfo) {
 				name: description
 			}]
 		}]
-	}
-
-
+	};
 }
-
 
 // 银行开户
 function handleBank(serInfo) {
@@ -234,6 +233,25 @@ function handleBank(serInfo) {
 			}]
 		}]
 	};
+}
+
+// 商标注册
+function handlesTrademark(serInfo) {
+    var info = TradeMark.findOne({name: serInfo.name});
+    if (!info) {
+        throw new Meteor.Error("内部数据错误");
+    }
+
+    var pay = info.payment || 0;
+    return {
+        moneyAmount: pay,
+        servicesNameList: [{
+            name: serInfo.name,
+            money: pay,
+            scale: 1,
+            servicesContains:[],
+        }]
+    };
 }
 
 

@@ -3,14 +3,14 @@ log = console.log;
 
 kylUtil = {};
 
-// 产品价格
+// 产品大体价格
 kylUtil.getPriceGeneral = function (name) {
-    var price = {
-        '1元注册': '1',  
-        '极速注册': '1000',        
-        '电商公司': '299',              
-        '教育公司': '299',        
-        '金融信息公司': '299', 
+    var products = {
+        '1元注册': '1',
+        '极速注册': '1000',
+        '电商公司': '299',
+        '教育公司': '299',
+        '金融信息公司': '299',
         '移动互联网公司': '299',
         '文化传媒公司': '299',
         '商务服务公司': '299',
@@ -19,20 +19,42 @@ kylUtil.getPriceGeneral = function (name) {
         '银行开户': '200',
         '财务代理': '300-1900',
         '流量记账包服务套餐': '300-3000',
-        '小企社保': '120-500'
-    }[name] || 0;
+        '小企社保': '120-500',
+        '商标注册': '1200',
+    };
+    if (products.hasOwnProperty(name)) {
+        return products[name] || 0;
+    } else {
+        console.log("未找到该产品的价格", name);
+        return 0;
+    }
+};
 
-    return price;
-}
+// 公司大产品分类描述
+kylUtil.getProductsDes = function (name) {
+    var productsDes = {
+        'registration': {img: '/images/product/reg_icon.png', title: '小白云', subTitle: '工商注册系统'}, // 小白云
+        'bank': {img: '/images/product/f_icon.png', title: '小企财云', subTitle: '银行开户'},     // 小企财云
+        'finance': {img: '/images/product/f_icon.png', title: '小企财云', subTitle: '财务代理'}, // 小企财云
+        'bookkeeping': {img: '/images/product/f_icon.png', title: '小企财云', subTitle: '流量记账包'}, //小企财云
+        'assurance': {img: '/images/product/security_icon.png', title: '小企人事', subTitle: '社保公积金'}, //小企人事
+        'trademark': {img: '/images/product/trademark_icon.png', title: '商标注册', subTitle: '专人代理、快速对接'}
+    };
+
+    if (productsDes.hasOwnProperty(name)) {
+        return productsDes[name];
+    }
+    return {img: '', title: '', subTitle: ''};
+};
 
 // 产品图片url
 kylUtil.getImg = function (name) {
     var img = {
-        '1元注册': 'oneyuan',  
-        '极速注册': 'jisu',        
-        '电商公司': 'dianshang',              
-        '教育公司': 'jiaoyu',        
-        '金融信息公司': 'jingrong', 
+        '1元注册': 'oneyuan',
+        '极速注册': 'jisu',
+        '电商公司': 'dianshang',
+        '教育公司': 'jiaoyu',
+        '金融信息公司': 'jingrong',
         '移动互联网公司': 'hulianwang',
         '文化传媒公司': 'wenhua',
         '商务服务公司': 'shangwu',
@@ -41,26 +63,53 @@ kylUtil.getImg = function (name) {
         '银行开户': 'icon_bank',
         '财务代理': 'icon_finance',
         '流量记账包服务套餐': 'icon_packpage',
-        '小企社保': 'icon_assurance'
+        '小企社保': 'icon_assurance',
+        '商标注册': 'shangbiao',
     }[name];
     if(img) {
       img = '/images/icon/'+img+'.png';
     }
     else {
-        img = 'http://fpoimg.com/296x296'; 
-//      img = 'http://lorempixel.com/296/296/';
+        img = 'http://fpoimg.com/296x296';
     }
     return img;
-}
+};
+
+// 产品的辅助描述
+kylUtil.getBriefDes = function (name) {
+    var productDes = {
+        '1元注册': '',
+        '极速注册': '',
+        '电商公司': '推荐电子商务、贸易类公司',
+        '教育公司': '推荐教育科技类公司',
+        '金融信息公司': '推荐金融信息服务、众筹类公司',
+        '移动互联网公司': '推荐APP开发、智能硬件等互联网类公司',
+        '文化传媒公司': '推荐广告、影视、会展类公司',
+        '商务服务公司': '推荐商务咨询、企业管理类公司',
+        '建筑设计公司': '推荐建筑设计、装潢、建材类公司',
+        '医疗公司': '推荐医疗器械、生物科技类公司',
+        '银行开户': '专人办理，快速对接',
+        '财务代理': '定期财务建议，助你规避财务风险',
+        '流量记账包服务套餐': '量贩式定价，总有最合适你的',
+        '小企社保': '',
+        '商标注册': ''
+    };
+    if (productDes.hasOwnProperty(name)) {
+        return productDes[name] || "";
+    } else {
+        console.log("未找到该产品的辅助描述");
+        return "";
+    }
+};
 
 // 警告框
 kylUtil.alert = function (title, content) {
     if (arguments.length == 1) {
         content = title;
         title = '提示';
-    }; 
+    }
     Template.layoutTemplate.alert({title: title, content: content});
-}
+};
 
 // 确认框
 kylUtil.confirm = function (title, content, callBack) {
@@ -68,12 +117,12 @@ kylUtil.confirm = function (title, content, callBack) {
         callBack = content;
         content = title;
         title = '提示';
-    };
+    }
 
     Template.layoutTemplate.confirm({
         title: title, content: content
     }).on( callBack );
-}
+};
 
 // 验证手机号
 kylUtil.verifyPhone = function(phone) {
@@ -103,12 +152,12 @@ kylUtil.verifyIDCard = function(code) {
             isMale : false,// 是否为男性。默认false
             isFemale : false // 是否为女性。默认false
         };
-        
+
         if (!cardNo || (15 != cardNo.length && 18 != cardNo.length) ) {
             info.isTrue = false;
             return info;
         }
-        
+
         if (15 == cardNo.length) {
             var year = cardNo.substring(6, 8);
             var month = cardNo.substring(8, 10);
@@ -135,7 +184,7 @@ kylUtil.verifyIDCard = function(code) {
             }
             return info;
         }
-        
+
         if (18 == cardNo.length) {
             var year = cardNo.substring(6, 10);
             var month = cardNo.substring(10, 12);
@@ -173,7 +222,7 @@ kylUtil.verifyIDCard = function(code) {
             info.year = birthday.getFullYear();
             info.month = birthday.getMonth() + 1;
             info.day = birthday.getDate();
-            
+
             if (p % 2 == 0) {
                 info.isFemale = true;
                 info.isMale = false;
@@ -185,7 +234,7 @@ kylUtil.verifyIDCard = function(code) {
         }
         return info;
     }
-}
+};
 
 // 验证邮编
 kylUtil.verifyZipCode = function (code) {
@@ -196,17 +245,17 @@ kylUtil.verifyZipCode = function (code) {
     }
 
     return false;
-}
+};
 
 // 验证公司名
 kylUtil.verifyCompanyName = function (name) {
     var pattern = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
     var strList = [];
-    
+
     if (name && typeof(name) == 'string' && name.length >= 2) {
         var retStatus = 1;
         var msg = 'ok';
-        for (key in name) {
+        for (var key in name) {
             var str = name[key];
             console.log(str, pattern.exec(str));
             if (!pattern.exec(str)) {
@@ -224,7 +273,7 @@ kylUtil.verifyCompanyName = function (name) {
     }
 
     return [-1, '公司名不得少于两个中文'];
-}   
+};
 
 // 生成随机数字串
 kylUtil.randomNumber = function (number) {
@@ -236,7 +285,7 @@ kylUtil.randomNumber = function (number) {
         str += arr[pos];
     }
     return str;
-}
+};
 
 // 生成15长的随机字符串
 kylUtil.createNonceStr = function(num) {
@@ -258,7 +307,7 @@ kylUtil.checkData = function (data, checkReg) {
         if (!ret[0]) {
             kylUtil.alert(ret[1]);
             return false;
-        } 
+        }
     }
 
     return true;
@@ -284,7 +333,7 @@ kylUtil.getAbsoluteUrl = function (pathname) {
 kylUtil.genOrderId = function() {
     var date = new Date();
     return moment(date).format("YYYYMMDDHHmmssSSS") + kylUtil.randomNumber(4);
-}
+};
 
 
 // 合并两个对象
@@ -298,7 +347,7 @@ kylUtil.mergeTwoObj = function (mainObj, obj) {
     });
 
     return mainObj;
-}
+};
 
 
 // var createNonceStr = function () {

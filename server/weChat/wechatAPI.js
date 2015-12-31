@@ -25,7 +25,6 @@ function getToken(callback) {
         var info = WeChatInfo.findOne({name: 'access_token'}) || {};
         callback(null, info.token);
     }).run();
-
 }
 
 // wechatAPI 传参 4
@@ -38,7 +37,7 @@ function saveToken(token, callback) {
 
     var Fiber = Npm.require("fibers");
     Fiber(function () {
-        WeChatInfo.upsert({name: 'access_token'}, {$set: {name: 'access_token', token: token}}, callback); 
+        WeChatInfo.upsert({name: 'access_token'}, {$set: {name: 'access_token', token: token}}, callback);
     }).run();
 }
 
@@ -87,7 +86,7 @@ Meteor.methods({
         var usersList = followersInfo.data.openid;
 
         var usersInfo = [];
-        for (key in usersList) {
+        for (var key in usersList) {
             var result = Meteor.call('getUserInfo', usersList[key]);
             console.log("get user info", result);
             usersInfo.push(result);
@@ -98,7 +97,7 @@ Meteor.methods({
 });
 
 
-// 测试 
+// 测试
 Meteor.methods({
     //创建菜单
     createMenu: function () {
@@ -143,7 +142,6 @@ Meteor.methods({
         }
     }
 });
-
 
 
 WebApp.connectHandlers.use("/getFollowers", function(req, res, next) {

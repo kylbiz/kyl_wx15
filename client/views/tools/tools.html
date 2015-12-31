@@ -1,9 +1,9 @@
-<template name="tools">
+<template name="tools_backup">
   <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/tools.css">
   <style>
   body {
-   background-color: #f2f2f2; 
+   background-color: #f2f2f2;
   }
   .container {
    width: auto !important;
@@ -15,7 +15,7 @@
 <!--
   <header class="nav-bar">
     <h1> 企信自助查询系统 </h1>
-  </header>  
+  </header>
 -->
   <div class="main-container has-ui-menu hidden-object">
     <div class="reserve">
@@ -123,4 +123,14 @@
     {{> ui_menu }}
 
   </div>
+</template>
+
+<template name="tools">
+  <div>
+  <iframe src="http://m.yiqicha.net/" height="800px" width="500px" frameborder="0" scrolling="no" seamless="seamless">
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+  </div>
+
+  {{> ui_menu }}
 </template>

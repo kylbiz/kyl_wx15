@@ -1,48 +1,52 @@
 <template name="orderList">
   <div class="localmarket main-container has-ui-menu">
-    {{#each orders}}
-      <div class="module">
-        <div class="main-title">订单编号：{{orderId}}</div>
-        <div class="content">
-          <div class="photo photo-frame">
-            <img src="{{_img}}" alt="">
+    {{#if orders}}
+      {{#each orders}}
+        <div class="module">
+          <div class="main-title">订单编号：{{orderId}}</div>
+          <div class="content">
+            <div class="photo photo-frame">
+              <img src="{{_img}}" alt="">
+            </div>
+            <div class="info">
+              <div class="name">{{title}}</div>
+              {{#each ext}}
+                <div class="region">{{this}}</div>
+              {{/each}}
+            </div>
+            <div class="price">&yen;{{payment}}</div>
           </div>
-          <div class="info">
-            <div class="name">{{title}}</div>
-            {{#each ext}}
-              <div class="region">{{this}}</div>
-            {{/each}}
-          </div>
-          <div class="price">&yen;{{payment}}</div>
-        </div>
-        <div class="master">
-            {{#if payed}}
-              <div class="btn-box">
-                  <a href="/orderDetail?orderid={{orderId}}">
-                    <button type="button" class="btn-primary">查看详情</button>
-                  </a>
-              </div>
-              {{#if uploadInfo orderId}}
+          <div class="master">
+              {{#if payed}}
                 <div class="btn-box">
-                  <!-- <a href="/companyInfo?orderid={{orderId}}"> -->
-                    <button type="button" class="btn-default" id="submitSrcBtn" value={{orderId}}>提交资料</button>            
-                  <!-- </a> -->
-                </div> 
+                    <a href="/orderDetail?orderid={{orderId}}">
+                      <button type="button" class="btn-primary">查看详情</button>
+                    </a>
+                </div>
+                {{#if uploadInfo orderId}}
+                  <div class="btn-box">
+                    <!-- <a href="/companyInfo?orderid={{orderId}}"> -->
+                      <button type="button" class="btn-default" id="submitSrcBtn" value={{orderId}}>提交资料</button>
+                    <!-- </a> -->
+                  </div>
+                {{/if}}
+
+              {{else}}
+                <div class="btn-box">
+                    <button type="button" class="btn-default" id="goToPay" value={{orderId}}>付款</button>
+                </div>
               {{/if}}
-              
-            {{else}}
-              <div class="btn-box">
-                  <button type="button" class="btn-default" id="goToPay" value={{orderId}}>付款</button>
-              </div>
-            {{/if}}
+          </div>
         </div>
-      </div>
-    {{/each}}  
-    {{> ui_menu }}    
+      {{/each}}
+    {{else}}
+      {{> orderListEmpty}}
+    {{/if}}
+    {{> ui_menu }}
   </div>
 </template>
 
-<template name="localEmptyTemplate">
+<template name="orderListEmpty">
   <div class="main-container has-ui-menu emptyTemplate">
     <div class="text-center">
       <div>
@@ -56,7 +60,7 @@
         <div class="get">
            <div>
             <a href="/">
-             <button class="ui btn-default ui-default" type="button">随便逛逛</button>              
+             <button class="ui btn-default ui-default" type="button">随便逛逛</button>
             </a>
            </div>
         </div>

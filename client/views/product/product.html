@@ -3,23 +3,23 @@
     <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg)">
       <div class="cover-center">
         <div class="cover-img">
-          <img src="/images/product/reg_icon.png" alt="">
+          <img src="{{productsDes.img}}" alt="">
         </div>
-        <div class="cover-title">小白云</div>
-        <div class="cover-subtitle">工商注册系统</div>
+        <div class="cover-title">{{productsDes.title}}</div>
+        <div class="cover-subtitle">{{productsDes.subTitle}}</div>
       </div>
     </div>
     <div class="index">
       <div class="root-module">
         <div class="content">
           <div class="photo-frame">
-            <img src="/images/list/r1.png" alt="">
+            <img src="{{_img}}" alt="">
           </div>
           <div class="segement">
             <div class="title">
-              {{_name}}
+              {{productName}}
             </div>
-            <div class="des">推荐APP开发、智能硬件等互联网类公司</div>
+            <div class="des">{{_briefDes}}</div>
           </div>
           <div class="icon-right-container">
             &yen;{{_price}}
@@ -33,13 +33,19 @@
 
     <!-- 文案部分 -->
     <div class="dist">
-       {{> dist_reg }}
+        {{#if _desTemplate}}
+         {{> UI.dynamic template=_desTemplate}}
+        {{/if}}
     </div>
-    {{> controlBox }}
+    {{#with product}}
+      {{> controlBox}}
+    {{/with}}
   </div>
-  {{> UI.dynamic template=_dynamic data=product}}
+  {{#if product.directBuy}}
+  {{else}}
+    {{> UI.dynamic template=_dynamic data=product}}
+  {{/if}}
 </template>
-
 
 <template name="dist_promise">
   <div class="section">
@@ -49,7 +55,7 @@
         <img src="/images/product/promise.png" alt="">
       </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <!-- 公司注册 -->
@@ -251,7 +257,7 @@
       </div>
     </div>
   </div>
-  
+
   {{ >dist_promise }}
 </template>
 
@@ -264,36 +270,36 @@
     <div class="ui-content">
       <div class="notify-box">
         <div class="list">
-          <span class="map">1</span> 提供首次税务报到服务 
+          <span class="map">1</span> 提供首次税务报到服务
         </div>
         <div class="list">
-          <span class="map">2</span> 提供专业办税人员 
+          <span class="map">2</span> 提供专业办税人员
         </div>
         <div class="list">
-          <span class="map">3</span> 提供专职财务服务人员 
+          <span class="map">3</span> 提供专职财务服务人员
         </div>
         <div class="list">
-          <span class="map">4</span> 建账、做账、补账服务 
+          <span class="map">4</span> 建账、做账、补账服务
         </div>
         <div class="list">
-          <span class="map">5</span> 每月抄报税服务 
+          <span class="map">5</span> 每月抄报税服务
         </div>
         <div class="list">
-          <span class="map">6</span> 代开发票服务 
+          <span class="map">6</span> 代开发票服务
         </div>
         <div class="list">
-          <span class="map">7</span> 每月税务缴纳提醒 
-        </div>   
+          <span class="map">7</span> 每月税务缴纳提醒
+        </div>
         <div class="list">
-          <span class="map">8</span> 每月财务建议服务  
-        </div>       
+          <span class="map">8</span> 每月财务建议服务
+        </div>
         <div class="list">
-          <span class="map">9</span> 提供财务咨询，帮助企业规避财税风险   
-        </div>   
+          <span class="map">9</span> 提供财务咨询，帮助企业规避财税风险
+        </div>
         <div class="list">
-          <span class="map">10</span>在线财务信息查询  
-        </div>                               
-         
+          <span class="map">10</span>在线财务信息查询
+        </div>
+
 
       </div>
     </div>
@@ -345,7 +351,7 @@
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">3</span> 票据交接  
+              <span class="map">3</span> 票据交接
             </div>
             <div class="pull-right">
               <span class="time">每月2号前</span>
@@ -355,7 +361,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                收集票据，交接原始票据 
+                收集票据，交接原始票据
               </div>
             </div>
           </div>
@@ -396,7 +402,7 @@
             <div class="spread-army">
               <div class="text">
                 每月定期抄报税
-              </div>            
+              </div>
             </div>
           </div>
         </div>
@@ -404,8 +410,8 @@
       </div>
     </div>
   </div>
-  
-  {{ >dist_promise }}  
+
+  {{ >dist_promise }}
 </template>
 
 <!-- 银行开户 -->
@@ -417,10 +423,10 @@
     <div class="ui-content">
       <div class="notify-box">
         <div class="list">
-          <span class="map">1</span> 银行预约服务 
+          <span class="map">1</span> 银行预约服务
         </div>
         <div class="list">
-          <span class="map">2</span> 银行开户服务 
+          <span class="map">2</span> 银行开户服务
         </div>
       </div>
     </div>
@@ -472,7 +478,7 @@
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">3</span> 提交资料  
+              <span class="map">3</span> 提交资料
             </div>
             <div class="pull-right">
               <span class="time">1个工作日</span>
@@ -482,7 +488,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                将开户所需材料提交到银行申请开户 
+                将开户所需材料提交到银行申请开户
               </div>
             </div>
           </div>
@@ -503,7 +509,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                材料由开户银行提交至人民银行审核完毕后下方开户许可证 
+                材料由开户银行提交至人民银行审核完毕后下方开户许可证
               </div>
             </div>
           </div>
@@ -511,8 +517,8 @@
       </div>
     </div>
   </div>
-  
-  {{ >dist_promise }}    
+
+  {{ >dist_promise }}
 </template>
 
 <!-- 社保人事  -->
@@ -524,10 +530,10 @@
     <div class="ui-content">
       <div class="notify-box">
         <div class="list">
-          <span class="map">1</span> 社保、公积金开户服务  
+          <span class="map">1</span> 社保、公积金开户服务
         </div>
         <div class="list">
-          <span class="map">2</span> 企业招退工、社保代缴服务  
+          <span class="map">2</span> 企业招退工、社保代缴服务
         </div>
       </div>
     </div>
@@ -570,7 +576,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                提交开户/代缴所需材料 
+                提交开户/代缴所需材料
               </div>
             </div>
           </div>
@@ -579,7 +585,7 @@
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">3</span> 社保开户  
+              <span class="map">3</span> 社保开户
             </div>
             <div class="pull-right">
               <span class="time">30个工作日</span>
@@ -589,7 +595,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                由专业人员前往社保局办理开户手续，并完成开户缴费。  
+                由专业人员前往社保局办理开户手续，并完成开户缴费。
               </div>
             </div>
           </div>
@@ -610,7 +616,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                由专业人员前往社保局办理代缴手续，并完成代缴缴费。 
+                由专业人员前往社保局办理代缴手续，并完成代缴缴费。
               </div>
             </div>
           </div>
@@ -618,8 +624,8 @@
       </div>
     </div>
   </div>
-  
-  {{ >dist_promise }}    
+
+  {{ >dist_promise }}
 </template>
 
 
@@ -632,17 +638,17 @@
     <div class="ui-content">
       <div class="notify-box">
         <div class="list">
-          <span class="map">1</span> 在线检索服务 
+          <span class="map">1</span> 在线检索服务
         </div>
         <div class="list">
-          <span class="map">2</span> 制作商标受理材料 
+          <span class="map">2</span> 制作商标受理材料
         </div>
         <div class="list">
-          <span class="map">3</span> 提交商标总局  
-        </div>  
+          <span class="map">3</span> 提交商标总局
+        </div>
         <div class="list">
-          <span class="map">4</span> 邮寄证书（商标受理书、商标证书）  
-        </div>               
+          <span class="map">4</span> 邮寄证书（商标受理书、商标证书）
+        </div>
       </div>
     </div>
   </div>
@@ -684,7 +690,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                由专业人员为您查询商标风险，并提供合适的保护方案  
+                由专业人员为您查询商标风险，并提供合适的保护方案
               </div>
             </div>
           </div>
@@ -693,7 +699,7 @@
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">3</span> 提交材料   
+              <span class="map">3</span> 提交材料
             </div>
             <div class="pull-right">
               <span class="time"> 10分钟</span>
@@ -703,7 +709,7 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                提交申请商标所需材料   
+                提交申请商标所需材料
               </div>
             </div>
           </div>
@@ -713,7 +719,7 @@
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">4</span> 上报申请  
+              <span class="map">4</span> 上报申请
             </div>
             <div class="pull-right">
               <span class="time">4个月</span>
@@ -724,16 +730,16 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                将制作好的材料提交到商标局，并拿到受理通知书  
+                将制作好的材料提交到商标局，并拿到受理通知书
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="list-container">
           <div class="list">
             <div class="pull-left">
-              <span class="map">5</span> 完成注册   
+              <span class="map">5</span> 完成注册
             </div>
             <div class="pull-right">
               <span class="time">10个月</span>
@@ -744,15 +750,15 @@
           <div class="spread-content">
             <div class="spread-army">
               <div class="text">
-                完成商标注册，拿到商标注册证书 
+                完成商标注册，拿到商标注册证书
               </div>
             </div>
           </div>
         </div>
-                
+
       </div>
     </div>
   </div>
-  
-  {{ >dist_promise }}    
+
+  {{ >dist_promise }}
 </template>

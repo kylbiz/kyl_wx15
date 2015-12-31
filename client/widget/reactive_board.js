@@ -97,10 +97,10 @@ Template.assurance_board.onRendered(function () {
                     var info = AssuranceLists.findOne({name: serSelect, periodName: timeSelect}) || {};
                     return info.payment * personNum || 0;
                 }
-            }
+            };
 
             Session.set('Pay', handle[serSelect]() || 0);
-        }
+        };
 
         setTimeout(payFunc, 200);
     });
@@ -179,8 +179,8 @@ Template.agent_board.helpers({
         periodNames = list[selId].periodNames || false;
 
         if (!periodNames) {
-            Session.set('Sel_3', 0); 
-        } 
+            Session.set('Sel_3', 0);
+        }
 
         return periodNames;
     }
@@ -191,10 +191,10 @@ Template.agent_board.events({
         Session.set('Sel_1', $(event.currentTarget).index());
     },
     'change #agentSerSel':function (event, template) {
-        Session.set('Sel_2', $(event.currentTarget)[0].selectedIndex);       
+        Session.set('Sel_2', $(event.currentTarget)[0].selectedIndex);
     },
     'click #agentTimeSel li':function (event, template) {
-        Session.set('Sel_3', $(event.currentTarget).index());      
+        Session.set('Sel_3', $(event.currentTarget).index());
     }
 });
 
@@ -267,7 +267,7 @@ Template.bank_board.helpers({
 Template.bank_board.events({
     'click #bankSel': function (event) {
         Session.set('Sel_1', $(event.currentTarget).index());
-        
+
     }
 });
 

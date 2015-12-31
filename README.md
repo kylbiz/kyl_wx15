@@ -1,15 +1,6 @@
 # 开业啦微信商城
 
 ## 依赖的包
->
-- accounts-password  1.1.1* Password support for accounts
-- alanning:roles     1.2.13* Role-based authorization
-- http               1.1.0* Make HTTP calls to remote servers
-- insecure           1.0.3* Allow all database writes by default
-- iron:router        1.0.9* Routing specifically designed for Meteor
-- meteor-platform    1.2.2* Include a standard set of Meteor packages in your app
-- meteorhacks:npm    1.5.0  Use npm modules with your Meteor App
-- npm-container      1.2.0+ Contains all your npm dependencies
 
 ## 项目结构
 - both
@@ -538,6 +529,16 @@
 - Day 22 --[微信地址获取，修复反馈bug，提交第一个可用版本]
 - Day 23 --[微信地址获取，其他]
 - Day 24 --[研究meteor的部署问题]
+- Day 25 --[产品列表， 产品详情-描述， 购物车数字显示， 空订单界面]
+- Day 26 --[产品详情-图片title, 空订单界面, 商标注册, 查名工具，客服电话]
+- Day 27 --[微信客服系统]
+
+## 后期维护注意点
+- 产品图片信息写死在 `both/util.js --getImg()`中
+- 产品辅助描述信息写死在 `both/util.js --getBriefDes()`中
+- 产品大体价格信息写死在 `both/util.js --getPriceGeneral()`中
+- 产品购买的信息部分写死在`client/views/product.js`中
+
 
 ## 当前遗留问题
 - 支付成功后，在支付成功页，点击浏览器的返回按钮，跳转到订单详情页面

@@ -1,7 +1,7 @@
 
 Template.orderList.helpers({
 	orders: function () {
-		console.log('orders', Orders.find({}).fetch());
+		// console.log('orders', Orders.find({}).fetch());
 		return CommFunc.getOrderInfo();
 	},
 	uploadInfo: function (orderId) {
@@ -19,7 +19,7 @@ Template.orderList.events({
 			delete Session.keys.businessScope;
 			delete Session.keys.businessBig;
 			delete Session.keys.businessSmall;
-			
+
 			// Session.set("industryBig", null);
 			// Session.set("industrySmall", null);
 			// Session.set("businessScope", null);
@@ -44,7 +44,7 @@ Template.orderList.events({
 
 // 判断注册公司的产品的信息是否完整
 function judgeRegInfo (orderId) {
-	
+
 	var info = Orders.findOne({orderId: orderId}) || {};
 	// 只有公司注册需要填写资料
 	if (info.typeNameFlag != "registration") {
@@ -68,7 +68,7 @@ function judgeRegInfo (orderId) {
 	// 资料对接人
 	var consigner = info.consigner;
 
-	if (haveName && industry && scope && money && holders && legalPerson 
+	if (haveName && industry && scope && money && holders && legalPerson
 		&& supervisor && liaisons && financialStaff && consigner) {
 		return true;
 	}
