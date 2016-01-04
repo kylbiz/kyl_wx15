@@ -4,14 +4,14 @@ CommFunc = {};
 CommFunc.getShopCartInfo = function () {
 	var list = ShopCart.find({}) || [];
 	return productShowInfo(list) || [];
-}
+};
 
 
 // 获取所购买商品的显示数据 在订单中心页需要用
 CommFunc.getOrderInfo = function () {
 	var list = Orders.find({}) || [];
 	return productShowInfo(list) || [];
-}
+};
 
 // 组合产品需要显示的内容
 function productShowInfo (list) {

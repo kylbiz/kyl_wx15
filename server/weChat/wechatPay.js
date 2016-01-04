@@ -4,13 +4,14 @@ var Payment = Meteor.npmRequire('wechat-pay').Payment;
 var middleware = Meteor.npmRequire('wechat-pay').middleware;
 
 var fs = Npm.require('fs');
+var projRoot = process.env.PWD;
 
 var initConfig = {
   partnerKey: WXConfig.partnerKey,
   appId: WXConfig.appID,
   mchId: WXConfig.mchID,
   notifyUrl: WXConfig.pay_notify,
-  // pfx: fs.readFileSync(WXConfig.pfxPath)
+  pfx: fs.readFileSync(projRoot + WXConfig.pfxPath)
 };
 var payment = new Payment(initConfig);
 
