@@ -12,7 +12,7 @@ Template.trade.helpers({
             return UserAddress.findOne({_id: Session.get("addressId")}) || {};
         } else {
             console.log('no address data');
-        }        
+        }
     },
     payList: function () {
         if (!ShopCart.find({}).count()) {
@@ -35,7 +35,7 @@ Template.trade.helpers({
 
         return payList;
     },
-    
+
     disc: function () {
         return 0;
     },
@@ -62,8 +62,8 @@ Template.trade.events({
 
         Meteor.call('getPayArgs', {
                 shopcartIdList: shopcartIdList,
-                invoice: Session.get('invoice') || false, 
-                addressId: addressId, 
+                invoice: Session.get('invoice') || false,
+                addressId: addressId,
                 wechatOpenId: Session.get("WeChatUser")
             }, function (error, result) {
               if (error) {
@@ -82,7 +82,7 @@ Template.trade.events({
                 //   }else {
                 //     console.log("支付失败，请重试");
                 //     kylUtil.alert("支付失败，请重试");
-                //     Router.go('orderList');  
+                //     Router.go('orderList');
                 //   }
                 // });
 
@@ -104,14 +104,14 @@ Template.trade.events({
     },
     'click #setAddress':function () {
         if( UserAddress.find({}).count() ) {
-            Router.go('addressList');   
-        } else { 
+            Router.go('addressList');
+        } else {
             Router.go('address');
         }
     },
     'change .control.switch':function (e) {
         var smart = $(e.currentTarget).prop("checked");
-        if(smart==true) {
+        if(smart === true) {
           $(".switch-outlook").text("是");
         }
         else {
@@ -140,12 +140,12 @@ function wechatGetAddr() {
                     kylUtil.alert('获取地址失败，请在微信中使用');
                     return;
                 }
-                
+
                 WeixinJSBridge.invoke('editAddress', result, function (res) {
                     //若res中所带的返回值不为空，则表示用户选择该返回值作为收货地址。
                     //否则若返回空，则表示用户取消了这一次编辑收货地址。
                     console.log('editAddress ret', res);
-                    kylUtil.alert('获取地址信息', res.err_msg, res.addressDetailInfo)        
+                    kylUtil.alert('获取地址信息', res.err_msg, res.addressDetailInfo);
                 });
             } else {
                 console.log('getWXAddrArgs fuck');

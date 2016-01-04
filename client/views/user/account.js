@@ -19,13 +19,13 @@ Template.register.onCreated(function(){
 
 Template.register.helpers({
   'codeTime': function(){
-   return Session.get('codeTime'); 
-  }  
+   return Session.get('codeTime');
+  }
 });
 
 Template.register.events({
 	// 获取验证码
-	'click #codeBtn': function (event, template) {   
+	'click #codeBtn': function (event, template) {
 		var phone = template.$('#phone').val() || "";
 		if (!kylUtil.verifyPhone(phone)) {
 			kylUtil.alert("输入的手机号有误");
@@ -37,8 +37,9 @@ Template.register.events({
 			return;
 		}
 
+		Session.set('codeTime', 60);
+		clearInterval();
 		getGenCode(phone, function () {
-			Session.set('codeTime', 60);
 			setInterval(function() {
 				if (Session.get('codeTime') > 0) {
 					Session.set('codeTime', Session.get('codeTime') - 1);
@@ -60,7 +61,7 @@ Template.register.events({
 			return;
 		}
 
-		if (phone && password && verifyCode) {			
+		if (phone && password && verifyCode) {
 			Meteor.call('UserRegistration', phone, password, Session.get('WeChatUser'), verifyCode, function (error, result) {
 				if (error) {
 					console.log('UserRegistration err' + error.error, error.message, error.details);
@@ -75,7 +76,7 @@ Template.register.events({
 					// Meteor.call('sendRegistrationInfos', phone); // 发送成功注册消息
 					Meteor.loginWithPassword(phone, password, function(err) {
 						if(err) {
-							alert('用户注册成功,请登录系统!')               
+							alert('用户注册成功,请登录系统!')
 							Router.go('/login');
 						} else {
 							var redirect = Session.get('loginRedirect') || "/";
@@ -158,15 +159,15 @@ function getGenCode(phone, callBack) {
 		console.log('genereateUserCode', err, codeValue);
 		if(!err && codeValue && codeValue['codestatus'] && codeValue['message']) {
 			if(codeValue['codestatus'] === 0 || codeValue['codestatus'] === 2) {
-				kylUtil.alert(codeValue['message'] || "未知错误");           
+				kylUtil.alert(codeValue['message'] || "未知错误");
 			}
 	        else {
 				callBack();
 	        }
 		} else {
-			kylUtil.alert(codeValue['message'] || "未知错误");      
+			kylUtil.alert(codeValue['message'] || "未知错误");
 		}
-	});	
+	});
 }
 
 //
@@ -212,4 +213,4 @@ function loginFunc(phone, password) {
 //     log('phone number illegal')
 //     return false;
 //   }
-// } 
+// }

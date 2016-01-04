@@ -1,3 +1,10 @@
+Template.index.onCreated(function () {
+    if (Meteor.userId()) {
+        Meteor.subscribe('shopcart');
+    }
+});
+
+
 Template.index.onRendered(function(){
   $("ul.main_root>li").click(function(){
     var href = $(this).find("a").attr("href");
@@ -9,16 +16,35 @@ Template.index.onRendered(function(){
 });
 
 
+Template.index.helpers({
+    productPrice: function (product) {
+        return kylUtil.getPriceGeneral(product) || 0;
+    },
+    shopCartNum: function () {
+        if (Meteor.user()) {
+            return ShopCart.find({}).count();
+        }
+        return 0;
+    }
+});
+
+
 Template.index.events({
-	'click .specialProduct': function (event, template) {
-		var product = $(event.currentTarget).attr('product');
+	'click .specialProduct': function (event) {
+        var product = $(event.currentTarget).attr('product');
+        if (product == 'workspace') {
+            window.location.href = 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH';
+            return;
+        }
+
 		var url = {
 			registration: '/product/registration?name=1元注册',
 			finance: '/product/finance?name=财务代理',
 			assurance: '/product/assurance?name=小企社保',
-			workspace: 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH'
+			// workspace: 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH'
 		};
-
-		Router.go(url[product]);
+        if (url.hasOwnProperty(product)) {
+    		Router.go(url[product]);
+        }
 	}
 });

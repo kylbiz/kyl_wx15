@@ -1,7 +1,7 @@
 <template name="index">
 <style>
 body {
- background-color: #f5f5f5; 
+ background-color: #f5f5f5;
 }
 </style>
   <div class="index has-ui-menu">
@@ -12,10 +12,12 @@ body {
         </div>
         <div class="utf-nav-right">
           <a href="/shopcart">
-            <span class="dot">2</span>
+            {{#if shopCartNum}}
+              <span class="dot">{{shopCartNum}}</span>
+            {{/if}}
             <img src="/images/index/index_shopcart.png" alt="">
           </a>
-        </div>       
+        </div>
      </div>
     </header>
     <div class="cover-img">
@@ -29,9 +31,9 @@ body {
               <img src="/images/index/index_icon_1.png" alt="">
             </div>
             <div class="title">
-              <a href="/">
+              <a href="/products/registration">
                 公司注册
-              </a>                          
+              </a>
             </div>
           </div>
         </li>
@@ -41,7 +43,7 @@ body {
               <img src="/images/index/index_icon_2.png" alt="">
             </div>
             <div class="title">
-              <a href="/">
+              <a href="/products/finances">
                 代理记账
               </a>
             </div>
@@ -53,22 +55,22 @@ body {
               <img src="/images/index/index_icon_3.png" alt="">
             </div>
             <div class="title">
-              <a href="/">
+              <a href="/products/assurance">
                 社保人事
-              </a>                        
+              </a>
             </div>
           </div>
         </li>
         <li>
           <div>
             <div class="icon">
-              <img src="/images/index/index_icon_4.png" alt="">
+              <img src="/images/product/trademark_icon.png" alt="">
             </div>
             <div class="title">
-              <a href="http://foundfit.mikecrm.com/f.php?t=Q3JZZH">
-                办公空间
-              </a>            
-            
+              <a href="/products/trademark">
+                商标注册
+              </a>
+
             </div>
           </div>
         </li>
@@ -90,9 +92,9 @@ body {
               <img src="/images/index/index_icon_6.png" alt="">
             </div>
             <div class="title">
-              <a href="#">
+              <a href="tel:4000663192">
                 客服
-              </a>                        
+              </a>
             </div>
           </div>
         </li>
@@ -107,7 +109,7 @@ body {
     <div class="root-module specialProduct" product="registration">
       <div class="bar">
             <div class="title">1元公司注册</div>
-            <div class="price">&yen;9999</div>
+            <div class="price">&yen;{{productPrice "1元注册"}}</div>
       </div>
       <div class="content">
           <div class="photo-frame">
@@ -122,51 +124,41 @@ body {
             </div>
           </div>
           <div class="icon-right-container">
-            <div class="angle-right"></div>  
-          </div>                  
+            <div class="angle-right"></div>
+          </div>
       </div>
-<!--      
-      <div class="icon-right-container">
-        &yen;9999
-      </div> 
--->
-<!--
-      <div class="triangle-right">
-        1212特价
-      </div>
--->
-    </div> 
+    </div>
     <div class="root-module specialProduct" product='finance'>
       <div class="bar">
             <div class="title">财务代理</div>
-            <div class="price">&yen;9999</div>        
+            <div class="price">&yen;{{productPrice "财务代理"}}</div>
       </div>
       <div class="content">
         <div class="photo-frame">
           <img src="/images/index/index_list_2.png" alt="">
         </div>
-        <div class="segement">          
+        <div class="segement">
           <div class="des">量贩式的财务外包服务</div>
           <div class="label-item">
             <div class="item">最低每月100元</div>
             <div class="item">每月财务建议</div>
-          </div>             
+          </div>
         </div>
         <div class="icon-right-container">
-          <div class="angle-right"></div>  
-        </div>                
+          <div class="angle-right"></div>
+        </div>
       </div>
     </div>
     <div class="root-module specialProduct" product='assurance'>
       <div class="bar">
         <div class="title">小企社保</div>
-        <div class="price">&yen;9999</div>
+        <div class="price">&yen;{{productPrice "小企社保"}}</div>
       </div>
       <div class="content">
         <div class="photo-frame">
           <img src="/images/index/index_list_3.png" alt="">
         </div>
-        <div class="segement">          
+        <div class="segement">
           <div class="des">初创团队最优人事外包服务</div>
           <div class="label-item">
             <div class="item">专人对接</div>
@@ -174,8 +166,8 @@ body {
           </div>
         </div>
         <div class="icon-right-container">
-          <div class="angle-right"></div>  
-        </div>                   
+          <div class="angle-right"></div>
+        </div>
       </div>
     </div>
     <div class="root-module specialProduct" product='workspace'>
@@ -192,13 +184,13 @@ body {
           <div class="label-item">
             <div class="item">最低300元/月</div>
             <div class="item">3000优质工位</div>
-          </div>       
-        </div> 
+          </div>
+        </div>
         <div class="icon-right-container">
-          <div class="angle-right"></div>  
-        </div>                       
+          <div class="angle-right"></div>
+        </div>
      </div>
-    </div>   
-    {{> ui_menu }}         
+    </div>
+    {{> ui_menu }}
   </div>
 </template>

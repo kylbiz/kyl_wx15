@@ -135,7 +135,7 @@
               "version": "1.0.0",
               "dependencies": {
                 "readable-stream": {
-                  "version": "2.0.4",
+                  "version": "2.0.5",
                   "dependencies": {
                     "core-util-is": {
                       "version": "1.0.2"
@@ -144,7 +144,7 @@
                       "version": "2.0.1"
                     },
                     "isarray": {
-                      "version": "0.0.1"
+                      "version": "https://registry.npm.taobao.org/isarray/download/isarray-0.0.1.tgz"
                     },
                     "process-nextick-args": {
                       "version": "1.0.6"
@@ -172,7 +172,7 @@
               "version": "https://registry.npm.taobao.org/form-data/download/form-data-1.0.0-rc3.tgz",
               "dependencies": {
                 "async": {
-                  "version": "1.5.0"
+                  "version": "1.5.1"
                 }
               }
             },
@@ -229,7 +229,7 @@
                       "version": "0.2.0"
                     },
                     "dashdash": {
-                      "version": "1.10.1",
+                      "version": "1.11.0",
                       "dependencies": {
                         "assert-plus": {
                           "version": "https://registry.npm.taobao.org/assert-plus/download/assert-plus-0.1.5.tgz"
@@ -302,7 +302,7 @@
                       "version": "2.1.0"
                     },
                     "escape-string-regexp": {
-                      "version": "1.0.3"
+                      "version": "1.0.4"
                     },
                     "has-ansi": {
                       "version": "https://registry.npm.taobao.org/has-ansi/download/has-ansi-2.0.0.tgz",
@@ -388,7 +388,7 @@
               "version": "1.1.4"
             },
             "xmlbuilder": {
-              "version": "4.1.0",
+              "version": "4.2.0",
               "dependencies": {
                 "lodash": {
                   "version": "3.10.1"

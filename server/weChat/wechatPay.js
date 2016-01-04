@@ -4,13 +4,14 @@ var Payment = Meteor.npmRequire('wechat-pay').Payment;
 var middleware = Meteor.npmRequire('wechat-pay').middleware;
 
 var fs = Npm.require('fs');
+var projRoot = process.env.PWD;
 
 var initConfig = {
   partnerKey: WXConfig.partnerKey,
   appId: WXConfig.appID,
   mchId: WXConfig.mchID,
   notifyUrl: WXConfig.pay_notify,
-  // pfx: fs.readFileSync(WXConfig.pfxPath)
+  pfx: fs.readFileSync(projRoot + WXConfig.pfxPath)
 };
 var payment = new Payment(initConfig);
 
@@ -30,7 +31,7 @@ Meteor.methods({
         if (ret.error) {
         	console.log("getPayArgs error-", ret.error);
             throw new Meteor.Error('getPayArgs fail', JSON.stringify(ret.error.message));
-        } else {			
+        } else {
             console.log("getPayArgs ", ret.result);
             return {payargs: ret.result, payOrderId: order.out_trade_no};
         }
@@ -47,7 +48,7 @@ Meteor.methods({
 
 
 		var timeStamp = kylUtil.createTimestamp();
-		var nonceStr = kylUtil.createNonceStr()
+		var nonceStr = kylUtil.createNonceStr();
 
 		var addrSign = kylUtil.getWXSign({
 			appId: WXConfig.appID,
@@ -64,7 +65,7 @@ Meteor.methods({
 		    "addrSign": addrSign,
 		    "timeStamp": timeStamp,
 		    "nonceStr": nonceStr,
-	    }
+	    };
 	},
 
 	// 退款
@@ -99,13 +100,13 @@ Meteor.methods({
 // 处理微信支付通知
 WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 	function (message, req, res, next) {
-		console.log('get wechat pay ret', message);	
+		console.log('get wechat pay ret', message);
 		var Fiber = Npm.require("fibers");
 		Fiber(function () {
 			// 校验签名
 
 			// 后续处理
-			var result_code = message.result_code
+			var result_code = message.result_code;
 			if (result_code == "SUCCESS") {
 				var ret = paySuccessHandle(message);
 				console.log("paySuccessHandle --", ret);
@@ -115,7 +116,7 @@ WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 			}
 
 			res.reply('success');
-		}).run();		
+		}).run();
 
 		// try {
 		// 	res.reply('success');
@@ -139,9 +140,9 @@ function getOrderData (paylog, wechatOpenId, ip) {
 		detail: '产品: ' + detail,	// 可选
 		attach: '{"userId": "'+ paylog.userId + '" }',//在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
 		total_fee: parseInt(paylog.moneyAmount) * 100,
-		out_trade_no: paylog.openid, 	// 
+		out_trade_no: paylog.openid, 	//
 		openid: wechatOpenId,
-		spbill_create_ip: ip, 
+		spbill_create_ip: ip,
 		trade_type: 'JSAPI',
 	};
 }
@@ -237,7 +238,7 @@ function beforePayHandle(orderInfo) {
 			}
 
 			return true;
-		} 
+		}
 
 		// 更新购物车信息
 		function updateShopCart() {
@@ -251,7 +252,7 @@ function beforePayHandle(orderInfo) {
 
 			return true;
 		}
-		
+
 		// 获取单个产品的支付log信息
 		function getProdPayLog() {
 			paylogInfo = {
@@ -259,10 +260,10 @@ function beforePayHandle(orderInfo) {
 				orderId: orderId,
 				money: info.moneyAmount,
 				servicename: info.productType,
-				// relationId: info.relationId,	// 创建时添加，则这边就添加 
+				// relationId: info.relationId,	// 创建时添加，则这边就添加
 			};
 			moneyAll += info.moneyAmount;
-			infoList.push(paylogInfo);			
+			infoList.push(paylogInfo);
 		}
 
 	});
@@ -284,13 +285,13 @@ function beforePayHandle(orderInfo) {
 
 	console.log('paylog', paylog);
 
-	var ret = PayLogs.insert(paylog); 
+	var ret = PayLogs.insert(paylog);
 	if (!ret) {
 		throw new Meteor.Error("下单失败！");
 	} else {
 		console.log("insert PayLogs success", ret);
 	}
-	
+
 	return paylog;
 }
 
@@ -360,7 +361,7 @@ function paySuccessHandle(message) {
 				return false;
 			} else {
 				console.log("update ShopCart Ok", ret);
-			}		
+			}
 		});
 
 		return true;
@@ -382,9 +383,9 @@ function paySuccessHandle(message) {
 			console.log('update order ok', ret);
 		}
 
-		return true;	
+		return true;
 	}
-	
+
 	return true;
 }
 

@@ -1,6 +1,6 @@
 <template name="controlBox">
 <div class="ui control-box">
- <div class="box home-box">        
+ <div class="box home-box">
    <div class="icon-box">
      <div>
        <i class="icon ui-home"></i>
@@ -11,11 +11,17 @@
     <div class="icon-box">
        <div>
          <i class="icon ui-shopcart"></i>
-       </div>            
+       </div>
     </div>
  </div>
- <div class="box submit-box" data-toggle="modal" data-target="#reactive_board">
-    立即购买
- </div>
-</div>  
+ {{#if directBuy}}
+   <div class="box submit-box directBuy">
+      立即购买
+   </div>
+ {{else}}
+   <div class="box submit-box" data-toggle="modal" data-target="#reactive_board">
+      立即购买
+   </div>
+ {{/if}}
+</div>
 </template>

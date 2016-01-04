@@ -14,10 +14,10 @@ Meteor.methods({
 	'setSession': function (key, value) {
 		console.log("set session", key, value);
 		// Session.set(key, value);
-	}, 
+	},
 	'someOneCome': function (arr) {
 		console.log("someOneCome");
-		for (key in arr) {
+		for (var key in arr) {
 			console.log(arr[key]);
 		}
 	}
@@ -55,7 +55,7 @@ function receiveHandle(data, http) {
 HTTP.methods({
 	'/receive': {
 		post: function (data) {
-			data = translate2Obj(data, this.requestHeaders['content-type']);			
+			data = translate2Obj(data, this.requestHeaders['content-type']);
 			var ret = receiveHandle(data, this);
 			if (ret) {
 				return ret;
@@ -75,9 +75,9 @@ HTTP.methods({
 function translate2Obj(data, contentType) {
 
 	function xmlObj2normalObj(xmlObj) {
-		var obj = {}
+		var obj = {};
 		xmlObj = xmlObj.xml;
-		for (key in xmlObj) {
+		for (var key in xmlObj) {
 			obj[key] = xmlObj[key][0];
 		}
 
@@ -85,7 +85,7 @@ function translate2Obj(data, contentType) {
 	}
 
 	data = data.toString('utf-8');
-	
+
 	console.log("contentType", contentType, data);
 
 	if (contentType == 'text/xml' || contentType == 'application/xml') {

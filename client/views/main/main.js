@@ -6,11 +6,11 @@
 
 
 
-Template.main.helpers({
-	productid: function () {
-		return '123';
-	},
-  _img: function(name){
-    return kylUtil.getImg(name);
-  }
-});
+// Template.main.helpers({
+// 	productid: function () {
+// 		return '123';
+// 	},
+//   _img: function(name){
+//     return kylUtil.getImg(name);
+//   }
+// });

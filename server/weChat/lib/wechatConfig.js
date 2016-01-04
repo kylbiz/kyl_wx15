@@ -9,7 +9,7 @@ WXConfig = {
     'partnerKey': 'sPSKBwe7wR7AQxBQ4MJrNkiBCyzkwcCc',
     'pay_notify': 'cc.liuzunkun.com/wxpayret',
     'mchID': '1226318502',
-    'pfxPath': "<location-of-your-apiclient-cert.p12>",
+    'pfxPath': "/private/apiclient_cert.p12",
 
 
     // kyl 测试账号 -- 用于账号绑定
@@ -22,5 +22,5 @@ WXConfig = {
     // 'appsecret': 'd4624c36b6795d1d99dcf0547af5443d',
     // 'token': 'keyboardcat123',
     // 'host': 'http://localhost:3000'
-        
+
 };
