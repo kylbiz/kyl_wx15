@@ -4,18 +4,20 @@ var Payment = Meteor.npmRequire('wechat-pay').Payment;
 var middleware = Meteor.npmRequire('wechat-pay').middleware;
 
 var fs = Npm.require('fs');
-var projRoot = process.env.PWD;
+// var runRoot = process.cwd();
 
-console.log("process.env.PWD", process.env.PWD);
-console.log("execPath", process.execPath);
-console.log('Current directory: ' + process.cwd());
+// console.log("process.env.PWD", process.env.PWD);
+// console.log("execPath", process.execPath);
+// console.log('Current directory: ' + process.cwd() );
+
+// var content = fs.readFileSync(process.cwd() + WXConfig.pfxPath);
 
 var initConfig = {
   partnerKey: WXConfig.partnerKey,
   appId: WXConfig.appID,
   mchId: WXConfig.mchID,
   notifyUrl: WXConfig.pay_notify,
-  // pfx: fs.readFileSync(projRoot + WXConfig.pfxPath)
+  // pfx: fs.readFileSync(runRoot + WXConfig.pfxPath)
 };
 var payment = new Payment(initConfig);
 

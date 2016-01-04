@@ -9,7 +9,7 @@ WXConfig = {
     'partnerKey': 'sPSKBwe7wR7AQxBQ4MJrNkiBCyzkwcCc',
     'pay_notify': 'cc.liuzunkun.com/wxpayret',
     'mchID': '1226318502',
-    'pfxPath': "/private/apiclient_cert.p12",
+    'pfxPath': "/weChat/lib/apiclient_cert.p12",
 
 
     // kyl 测试账号 -- 用于账号绑定
