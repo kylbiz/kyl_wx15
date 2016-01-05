@@ -7,7 +7,7 @@ Meteor.methods({
 
 		function userCodeGenerator(callback) {
 			var codeValue = {};
-			log('phoneLegal', phoneLegal, 'codeGenerateLegal', codeGenerateLegal(phone))
+			log('phoneLegal', phoneLegal, 'codeGenerateLegal', codeGenerateLegal(phone));
 			var codeGenerateFlag = codeGenerateLegal(phone);
 
 			if(phoneLegal && codeGenerateFlag) {
@@ -53,7 +53,7 @@ Meteor.methods({
 							codeValue = {
 								codestatus: 0,
 								message: "发送验证码失败"
-							}
+							};
 							callback(err, codeValue);
 						} else {
 							log('send verification code succeed');
@@ -68,16 +68,16 @@ Meteor.methods({
 
 			} else  {
 				if(!codeGenerateFlag) {
-					var err = '提交太频繁,请一分钟后再试!'
+					var err = '提交太频繁,请一分钟后再试!';
 				} else {
 					var err = '手机号错误或者该用户已经是注册用户!';
 					}
 
-					log(err)
+					log(err);
 
 					var codeValue = {
-					codestatus: 2,
-					message: err
+						codestatus: 2,
+						message: err
 					}
 					callback(null, codeValue);
 			};
@@ -217,7 +217,8 @@ function verifyPhone(phone) {
 function randomWord(randomFlag, min, max){
     var str = "",
         range = min,
-        arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        // arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     // 随机产生
     if(randomFlag){

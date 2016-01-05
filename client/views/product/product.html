@@ -19,7 +19,9 @@
             <div class="title">
               {{productName}}
             </div>
-            <div class="des">{{_briefDes}}</div>
+            {{#if _briefDes}}
+              <div class="des">{{_briefDes}}</div>
+            {{/if}}
           </div>
           <div class="icon-right-container">
             &yen;{{_price}}

@@ -39,8 +39,23 @@ Template.product.helpers({
         return kylUtil.getPriceGeneral(name);
     },
     _briefDes: function() {
+        var type = Router.current().params.productType;
         var name = this.productName || "";
-        return kylUtil.getBriefDes(name);
+        if (type != 'registration') {
+            return kylUtil.getBriefDes(name);
+        } else {
+            var info = RegistrationLists.findOne({name: name}) || {};
+            var services = info.services || [];
+            var areas = [];
+            services.forEach(function (area) {
+                areas.push(area.zone);
+            });
+            if (areas.length === 0) {
+                return "";
+            } else {
+                return "地区: " + areas.join("、");
+            }
+        }
     },
     _desTemplate: function() {
         var type = Router.current().params.productType;
@@ -81,6 +96,10 @@ Template.product.helpers({
                     name: '社保+公积金开户',
                     type: "account",
                     payment: 500
+                }, {
+                    name: '网上汇缴',
+                    type: "account",
+                    payment: 300
                 }, {
                     name: '社保+公积金每月代缴',
                     type: "fees",

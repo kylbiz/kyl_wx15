@@ -93,6 +93,14 @@ Template.assurance_board.onRendered(function () {
                     var info = AssuranceLists.findOne({name: serSelect}) || {};
                     return info.payment || 0;
                 },
+                '网上汇缴': function () {
+                    Session.set('Sel_2', 0);
+                    Session.set('Sel_2_str', "");
+                    Session.set('Sel_3', 1);
+
+                    var info = AssuranceLists.findOne({name: serSelect}) || {};
+                    return info.payment || 0;
+                },
                 '社保+公积金每月代缴': function () {
                     var info = AssuranceLists.findOne({name: serSelect, periodName: timeSelect}) || {};
                     return info.payment * personNum || 0;
