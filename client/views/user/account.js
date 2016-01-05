@@ -117,8 +117,9 @@ Template.forget.events({
 			return;
 		}
 
+		Session.set('codeTime', 60);
+		clearInterval();
 		getGenCode(phone, function () {
-			Session.set('codeTime', 60);
 			setInterval(function() {
 				if (Session.get('codeTime') > 0) {
 					Session.set('codeTime', Session.get('codeTime') - 1);

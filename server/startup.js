@@ -22,104 +22,104 @@ var registrationLists=[
     name:'电商公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '嘉定', payment: 299, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '浦东', payment: 299, message: '注册时长20天，注册资金500万以上'},
-      {zone: '青浦', payment: 299, message: '注册时长25天，无其他要求'},
-      {zone: '黄浦', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '松江', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '嘉定', payment: 500, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '普陀', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '浦东', payment: 1500, message: '注册时长20天，注册资金500万以上'},
+      {zone: '青浦', payment: 500, message: '注册时长25天，无其他要求'},
+      {zone: '黄浦', payment: 3000, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'教育公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'},
-      {zone: '杨浦', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '崇明', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'},
+      {zone: '杨浦', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '松江', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '崇明', payment: 500, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'金融信息公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '嘉定', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '浦东', payment: 299, message: '注册时长20天，办理时需股东到场一次'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'},
-      {zone: '崇明', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '杨浦', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '嘉定', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '浦东', payment: 1500, message: '注册时长20天，办理时需股东到场一次'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'},
+      {zone: '崇明', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '杨浦', payment: 1000, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'移动互联网公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '虹口', payment: 299, message: '注册时长15天，无其他要求'},
-      {zone: '杨浦', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '长宁', payment: 299, message: '注册时长20天'},
-      {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '虹口', payment: 1000, message: '注册时长15天，无其他要求'},
+      {zone: '杨浦', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '长宁', payment: 2000, message: '注册时长20天'},
+      {zone: '普陀', payment: 1000, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'文化传媒公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '浦东', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '青浦', payment: 299, message: '注册时长25天，无其他要求'},
-      {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'},
-      {zone: '嘉定', payment: 299, message: '注册时长20天、办理时需股东到场一次'},
-      {zone: '崇明', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '黄浦', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '普陀', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '浦东', payment: 1500, message: '注册时长20天，无其他要求'},
+      {zone: '青浦', payment: 500, message: '注册时长25天，无其他要求'},
+      {zone: '松江', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'},
+      {zone: '嘉定', payment: 500, message: '注册时长20天、办理时需股东到场一次'},
+      {zone: '崇明', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '黄浦', payment: 3000, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'商务服务公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '浦东', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '青浦', payment: 299, message: '注册时长25天，无其他要求'},
-      {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'},
-      {zone: '嘉定', payment: 299, message: '注册时长20天，办理时需股东到场一次'},
-      {zone: '崇明', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '黄浦', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '普陀', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '浦东', payment: 1500, message: '注册时长20天，无其他要求'},
+      {zone: '青浦', payment: 500, message: '注册时长25天，无其他要求'},
+      {zone: '松江', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'},
+      {zone: '嘉定', payment: 500, message: '注册时长20天，办理时需股东到场一次'},
+      {zone: '崇明', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '黄浦', payment: 3000, message: '注册时长20天，无其他要求'}
     ]
   },
   {
     name:'建筑设计公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '普陀', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '虹口', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '浦东', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '青浦', payment: 299, message: '注册时长25天，无其他要求'},
-      {zone: '松江', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'},
-      {zone: '嘉定', payment: 299, message: '注册时长20天，办理时需股东到场一次'},
-      {zone: '崇明', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '黄浦', payment: 299, message: '注册时长20天，无其他要求'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '普陀', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '虹口', payment: 1000, message: '注册时长20天，无其他要求'},
+      {zone: '浦东', payment: 1500, message: '注册时长20天，无其他要求'},
+      {zone: '青浦', payment: 500, message: '注册时长25天，无其他要求'},
+      {zone: '松江', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'},
+      {zone: '嘉定', payment: 500, message: '注册时长20天，办理时需股东到场一次'},
+      {zone: '崇明', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '黄浦', payment: 3000, message: '注册时长20天，无其他要求'}
    ]
  },
  {
     name:'医疗公司',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
-      {zone: '奉贤', payment: 299, message: '注册时长20天，无其他要求'},
-      {zone: '金山', payment: 299, message: '注册时长25天，办理时需要股东到场一次'}
+      {zone: '奉贤', payment: 500, message: '注册时长20天，无其他要求'},
+      {zone: '金山', payment: 500, message: '注册时长25天，办理时需要股东到场一次'}
     ]
   }
 ];
@@ -127,8 +127,9 @@ var registrationLists=[
 // 人事产品 -- inside
 var assuranceLists = [
   {name: '社保+公积金开户', type: "account",  payment: 500},
+  {name: '网上汇缴', type: "remittance", payment: 300},
   {name: '社保+公积金每月代缴', type: "fees", period: "6", periodName: "半年", payment: 120},
-  {name: '社保+公积金每月代缴', type: "fees", period: "12", periodName: "一年", payment: 240}
+  {name: '社保+公积金每月代缴', type: "fees", period: "12", periodName: "一年", payment: 240},
 ];
 
 // 财务 -- inside 财务代理
@@ -276,7 +277,8 @@ var bookkeepingLists = [
 var bankLists = [
   {bank: '中国银行', payment: 200, baseService: '银行开户许可证明'},
   {bank: '招商银行', payment: 200, baseService: '银行开户许可证明'},
-  {bank: '上海银行', payment: 200, baseService: '银行开户许可证明'}
+  {bank: '上海银行', payment: 200, baseService: '银行开户许可证明'},
+  {bank: '工商银行', payment: 200, baseService: '银行开户许可证明'},
 ];
 
 var tradeMark = [
