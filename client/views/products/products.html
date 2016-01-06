@@ -5,9 +5,20 @@
     }
     </style>
     <div class="index has-ui-menu">
-        <div class="cover-img" style="margin-bottom:15px">
+        <!-- <div class="cover-img" style="margin-bottom:15px">
             <img src="/images/banner.jpg?v=wechat" alt="">
+        </div> -->
+
+        <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg)">
+          <div class="cover-center">
+            <div class="cover-img">
+              <img src="{{productsDes.img}}" alt="">
+            </div>
+            <div class="cover-title">{{productsDes.title}}</div>
+            <div class="cover-subtitle">{{productsDes.subTitle}}</div>
+          </div>
         </div>
+
         {{#each items}}
           <div class="root-module">
               <a href="/product/{{baseType}}?name={{name}}">
