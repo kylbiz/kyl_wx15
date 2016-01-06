@@ -1,4 +1,4 @@
-CommFunc = {};
+CommFunc = {}; //  客户端显示相关的方法
 
 // 获取所购买商品的显示数据 在购物车页/结算页需要用
 CommFunc.getShopCartInfo = function () {

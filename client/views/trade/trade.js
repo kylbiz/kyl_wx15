@@ -2,7 +2,8 @@ Template.trade.onRendered(function () {
     // Session.set('allPayment', 0);
     // Session.set('shopcartIdList', []);
 
-    wechatGetAddr();
+    // 获取微信地址
+    // wechatGetAddr();
 });
 
 Template.trade.helpers({
@@ -124,7 +125,6 @@ Template.trade.events({
 
 
 function wechatGetAddr() {
-    console.log('Router.current()' );
     var openid = Session.get('WeChatUser');
     var url = window.location.href;
     console.log('wechatGetAddr', openid, url);

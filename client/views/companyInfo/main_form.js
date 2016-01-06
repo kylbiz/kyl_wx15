@@ -28,9 +28,9 @@ Template.name_segement.events({
         var retMsg = kylUtil.verifyCompanyName(mainName);
         var needAlert = [1, 'ok'];
         if (retMsg[0] < 0) {
-            kylUtil.alert(verifRet[1] || "首选企业名有误");
-            return; 
-        } else if (retMsg[0] == 0) {
+            kylUtil.alert(retMsg[1] || "首选企业名有误");
+            return;
+        } else if (retMsg[0] === 0) {
             needAlert = retMsg;
         }
         nameList.push(mainName);
@@ -84,16 +84,16 @@ Template.name_segement.events({
 //////////////////////////////////////////////////////////////
 Template.scope_segement.helpers({
     pageNames: function() {
-        var pageNames = [{          
+        var pageNames = [{
             name: 'scope_segement_widget4',
             data: this
-        }, {              
+        }, {
             name: 'exchangeScopeSegement',
-            data: this  
-        }, {          
+            data: this
+        }, {
             name: 'scope_segement_widget3',
             data: this
-        }, {          
+        }, {
             name: 'scope_segement_board',
             data: this
         }, {
@@ -128,7 +128,7 @@ Template.scope_segement.swingToNextStep=function(swingObject){
    else {
      Template.scope_segement.swingToPrev(swingObject);
    }
-    
+
 }
 
 Template.scope_segement.swingToBack=function(swingObject){
@@ -137,7 +137,7 @@ Template.scope_segement.swingToBack=function(swingObject){
   swingObject.slideTo(3);
   $('body').animate({scrollTop:0},600);
   swingObject.lockSwipeToPrev();
-  swingObject.lockSwipeToNext();  
+  swingObject.lockSwipeToNext();
 }
 
 Template.scope_segement.onRendered(function(){
@@ -149,7 +149,7 @@ Template.scope_segement.onRendered(function(){
     });
     autoSwiper.lockSwipeToNext();
     autoSwiper.lockSwipeToPrev();
-  
+
     //选择行业
     $("#step").click(function(){
        Template.scope_segement.swingToNext(autoSwiper);
@@ -164,14 +164,14 @@ Template.scope_segement.onRendered(function(){
         }
        return false;
     });
-    
+
     $(document).on("click",".scope_segement_widget1 .module",function(){
         // industryBig
         var industryBig = $(this).find(".single").first().text().trim() || "";
         Session.set('industryBig', industryBig);
-        Template.scope_segement.swingToNext(autoSwiper);      
+        Template.scope_segement.swingToNext(autoSwiper);
     });
-      
+
     $(document).on("click",".scope_segement_widget2 .module",function(){
         // industrySmall
         var industrySmall = $(this).find(".single").first().text().trim() || "";
@@ -188,23 +188,23 @@ Template.scope_segement.onRendered(function(){
     $(".scope_segement_widget3 #submitBtn").click(function(){
         Template.scope_segement.swingToBack(autoSwiper);
     });
-    
+
     $(".scope_segement_widget3 #addBtn").click(function(){
         Template.scope_segement.swingToPrev(autoSwiper);
     });
-  
+
     $(document).on("click",".exchangeScopeSegement .module",function(){
         var businessSmall = $(this).find(".single").first().text().trim() || "";
         Session.set("businessSmall", businessSmall);
         Template.scope_segement.swingToPrev(autoSwiper);
-    });     
+    });
 
     $(".scope_segement_widget4 #submitBtn").click(function(){
         autoSwiper.unlockSwipeToNext();
         autoSwiper.slideTo(2);
         autoSwiper.lockSwipeToNext();
         $('body').animate({scrollTop:0},600);
-    }); 
+    });
 });
 
 
@@ -218,7 +218,7 @@ Template.scope_segement_board.helpers({
         return Session.get('industrySmall') || "--";
     },
     scopeStr: function(businessScope) {
-        Session.setDefault('businessScope', businessScope || "");       
+        Session.setDefault('businessScope', businessScope || "");
         return Session.get('businessScope') || "";
     }
 });
@@ -284,14 +284,14 @@ Template.scope_segement_widget3.events({
             return;
         }
         console.log("widget3", scopeChecked);
-        Session.set('businessScope', scopeChecked);        
+        Session.set('businessScope', scopeChecked);
     }
 });
 
 
 // 调整经营范围 类型
 Template.exchangeScopeSegement.onRendered(function () {
-    // set default 
+    // set default
     var businessBig = $('.ui-tab .active .addScopeSel').html().trim() || "";
     Session.set('businessBig', businessBig);
 });
@@ -418,8 +418,8 @@ Template.resource_segement.events({
 
             console.log("holderName", holderName, moneyInt, percentInt);
 
-            if (holderName 
-                && moneyInt >= 0  
+            if (holderName
+                && moneyInt >= 0
                 && percentInt && percentInt > 0 && percentInt <= 100) {
 
                 var holder = {
@@ -467,7 +467,7 @@ Template.resource_segement.events({
                 return;
             }
         });
-        
+
         if (!ret_status[0]) {
             kylUtil.alert(ret_status[1]);
             return;
@@ -493,12 +493,12 @@ Template.resource_segement.events({
     },
     'click #plus': function() {
         Template.layoutTemplate.select({
-            title: "选择股东类型", 
+            title: "选择股东类型",
             options: [{name: "自然人", value: 0}, {name: "企业", value: 1}]
         }).on(function (ret, selVal) {
             if (ret) {
                 var template = Blaze.toHTMLWithData(Template.shockhoderInputBundle, {selectType: parseInt(selVal)});
-                $("#plus-content").append(template);                
+                $("#plus-content").append(template);
             }
         });
     },
@@ -601,7 +601,7 @@ Template.others_segement.events({
             liaisonsEmail: liaEmail
         }
         contractor.liaisons = liaisons;
-       
+
 
         // 财务负责人
         if (!finaName || !finaId || !finaPhone || !finaEmail) {
@@ -626,7 +626,7 @@ Template.others_segement.events({
                 financialStaffPhone: finaPhone,
                 financialStaffEmail: finaEmail
             }
-            contractor.financialStaff = financialStaff;            
+            contractor.financialStaff = financialStaff;
         }
 
         updateOrder({
@@ -681,14 +681,14 @@ function judgeFinaWithOthers(orderInfo, info) {
 
             // 法人
             var legalPerson = orderInfo.legalPerson;
-            if (legalPerson && legalPerson.legalPersonId 
+            if (legalPerson && legalPerson.legalPersonId
                 && legalPerson.legalPersonId == cid) {
                 return false;
             }
 
             // 监事
             var supervisor = orderInfo.supervisor;
-            if (supervisor && supervisor.supervisorId 
+            if (supervisor && supervisor.supervisorId
                 && supervisor.supervisorId == cid) {
                 return false;
             }

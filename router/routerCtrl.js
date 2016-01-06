@@ -5,13 +5,13 @@ Router.configure({
   //notFoundTemplate: 'notFoundTemplate',
 });
 
-    
+
 
 // 登陆权限控制 这里需要判断两种条件
 // 微信帐号登录
 Router.onBeforeAction(function () {
 	// console.log("WeChatUser", Session.get('WeChatUser'), this.params.query);
-	var openid = Session.get('WeChatUser')
+	var openid = Session.get('WeChatUser');
 	if (openid) {
 		this.next();
 	} else if (openid = this.params.query.openid) {

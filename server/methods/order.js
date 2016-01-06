@@ -1,15 +1,15 @@
 var checkItemsStr = {
 	companyName: "企业名",
 	industryBig : "企业行业",
-	industrySmall: "企业行业", 
-	businessScope: "经营范围", 
+	industrySmall: "企业行业",
+	businessScope: "经营范围",
 	companyMoney: "注册资金",
 	holders: "股东",
 	legalPerson: "法人",
 	supervisor: "监事",
 	contractor: "负责人",
 	consigner: "资料对接人",
-}
+};
 
 Meteor.methods({
 	'addOrder': function () {
@@ -47,7 +47,7 @@ Meteor.methods({
 			ret = {userConfirmed: false, msg: checkItemsStr[checkRet.key] + "信息未填写完整, 不可提交"};
 		}
 		return ret;
-	}	
+	}
 });
 
 
@@ -62,7 +62,7 @@ function checkData (needCheck, orderInfo, check) {
 		// 行业大类
 		industryBig: function (data) {
 			// 需进一步校验
-			return (data && isRegComp()); 
+			return (data && isRegComp());
 		},
 		// 行业细分类别
 		industrySmall: function (data) {
@@ -121,14 +121,14 @@ function checkData (needCheck, orderInfo, check) {
 				console.log("check ", key, value);
 				return {result: false, key: key}
 			}
-		}		
+		}
 	} else {
 		for (key in needCheck) {
 			console.log("needCheck", key, needCheck[key]);
 			if (checkItems.hasOwnProperty(key) && !checkItems[key](needCheck[key])) {
 				return {result: false, key: key}
 			}
-		}		
+		}
 	}
 
 
