@@ -12,6 +12,13 @@ var registrationLists=[
   //   ],
   // },
   {
+    name:'公司注册-新年特惠',
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
+    services: [
+      {zone: '奉贤', payment: 99, message: '注册时长20天，无其他要求'}
+    ],
+  },
+  {
     name:'极速注册',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
