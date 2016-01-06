@@ -13,7 +13,7 @@ Template.address.events({
 			address: $('#address').val(),
 		};
 
-		for (key in addressInfo) {
+		for (var key in addressInfo) {
 			if (!addressInfo[key]) {
 				var msg = {receiver: '收货人', phone: '电话',	address: '地址'}[key] + "不可为空";
 				kylUtil.alert(msg);
@@ -51,10 +51,10 @@ Template.address.events({
 		});
 		}
 
-		
 
 
 
-		
+
+
 	}
 });

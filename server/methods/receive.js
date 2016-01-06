@@ -129,4 +129,4 @@ function getSignature(timestamp, nonce) {
 	shasum.update(arr.join(''));
 
 	return shasum.digest('hex');
-};
+}

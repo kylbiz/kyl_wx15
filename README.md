@@ -552,6 +552,25 @@
 
 
 ## 其他
+- 测试支付的接口
+
+```
+Meteor.call("payOKTest", {
+                    out_trade_no: result.payOrderId,
+                    des: "test"
+                }, function(err, res) {
+                    if (!err) {
+                        console.log("支付成功");
+                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
+                    } else {
+                        console.log("支付失败，请重试");
+                        Router.go('shopcart');
+                    }
+                });
+
+```
+
+
 
 #### 微信
 appid --  --公众号唯一标识

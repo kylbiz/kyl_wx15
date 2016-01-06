@@ -8,7 +8,7 @@ var oauthAPI = new OAuth(WXConfig.appID, WXConfig.appsecret, getOAuthToken, save
 // OAuth 传参 3
 function getOAuthToken(openid, callback) {
     // 传入一个获取全局token的方法
-    console.log('getOAuthToken');   
+    console.log('getOAuthToken');
     // var fs = Npm.require('fs');
     // fs.readFile(openid + ':oauth_token.txt', 'utf8', function (err, txt) {
     //     // if (err) {return callback(err);}
@@ -37,7 +37,7 @@ function saveOAuthToken(openid, token, callback) {
     Fiber(function () {
         WeChatInfo.upsert({name: 'oauth_token', openid: openid}, {
             $set: {name: 'oauth_token', openid: openid, token: token}
-        }, callback); 
+        }, callback);
     }).run();
 }
 
@@ -72,27 +72,10 @@ WebApp.connectHandlers.use("/oauth", function(req, res, next) {
                 res.writeHead(302, {
                     'Location': WXConfig.host + '?openid=' + openId
                 });
-                
+
                 res.end();
             }
         });
-
-        // var result = Async.runSync(function(callback) {
-        //     oauthAPI.getAccessToken(code, callback);
-        // });
-        // console.log('get token result', result)
-
-        // if (result.error) {
-        //     throw new Meteor.Error(result.error, 'get oauth access_token fail');
-        // } else {
-        //     console.log("get oauth access_token ", result.result);
-        //     var openId = result.result.data.openid;
-        //     res.writeHead(302, {
-        //         'Location': WXConfig.host + '?openid=' + openId
-        //     });
-            
-        //     res.end();
-        // }
     }
 });
 
@@ -108,7 +91,7 @@ Meteor.methods({
         if (ret.error) {
             console.log("getOAuthToken error-", ret.error);
             throw new Meteor.Error(ret.error.name);
-        } else {            
+        } else {
             console.log("getOAuthToken ", ret.result);
             return ret.result;
         }
