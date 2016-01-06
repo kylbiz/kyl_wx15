@@ -258,9 +258,8 @@
            color: #666;
            font-size: 13px;
            padding-left: 20px;
-           line-height: 18px;
            vertical-align: middle;
-           min-height: 18px;
+           //min-height: 24px;
           }
         }
     }  
@@ -286,4 +285,39 @@
       max-width: 100%;
     }
   }  
+}
+
+//帮助页
+.dist.helper {
+  
+  
+  .section .dist-list-box .list {
+    .line-height(48px);
+    .height(48px);
+  }  
+  
+  .section .dist-list-box .spread-content  {
+    .padding-rem(15px);
+  }
+  
+  .spread-army {
+    vertical-align: middle;
+    position: relative;
+    &:before {
+     display: none !important;
+    }
+    .text {
+     color: #666;
+     font-size: 15px !important;
+     padding-left: 0 !important;
+     line-height: 22px;
+      p {
+        margin: 0;
+        .margin-bottom-rem(15px);
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }   
 }
