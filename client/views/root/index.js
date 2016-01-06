@@ -38,9 +38,11 @@ Template.index.events({
         }
 
 		var url = {
-			registration: '/product/registration?name=1元注册',
+			// registration: '/product/registration?name=1元注册',
+            registration: '/product/registration?name=极速注册',
 			finance: '/product/finance?name=财务代理',
-			assurance: '/product/assurance?name=小企社保',
+			assurance: '/product/assurance?name=社保人事',
+            trademark: '/product/trademark?name=商标注册'
 			// workspace: 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH'
 		};
         if (url.hasOwnProperty(product)) {

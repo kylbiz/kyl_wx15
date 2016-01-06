@@ -3,9 +3,21 @@ Template.shopcart.helpers({
   list: function() {
   	if (!ShopCart.find({}).count()) {
   		return false;
-  	} 	
-    return {info: CommFunc.getShopCartInfo()};
-  }
+    }
+    var buyInfo = CommFunc.getShopCartInfo();
+    var price = 0;
+    buyInfo.forEach(function (info) {
+        price += parseInt(info.payment);
+    });
+    return {
+        info: buyInfo,
+        payBasicInfo: {
+            count: buyInfo.length,
+            price: price
+        }
+    };
+  },
+
 });
 
 Template.shopcart.events({

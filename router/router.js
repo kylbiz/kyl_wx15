@@ -32,7 +32,7 @@ Router.route('/products/:products', {
 			},
 			assurance: function () {
 				return {title: '小企人事', items: [
-					{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
+					{name: '社保人事', price: kylUtil.getPriceGeneral('社保人事'), baseType: 'assurance'}
 				]};
 			},
 			trademark: function () {

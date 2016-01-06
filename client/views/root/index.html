@@ -1,7 +1,7 @@
 <template name="index">
 <style>
 body {
- background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 </style>
   <div class="index has-ui-menu">
@@ -56,7 +56,7 @@ body {
             </div>
             <div class="title">
               <!-- <a href="/products/assurance"> -->
-              <a href="/product/assurance?name=小企社保">
+              <a href="/product/assurance?name=社保人事">
                 社保人事
               </a>
             </div>
@@ -130,7 +130,7 @@ body {
           </div>
       </div>
     </div> -->
-    <div class="root-module specialProduct">
+    <div class="root-module specialProduct" product="registration">
      <div class="bar">
        <div class="title">极速注册</div>
        <div class="price">&yen;1000</div>
@@ -149,7 +149,7 @@ body {
           <div class="angle-right"></div>
         </div>
      </div>
-    </div>       
+    </div>
     <div class="root-module specialProduct" product='finance'>
       <div class="bar">
             <div class="title">财务代理</div>
@@ -173,8 +173,8 @@ body {
     </div>
     <div class="root-module specialProduct" product='assurance'>
       <div class="bar">
-        <div class="title">小企社保</div>
-        <div class="price">&yen;{{productPrice "小企社保"}}</div>
+        <div class="title">社保人事</div>
+        <div class="price">&yen;{{productPrice "社保人事"}}</div>
       </div>
       <div class="content">
         <div class="photo-frame">
@@ -192,7 +192,29 @@ body {
         </div>
       </div>
     </div>
-    <div class="root-module specialProduct" product='workspace'>
+    <div class="root-module specialProduct" product='trademark'>
+      <div class="bar">
+        <div class="title">商标注册</div>
+        <div class="price">&yen;{{productPrice "商标注册"}}</div>
+      </div>
+      <div class="content">
+        <div class="photo-frame">
+          <img src="/images/icon/shangbiao.png" alt="">
+        </div>
+        <div class="segement">
+          <div class="des">专业风险评估，提高注册效率</div>
+          <div class="label-item">
+            <div class="item">风险评估</div>
+            <div class="item">财务建议</div>
+          </div>
+        </div>
+        <div class="icon-right-container">
+          <div class="angle-right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="root-module specialProduct" product='workspace'>
      <div class="bar">
        <div class="title">办公位申请</div>
        <div class="price">&yen;9999</div>
@@ -212,7 +234,11 @@ body {
           <div class="angle-right"></div>
         </div>
      </div>
-    </div> 
+<<<<<<< HEAD
+    </div> -->
+<!-- ======= -->
+    <!-- </div> -->
+<!-- >>>>>>> f16122e6a5d701451d7ab09cb7bd6b401a9eed15 -->
     {{> ui_menu }}
   </div>
 </template>

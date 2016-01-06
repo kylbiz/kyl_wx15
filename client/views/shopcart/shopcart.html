@@ -9,7 +9,7 @@
 </template>
 
 <template name="shopcart_content">
-  <div class="shopcart main-container has-ui-control-bottom">    
+  <div class="shopcart main-container has-ui-control-bottom">
     {{#each info}}
       <div class="module">
         <div class="content">
@@ -31,9 +31,11 @@
           </div>
         </div>
       </div>
-    {{/each}} 
-    {{> shopcart_controlBox}}
-  </div>  
+    {{/each}}
+    {{#with payBasicInfo}}
+      {{> shopcart_controlBox}}
+    {{/with}}
+  </div>
 </template>
 
 
@@ -51,7 +53,7 @@
         <div class="get">
            <div>
             <a href="/">
-             <button class="ui btn-default ui-default" type="button">随便逛逛</button>              
+             <button class="ui btn-default ui-default" type="button">随便逛逛</button>
             </a>
            </div>
         </div>

@@ -25,7 +25,6 @@ var payment = new Payment(initConfig);
 Meteor.methods({
 	// 获取支付参数 prepay_id
 	'getPayArgs': function (orderInfo) {
-
 		var paylogInfo = beforePayHandle(orderInfo);
 		var order = getOrderData(paylogInfo, orderInfo.wechatOpenId, this.connection.clientAddress);
 		console.log('order -', order);
@@ -51,8 +50,6 @@ Meteor.methods({
 		// 	throw new Meteor.Error('getWechatAddr fail', 'Error: oauth access token no found');
 		// }
 		var token = "abcd";
-
-
 		var timeStamp = kylUtil.createTimestamp();
 		var nonceStr = kylUtil.createNonceStr();
 

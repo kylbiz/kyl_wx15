@@ -14,7 +14,7 @@
         <span class="pull-right">
            <a href="/helper#name_brand">
             <i class="helper-icon icon"></i>
-           </a>  
+           </a>
         </span>
     </div>
   </div>
@@ -33,7 +33,7 @@
   <div class="module">
     <div class="content">
       <span class="key">公司属性:</span>
-      <div id="compType">有限责任公司</div>
+      <div id="compType">有限公司</div>
     </div>
   </div>
   <div class="get">
@@ -51,7 +51,7 @@
             {{#each pageNames}}
                 <div class="swiper-slide {{name}}">{{> UI.dynamic template=name data=data}}</div>
             {{/each}}
-          
+
       </div>
   </div>
 </template>
@@ -145,11 +145,11 @@
      <div class="main-title">
      选择行业
      </div>
-   </div>     
+   </div>
     <div class="ui-tab">
       {{#each $mapped scopeChange}}
         <div class="{{#if $first}}left-tab active{{else}}right-tab{{/if}} tab" >
-          <a href="#box_tab{{$index}}" data-toggle="tab" class="addScopeSel">{{businessBig}}</a> 
+          <a href="#box_tab{{$index}}" data-toggle="tab" class="addScopeSel">{{businessBig}}</a>
         </div>
       {{/each}}
     </div>
@@ -169,7 +169,7 @@
           {{/each}}
       </div>
       <div class="tab-pane fade" id="box_tab1">
-          {{#each businessSmall_1}} 
+          {{#each businessSmall_1}}
             <div class="module">
               <div class="content">
                 <div class="single">
@@ -181,8 +181,8 @@
               </div>
             </div>
           {{/each}}
-      </div> 
-    </div>             
+      </div>
+    </div>
 </template>
 
 <!-- 确认经营范围 -->
@@ -251,7 +251,7 @@
     <div class="content block">
       <span class="key">注册资金（万元）: </span>
       <input type="text" placeholder="请输入注册资金" id="money" value={{companyMoney}}>
-      
+
       <div class="pull-right">
        <a href="/helper#capital">
             <i class="helper-icon icon"></i>
@@ -285,39 +285,87 @@
 </template>
 
 <template name="shockhoderInputBundle">
-  
+<!-- <<<<<<< HEAD -->
+ <!-- old
   <div class="module hodlerSpace">
-    {{#if selectType}}       
+    {{#if selectType}}
+        <div class="content block clearfix" holder={{selectType}}>
+          <span class="key pull-left">公司股东：</span>
+          <span class="pull-left">
+            <ul>
+              <li><input type="text" placeholder="请输入公司名" value="{{holderName}}" id="name"></li>
+              <li><input type="text" placeholder="请输入出资额" value="{{money}}" id="money"></li>
+              <li><input type="text" placeholder="请输入占股比例" value="{{moneyPercent}}" id="percent">%</li>
+            </ul>
+          </span>
+          <div class="pull-right">
+            <i class="trash icon outline default"></i>
+          </div>
+        </div>
+    {{else}}
+        <div class="content block clearfix" holder={{selectType}}>
+          <span class="key pull-left">个人股东：</span>
+          <span class="pull-left">
+            <ul>
+              <li><input type="text" placeholder="请输入姓名" id="name" value="{{holderName}}"></li>
+              <li>
+               <span class="select-region">
+                <select id="sexSel" class="form-control">
+                  <option value=null>请选择性别</option>
+                  <option value="男" {{theSex sex "男"}}>男</option>
+                  <option value="女" {{theSex sex "女"}}>女</option>
+                </select>
+               </span>
+              </li>
+              <li><input type="text" placeholder="请输入身份证号" id="code" value="{{code}}"></li>
+              <li><input type="text" placeholder="请根据身份证上的住址" id="address" value="{{address}}"></li>
+              <li><input type="text" placeholder="请输入出资额" id="money" value="{{money}}"></li>
+              <li><input type="text" placeholder="请输入占股比例" id="percent" value="{{moneyPercent}}">%</li>
+            </ul>
+          </span>
+          <div class="pull-right">
+            <i class="trash icon outline default"></i>
+          </div>
+        </div>
+    {{/if}}
+  </div>
+-->
+
+<!-- ======= -->
+
+<!-- >>>>>>> f16122e6a5d701451d7ab09cb7bd6b401a9eed15 -->
+  <div class="module hodlerSpace">
+    {{#if selectType}}
         <div class="content block clearfix solid-bottom">
           <span class="pull-left bold">公司股东</span>
           <div class="pull-right">
             <i class="trash icon outline default"></i>
-          </div>      
-        </div>     
+          </div>
+        </div>
         <div class="module group" holder={{selectType}}>
           <div class="content">
             <span class="key">公司名</span>
             <span class="dot"></span>
             <input type="text" placeholder="请输入公司名" value="{{holderName}}" id="name">
-          </div>   
+          </div>
           <div class="content">
             <span class="key">出资额</span>
             <span class="dot"></span>
             <input type="text" placeholder="请输入出资额" value="{{money}}" id="money">
-          </div>      
+          </div>
           <div class="content">
             <span class="key">占股比例</span>
             <span class="dot"></span>
             <input type="text" placeholder="请输入占股比例" value="{{moneyPercent}}" id="percent">
-          </div> 
-        </div>                
-      {{else}}       
+          </div>
+        </div>
+      {{else}}
       <div class="content block clearfix solid-bottom">
         <span class="pull-left bold">个人股东</span>
         <div class="pull-right">
           <i class="trash icon outline default"></i>
-        </div>      
-      </div>       
+        </div>
+      </div>
       <div class="module group" holder={{selectType}}>
         <div class="content">
           <span class="key">股东姓名</span>
@@ -332,32 +380,32 @@
               <option value=null>请选择性别</option>
               <option value="男" {{theSex sex "男"}}>男</option>
               <option value="女" {{theSex sex "女"}}>女</option>
-            </select>                 
+            </select>
           </span>
-        </div> 
+        </div>
         <div class="content">
           <span class="key">身份证</span>
           <span class="dot"></span>
           <input type="text" placeholder="请输入身份证号" id="code" value="{{code}}">
-        </div> 
+        </div>
         <div class="content">
           <span class="key">地址</span>
           <span class="dot"></span>
           <input type="text" placeholder="请根据身份证上的住址" id="address" value="{{address}}">
-        </div>   
+        </div>
         <div class="content">
           <span class="key">出资额</span>
           <span class="dot"></span>
           <input type="text" placeholder="请输入出资额" id="money" value="{{money}}">
-        </div>       
+        </div>
         <div class="content">
           <span class="key">出资比例</span>
           <span class="dot"></span>
           <input type="text" placeholder="请输入占股比例" id="percent" value="{{moneyPercent}}">
-        </div>    
-      </div>            
+        </div>
+      </div>
     {{/if}}
-  </div>  
+  </div>
 </template>
 
 
@@ -412,13 +460,13 @@
         <a href="/helper#finance_chief">
           <i class="icon helper-icon"></i>
         </a>
-      </div>      
+      </div>
     </div>
     <div class="content">
       <span class="key">身份证</span>
       <span class="dot"></span>
       <input type="text" placeholder="身份证" id="finaId" value="{{contractor.financialStaff.financialStaffId}}">
-    </div> 
+    </div>
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
@@ -428,9 +476,9 @@
       <span class="key">邮箱</span>
       <span class="dot"></span>
       <input type="text" placeholder="邮箱" id="finaEmail" value="{{contractor.financialStaff.financialStaffEmail}}">
-    </div>         
+    </div>
   </div>
-  
+
   <div class="module group">
     <div class="content">
       <span class="key">企业联络人</span>
@@ -441,18 +489,18 @@
       <span class="key">身份证</span>
       <span class="dot"></span>
       <input type="text" placeholder="身份证" id="liaId" value="{{contractor.liaisons.liaisonsId}}">
-    </div>    
+    </div>
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
       <input type="text" placeholder="手机号" id="liaPhone" value="{{contractor.liaisons.liaisonsPhone}}">
-    </div>     
+    </div>
     <div class="content">
       <span class="key">邮箱</span>
       <span class="dot"></span>
       <input type="text" placeholder="邮箱" id="liaEmail" value="{{contractor.liaisons.liaisonsEmail}}">
-    </div>          
-  </div>  
+    </div>
+  </div>
   <div class="get">
     <div>
       <button class="ui btn-default" type="button" id="saveBtn">保存</button>
@@ -467,26 +515,26 @@
       <span class="key">资料对接人</span>
       <span class="dot"></span>
       <input type="text" placeholder="姓名" id="consName" value="{{consigner.consignerName}}">
-    </div>   
+    </div>
     <div class="content">
       <span class="key">手机号</span>
       <span class="dot"></span>
       <input type="text" placeholder="手机号" id="consPhone" value="{{consigner.consignerPhone}}">
-    </div>     
+    </div>
     <div class="content">
       <span class="key">邮箱</span>
       <span class="dot"></span>
       <input type="text" placeholder="邮箱" id="consEmail" value="{{consigner.consignerEmail}}">
-    </div>    
+    </div>
     <div class="content">
       <span class="key">Q&nbsp;&nbsp;&nbsp;Q</span>
       <span class="dot"></span>
       <input type="text" placeholder="(建议填写)" id="consQQ" value="{{consigner.consignerQQ}}">
-    </div>          
-  </div>  
+    </div>
+  </div>
   <div class="get">
     <div>
       <button class="ui btn-default" type="button" id="saveBtn">保存</button>
     </div>
-  </div>  
+  </div>
 </template>

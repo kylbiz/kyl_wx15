@@ -1,16 +1,16 @@
 
 // 公司注册产品 -- outside
 var registrationLists=[
-  {
-    name:'1元注册',
-    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
-    services: [
-      {zone: '金山', payment: 1, message: '注册时长25天，行业以文化创意类为主，办理时需要股东到场一次'},
-      {zone: '松江', payment: 1, message: '注册时长20天，无其他要求'},
-      {zone: '嘉定', payment: 1, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
-      {zone: '奉贤', payment: 1, message: '注册时长20天，无其他要求'}
-    ],
-  },
+  // {
+  //   name:'1元注册',
+  //   baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
+  //   services: [
+  //     {zone: '金山', payment: 1, message: '注册时长25天，行业以文化创意类为主，办理时需要股东到场一次'},
+  //     {zone: '松江', payment: 1, message: '注册时长20天，无其他要求'},
+  //     {zone: '嘉定', payment: 1, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
+  //     {zone: '奉贤', payment: 1, message: '注册时长20天，无其他要求'}
+  //   ],
+  // },
   {
     name:'极速注册',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
