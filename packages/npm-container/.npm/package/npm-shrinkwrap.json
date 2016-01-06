@@ -220,7 +220,7 @@
                   }
                 },
                 "sshpk": {
-                  "version": "https://registry.npm.taobao.org/sshpk/download/sshpk-1.7.1.tgz",
+                  "version": "https://registry.npm.taobao.org/sshpk/download/sshpk-1.7.2.tgz",
                   "dependencies": {
                     "asn1": {
                       "version": "https://registry.npm.taobao.org/asn1/download/asn1-0.2.3.tgz"

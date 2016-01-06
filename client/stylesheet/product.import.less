@@ -53,6 +53,14 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
   padding-top: 0 !important;
+}
+
+.product .root-module .segement {
+  padding-right: 80px;
+}
+
+//文案
+.dist {
   .section {
     .margin-bottom-rem(20px);
     background-color: #fff;
@@ -250,7 +258,8 @@
            color: #666;
            font-size: 13px;
            padding-left: 20px;
-            
+           vertical-align: middle;
+           //min-height: 24px;
           }
         }
     }  
@@ -275,9 +284,40 @@
     img {
       max-width: 100%;
     }
-  }
+  }  
 }
 
-.product .root-module .segement {
-  padding-right: 80px;
+//帮助页
+.dist.helper {
+  
+  
+  .section .dist-list-box .list {
+    .line-height(48px);
+    .height(48px);
+  }  
+  
+  .section .dist-list-box .spread-content  {
+    .padding-rem(15px);
+  }
+  
+  .spread-army {
+    vertical-align: middle;
+    position: relative;
+    &:before {
+     display: none !important;
+    }
+    .text {
+     color: #666;
+     font-size: 15px !important;
+     padding-left: 0 !important;
+     line-height: 22px;
+      p {
+        margin: 0;
+        .margin-bottom-rem(15px);
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }   
 }

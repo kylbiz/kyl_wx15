@@ -12,7 +12,9 @@
         <span class="key">企业字号:</span>
         <input type="text" id="mainName" value={{companyName.mainName}}>
         <span class="pull-right">
-            <i class="help circle icon"></i>
+           <a href="/helper#name_brand">
+            <i class="helper-icon icon"></i>
+           </a>
         </span>
     </div>
   </div>
@@ -246,9 +248,15 @@
 <template name="resource_segement">
  <!-- {{> hello }} -->
   <div class="module">
-    <div class="content">
+    <div class="content block">
       <span class="key">注册资金（万元）: </span>
       <input type="text" placeholder="请输入注册资金" id="money" value={{companyMoney}}>
+
+      <div class="pull-right">
+       <a href="/helper#capital">
+            <i class="helper-icon icon"></i>
+       </a>
+      </div>
     </div>
   </div>
 
@@ -277,6 +285,7 @@
 </template>
 
 <template name="shockhoderInputBundle">
+<!-- <<<<<<< HEAD -->
  <!-- old
   <div class="module hodlerSpace">
     {{#if selectType}}
@@ -322,6 +331,9 @@
   </div>
 -->
 
+<!-- ======= -->
+
+<!-- >>>>>>> f16122e6a5d701451d7ab09cb7bd6b401a9eed15 -->
   <div class="module hodlerSpace">
     {{#if selectType}}
         <div class="content block clearfix solid-bottom">
@@ -405,6 +417,11 @@
       <span class="key">法人</span>
       <span class="dot"></span>
       <input type="text" placeholder="姓名" id="legalPersonName" value={{legalPerson.legalPersonName}}>
+      <div class="box-end">
+        <a href="/helper#manager">
+          <i class="icon helper-icon"></i>
+        </a>
+      </div>
     </div>
     <div class="content">
       <span class="key">身份证</span>
@@ -439,6 +456,11 @@
       <span class="key">财务负责人</span>
       <span class="dot"></span>
       <input type="text" placeholder="姓名" id="finaName" value="{{contractor.financialStaff.financialStaffName}}">
+      <div class="box-end">
+        <a href="/helper#finance_chief">
+          <i class="icon helper-icon"></i>
+        </a>
+      </div>
     </div>
     <div class="content">
       <span class="key">身份证</span>
