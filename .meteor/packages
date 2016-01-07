@@ -19,4 +19,5 @@ peerlibrary:xml2js
 webapp
 momentjs:moment
 semantic:ui-icon
-fastclick
+# fastclick
+rounce:fastclick
