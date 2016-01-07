@@ -2,6 +2,7 @@ Template.index.onCreated(function () {
     if (Meteor.userId()) {
         Meteor.subscribe('shopcart');
     }
+
 });
 
 
@@ -13,6 +14,8 @@ Template.index.onRendered(function(){
     }
     return false;
   });
+
+  Session.set('WeChatUser', 'WeChatUser');
 });
 
 

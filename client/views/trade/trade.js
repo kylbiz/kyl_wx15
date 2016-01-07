@@ -71,11 +71,16 @@ Template.trade.events({
                 console.log("error", error);
                 kylUtil.alert("警告", JSON.stringify(error));
               } else {
-                var WeixinJSBridge = WeixinJSBridge || false;
-                if (!WeixinJSBridge) {
+                // var WeixinJSBridge = WeixinJSBridge || false;
+                // if (!WeixinJSBridge) {
+                //     kylUtil.alert("请在微信中使用");
+                //     return;
+                // }
+                if(typeof window.WeixinJSBridge == 'undefined' || typeof window.WeixinJSBridge.invoke == 'undefined') {
                     kylUtil.alert("请在微信中使用");
                     return;
                 }
+
                 WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
                   if(res.err_msg == "get_brand_wcpay_request:ok"){
                     console.log("支付成功");

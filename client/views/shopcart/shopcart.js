@@ -36,14 +36,14 @@ Template.shopcart.events({
 
 			}
 		});
-
 	},
 });
 
 // 底部控制
 Template.shopcart_controlBox.events({
 	'click #trade': function () {
-		Router.go("/weixinpay/");
+		// Router.go("trade");
+        window.location.href = '/weixinpay/';
 	}
 });
 

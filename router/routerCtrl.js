@@ -5,20 +5,21 @@ Router.configure({
   //notFoundTemplate: 'notFoundTemplate',
 });
 
-
-
 // 登陆权限控制 这里需要判断两种条件
 // 微信帐号登录
 Router.onBeforeAction(function () {
-	// console.log("WeChatUser", Session.get('WeChatUser'), this.params.query);
-	var openid = Session.get('WeChatUser');
-	if (openid) {
+	var WeChatUser = this.params.query.openid || "";
+	if (WeChatUser) {
+		console.log("have query");
+		window.localStorage.openid = WeChatUser;
+		Session.set('WeChatUser', WeChatUser);
 		this.next();
-	} else if (openid = this.params.query.openid) {
-		Session.set('WeChatUser', openid);
+	} else if (window.localStorage.openid) {
+		console.log('have coll');
+		Session.set('WeChatUser', window.localStorage.openid);
 		this.next();
 	} else {
-		// this.render('errPage');
+		console.log("go to oauth");
 		Router.go('/oauth');
 	}
 }, {except: ['receive', 'oauth', 'createMenu']});
@@ -26,7 +27,7 @@ Router.onBeforeAction(function () {
 
 // 开业啦帐号登录
 Router.onBeforeAction(function () {
-	// console.log('loginUser', Meteor.userId(), this.originalUrl);
+	console.log('loginUser', Meteor.userId(), this.originalUrl);
 	if (Meteor.userId()) {
 		this.next();
 	} else {
