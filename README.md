@@ -1,7 +1,5 @@
 # 开业啦微信商城
 
-## 依赖的包
-
 ## 项目结构
 - both
 - router
@@ -13,19 +11,92 @@
 
 ## 功能实现
 
-#### 微信基本API接口的实现 -- 使用 wechat-api
+#### 账号系统
+- 微信账号与公司账号（电话）绑定、解除绑定
+	- `accounts-password`, `meteor-roles`
+	- 注意点: 用户取消关注后follwers列表中仍保存用户的openid 但是user信息中subscribe＝0，除openid外其他信息都清除,openid对应一个公众号永久不变
+
+#### 微信OAuth *-- 使用 wehcat-oauth*
+
+#### 支付系统 *-- 使用 wechat-pay*
+
+#### 微信基本API接口的实现 *-- 使用 wechat-api*
+	
 - access_token的维护
 	- 中控服务器统一管理access_token
 	- 提供token的 get(主动、被动)、 isValid(验证是否过期) save(存储)
 
 - 消息加解密(暂不需要) -- 使用 wechat-crypto
 
-#### 账号系统
-- 微信账号与公司账号（电话）绑定、接触绑定
-	- `accounts-password`, `meteor-roles`
-	- 注意点: 用户取消关注后follwers列表中仍保存用户的openid 但是user信息中subscribe＝0，除openid外其他信息都清除,openid对应一个公众号永久不变
 
-#### 支付系统
+## 后期维护注意点
+- 产品图片信息写死在 `both/util.js --getImg()`中
+- 产品辅助描述信息写死在 `both/util.js --getBriefDes()`中
+- 产品大体价格信息写死在 `both/util.js --getPriceGeneral()`中
+- 产品购买的信息部分写死在`client/views/product.js`中
+
+
+## 当前遗留问题
+- 支付成功后，在支付成功页，点击浏览器的返回按钮，跳转到订单详情页面
+- 退款逻辑
+- 共享收货地址的获取
+
+
+## 其他
+- 测试支付的接口
+
+```
+Meteor.call("payOKTest", {
+                    out_trade_no: result.payOrderId,
+                    des: "test"
+                }, function(err, res) {
+                    if (!err) {
+                        console.log("支付成功");
+                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
+                    } else {
+                        console.log("支付失败，请重试");
+                        Router.go('shopcart');
+                    }
+                });
+
+```
+
+
+
+#### 微信
+appid --  --公众号唯一标识
+secret --APPID对应的接口密码, 用于 1.获取接口调用凭证`access_token`时使用； 2.`OAuth2.0`获取用户openId
+mch_id --微信支付商户收款号
+key --交易过程生成签名的密钥
+
+**微信支付**
+
+- 准备: 
+	- 申请商户账号，获取支付权限
+	- 配置oauth授权域名, 配置（测试）支付授权目录(在授权域名之下), 添加测试白名单
+- 发起支付请求
+	- 参数准备
+		- prepay_id: 发起统一下单
+		- paySign: access_token => jsapi_ticket => 签名
+	- H5调用
+
+	``` javaScript
+	WeixinJSBridge.invoke(
+       'getBrandWCPayRequest', {
+           "appId" ： "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
+           "timeStamp"：" 1395712654",         //时间戳，自1970年以来的秒数     
+           "nonceStr" ： "e61463f8efa94090b1f366cccfbbb444", //随机串     
+           "package" ： "prepay_id=u802345jgfjsdfgsdg888",     
+           "signType" ： "MD5",         //微信签名方式：     
+           "paySign" ： "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
+       },
+       function(res){     
+           if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+       }
+   ); 
+	```		
+	- JSSDK调用
+
 
 
 
@@ -503,8 +574,17 @@
 	},
 	
 	```
+	
+	
+	
+	
+	
+	
+	
+	
+## 日志
 
-## 进度
+#### 开发进度
 - Day 1 --[熟悉基本流程，环境搭建]
 - Day 2 --[access-token的获取]
 - Day 3 --[项目基本结构]
@@ -534,76 +614,6 @@
 - Day 27 --[微信客服系统 -- 使用第三方]
 - Day 28 --[价格确认，后台管理确认]
 
-## 后期维护注意点
-- 产品图片信息写死在 `both/util.js --getImg()`中
-- 产品辅助描述信息写死在 `both/util.js --getBriefDes()`中
-- 产品大体价格信息写死在 `both/util.js --getPriceGeneral()`中
-- 产品购买的信息部分写死在`client/views/product.js`中
-
-
-## 当前遗留问题
-- 客服系统
-- 支付成功后，在支付成功页，点击浏览器的返回按钮，跳转到订单详情页面
-- 经营范围 - 资讯类无数据
-- 退款逻辑
-- 测试 access_token oauth_token的 get、save
-- 共享收货地址的获取
-- 支付过程中的标记与处理
-
-
-## 其他
-- 部署时遇到的问题
-	Session在移动端url切换时有问题
-- 测试支付的接口
-
-```
-Meteor.call("payOKTest", {
-                    out_trade_no: result.payOrderId,
-                    des: "test"
-                }, function(err, res) {
-                    if (!err) {
-                        console.log("支付成功");
-                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
-                    } else {
-                        console.log("支付失败，请重试");
-                        Router.go('shopcart');
-                    }
-                });
-
-```
-
-
-
-#### 微信
-appid --  --公众号唯一标识
-secret --APPID对应的接口密码, 用于 1.获取接口调用凭证`access_token`时使用； 2.`OAuth2.0`获取用户openId
-mch_id --微信支付商户收款号
-key --交易过程生成签名的密钥
-
-**微信支付**
-
-- 准备: 
-	- 申请商户账号，获取支付权限
-	- 配置oauth授权域名, 配置（测试）支付授权目录(在授权域名之下), 添加测试白名单
-- 发起支付请求
-	- 参数准备
-		- prepay_id: 发起统一下单
-		- paySign: access_token => jsapi_ticket => 签名
-	- H5调用
-
-	``` javaScript
-	WeixinJSBridge.invoke(
-       'getBrandWCPayRequest', {
-           "appId" ： "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
-           "timeStamp"：" 1395712654",         //时间戳，自1970年以来的秒数     
-           "nonceStr" ： "e61463f8efa94090b1f366cccfbbb444", //随机串     
-           "package" ： "prepay_id=u802345jgfjsdfgsdg888",     
-           "signType" ： "MD5",         //微信签名方式：     
-           "paySign" ： "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
-       },
-       function(res){     
-           if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
-       }
-   ); 
-	```		
-	- JSSDK调用
+#### 维护日志
+- 添加微信支付后的模板通知
+- 添加自动化部署

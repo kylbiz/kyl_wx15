@@ -317,6 +317,9 @@ function paySuccessHandle(message) {
 	// 更新订单状态
 	updateOrder();
 
+	// 推送支付成功的模板
+	sendTemplate();
+
 
 	// 更新paylog状态
 	function updatePayLog() {
@@ -387,6 +390,18 @@ function paySuccessHandle(message) {
 		}
 
 		return true;
+	}
+
+
+	// 推送支付成功的模板
+	function sendTemplate() {
+		var info = {
+			openId: message.openid,
+			money: parseInt(message.total_fee) / 100,
+			productName: message.attach,
+			orderId: message.out_trade_no,
+		};
+		Meteor.call("sendTemplate", info);
 	}
 
 	return true;

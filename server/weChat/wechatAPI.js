@@ -43,6 +43,33 @@ function saveToken(token, callback) {
 
 // 具体数据获取的方法
 Meteor.methods({
+    sendTemplate: function (info) {
+        var templateId = WXConfig.templateID;
+        // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
+        var url = WXConfig.host + '/orderList';
+        var openid = info.openId;
+        var data = {
+           "first": {
+             "value":"尊敬的客户，您的订单已成功付款，我们将即刻安排处理您的订单。",
+             "color":"#000000"
+           },
+           "orderMoneySum":{
+             "value":info.money + "元",
+             "color":"#000000"
+           },
+           "orderProductName": {
+             "value":info.productName || "开业啦微信端产品" + " [单号" + info.orderId + "]",
+             "color":"#000000"
+           },
+           "remark":{
+             "value":"如有问题请致电400-066-3192或直接在微信留言，开业啦将第一时间为您服务！",
+             "color":"#000000"
+           }
+        };
+        api.sendTemplate(openid, templateId, url, data, function (err, result) {
+            console.log("pay success send template", err, result);
+        });
+    },
     getFollowers: function() {
         var result = Async.runSync(function(callback) {
             WXAPI.getFollowers(callback);

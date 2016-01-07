@@ -10,6 +10,7 @@ WXConfig = {
     'pay_notify': 'wx15.kyl.biz/wxpayret',
     'mchID': '1226318502',
     'pfxPath': "/weChat/lib/apiclient_cert.p12",
+    'templateID': 'CKR1_YMjYnJEZNRgqJA978DOoVsnGXHxbYFceBu7dd4',
 
 
     // kyl 测试账号 -- 用于账号绑定
