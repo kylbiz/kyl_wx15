@@ -4,8 +4,8 @@ var Payment = Meteor.npmRequire('wechat-pay').Payment;
 var middleware = Meteor.npmRequire('wechat-pay').middleware;
 
 var fs = Npm.require('fs');
-// var runRoot = process.cwd();
 
+// var runRoot = process.cwd();
 // console.log("process.env.PWD", process.env.PWD);
 // console.log("execPath", process.execPath);
 // console.log('Current directory: ' + process.cwd() );

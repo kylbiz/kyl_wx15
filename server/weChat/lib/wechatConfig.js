@@ -1,5 +1,5 @@
 WXConfig = {
-    'host': 'http://cc.liuzunkun.com',
+    'host': 'http://wx15.kyl.biz',
     'token': 'keyboardcat123',
 
     // kyl 主账号 -- 这里用于测试支付
@@ -7,7 +7,7 @@ WXConfig = {
     'appsecret': '7119516f3a1ef641874d679e0c52053a',
     // 'pay_url': 'cc.liuzunkun.com/weixinpay/',
     'partnerKey': 'sPSKBwe7wR7AQxBQ4MJrNkiBCyzkwcCc',
-    'pay_notify': 'cc.liuzunkun.com/wxpayret',
+    'pay_notify': 'wx15.kyl.biz/wxpayret',
     'mchID': '1226318502',
     'pfxPath': "/weChat/lib/apiclient_cert.p12",
 

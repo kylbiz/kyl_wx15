@@ -76,30 +76,21 @@ Template.trade.events({
                 //     kylUtil.alert("请在微信中使用");
                 //     return;
                 // }
-                // WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
-                //   if(res.err_msg == "get_brand_wcpay_request:ok"){
-                //     console.log("支付成功");
-                //     Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
-                //   }else {
-                //     console.log("支付失败，请重试");
-                //     kylUtil.alert("支付失败，请重试");
-                //     Router.go('orderList');
-                //   }
-                // });
+                if(typeof window.WeixinJSBridge == 'undefined' || typeof window.WeixinJSBridge.invoke == 'undefined') {
+                    kylUtil.alert("请在微信中使用");
+                    return;
+                }
 
-                Meteor.call("payOKTest", {
-                    out_trade_no: result.payOrderId,
-                    des: "test"
-                }, function(err, res) {
-                    if (!err) {
-                        console.log("支付成功");
-                        Router.go('/paySuccess?order=' + result.payOrderId + '&style=测试');
-                    } else {
-                        console.log("支付失败，请重试");
-                        Router.go('shopcart');
-                    }
+                WeixinJSBridge.invoke('getBrandWCPayRequest', result.payargs, function(res){
+                  if(res.err_msg == "get_brand_wcpay_request:ok"){
+                    console.log("支付成功");
+                    Router.go('/paySuccess?order=' + result.payOrderId + '&style=微信');
+                  } else {
+                    console.log("支付失败，请重试");
+                    kylUtil.alert("支付失败，请重试");
+                    Router.go('orderList');
+                  }
                 });
-
               }
         });
     },

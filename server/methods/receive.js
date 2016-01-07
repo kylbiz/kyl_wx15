@@ -2,12 +2,12 @@
 
 
 
-// Meteor.methods({
-// 	'receiveHandle': function(req, res) {
-// 		WeChatVerifyUrl(req, res); // 用于微信验证url
-// 		return 'fuck';
-// 	}
-// });
+Meteor.methods({
+	'receiveHandle': function(req, res) {
+		WeChatVerifyUrl(req, res); // 用于微信验证url
+		return 'fuck';
+	}
+});
 
 
 Meteor.methods({
@@ -24,16 +24,16 @@ Meteor.methods({
 });
 
 
-// function WeChatVerifyUrl(req, res) {
-// 	var query = req.query;
-// 	if (!checkSignature(query.timestamp, query.nonce, query.signature)) {
-// 		log('verify signature err');
-// 		return res.end('verify signature err');
-// 	}
+function WeChatVerifyUrl(req, res) {
+	var query = req.query;
+	if (!checkSignature(query.timestamp, query.nonce, query.signature)) {
+		log('verify signature err');
+		return res.end('verify signature err');
+	}
 
-// 	log('echostr', query.echostr)
-// 	res.end(query.echostr);
-// };
+	log('echostr', query.echostr);
+	res.end(query.echostr);
+}
 
 // 对微信回调回来的数据进行处理
 function receiveHandle(data, http) {
@@ -49,6 +49,17 @@ function receiveHandle(data, http) {
 	return false;
 }
 
+
+// WebApp.connectHandlers.use("/", function (req, res) {
+// 	var query = req.query;
+// 	if (!checkSignature(query.timestamp, query.nonce, query.signature)) {
+// 		log('verify signature err');
+// 		return res.end('verify signature err');
+// 	}
+
+// 	log('echostr', query.echostr);
+// 	res.end(query.echostr);
+// });
 
 
 // 处理微信回调回来的数据
@@ -125,8 +136,8 @@ function checkSignature(timestamp, nonce, sign) {
 function getSignature(timestamp, nonce) {
 	var crypto = Npm.require('crypto');
 	var shasum = crypto.createHash('sha1');
-	var arr = [Config.token, timestamp, nonce].sort();
+	var arr = [WXConfig.token, timestamp, nonce].sort();
 	shasum.update(arr.join(''));
 
 	return shasum.digest('hex');
-};
+}

@@ -2,6 +2,7 @@ Template.index.onCreated(function () {
     if (Meteor.userId()) {
         Meteor.subscribe('shopcart');
     }
+
 });
 
 
@@ -13,6 +14,8 @@ Template.index.onRendered(function(){
     }
     return false;
   });
+
+  Session.set('WeChatUser', 'WeChatUser');
 });
 
 
@@ -39,10 +42,11 @@ Template.index.events({
 
 		var url = {
 			// registration: '/product/registration?name=1元注册',
-            registration: '/product/registration?name=极速注册',
-			finance: '/product/finance?name=财务代理',
-			assurance: '/product/assurance?name=社保人事',
-            trademark: '/product/trademark?name=商标注册'
+            "registration": '/product/registration?name=极速注册',
+            "registration-newyear": '/product/registration?name=公司注册-新年特惠',
+			"finance": '/product/finance?name=财务代理',
+			"assurance": '/product/assurance?name=社保人事',
+            "trademark": '/product/trademark?name=商标注册'
 			// workspace: 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH'
 		};
         if (url.hasOwnProperty(product)) {
