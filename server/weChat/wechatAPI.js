@@ -53,20 +53,20 @@ Meteor.methods({
              "value":"尊敬的客户，您的订单已成功付款，我们将即刻安排处理您的订单。",
              "color":"#000000"
            },
-           "orderMoneySum":{
+           "orderMoneySum": {
              "value":info.money + "元",
              "color":"#000000"
            },
            "orderProductName": {
-             "value":info.productName || "开业啦微信端产品" + " [单号" + info.orderId + "]",
+             "value":(info.productName || "开业啦微信端产品") + " [支付单号" + info.out_trade_no + "]",
              "color":"#000000"
            },
-           "remark":{
+           "Remark": {
              "value":"如有问题请致电400-066-3192或直接在微信留言，开业啦将第一时间为您服务！",
              "color":"#000000"
            }
         };
-        api.sendTemplate(openid, templateId, url, data, function (err, result) {
+        WXAPI.sendTemplate(openid, templateId, url, data, function (err, result) {
             console.log("pay success send template", err, result);
         });
     },

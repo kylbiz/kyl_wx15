@@ -398,8 +398,8 @@ function paySuccessHandle(message) {
 		var info = {
 			openId: message.openid,
 			money: parseInt(message.total_fee) / 100,
-			productName: message.attach,
-			orderId: message.out_trade_no,
+			productName: message.detail || "",
+			out_trade_no: message.out_trade_no,
 		};
 		Meteor.call("sendTemplate", info);
 	}
