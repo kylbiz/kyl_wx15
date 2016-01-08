@@ -27,7 +27,7 @@ Template.index.helpers({
             link: '/product/registration?name=公司注册-新年特惠'
         }, {
             source: '/images/event/banner1.png',
-            link: '/product/partnership'
+            link: '/partnership'
         }];
         return bannerImages;      
     },
