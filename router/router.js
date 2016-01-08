@@ -285,5 +285,7 @@ Router.route('/context');
 
 Router.route('/aboutus');
 
-
 Router.route('/helper');
+
+//合伙管家
+Router.route('/partnership');

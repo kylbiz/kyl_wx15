@@ -20,6 +20,17 @@ Template.index.onRendered(function(){
 
 
 Template.index.helpers({
+    bannerImages: function () {
+    <!-- 配置banner图 -->          
+        var bannerImages = [{
+            source: '/images/event/newyear.jpg',
+            link: '/product/registration?name=公司注册-新年特惠'
+        }, {
+            source: '/images/event/banner1.png',
+            link: '/product/partnership'
+        }];
+        return bannerImages;      
+    },
     productPrice: function (product) {
         return kylUtil.getPriceGeneral(product) || 0;
     },
