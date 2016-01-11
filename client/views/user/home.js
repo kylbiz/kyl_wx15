@@ -4,7 +4,7 @@ Template.home.events({
 			if (err) {
 				kylUtil.alert("警告", "退出失败");
 			} else {
-				Router.go("main");
+				Router.go("/");
 			}
 		});
 	}

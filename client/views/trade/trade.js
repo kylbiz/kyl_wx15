@@ -65,17 +65,12 @@ Template.trade.events({
                 shopcartIdList: shopcartIdList,
                 invoice: Session.get('invoice') || false,
                 addressId: addressId,
-                wechatOpenId: Session.get("WeChatUser")
+                // wechatOpenId: Session.get("WeChatUser")
             }, function (error, result) {
               if (error) {
                 console.log("error", error);
-                kylUtil.alert("警告", JSON.stringify(error));
+                kylUtil.alert("警告", error.reason);
               } else {
-                // var WeixinJSBridge = WeixinJSBridge || false;
-                // if (!WeixinJSBridge) {
-                //     kylUtil.alert("请在微信中使用");
-                //     return;
-                // }
                 if(typeof window.WeixinJSBridge == 'undefined' || typeof window.WeixinJSBridge.invoke == 'undefined') {
                     kylUtil.alert("请在微信中使用");
                     return;
@@ -91,6 +86,7 @@ Template.trade.events({
                     Router.go('orderList');
                   }
                 });
+
               }
         });
     },

@@ -229,7 +229,7 @@ var financeLists = [
     serviceTypeName: '年度公示+汇算清缴',
     timeType: false,
     lists: [
-      {name: '抄报税', timeType: false, period: '一次', payment: 500},
+      {name: '年度公示+汇算清缴', timeType: false, period: '一次', payment: 500},
     ]
   },
   {
@@ -290,6 +290,11 @@ var bankLists = [
 
 var tradeMark = [
   {name: '商标注册', payment: 1200},
+];
+
+// 特殊品类产品
+var specialProduct = [
+  {name: '合伙管家', payment: 2999, subType: 'partnership', other: {}},
 ];
 
 
@@ -360,6 +365,11 @@ Meteor.startup(function() {
   if (TradeMark.find().count() === 0) {
     tradeMark.forEach(function (mark) {
       TradeMark.insert(mark);
+    });
+  }
+  if (SpecialProduct.find().count() === 0) {
+    specialProduct.forEach(function (info) {
+      SpecialProduct.insert(info);
     });
   }
 

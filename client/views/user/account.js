@@ -76,6 +76,7 @@ Template.register.events({
 					// Meteor.call('sendRegistrationInfos', phone); // 发送成功注册消息
 					Meteor.loginWithPassword(phone, password, function(err) {
 						if(err) {
+							console.log("login fail", err);
 							alert('用户注册成功,请登录系统!')
 							Router.go('/login');
 						} else {
@@ -158,6 +159,7 @@ Template.forget.events({
 function getGenCode(phone, callBack) {
 	Meteor.call('genereateUserCode', phone, function(err, codeValue) {
 		console.log('genereateUserCode', err, codeValue);
+    	clearInterval();
 		if(!err && codeValue && codeValue['codestatus'] && codeValue['message']) {
 			if(codeValue['codestatus'] === 0 || codeValue['codestatus'] === 2) {
 				kylUtil.alert(codeValue['message'] || "未知错误");

@@ -1,4 +1,12 @@
 <template name='product'>
+  {{#if isSpecialProduct.result}}
+    {{> UI.dynamic template=isSpecialProduct.template}}
+  {{else}}
+      {{> product_normal}}
+  {{/if}}
+</template>
+
+<template name='product_normal'>
   <div class="main main-container has-ui-control-bottom product">
     <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg)">
       <div class="cover-center">
@@ -427,7 +435,7 @@
             </div>
           </div>
         </div>
-             
+
       </div>
     </div>
   </div>
