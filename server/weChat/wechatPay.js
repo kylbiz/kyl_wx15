@@ -270,7 +270,7 @@ function beforePayHandle(orderInfo) {
 				orderId: orderId,
 				money: info.moneyAmount,
 				servicename: info.productType,
-				// relationId: info.relationId,	// 创建时添加，则这边就添加
+				relationId: info.relationId || "",	// 创建时添加，则这边就添加
 			};
 			moneyAll += info.moneyAmount;
 			infoList.push(paylogInfo);

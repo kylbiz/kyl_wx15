@@ -49,7 +49,7 @@ function commInfo(serInfo) {
 
 	return {
 	    userId: Meteor.userId(),
-	    // relationId: kylUtil.genOrderId(),     //  关联产品id 暂不使用
+	    relationId: kylUtil.genOrderId(),     //  关联产品id 为兼容PC数据 未实际使用
 	    productType: productTypeNames[serInfo.type],
 	    typeNameFlag: serInfo.type,
 	    payed: false,
@@ -244,6 +244,16 @@ function handleTrademark(serInfo) {
     }
 
     var pay = info.payment || 0;
+    console.log("trademark", {
+        moneyAmount: pay,
+        servicesNameList: [{
+            name: serInfo.name,
+            money: pay,
+            scale: 1,
+            other: info.other,
+            servicesContains:[],
+        }]
+    });
     return {
         moneyAmount: pay,
         subType: info.subType,
@@ -270,6 +280,7 @@ function handleSpecial(serInfo) {
         moneyAmount: pay,
         servicesNameList: [{
             name: serInfo.name,
+            subType: info.subType,
             money: pay,
             scale: 1,
             servicesContains: [],
