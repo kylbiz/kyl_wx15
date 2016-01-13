@@ -26,6 +26,8 @@ function productShowInfo (list) {
 	  		id: infoBase._id,
 	  		orderId: infoBase.orderId || false,	//购物车中无该选项
 	  		payed: infoBase.payed,
+	  		typeNameFlag: infoBase.typeNameFlag,
+	  		userConfirmed: infoBase.userConfirmed,
 	  		// title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount,
 	  		_img: _img,
 	  		title: info.name,

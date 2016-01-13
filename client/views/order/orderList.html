@@ -23,8 +23,7 @@
                       <button type="button" class="btn-primary">查看详情</button>
                     </a>
                 </div>
-                {{#if userConfirmed}}
-                {{else}}
+                {{#if isRegCompNotReady userConfirmed typeNameFlag}}
                   <div class="btn-box">
                       <button type="button" class="btn-default" id="submitSrcBtn" value={{orderId}}>提交资料</button>
                   </div>

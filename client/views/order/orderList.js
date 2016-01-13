@@ -4,6 +4,9 @@ Template.orderList.helpers({
 		// console.log('orders', Orders.find({}).fetch());
 		return CommFunc.getOrderInfo();
 	},
+	isRegCompNotReady: function (userConfirmed, typeName) {
+		return (typeName == "registration" && !userConfirmed);
+	}
 	// uploadInfo: function (orderId) {
 	// 	return !judgeRegInfo(orderId);
 	// }
