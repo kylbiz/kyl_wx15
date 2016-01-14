@@ -21,7 +21,7 @@ Template.index.helpers({
     bannerImages: function () {
         // 配置banner图
         var bannerImages = [{
-            source: '/images/event/newyear.jpg',
+            source: '/images/event/newyear.png',
             link: '/product/registration?name=公司注册-新年特惠'
         }, {
             source: '/images/event/banner1.png',
