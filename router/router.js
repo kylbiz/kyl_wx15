@@ -294,5 +294,3 @@ Router.route('/context');
 Router.route('/aboutus');
 
 Router.route('/helper');
-
-Router.route('/single');
