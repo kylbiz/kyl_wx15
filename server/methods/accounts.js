@@ -58,29 +58,30 @@ Meteor.methods({
 						} else {
 							log('send verification code succeed');
 							codeValue = {
-							codestatus: 1,
-							message: "验证码发送成功!"
-						}
+								codestatus: 1,
+								message: "验证码发送成功!"
+							};
 							callback(null, codeValue);
 						}
 					}
 				);
 
 			} else  {
+				var err = "";
 				if(!codeGenerateFlag) {
-					var err = '提交太频繁,请一分钟后再试!';
+					err = '提交太频繁,请一分钟后再试!';
 				} else {
-					var err = '手机号错误或者该用户已经是注册用户!';
-					}
+					err = '手机号错误或者该用户已经是注册用户!';
+				}
 
-					log(err);
+				log(err);
 
-					var codeValue = {
-						codestatus: 2,
-						message: err
-					}
-					callback(null, codeValue);
-			};
+				codeValue = {
+					codestatus: 2,
+					message: err
+				};
+				callback(null, codeValue);
+			}
 		}
 
 		var UserCodeHandle = Async.wrap(userCodeGenerator);
@@ -91,29 +92,30 @@ Meteor.methods({
 	// 注册
 	'UserRegistration': function(phone, password, wechat_openid, code) {
 		// 验证码校验
-		// if (!codeVerification(phone, code, new Date())) {
-		// 	throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
-		// }
+		if (!codeVerification(phone, code, new Date())) {
+			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
+		}
 
 		var options = {
 			username: phone,
 			password: password,
-			roles: ['customer'],
 			profile: {
 	            phone: phone,
-	            wechat_openid: wechat_openid
+	            wechat_openid: wechat_openid,
+	            host: "KYLWX",
 	        }
 		};
 
-		// if (Meteor.users.findOne({username: phone})) {
-		// 	throw new Meteor.Error("该号码已被注册");
-		// }
+		if (Meteor.users.findOne({username: phone})) {
+			throw new Meteor.Error("该号码已被注册");
+		}
 
 		var userId = Accounts.createUser(options);
 		if (userId) {
+			Roles.addUsersToRoles(userId, ['customer']);
 			return 'OK';
 		} else {
-			throw new Meteor.Error("注册用户失败", 'Error createUser fail');
+			throw new Meteor.Error("注册用户失败", '注册用户失败');
 		}
 	},
 
@@ -130,9 +132,9 @@ Meteor.methods({
 		}
 
 
-		// if (!codeVerification(phone, code, new Date())) {
-		// 	throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
-		// }
+		if (!codeVerification(phone, code, new Date())) {
+			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
+		}
 
 		var checkPwdRet = Accounts._checkPassword(oldInfo, {digest: digest, algorithm: 'sha-256'});
 		if (!checkPwdRet.error) {
@@ -173,7 +175,7 @@ function codeGenerateLegal(phone) {
       return true;
     }
   } else {
-    log('phone number illegal')
+    log('phone number illegal');
     return false;
   }
 }
@@ -187,18 +189,18 @@ function codeVerification(phone, code, timestamp) {
 			var _code = userCode.code;
 			var timeLegal = (timestamp - createTime) <= 180 * 1000 || false;
 			if(code.toLowerCase() === _code.toLowerCase() && timeLegal) {
-				log(11)
+				log(11);
 				return true;
 			} else {
-				log(22)
+				log(22);
 				return false;
 			}
 		} else {
-		log(33)
+		log(33);
 		return false;
 		}
 	} else {
-		log(44)
+		log(44);
 		return false;
 	}
 }

@@ -36,6 +36,6 @@ Router.onBeforeAction(function () {
 }, {only: [
 	'shopcart', 'trade', 'paySuccess', 	//订单支付相关
 	'addressList', 'address',	//地址管理相关
-	'orderList', 'orderDetail', 'orderProcess', // 订单管理相关
+	'orderList', 'orderDetail', 'orderProcess', 'orderDescription', 'shockholder',// 订单管理相关
 	'home',	// 用户信息相关
 	]});

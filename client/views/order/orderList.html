@@ -23,11 +23,9 @@
                       <button type="button" class="btn-primary">查看详情</button>
                     </a>
                 </div>
-                {{#if uploadInfo orderId}}
+                {{#if isRegCompNotReady userConfirmed typeNameFlag}}
                   <div class="btn-box">
-                    <!-- <a href="/companyInfo?orderid={{orderId}}"> -->
                       <button type="button" class="btn-default" id="submitSrcBtn" value={{orderId}}>提交资料</button>
-                    <!-- </a> -->
                   </div>
                 {{/if}}
 

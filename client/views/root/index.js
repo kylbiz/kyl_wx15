@@ -14,22 +14,20 @@ Template.index.onRendered(function(){
     }
     return false;
   });
-
-  Session.set('WeChatUser', 'WeChatUser');
 });
 
 
 Template.index.helpers({
     bannerImages: function () {
-    <!-- 配置banner图 -->          
+        // 配置banner图
         var bannerImages = [{
             source: '/images/event/newyear.jpg',
             link: '/product/registration?name=公司注册-新年特惠'
         }, {
             source: '/images/event/banner1.png',
-            link: '/partnership'
+            link: 'product/special?name=合伙管家&subtype=partnership'
         }];
-        return bannerImages;      
+        return bannerImages;
     },
     productPrice: function (product) {
         return kylUtil.getPriceGeneral(product) || 0;
@@ -53,6 +51,7 @@ Template.index.events({
 
 		var url = {
 			// registration: '/product/registration?name=1元注册',
+            "special": '/product/special?name=合伙管家&subtype=partnership',
             "registration": '/product/registration?name=极速注册',
             "registration-newyear": '/product/registration?name=公司注册-新年特惠',
 			"finance": '/product/finance?name=财务代理',

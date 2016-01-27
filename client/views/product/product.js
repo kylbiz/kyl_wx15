@@ -5,8 +5,23 @@ Template.product.onRendered(function(){
     });
 });
 
-
 Template.product.helpers({
+    isSpecialProduct: function () {
+        var params = Router.current().params;
+        var type = params.productType;
+
+        console.log("isSpecialProduct", params);
+        if (type == 'special') {
+            var subType = params.query.subtype || "";
+            return {result: true, template: subType};
+        }
+
+        return {result: false};
+    },
+});
+
+
+Template.product_normal.helpers({
     productsDes: function() {
         var type = Router.current().params.productType;
         return kylUtil.getProductsDes(type);
@@ -222,7 +237,7 @@ function goToAddShopCart() {
         Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(Router.current().url) });
         return;
     }
-    // console.log('seceive data', getServiceData());
+    console.log('seceive data', getServiceData());
 
     Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
         if (err) {
@@ -293,8 +308,22 @@ function getServiceData () {
                 type: type,
                 name: name,
             };
+        },
+        special: function () {
+            if (SpecialProduct.findOne({name: name, subType: params.query.subtype})) {
+                return {
+                    type: type,
+                    name: name
+                };
+            } else {
+                throw new Meteor.Error("内部错误", "非法数据");
+            }
         }
     };
 
-    return handles[type]();
+    if (handles.hasOwnProperty(type)) {
+        return handles[type]();
+    } else {
+        throw new Meteor.Error("内部错误", "非法数据");
+    }
 }

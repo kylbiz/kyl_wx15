@@ -9,4 +9,4 @@ Template.swipe_banners.onRendered(function(){
       crossFade: false,
     }
   });
-})
+});

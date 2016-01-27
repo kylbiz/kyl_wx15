@@ -16,6 +16,7 @@ Meteor.publish('products', function(project, opt) {
 		'bank': BankLists.find(), // 需定义为collection
 		'assurance': AssuranceLists.find(),
 		'trademark': TradeMark.find(),
+		'special': SpecialProduct.find(),
 	};
 
 	if (project == 'preview_all') {

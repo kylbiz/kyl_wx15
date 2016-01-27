@@ -25,8 +25,8 @@ function getShopcartInfo(serInfo) {
     	finance: handleFinance,
     	bookkeeping: handleBookkeeping,
     	bank: handleBank,
-        trademark: handlesTrademark
-    	// invoice: false,		// 是否要发票，之后实现
+        trademark: handleTrademark,
+        special: handleSpecial,
     };
     var diffInfo = handles[type](serInfo);
 
@@ -44,11 +44,12 @@ function commInfo(serInfo) {
         'bookkeeping': '流量记账包服务套餐',
         'bank': '银行开户',
         'trademark': '商标注册',
+        'special': '特别产品',
     };
 
 	return {
 	    userId: Meteor.userId(),
-	    // relationId: kylUtil.genOrderId(),     //  关联产品id 暂不使用
+	    relationId: kylUtil.genOrderId(),     //  关联产品id 为兼容PC数据 未实际使用
 	    productType: productTypeNames[serInfo.type],
 	    typeNameFlag: serInfo.type,
 	    payed: false,
@@ -236,8 +237,40 @@ function handleBank(serInfo) {
 }
 
 // 商标注册
-function handlesTrademark(serInfo) {
+function handleTrademark(serInfo) {
     var info = TradeMark.findOne({name: serInfo.name});
+    if (!info) {
+        throw new Meteor.Error("内部数据错误");
+    }
+
+    var pay = info.payment || 0;
+    console.log("trademark", {
+        moneyAmount: pay,
+        servicesNameList: [{
+            name: serInfo.name,
+            money: pay,
+            scale: 1,
+            other: info.other,
+            servicesContains:[],
+        }]
+    });
+    return {
+        moneyAmount: pay,
+        subType: info.subType,
+        servicesNameList: [{
+            name: serInfo.name,
+            money: pay,
+            scale: 1,
+            other: info.other,
+            servicesContains:[],
+        }]
+    };
+}
+
+
+// 特别产品
+function handleSpecial(serInfo) {
+    var info = SpecialProduct.findOne({name: serInfo.name});
     if (!info) {
         throw new Meteor.Error("内部数据错误");
     }
@@ -247,9 +280,10 @@ function handlesTrademark(serInfo) {
         moneyAmount: pay,
         servicesNameList: [{
             name: serInfo.name,
+            subType: info.subType,
             money: pay,
             scale: 1,
-            servicesContains:[],
+            servicesContains: [],
         }]
     };
 }

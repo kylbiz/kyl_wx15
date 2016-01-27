@@ -93,7 +93,15 @@ Router.route('/product/:productType', {
 	},
 	data: function () {
 		return {productName: this.params.query.name};
-	}
+	},
+	// onBeforeAction: function () {
+	// 	var productType = this.params.productType || "";
+	// 	if (productType == 'special') {
+	// 		this.render("partnership");
+	// 	} else {
+	// 		this.next();
+	// 	}
+	// }
 });
 
 // 购物车
@@ -286,6 +294,3 @@ Router.route('/context');
 Router.route('/aboutus');
 
 Router.route('/helper');
-
-//合伙管家
-Router.route('/partnership');
