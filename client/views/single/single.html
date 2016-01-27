@@ -1,0 +1,245 @@
+<template name="single">
+ <style>
+   body {
+     position: relative;
+     background-color: rgba(238,38,66,.9);         
+   }
+   header {
+     position: absolute;
+     z-index: 100;
+     left: 0;
+     top: 0;
+     width: 100%;
+   }
+   .single_wrapper {
+     padding-left: 30px;
+     padding-right: 30px;
+     padding-left: 1.875rem;
+     padding-right: 1.875rem;
+     padding-top: 60px;
+     padding-top: 3.75rem;   
+     padding-bottom: 80px;
+     padding-bottom: 5rem;
+   }
+   .single_container {
+     width: 640px;
+     max-width: 100%;
+     padding-top: 20px;
+     padding-top: 1.25rem; 
+     margin: 0 auto;
+     text-align: center;
+   } 
+   .single_logo {
+     max-width: 40%;
+     margin: 0 auto;
+   }
+   .single_logo img{
+     width: 100%;
+   }
+   .single_title {
+     margin-top: 20px;
+     margin-top: 1.25rem;
+     margin-bottom: 20px;
+     margin-bottom: 1.25rem;     
+     font-size: 18px;
+     color: #F9D078;
+   }
+   .flex_title {
+     display: -webkit-box;     
+   }
+   .flex_title .title {
+     padding-left: 10px;
+     padding-left: 0.625rem;
+     padding-right: 10px;
+     padding-right: 0.625rem;     
+     
+   }
+   .flex_title .background {
+     -webkit-box-flex:1;
+     background-repeat: no-repeat;
+   }
+   .flex_title .background.left {
+     background-image: url(/images/s_title_left.png);
+     background-position: right center;
+   }
+   .flex_title .background.right {
+     background-image: url(/images/s_title_right.png);
+     background-position: left center;     
+   }
+   .photo-box {
+     padding: 15px;
+     padding: 0.9375rem;     
+     background: rgba(256,256,256,0.5);
+     border-radius: 6px;
+     -webkit-border-radius:6px;
+     overflow: hidden;
+     line-height: 0;
+   }
+   .photo-box img {
+     width: 100%;    
+   }   
+   .notify_title {
+     margin-top: 20px;
+     margin-top: 1.25rem;
+     margin-bottom: 20px;
+     margin-bottom: 1.25rem;         
+   }
+   .notify_content {
+     font-size: 14px;
+     line-height: 20px;
+     vertical-align: middle;
+     color: #F9D078;  
+     text-align: left;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-left: 0.9375rem;
+     padding-right: 0.9375rem;     
+   }
+   .bottom-container {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-left: 0.9375rem;
+     padding-right: 0.9375rem;
+     padding-bottom: 15px;
+     padding-bottom: 0.9375rem;
+     padding-top: 15px;
+     padding-top: 0.9375rem;     
+     background-color: rgba(238,38,66,.9);     
+   }
+   .bottom-container .box {
+     -webkit-box-flex:1;
+     padding-left: 4px;
+     padding-right: 4px;
+     float: left;
+     width: 33.333333%;
+   }
+   .bottom-container .box.half {
+     width: 50%;
+   }
+   .bottom-container .single-btn {
+     text-align: center;
+     border-radius: 4px;
+     -webkit-border-radius:4px;
+     background-color: #FFCA28;
+     font-size: 12px;
+     height: 30px;
+     vertical-align: middle; 
+     width: 100%;
+     overflow: hidden;
+     line-height: 28px;
+   }
+   .bottom-container .single-btn.primary {
+     background-color: #ffffff;
+     color: #999999;
+     border:solid 1px #dbdcdc;
+     line-height: 26px;
+   }
+   .bottom-container .box:first-child {
+     padding: 0;
+     padding-right: 8px;     
+   }
+   .bottom-container .box:last-child
+   {
+     padding: 0;
+     padding-left: 8px;  
+   }
+ </style>
+  {{>ui_header}}  
+  {{>type_2}}
+</template>
+
+
+
+
+<template name="type_1">
+  <div class="single_wrapper">
+    <div class="single_container">
+      <div class="single_logo">
+        <img src="/images/single_logo.png" alt="">
+      </div>
+      <div class="single_title">
+        推荐行业
+      </div>
+      <div class="photo-box">
+        <img src="/images/s_jpg1.jpg" alt="">
+      </div>
+      <div class="single_title flex_title">
+         <div class="background left"></div>
+         <span class="title">经营范围</span>
+         <div class="background right"></div>
+      </div>
+      <div class="notify_content">
+技术开发、技术咨询、技术服务、技术
+转让，监控设备、家用电器、机电设备、
+五金交电、电线电缆通讯设备（除卫星
+电视广播地面接收设施）、计算机、软
+件及辅助设备、（除计算机信息系统安
+全专用产品）电子产品的批发、零售、
+电子商务（不得从事增值电信，金融业
+务）计算机网络工程施工        
+      </div>
+    </div>
+    <div class="bottom-container">
+      <div class="box">
+        <button class="single-btn">立即注册公司</button>
+      </div>
+      <div class="box">
+         <button class="single-btn primary">先去核查</button>
+      </div>
+      <div class="box">
+         <button class="single-btn">联系客服</button>
+      </div>               
+    </div>   
+  </div>  
+</template>
+
+
+<template name="type_2">
+  <div class="single_wrapper">
+    <div class="single_container">
+      <div class="single_logo">
+        <img src="/images/single_logo.png" alt="">
+      </div>
+      <div class="single_title">
+        推荐行业
+      </div>
+      <div class="photo-box">
+        <img src="/images/s_jpg8.jpg" alt="">
+      </div>
+      <div class="single_title flex_title">
+         <div class="background left"></div>
+         <span class="title">适用范围</span>
+         <div class="background right"></div>
+      </div>
+      <div class="notify_content">
+      2016年1月1日以后注册的企业
+      </div>
+      <div class="single_title flex_title">
+         <div class="background left"></div>
+         <span class="title">说明</span>
+         <div class="background right"></div>
+      </div>
+      <div class="notify_content">
+        <ul>
+          <li>1、抄报税</li>
+          <li>2、核税</li>
+          <li>3、年度公示</li>
+          <li>4、汇算清缴</li>
+        </ul>
+      </div>      
+    </div>
+    <div class="bottom-container">
+      <div class="box half">
+        <button class="single-btn">立即办理</button>
+      </div>
+      <div class="box half">
+         <button class="single-btn primary">联系客服</button>
+      </div>
+              
+    </div>   
+  </div>  
+</template>
