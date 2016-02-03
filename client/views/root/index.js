@@ -14,6 +14,20 @@ Template.index.onRendered(function(){
     }
     return false;
   });
+  
+  $("#notice").modal('show');
+  
+  $("#get").click(function(){
+      $("#notice").modal('hide');
+  });
+  
+   setTimeout(function(){
+    $("#notice").modal("hide");
+   },8000);  
+  
+//  $('#notice').on('show.bs.modal',function(event) {
+//  }); 
+  
 });
 
 

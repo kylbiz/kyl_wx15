@@ -3,8 +3,50 @@
     <div class="ui-dialog-content">
       <div class="ui-dialog-box">
         <div>
-          <div class="main-title">{{title}}你好</div>
-          <div class="main-content">{{content}}张三</div>
+          <div class="main-title">{{title}}</div>
+          <div class="main-content">{{content}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- 新年通告 -->
+<template name="notice_box">
+ <style>
+   .image-box {
+     line-height: 0;
+     position: relative;     
+   } 
+   .ui-dialog-content {
+     max-width: 100%;
+   }
+   .ui-dialog-box {
+     padding: 0;
+     border-radius: 6px;
+     overflow: hidden;
+   }
+   .button-box {
+     position: absolute;
+     bottom:5%;
+     text-align: center;
+     width: 100%;
+   }
+   .button-box img {
+     max-width: 42%;
+   }
+   #get {
+     cursor: pointer;
+   }
+ </style>
+  <div class="ui-dialog" id="notice" role="dialog">
+    <div class="ui-dialog-content">
+      <div class="ui-dialog-box">
+        <div class="image-box">
+          <img src="/images/year.jpg" alt="">
+          <div class="button-box">
+            <img id="get" src="/images/get.png" alt="">
+          </div>
         </div>
       </div>
     </div>
