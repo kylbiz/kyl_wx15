@@ -12,7 +12,7 @@ var registrationLists=[
   //   ],
   // },
   {
-    name:'公司注册-新年特惠',
+    name:'新年特惠',
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '奉贤', payment: 99, message: '注册时长20天，无其他要求'}
@@ -23,6 +23,13 @@ var registrationLists=[
     baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
     services: [
       {zone: '虹口', payment: 1000, message: '核名通过并且提交资料后7个工作日'}
+    ]
+  },
+  {
+    name: '投资管理',
+    baseService: '暂无',
+    services: [
+      {zone: '奉贤', payment:3000, message: '暂无'},
     ]
   },
   {

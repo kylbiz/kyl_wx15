@@ -43,6 +43,7 @@ function saveToken(token, callback) {
 
 // 具体数据获取的方法
 Meteor.methods({
+    // 客户支付成功后，发送一个模板消息给客户
     sendTemplate: function (info) {
         var templateId = WXConfig.templateID;
         // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）

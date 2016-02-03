@@ -22,7 +22,7 @@ Template.index.helpers({
         // 配置banner图
         var bannerImages = [{
             source: '/images/event/newyear.png',
-            link: '/product/registration?name=公司注册-新年特惠'
+            link: '/product/registration?name=新年特惠'
         }, {
             source: '/images/event/banner1.png',
             link: 'product/special?name=合伙管家&subtype=partnership'
