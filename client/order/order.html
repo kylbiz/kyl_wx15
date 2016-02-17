@@ -1,0 +1,55 @@
+<template name="order1"> {{> header}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar"> {{> sidebarOrders}} </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="right-con">
+          <h1 class="page-header"><span class="text-primary">付款订单查询</span> / Payment Order Inquiry</h1>
+          <table class="table table-striped table-hover table-main">
+            <thead>
+              <tr>
+                <th class="table-check"><input type="checkbox" id="checkAll"></th>
+                <th class="table-id">订单编号</th>
+                <th class="table-user">用户</th>
+                <th class="table-user">产品</th>
+                <th class="table-money">金额(元)</th>
+                <th class="table-date">提交时间</th>
+                <th class="table-status">查看时间</th>
+                <th class="table-status">推送时间</th>
+                <th class="table-status">操作</th>
+              </tr>
+          </thead>
+          <tbody>
+            {{#each order1}}
+              {{> order1Items}}
+            {{/each}}
+            <tr><td colspan="8" align="center">
+              {{#if nextPath}}
+                <a class="load-more" href="{{nextPath}}">加载更多</a>
+              {{else}}
+                {{#unless ready}}
+                  加载中...
+                {{/unless}}
+              {{/if}}
+              </td></tr>
+          </tbody>
+        </table>
+        </div>
+        {{> footer}} </div>
+    </div>
+  </div>
+</template>
+
+<template name="order1Items">
+  <tr>
+    <td><input type="checkbox" class="subBox" name="orderList"></td>
+    <td>{{order_id}}</td>
+    <td>{{receiver_name}}/{{receiver_mobile}}</td>
+    <td>{{product_name}}</td>
+    <td>{{order_total_price}}</td>
+    <td>{{order_create_time}}</td>
+    <td>{{viewTime}}</td>
+    <td>{{lastPushTime}}</td>
+    <td><a href="/order1/detail/{{_id}}" type="submit" class="btn btn-kyl btn-sm" id="viewOrder">查看</a></td>
+  </tr>
+</template>

@@ -1,0 +1,108 @@
+<template name="order1detail"> {{> header}}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar"> {{> sidebarOrders}} </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="right-con">
+          <h1 class="page-header"><span class="text-primary">订单备注</span> / Remark Order</h1>
+          <div class="panel panel-default mark-tab"> 
+            <!-- Default panel contents -->
+            <div class="panel-heading">订单详情</div>
+            <!-- Table -->
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="table-status">订单编号</th>
+                  <th class="table-user">用户手机</th>
+                  <th class="table-money">金额(元)</th>
+                  <th class="table-date">提交时间</th>
+                  <th class="table-status">查看时间</th>
+                  <th class="table-status">最后推送时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{order_id}}</td>
+                  <td>{{receiver_mobile}}</td>
+                  <td>{{order_total_price}}</td>
+                  <td><small>{{order_create_time}}</small></td>
+                  <td><small>{{viewTime}}</small></td>
+                  <td><small>{{lastPushTime}}</small></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr>
+          <a href="" id="send_WechatNews">发送注册公司提交材料说明</a>
+          <div class="bcard">
+            <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="img-circle" src="{{headimgurl}}" alt="...">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4>昵称：<span>{{nickname}}</span></h4>
+                  <div class="">
+                      <div class="pull-left">
+                           <p>性别：<span>{{sex}}</span></p>
+                           <p>关注时间：<small>{{subscribe_time}}</small></p>
+                        </div>
+                        <div class="pull-left">
+                           <p>区域：<span>{{country}}</span>/<span>{{province}}</span>/<span>{{city}}</span></p>
+                           <p>语言：<span>{{language}}</span></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <hr>
+          <div class="panel panel-default mark-tab"> 
+            <!-- Default panel contents -->
+            <div class="panel-heading">推送记录</div>
+            <!-- Table -->
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <!--<th class="table-status">编号</th>
+                  <th class="table-user">用户手机</th>-->
+                  <th class="table-money">推送类别</th>
+                  <th class="table-date" width="70%">推送内容</th>
+                  <th class="table-status">推送时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each push}}
+                  {{> pushItems}}
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
+          {{#autoForm collection="Push" id="Push" type="insert" doc=defaultValues}}
+            <div class="markOrder">
+              <div class="form-group">{{> afFormGroup name="category" id="category" type="select2"}}</div>
+              <div class="form-group form-textarea">{{> afFormGroup name='content' type='textarea' placeholder='添加备注'}}{{> afFormGroup name="openid" type="hidden" }}</div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-kyl">推送信息</button>
+                <button type="reset" class="btn btn-default">重置</button>
+              </div>
+            </div>
+          {{/autoForm}}
+
+        </div>
+        {{> footer}} </div>
+    </div>
+  </div>
+  <input type="hidden" id="openid" value="{{buyer_openid}}">
+</template>
+
+<template name="pushItems">
+  <tr>
+    <!--<td>{{_id}}</td>
+    <td>{{../receiver_mobile}}</td>-->
+    <td><small>{{category}}</small></td>
+    <td><small>{{content}}</small></td>
+    <td><small>{{createTime}}</small></td>
+  </tr>
+</template>

@@ -1,0 +1,82 @@
+<template name="updateOrder"> {{> header}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar"> {{> sidebarOrders}} </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="right-con">
+          <h1 class="page-header"><span class="text-primary">更新订单状态</span> / Update Order Status</h1>
+          {{#autoForm collection="updateOrder" id="updateOrder" schema=typesSchema type=formType}}
+          <div class="col-xs-12">
+            <div class="order-process order-title">
+              <div class="col-xs-2">状态</div>
+              <div class="col-xs-7">流程</div>
+              <div class="col-xs-3">完成时间</div>
+            </div>
+            <div class="order-process">
+              <div class="order-process-list completed">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-check13 text-kyl"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <div class="order-process ">
+              <div class="order-process-list ing">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-negative2 text-success"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest2"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+              <div class="order-process-list">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-not1"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest3"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <div class="order-process">
+              <div class="order-process-list">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-not1"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest4"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <div class="order-process">
+              <div class="order-process-list">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-not1"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest5"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <div class="order-process">
+              <div class="order-process-list">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-not1"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest6"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <div class="order-process">
+              <div class="order-process-list">
+                <div class="col-xs-2"><span class="glyph-icon flaticon-not1"></span></div>
+                <div class="col-xs-7">
+                  {{> afFormGroup name="typeTest7"}}
+                </div>
+                <div class="am-u-sm-3"><small>2015/09/04 10:03:30</small></div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-kyl">更新状态</button>
+          </div>
+          {{/autoForm}} </div>
+        {{> footer}} </div>
+    </div>
+  </div>
+</template>

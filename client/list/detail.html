@@ -1,0 +1,73 @@
+<template name="listdetail"> {{> header}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar"> {{> sidebarOrders}} </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="right-con">
+          <h1 class="page-header"><span class="text-primary">开业清单 详情</span> / List Detail</h1>
+          <!--<div class="panel panel-default mark-tab"> 
+            <div class="panel-heading">预约详情</div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="table-status">产品名称</th>
+                  <th class="table-user">联系方式</th>
+                  <th class="table-money">区域</th>
+                  <th class="table-date">下单时间</th>
+                  <th class="table-status">查看时间</th>
+                  <th class="table-status">联系时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>公司注册</td>
+                  <td>{{mobilephone}}</td>
+                  <td>{{area}}</td>
+                  <td><small>{{createTime}}</small></td>
+                  <td><small>{{viewTime}}</small></td>
+                  <td><small>{{replyTime}}</small></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr>-->
+          <div class="bcard">
+            <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="img-circle" src="{{wxuser.headimgurl}}" alt="...">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4>昵称：<span>{{wxuser.nickname}}</span></h4>
+                  <div class="">
+                      <div class="pull-left">
+                           <p>性别：<span>{{wxuser.sex}}</span></p>
+                           <p>关注时间：<small>{{wxuser.subscribe_time}}</small></p>
+                        </div>
+                        <div class="pull-left">
+                           <p>区域：<span>{{wxuser.country}}</span>/<span>{{wxuser.province}}</span>/<span>{{wxuser.city}}</span></p>
+                           <p>语言：<span>{{wxuser.language}}</span></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <hr>
+          <div class="markOrder">
+            <div class="form-group"> <label>行业</label> <p>{{industryBig}}>{{industrySmall}}</p></div>
+            <div class="form-group"> <label>经营范围</label> <p>{{businessScope}}</p></div>
+            <div class="form-group"> <label>字号</label> <p>{{companyName1}}</p><p>{{companyName2}}</p><p>{{companyName3}}</p><p>{{companyName4}}</p><p>{{companyName5}}</p><p>{{companyName6}}</p><p>{{companyName7}}</p><p>{{companyName8}}</p><p>{{companyName9}}</p></div>
+            <div class="form-group"> <label>注册资金</label> <p>{{zj_num}}</p></div>
+            <div class="form-group"> <label>股东信息</label> <p>{{#each gd_infor}}{{name}}:{{quantity}}%{{/each}}</p></div>
+
+            <div class="form-group">
+              <label class="control-label"></label>
+              <button type="button" class="btn btn-kyl" onclick="history.back();">返回</button>
+            </div>
+          </div>
+        </div>
+        {{> footer}} </div>
+    </div>
+  </div>
+</template>

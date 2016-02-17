@@ -1,0 +1,47 @@
+<template name="sidebarOrders">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading1">
+        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="ture" aria-controls="collapse1"><span class="glyph-icon flaticon-ninja"></span> 预约管理 </a> </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor 'inquiry1'}}"> 公司注册预约</a></li>
+            <li><a href="{{pathFor 'inquiry2'}}"> 银行开户预约</a></li>
+            <li><a href="{{pathFor 'inquiry3'}}"> 财务代理预约</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading2">
+        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="ture" aria-controls="collapse2"><span class="glyph-icon flaticon-ninja"></span> 付款管理 </a> </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor 'order1'}}"> 公司注册订单</a></li>
+            <!--<li><a href="{{pathFor 'order2'}}"> 银行开户订单</a></li>
+            <li><a href="{{pathFor 'order3'}}"> 财务代理订单</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading2">
+        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="ture" aria-controls="collapse3"><span class="glyph-icon flaticon-ninja"></span> 清单管理 </a> </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{pathFor 'list'}}"> 开业清单</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</template>

@@ -1,0 +1,151 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+	font-size: 62.5%;
+	height: 100%;
+}
+body {
+	font-family: tahoma, arial, 'Hiragino Sans GB', \5b8b\4f53, sans-serif;
+	font-size: 1.4rem;
+	height: 100%;
+	color: #000;
+}
+a {
+	color: #000;
+	text-decoration: none;
+	outline: 0px;
+}
+ul, ol, li {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.mt20 {
+	margin-top: 20px;
+}
+.pb50 {
+	padding-bottom: 50px;
+}
+.pb60 {
+	padding-bottom: 60px;
+}
+.pb20 {
+	padding-bottom: 20px;
+}
+.mb20 {
+	margin-bottom: 20px;
+}
+.mr10{ margin-right:10px;}
+.glyph-icon {
+	position: relative;
+	display: inline-block;
+	font-family: 'flaticon';
+	font-style: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: antialiased;
+}
+.btn-kyl, .btn-kyl:link, .btn-kyl:visited {
+	background: #c8161d;
+	color: #fff;
+}
+.btn-kyl:hover, .btn-kyl:active {
+	background: #b4141a;
+	color: #fff;
+}
+.text-kyl {
+	color: #c8161d;
+}
+.btn-block {
+	font-size: 2.4rem;
+}
+.btn-line, .btn-line:hover, .btn-line:active {
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+/*左侧导航*/
+body {
+  padding-top: 50px;
+}
+.sidebar {
+  display: none;
+}
+.sidebar .glyph-icon{ font-size:36px; vertical-align:middle;}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	background:#f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.sidebar .navbar-right{  width:96%; background:#fff;}
+.sidebar .navbar-nav>li{ width:100%; border-bottom:1px solid #ddd;}
+.sidebar .navbar-nav>li:last-child{ border:0px;}
+.sidebar .nav-sidebar > li > a{
+	padding-left:20px;
+	padding-right:20px;
+	}
+.sidebar .navbar-nav>li>a {
+  padding:15px 30px; display:block;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+.sidebar .panel{ background:#f5f5f5;}
+.sidebar .panel-group{ margin:0px -20px;}
+.sidebar .panel-group .panel{ border-radius:0px; border:0px; border-bottom:1px solid #ddd;}
+.sidebar .panel-group .panel+.panel{ margin:0px;}
+.sidebar .panel-body{ padding:0px;}
+
+.right-con{ width:100%; height:auto; overflow:hidden;}
+.right-con h1{ color:#999; font-size:14px;}
+.right-con h1 span{ font-size:24px;}
+
+.pagination{ margin:0px;}
+
+.markOrder{ font-size:1.6rem; width:40%; margin:50px auto 0;}
+.markOrder .form-group{ margin-bottom:40px; clear:both;}
+.markOrder .control-label{ text-align:right; margin-right:30px; font-size:1.8rem;}
+.markDate,.markTime{ float:left; display:inline; margin-right:20px;}
+.markOrder .help-block{ margin-left:36%;}
+.mark-tab{ margin:40px auto 60px; width:70%;}
+.bootstrap-datetimepicker-widget{ left:40%;}
+.form-datetime .form-group{ position:relative; z-index:9999;}
+
+
+/*订单流程*/
+.order-process{ width:100%; height:auto; overflow:hidden; border-bottom:1px dashed #ddd; margin-bottom:20px; color:#aaa;}
+.order-process span{ font-size:3.6rem; margin:0 20px 10px 0;}
+.order-process label{ font-weight:normal;}
+.order-process input{ margin-right:5px;}
+.completed{ color:#666; color:#dd514c;}
+.completed  input{ display:none;}
+.completed label{ text-decoration:line-through;}
+.order-title{ padding-bottom:20px; font-weight:bold; color:#333;}
+.ing,.ing label{ color:#5eb95e;  font-size:1.6rem;}
+.order-process-list{ width:100%; height:auto; overflow:hidden;}
+
+.bcard{ width:600px; margin:0px auto;}
+.bcard .media-body{ padding-left:40px;}
+.bcard img{ width:110px;}
+.bcard p{ margin: 15px 40px 0 0;}
+.bcard p.media-heading{ font-weight:bold; font-size:16px;}
