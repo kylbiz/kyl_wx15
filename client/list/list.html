@@ -1,0 +1,78 @@
+<template name="list">
+  <header class="nav-bar">
+    <h1>开业清单</h1>
+  </header>
+  <section class="container pb20"> {{#autoForm collection="Lists" id="list" type="update" doc=defaultValue}}
+    <ul class="img-three-list inventory">
+      <li>
+        <div class="title clearfix">
+          <h2>行业</h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="line-text"><strong>{{industryBig}}</strong><span class="flaticon flaticon-chevron13"></span><strong>{{industrySmall}}</strong></div>
+            <div class="line-text" id="unchecked"><strong>上海**{{industrySmall}}有限公司</strong></div>
+            <div class="line-text" id="checked" style="display:none;"><strong>**建筑设计（上海）有限公司</strong></div>
+          </div>
+        </div>
+        <hr>
+        <div class="bottom">
+          <div class="pull-left">
+            <div class="checkbox">
+              <!--<label>
+                <input type="checkbox" value="一秒变成高大上公司">
+                一秒变成高大上公司 </label>-->
+            </div>
+          </div>
+          <div class="pull-right"><a href="{{pathFor 'listIndustry'}}" class="btn btn-kyl">选择行业</a></div>
+        </div>
+      </li>
+      <li>
+        <div class="title clearfix">
+          <h2>经营范围</h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="line-text">{{businessScope}}</div>
+          </div>
+          - </div>
+        <hr>
+        <div class="bottom">
+          <div class="pull-right"><a href="{{pathFor 'listBusinessscope'}}" class="btn btn-kyl">调整经营范围</a></div>
+        </div>
+      </li>
+      <li>
+        <div class="title clearfix">
+          <h2>字号</h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="line-text">{{companynames}}</div>
+          </div>
+        </div>
+        <hr>
+        <div class="bottom">
+          <div class="pull-right"><a href="{{pathFor 'listCompanyname'}}" class="btn btn-kyl">新增字号</a></div>
+        </div>
+      </li>
+    </ul>
+    <div class="inventory-panel"> {{> afQuickField name='gd_infor'}} </div>
+    <ul class="img-three-list inventory">
+      <li>
+        <div class="title clearfix">
+          <h2>注册资金（万）</h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12"> {{> afQuickField name='zj_num'}} </div>
+        </div>
+      </li>
+    </ul>
+    <hr>
+    <button type="submit" class="btn btn-kyl btn-block" >保存</button>
+    {{/autoForm}} 
+  </section>
+</template>

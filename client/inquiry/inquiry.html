@@ -1,0 +1,122 @@
+<template name="inquiry">
+  <div class="reserve">
+    <header class="nav-bar">
+      <h1>预约咨询</h1>
+      <div class="rightMore pull-right"> <a href="/myinquiry/i/{{openId}}"> <span class="glyphicon glyphicon-th-list"></span> <!--<span class="badge">{{inquiryNum}}</span>--> </a> </div>
+    </header>
+    <section class="container">
+      <div role="tabpanel" class="row"> 
+        <!-- Nav tabs -->
+        <div class="reserve-tab">
+          <ul class="nav nav-tabs reserve-nav-tab" role="tablist">
+            <li role="presentation" class="active"><a href="#home" class="img-circle" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a><span class="caret"></span></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-credit-card"></span></a><span class="caret"></span></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-usd"></span></a><span class="caret"></span></li>
+          </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content col-xs-10 col-xs-offset-1 reserve-tab-con">
+          <div role="tabpanel" class="tab-pane active fade in row" id="home"> {{#autoForm collection="inquiryCorpreg" id="inquiryCorpreg" type="insert" doc=defaultValues}}
+            <h1>公司注册</h1>
+            <p>请填写以下信息，稍后给您致电</p>
+            <ul class="reserve-panel">
+              <li class="reserve-panel-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-phone"></span></div>
+                  <div class="col-xs-9">
+                    <div class="form-group{{#if afFieldIsInvalid name='mobilephone'}} has-error{{/if}}">
+                      <div class="input-group"> {{> afFieldInput name='mobilephone' placeholder="请输入手机号码"}} </div>
+                      {{#if afFieldIsInvalid name='mobilephone'}}
+                      <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+                      {{/if}} </div>
+                  </div>
+                </div>
+              </li>
+              <li class="reserve-panel-item select-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-map-marker"></span></div>
+                  <div class="col-xs-9 "> {{> afFormGroup name="area" type="select"}} {{> afFormGroup name="openid" type="hidden" }}</div>
+                </div>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="col-xs-12"> 
+                <button type="submit" class="btn btn-kyl btn-block mt30">马上办理</button>
+              </div>
+            </div>
+            {{/autoForm}} </div>
+          <div role="tabpanel" class="tab-pane fade row" id="profile"> {{#autoForm collection="inquiryBankaccount" id="inquiryBankaccount" type="insert" doc=defaultValues}}
+            <h1>银行开户</h1>
+            <p>请填写以下信息，稍后给您致电</p>
+            <ul class="reserve-panel">
+              <li class="reserve-panel-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-phone"></span></div>
+                  <div class="col-xs-9">
+                    <div class="form-group{{#if afFieldIsInvalid name='mobilephone'}} has-error{{/if}}">
+                      <div class="input-group"> {{> afFieldInput name='mobilephone' placeholder="请输入手机号码"}} </div>
+                      {{#if afFieldIsInvalid name='mobilephone'}}
+                      <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+                      {{/if}} </div>
+                  </div>
+                </div>
+              </li>
+              <li class="reserve-panel-item  select-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-credit-card"></span></div>
+                  <div class="col-xs-9"> {{> afFormGroup name="bank" type="select"}} {{> afFormGroup name="openid" type="hidden" }}</div>
+                </div>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="col-xs-12">
+                <button type="submit" class="btn btn-kyl btn-block mt30">马上办理</button>
+              </div>
+            </div>
+            {{/autoForm}} </div>
+          <div role="tabpanel" class="tab-pane fade row" id="messages"> {{#autoForm collection="inquiryBookkeeping" id="inquiryBookkeeping" type="insert" doc=defaultValues}}
+            <h1>财务代理</h1>
+            <p>请填写以下信息，稍后给您致电</p>
+            <ul class="reserve-panel">
+              <li class="reserve-panel-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-phone"></span></div>
+                  <div class="col-xs-9">
+                    <div class="form-group{{#if afFieldIsInvalid name='mobilephone'}} has-error{{/if}}">
+                      <div class="input-group"> {{> afFieldInput name='mobilephone' placeholder="请输入手机号码"}} </div>
+                      {{#if afFieldIsInvalid name='mobilephone'}}
+                      <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+                      {{/if}} </div>
+                  </div>
+                </div>
+              </li>
+              <li class="reserve-panel-item  select-item">
+                <div class="form-group clearfix">
+                  <div class="col-xs-2"><span class="glyphicon glyphicon-usd"></span></div>
+                  <div class="col-xs-9"> {{> afFormGroup name="category" type="select"}} {{> afFormGroup name="openid" type="hidden" }}</div>
+                </div>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="col-xs-12">
+                <button type="submit" class="btn btn-kyl btn-block mt30">马上办理</button>
+              </div>
+            </div>
+            {{/autoForm}} </div>
+          <div class="row contacts">{{> contacts}}</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<template name="inquiryOk">
+  <div class="kyl-bg">
+    <section class="container ok-page">
+      <div class="text-center"><img src="/images/reserve-ok.png"></div>
+      <h2 class="text-center">恭喜您，预约成功！</h2>
+      <p class="text-center"> 专业人员会在15分钟左右电话联系您!</p>
+      <p class="text-center mt20"> <a href="{{pathFor 'inquiryMy'}}" class="btn btn-block btn-line"><span class="flaticon flaticon-list21"></span> 查看我的预约</a> </p>
+    </section>
+  </div>
+</template>

@@ -1,0 +1,61 @@
+<template name="listBusinessscopeAdd">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>添加更多经营范围</h1>
+  </header>
+  <section class="container">
+    <div class="row">
+      <div role="tabpanel"> 
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#home" aria-controls="home" id="services" role="tab" data-toggle="tab">服务类</a></li>
+          <li role="presentation"><a href="#profile" aria-controls="profile" id="sales" role="tab" data-toggle="tab">销售类</a></li>
+        </ul>
+        
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="home">
+            <ul class="list-group">
+
+              {{#each businessScope_services}}
+              <li class="list-group-item img-list"> <a href="#" data-toggle="modal" data-target="#myModal" id="modalwindow">
+                <h4 class="media-heading">{{cate}}</h4>
+                <span class="flaticon flaticon-chevron13"></span> </a> </li>
+              {{/each}}
+
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="profile">
+            <ul class="list-group">
+
+              {{#each businessScope_sales}}
+              <li class="list-group-item img-list"> <a href="#" data-toggle="modal" data-target="#myModal" id="modalwindow">
+                <h4 class="media-heading">{{cate}}</h4>
+                <span class="flaticon flaticon-chevron13"></span> </a> </li>
+              {{/each}}
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{#autoForm collection="Lists" id="businessscopeAdd" schema=typesSchema type="update" doc=defaultValue}}
+  <div class="modal fade addBusinessScope" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">咨询类-经营范围选择</h4>
+        </div>
+        <div class="modal-body clearfix">{{> afFormGroup name="businessScope" value=checkedValues options=options type="select-checkbox-inline"}} </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-kyl" >提交</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/autoForm}} 
+
+</template>

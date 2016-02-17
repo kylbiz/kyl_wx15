@@ -1,0 +1,23 @@
+<template name="listBusinessscope">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>选择经营范围</h1>
+  </header>
+  <section class="container"> 
+    {{#autoForm collection="Lists" id="listBusinessscope" schema=typesSchema type="update" doc=defaultValue}}
+    <div class="mt20 tishi">为了更快的通过工商核准，经营范围的总字数建议在80~100个~</div>
+    <ul class="img-three-list inventory has-choose jyfw">
+      <li> 
+        {{> afFormGroup name="businessScope" type="select-checkbox-inline" value=checkedValues options=options}}
+        {{#if hasBusinessscope}}请先选择您的行业，系统将自动生成经营范围。{{/if}}
+      </li>
+    </ul>
+    <hr>
+    <div class="row jjfw-btn">
+      <div class="col-xs-6">
+        <button type="submit" class="btn btn-block btn-kyl">提交</button>
+      </div>
+      <div class="col-xs-6"><a href="{{pathFor 'listBusinessscopeAdd'}}" class="btn btn-primary">添加</a></div>
+    </div>
+    {{/autoForm}} </section>
+</template>

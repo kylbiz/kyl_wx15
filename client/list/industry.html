@@ -1,0 +1,57 @@
+<template name="listIndustry">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>选择行业</h1>
+  </header>
+  <section class="container">
+    <div class="row">
+      <ul class="list-group">
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/管理类/{{openid}}">
+          <h4 class="media-heading">管理类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/科技类/{{openid}}">
+          <h4 class="media-heading">科技类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/广告类/{{openid}}">
+          <h4 class="media-heading">广告类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/咨询类/{{openid}}">
+          <h4 class="media-heading">咨询类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/贸易类/{{openid}}">
+          <h4 class="media-heading">贸易类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/工程类/{{openid}}">
+          <h4 class="media-heading">工程类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/服务类/{{openid}}">
+          <h4 class="media-heading">服务类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/代理类/{{openid}}">
+          <h4 class="media-heading">代理类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list"> <a href="/list/industry/sub/设计类/{{openid}}">
+          <h4 class="media-heading">设计类</h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+      </ul>
+    </div>
+  </section>
+</template>
+
+<template name="listIndustrySub">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>{{industry}}</h1>
+  </header>
+  <section class="container">
+    <div class="row">
+      <ul class="list-group choose-end">
+        {{#each businessesData}}
+        <li class="list-group-item img-list"> <a href="#">
+          <h4 class="media-heading">{{industrySmall}}</h4>
+          <span class="flaticon flaticon-check13"></span> </a> </li>
+        {{/each}}
+      </ul>
+    </div>
+  </section>
+</template>

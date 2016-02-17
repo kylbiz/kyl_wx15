@@ -1,0 +1,39 @@
+<template name="listCompanyname">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>添加企业名称</h1>
+  </header>
+  <section class="container"> 
+    {{#autoForm collection="Lists" id="listCompanyname" schema=typeSchema type="update" doc=defaultValue}}
+    <div class="mt20 tishi">请慎重填写公司字号，一经核准不得更改！</div>
+    <ul class="img-three-list inventory zihao">
+      <li>
+        <div class="title clearfix">
+          <h2>您最中意的企业字号 <span class="text-kyl">(必填)</span></h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-4"> {{> afQuickField name='companyName1'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName2'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName3'}} </div>
+        </div>
+      </li>
+    </ul>
+    <div class="reserve-con row" style="background:#fff;">
+      <div class="col-xs-12">
+        <h3>多选点字号，查名通过率更高喔</h3>
+        <hr>
+        <div class="row">
+          <div class="col-xs-4"> {{> afQuickField name='companyName4'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName5'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName6'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName7'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName8'}} </div>
+          <div class="col-xs-4"> {{> afQuickField name='companyName9'}} </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mt0">
+    <button type="submit" class="btn btn-kyl btn-block mb20" >添加企业名称</button>
+    {{/autoForm}}</section>
+</template>

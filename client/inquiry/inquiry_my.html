@@ -1,0 +1,71 @@
+<template name="inquiryMy">
+  <header class="nav-bar">
+    <h1>我的预约</h1>
+  </header>
+  <section class="container">
+    <div class="row">
+      <ul class="list-group">
+        <li class="list-group-item img-list icon-list"> <a href="/myinquiry/i/{{openid}}/corpreg">
+          <h4 class="media-heading"><p class="img-circle mr10 line-circle"><span class="glyphicon glyphicon-home"></span></p>公司注册<!--<span class="badge">42</span>--></h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list icon-list"> <a href="/myinquiry/i/{{openid}}/bankaccount">
+          <h4 class="media-heading"><p class="img-circle mr10 line-circle"><span class="glyphicon glyphicon-credit-card"></span></p>银行开户<!--<span class="badge">42</span>--></h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+        <li class="list-group-item img-list icon-list"> <a href="/myinquiry/i/{{openid}}/bookkeeping">
+          <h4 class="media-heading"><p class="img-circle mr10 line-circle"><span class="glyphicon glyphicon-usd"></span></p>代理记账<!--<span class="badge">42</span>--></h4>
+          <span class="flaticon flaticon-chevron13"></span> </a> </li>
+      </ul>
+    </div>
+  </section>
+</template>
+
+<template name="inquiryMyList">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>{{category}}</h1>
+  </header>
+  {{#if inquiries}}
+  <section class="container">
+    <ul class="img-three-list">
+      
+      {{#each inquiries}}
+      <li class="{{#if replied}}has-reply{{/if}}">
+        <div class="title clearfix"> 预约编号：{{inquiryNo}} </div>
+        <div class="title clearfix"> 预约时间：{{createTime}} </div>
+
+
+
+        <div class="media">
+          <div class="media-left"> <p class="img-circle mr10 line-circle"><span class="glyphicon {{category_icon}}"></span></p> </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{category}}</h4>
+          </div>
+        </div>
+        <hr>
+
+        {{#if replied}}
+        <div class="bottom">
+          <div class="pull-left">已反馈</div>
+          <div class="pull-right"><small>{{replyDatetime}}</small></div>
+        </div>
+        {{else}}
+        <div class="bottom">
+          <div class="pull-left">工作人员正在玩儿命回复中...</div>
+          <div class="pull-right"><small></small></div>
+        </div>
+        {{/if}}
+        <hr>
+        <div class="bottom"> <a href="http://m.kyl.biz/wx/services/" class="btn btn-kyl">立即购买</a> </div>
+      </li>
+      {{/each}}
+      
+    </ul>
+  </section>
+  {{else}}
+  <section  class="container">
+    <p class="tips-icon"><img src="/images/no.png"></p>
+    <p class="text-center">您还没有预约任何产品</p>
+      <p class="text-center">快去<a href="/inquiry/i/{{openid}}" class="text-kyl btn btn-defual">这里</a>看看吧</p>
+  </section>
+  {{/if}}
+</template>

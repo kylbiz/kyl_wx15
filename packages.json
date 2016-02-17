@@ -1,0 +1,8 @@
+{
+  "wechat-api": "1.9.1",
+  "wechat-pay": "0.2.0",
+  "moment": "2.10.3",
+  "crypto": "0.0.3",
+  "jssha": "1.6.0",
+  "wechat-oauth": "1.0.1"
+}

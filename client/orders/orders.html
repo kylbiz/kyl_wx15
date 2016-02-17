@@ -1,0 +1,75 @@
+<template name="orders">
+  <header class="nav-bar">
+    <h1>我的订单</h1>
+  </header>
+  <section class="container">
+    <ul class="img-three-list">
+      {{#each orders}}
+      <li>
+        <div class="title clearfix"> 订单编号：<span>{{order_id}}</span> </div>
+        <div class="title clearfix"> 下单时间：<span>{{create_time}}</span> </div>
+        <a href="/order/{{_id}}">
+        <div class="media">
+          <div class="media-left"> <img class="media-object" src="/images/zcgs.png" width="40" alt="公司注册"> </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{product_name}}（{{receiver_name}}）</h4>
+          </div>
+        </div>
+        </a>
+        <hr>
+        <div class="bottom">
+          <div class="pull-left">实付款：￥{{order_total_price}}</div>
+          <div class="pull-right"><a href="/order/{{_id}}" class="btn btn-kyl">查看详情</a></div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+</template>
+
+<template name="orderdetail">
+  <header class="nav-bar">
+    <div class="pull-left"><a href="#" onclick="history.back()"><span class="glyphicon glyphicon-chevron-left"></span></a></div>
+    <h1>订单详情</h1>
+  </header>
+  <section class="container">
+    <ul class="img-three-list">
+      <li>
+        <div class="title clearfix"> 订单编号：{{order_id}} </div>
+        <div class="title clearfix"> 下单时间：{{create_time}} </div>
+        <div class="media">
+          <div class="media-left"> <img class="media-object" src="/images/zcgs.png" width="40" alt="公司注册"> </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{product_name}}（{{receiver_name}}）</h4>
+          </div>
+        </div>
+        <hr>
+        <div class="bottom">
+          <div class="pull-left">实付款：￥{{price}}</div>
+        </div>
+      </li>
+    </ul>
+    <div class="order-con">
+      <div class="row order-cur">
+        <div class="col-xs-2">
+          <div class="img-circle label-kyl"></div>
+        </div>
+        <div class="col-xs-10">
+          <p>订单支付<br>
+            <small>{{create_time}}</small></p>
+        </div>
+      </div>
+      {{#each push}}
+      <div class="row order-no">
+        <div class="col-xs-2">
+          <div class="img-circle label-default"></div>
+        </div>
+        <div class="col-xs-10">
+          <p>{{pushLabel}}<br>
+            <small>{{createTime}}</small></p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+</template>
