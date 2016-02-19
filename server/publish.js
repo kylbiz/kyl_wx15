@@ -34,7 +34,7 @@ Meteor.publish('products', function(project, opt) {
 
 Meteor.publish('shopcart', function (orderId) {
 	orderId = orderId || false;
-	console.log("shopcart --", orderId, ShopCart.find({ordered: orderId}).fetch() );
+	// console.log("shopcart --", orderId, ShopCart.find({ordered: orderId}).fetch() );
 	return ShopCart.find({userId: this.userId, payed: false, ordered: orderId, host: 'KYLWX'}, {sort: {createTime: -1}});
 });
 

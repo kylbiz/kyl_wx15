@@ -10,9 +10,7 @@ meteor-platform
 iron:router
 alanning:roles
 accounts-password
-meteorhacks:npm
 http
-npm-container
 less
 cfs:http-methods
 peerlibrary:xml2js
@@ -21,3 +19,7 @@ momentjs:moment
 semantic:ui-icon
 # fastclick
 rounce:fastclick
+meteorhacks:npm
+
+
+npm-container
