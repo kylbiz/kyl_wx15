@@ -301,8 +301,12 @@ var tradeMark = [
 
 // 特殊品类产品
 var specialProduct = [
-  {name: '合伙管家', payment: 2999, subType: 'partnership', other: {}},
+  {name: '合伙管家', label: '合伙管家', payment: 2999, subType: 'partnership', other: {}},
+  {name: '周年庆特别活动', label: '周年庆特别活动', payment: 3000, subType: 'anniversaryActivity', other: {}},
 ];
+
+
+// db.SpecialProduct_wechat.insert({name: '合伙管家', label: '合伙管家', payment: 2999, subType: 'partnership', other: {}})
 
 
 var businessTypeLists = [

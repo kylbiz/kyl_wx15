@@ -36,7 +36,7 @@ Template.index.helpers({
         // 配置banner图
         var bannerImages = [{
             source: '/images/event/banner1.png',
-            link: 'product/special?name=合伙管家&subtype=partnership'
+            link: 'product/special?subtype=partnership'
         }];
         return bannerImages;
     },

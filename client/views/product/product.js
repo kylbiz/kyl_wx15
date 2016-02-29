@@ -254,7 +254,7 @@ function goToAddShopCart() {
 function getServiceData () {
     var params = Router.current().params;
     var type = params.productType;
-    var name = params.query.name;
+    var name = params.query.name || "";
 
     var handles = {
         registration: function () {
@@ -310,10 +310,12 @@ function getServiceData () {
             };
         },
         special: function () {
-            if (SpecialProduct.findOne({name: name, subType: params.query.subtype})) {
+            var product = SpecialProduct.findOne({subType: params.query.subtype}) || false;
+
+            if (product) {
                 return {
                     type: type,
-                    name: name
+                    name: product.label
                 };
             } else {
                 throw new Meteor.Error("内部错误", "非法数据");
