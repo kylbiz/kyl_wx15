@@ -21,7 +21,7 @@
 #### 支付系统 *-- 使用 wechat-pay*
 
 #### 微信基本API接口的实现 *-- 使用 wechat-api*
-	
+
 - access_token的维护
 	- 中控服务器统一管理access_token
 	- 提供token的 get(主动、被动)、 isValid(验证是否过期) save(存储)
@@ -71,7 +71,7 @@ key --交易过程生成签名的密钥
 
 **微信支付**
 
-- 准备: 
+- 准备:
 	- 申请商户账号，获取支付权限
 	- 配置oauth授权域名, 配置（测试）支付授权目录(在授权域名之下), 添加测试白名单
 - 发起支付请求
@@ -83,18 +83,18 @@ key --交易过程生成签名的密钥
 	``` javaScript
 	WeixinJSBridge.invoke(
        'getBrandWCPayRequest', {
-           "appId" ： "wx2421b1c4370ec43b",     //公众号名称，由商户传入     
-           "timeStamp"：" 1395712654",         //时间戳，自1970年以来的秒数     
-           "nonceStr" ： "e61463f8efa94090b1f366cccfbbb444", //随机串     
-           "package" ： "prepay_id=u802345jgfjsdfgsdg888",     
-           "signType" ： "MD5",         //微信签名方式：     
-           "paySign" ： "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名 
+           "appId" ： "wx2421b1c4370ec43b",     //公众号名称，由商户传入
+           "timeStamp"：" 1395712654",         //时间戳，自1970年以来的秒数
+           "nonceStr" ： "e61463f8efa94090b1f366cccfbbb444", //随机串
+           "package" ： "prepay_id=u802345jgfjsdfgsdg888",
+           "signType" ： "MD5",         //微信签名方式：
+           "paySign" ： "70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
        },
-       function(res){     
-           if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+       function(res){
+           if(res.err_msg == "get_brand_wcpay_request：ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
        }
-   ); 
-	```		
+   );
+	```
 	- JSSDK调用
 
 
@@ -297,7 +297,7 @@ key --交易过程生成签名的密钥
 	        {
 	            "name": "互联网公司[杨浦]", // 当前订单具体内容
 	            "money": "1000",          //当前订单价格
-	            "scale": 1,                 // 购买数量 
+	            "scale": 1,                 // 购买数量
 	            "servicesContains": [      // 订单中包含，也就是详细信息
 	                {
 	                    "name": "企业信用代码证（原三证三章合一）"
@@ -326,7 +326,7 @@ key --交易过程生成签名的密钥
 	        "createAt": ISODate("2015-10-20T10:15:44.322Z")
 	    },
 	    "cartId": "zibfHHSukqhLZ6ytr",  //该订单在购物车中的 _id
-	    "orderId": "2015102018161495003750",  //当前订单 的orderId 
+	    "orderId": "2015102018161495003750",  //当前订单 的orderId
 	    "industryBig": "管理类",
 	    "industrySmall": "投资管理",
 	    "businessScope": [
@@ -398,7 +398,7 @@ key --交易过程生成签名的密钥
 	        "consignerEmail": "liuzunkun@gmail.com"
 	    }
 	}
-	
+
 	```
 
 	**财务代理**
@@ -417,7 +417,7 @@ key --交易过程生成签名的密钥
 	            "money": "800",
 	            "scale": 1,
 	            "servicesContains": [
-	                
+
 	            ]
 	        }
 	    ],
@@ -440,8 +440,8 @@ key --交易过程生成签名的密钥
 	    "cartId": "k2sfCy8Y5hZxsCSzw",
 	    "orderId": "2015102818115205801527"
 	},
-	
-	
+
+
 	```
 
 	**银行开户**
@@ -485,8 +485,8 @@ key --交易过程生成签名的密钥
 	    "cartId": "QJdnyup3tAus24ySA",
 	    "orderId": "2015102818115204700518"
 	},
-	
-	
+
+
 	```
 
 	**流量记账包服务套餐**
@@ -530,7 +530,7 @@ key --交易过程生成签名的密钥
 	    "cartId": "rdWuBtNmeatipuzGP",
 	    "orderId": "2015102818115206206018"
 	},
-	
+
 	```
 
 	**小企人事**
@@ -549,7 +549,7 @@ key --交易过程生成签名的密钥
 	            "money": 240,
 	            "scale": "1",
 	            "servicesContains": [
-	                
+
 	            ]
 	        }
 	    ],
@@ -572,16 +572,16 @@ key --交易过程生成签名的密钥
 	    "cartId": "ZvhPpkDfjxunquXhK",
 	    "orderId": "201510281811520620601804108643"
 	},
-	
+
 	```
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 ## 日志
 
 #### 开发进度
@@ -615,7 +615,7 @@ key --交易过程生成签名的密钥
 - Day 28 --[价格确认，后台管理确认]
 
 #### 维护日志
-- 添加微信支付后的模板通知 
+- 添加微信支付后的模板通知
 - 添加自动化部署
 - 添加首业弹出式公告
 - 添加根据微信帐号的自动登录 (待实现)
