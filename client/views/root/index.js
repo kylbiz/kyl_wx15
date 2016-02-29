@@ -14,20 +14,20 @@ Template.index.onRendered(function(){
     }
     return false;
   });
-  
+
   $("#notice").modal('show');
-  
+
   $("#get").click(function(){
       $("#notice").modal('hide');
   });
-  
+
    setTimeout(function(){
     $("#notice").modal("hide");
-   },8000);  
-  
+   },8000);
+
 //  $('#notice').on('show.bs.modal',function(event) {
-//  }); 
-  
+//  });
+
 });
 
 
@@ -35,9 +35,6 @@ Template.index.helpers({
     bannerImages: function () {
         // 配置banner图
         var bannerImages = [{
-            source: '/images/event/newyear.png',
-            link: '/product/registration?name=新年特惠'
-        }, {
             source: '/images/event/banner1.png',
             link: 'product/special?name=合伙管家&subtype=partnership'
         }];
