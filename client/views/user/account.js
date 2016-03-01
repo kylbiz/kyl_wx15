@@ -10,6 +10,16 @@ Template.login.events({
 			loginFunc(phone, password);
 		}
 	},
+	"click #registerBtn": function (event, template) {
+		var redirectUrl = Router.current().params.query.redirectUrl || "";
+		var queryStr =  '';
+		if (redirectUrl) {
+			queryStr = 'redirectUrl=' + encodeURIComponent(redirectUrl);
+		}
+
+		console.log("registerBtn", queryStr);
+		Router.go('register', {}, {query: queryStr});
+	}
 });
 
 // 注册
@@ -80,8 +90,10 @@ Template.register.events({
 							alert('用户注册成功,请登录系统!')
 							Router.go('/login');
 						} else {
-							var redirect = Session.get('loginRedirect') || "/";
-							Router.go(redirect);
+							// var redirect = Session.get('loginRedirect') || "/";
+							// Router.go(redirect);
+							var redirectUrl = Router.current().params.query.redirectUrl || '/';
+							Router.go(decodeURIComponent(redirectUrl));
 						}
 					});
 				}

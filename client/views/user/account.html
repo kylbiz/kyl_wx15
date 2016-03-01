@@ -11,7 +11,7 @@
               <div class="link_box">
                 <span><a href="/forget">忘记密码？</a></span>
                 <span class="divide">｜</span>
-                <span><a href="/register">立即注册</a></span>
+                <span><button id="registerBtn">立即注册</button></span>
               </div>
             </div>
   </div>
@@ -26,9 +26,9 @@
                 <div><input type="text" class="form-control" id="phone" placeholder="手机号"></div>
                 <div><input type="password" class="form-control" id="password" placeholder="密码"></div>
                 <div class="code">
-                  <input type="text" class="form-control" id="verifyCode" placeholder="验证码">                  
+                  <input type="text" class="form-control" id="verifyCode" placeholder="验证码">
                   {{#if $eq codeTime 0}}
-                    <span id="codeBtn">发送验证码</span>  
+                    <span id="codeBtn">发送验证码</span>
                     {{else}}
                     <span>{{codeTime}}秒可再次发送</span>
                   {{/if}}
@@ -54,7 +54,7 @@
         <div class="code">
           <input type="text" class="form-control" id="verifyCode" placeholder="验证码">
           {{#if $eq codeTime 0}}
-            <span id="codeBtn">发送验证码</span>  
+            <span id="codeBtn">发送验证码</span>
             {{else}}
             <span>{{codeTime}}秒可再次发送</span>
           {{/if}}

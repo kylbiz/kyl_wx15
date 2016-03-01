@@ -205,7 +205,9 @@ Router.route('/register', {
   name: 'register',
   onBeforeAction: function() {
     if(Meteor.userId()) {
-      Router.go('/');
+      // Router.go('/');
+      var redirectUrl = decodeURIComponent(this.params.query.redirectUrl || "/");
+			Router.go(decodeURIComponent(redirectUrl));
     } else {
       this.next();
     }
