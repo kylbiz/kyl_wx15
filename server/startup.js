@@ -305,10 +305,6 @@ var specialProduct = [
   {name: '周年庆特别活动', label: '周年庆特别活动', payment: 3000, subType: 'anniversaryActivity', other: {}},
 ];
 
-
-// db.SpecialProduct_wechat.insert({name: '合伙管家', label: '合伙管家', payment: 2999, subType: 'partnership', other: {}})
-
-
 var businessTypeLists = [
   {num: 0, name: '管理类'},
   {num: 1, name: '科技类'},
