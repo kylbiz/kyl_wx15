@@ -23,7 +23,7 @@
             <div class="region-content">
               <span class="field">
               {{address.address}}
-              </span>              
+              </span>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
 
       </div>
     </div>
-  
+
     {{#each payList}}
       <div class="module">
         <div class="content">
@@ -55,17 +55,17 @@
       <div class="content">
         <div class="single">是否需要发票：
         <div class="pull-right">
-          <span class="switch-outlook">否</span>                   
+          <span class="switch-outlook">否</span>
           <label class="label-switch">
             <input type="checkbox" class="control switch">
             <div class="checkbox"></div>
-          </label> 
-        </div>       
+          </label>
+        </div>
         <!--
         Use:
         $('input[type="checkbox"]').prop("checked")
         -->
-        
+
         <!--
            Delete
             <span class="hightlight">
@@ -87,13 +87,28 @@
     </div>
 
     <div class="get offset">
+      {{#if isWechat}}
+        <div>
+          <button class="ui btn-default ui-green" type="button" id="wxbuy">微信支付</button>
+        </div>
+      {{/if}}
       <div>
-        <button class="ui btn-default ui-green" type="button" id="wxbuy">微信支付</button>
+        <button class="ui btn-default ui-primary" type="button" id="otherbuy">支付宝移动支付</button>
       </div>
-      <!-- <div>
-        <button class="ui btn-default ui-primary" type="button">其他方法支付</button>
-      </div> -->
     </div>
-
   </div>
+
+  <!-- <script type="text/javascript" src="https://one.pingxx.com/lib/pingpp_one.js"></script> -->
+
+  <script>
+    var script=document.createElement('script');
+    script.type='text/javascript';
+    script.src='/js/pingpp.js';
+    document.body.appendChild(script);
+
+    var script=document.createElement('script');
+    script.type='text/javascript';
+    script.src='/pay/ap.js';
+    document.body.appendChild(script);
+  </script>
 </template>

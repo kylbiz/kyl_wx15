@@ -197,9 +197,11 @@ function loginFunc(phone, password) {
 			Router.go('login');
 		} else {
 			// 检测当前用户是否有微信账号绑定
-			Meteor.call('checkWeChatBind', Session.get('WeChatUser'), function (error, result) {
-				console.log('checkWeChatBind', error, result);
-			});
+			if (Session.get('WeChatUser')) {
+				Meteor.call('checkWeChatBind', Session.get('WeChatUser'), function (error, result) {
+					console.log('checkWeChatBind', error, result);
+				});
+			}
 
 			var redirectUrl = Router.current().params.query.redirectUrl || '/';
 			Router.go(decodeURIComponent(redirectUrl));

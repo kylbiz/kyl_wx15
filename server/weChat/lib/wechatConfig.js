@@ -1,5 +1,7 @@
+
+var HOST = 'http://wx15.kyl.biz'
 WXConfig = {
-    'host': 'http://wx15.kyl.biz',
+    'host': HOST,
     'token': 'keyboardcat123',
 
     // kyl 主账号
@@ -7,7 +9,7 @@ WXConfig = {
     'appsecret': '7119516f3a1ef641874d679e0c52053a',
     // 'pay_url': 'cc.liuzunkun.com/weixinpay/',
     'partnerKey': 'sPSKBwe7wR7AQxBQ4MJrNkiBCyzkwcCc',
-    'pay_notify': 'wx15.kyl.biz/wxpayret',
+    'pay_notify': HOST + '/wxpayret',
     'mchID': '1226318502',
     'pfxPath': "/weChat/lib/apiclient_cert.p12",
     'templateID': 'CKR1_YMjYnJEZNRgqJA978DOoVsnGXHxbYFceBu7dd4',    // 微信回复信息模板ID

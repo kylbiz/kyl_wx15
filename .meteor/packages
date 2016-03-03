@@ -12,7 +12,6 @@ alanning:roles
 accounts-password
 http
 less
-cfs:http-methods
 peerlibrary:xml2js
 webapp
 momentjs:moment
@@ -21,5 +20,5 @@ semantic:ui-icon
 rounce:fastclick
 meteorhacks:npm
 
-
 npm-container
+http-methods

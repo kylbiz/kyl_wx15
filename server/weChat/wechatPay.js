@@ -24,13 +24,11 @@ var payment = new Payment(initConfig);
 
 Meteor.methods({
 	// 获取支付参数 prepay_id
-	'getPayArgs': function (orderInfo) {
+	'getWechatPayArgs': function (orderInfo) {
 		var wechatOpenId = Meteor.user().profile.wechat_openid;
 		if (!wechatOpenId) {
 			throw new Meteor.Error("获取支付信息失败", "微信帐号信息未绑定");
 		}
-
-		console.log("wechatOpenId -- ", wechatOpenId);
 
 		var paylogInfo = beforePayHandle(orderInfo);
 		var order = getOrderData(paylogInfo, wechatOpenId, this.connection.clientAddress);

@@ -101,7 +101,7 @@ Meteor.methods({
 			password: password,
 			profile: {
 	            phone: phone,
-	            wechat_openid: wechat_openid,
+	            wechat_openid: wechat_openid || "",
 	            host: "KYLWX",
 	        }
 		};

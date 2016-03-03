@@ -144,7 +144,7 @@ Router.route('/address', {
 });
 
 // 支付页
-Router.route('/weixinpay/', {
+Router.route('/pay/', {
 	name: 'trade',
 	subscriptions: function () {
 		return Meteor.subscribe('userAddress');
@@ -156,13 +156,31 @@ Router.route('/weixinpay/', {
 });
 
 // 支付结果
-Router.route('/paySuccess', {
-	name: "paySuccess",
+Router.route('/pay_result/:channel', {
+	name: "payResult",
+	template: "paySuccess",
+	onBeforeAction: function () {
+		var channel = this.params.channel || "";
+		var query = this.params.query || {};
+		if (channel == 'pingxx' && query.result != 'success') {
+			Router.go('orderList');
+		} else {
+			this.next();
+		}
+	},
 	waitOn: function () {
-		return Meteor.subscribe('paylog', this.params.query.order);
+		var channel = this.params.channel || "";
+		var query = this.params.query || {};
+		var order = "";
+		if (channel == 'wechat') {
+			order = query.order;
+		} else if (channel == 'pingxx') {
+			order = query.out_trade_no;
+		}
+		return Meteor.subscribe('paylog', order);
 	},
 	data: function () {
-		return {info: PayLogs.findOne({}), style: this.params.query.style};
+		return {info: PayLogs.findOne({}), style: this.params.channel};
 	}
 });
 

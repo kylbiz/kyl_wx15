@@ -35,8 +35,8 @@ Template.orderList.events({
 			var orderInfo = Orders.findOne({orderId: orderId});
 			if (orderInfo && !orderInfo.payed) {
 				console.log("goToPay", orderId);
-				// Router.go("trade", {}, {query: "orderid=" + orderId});
-				window.location.href = '/weixinpay/?orderid=' + orderId ;
+				// Router.go("trade", {}, {query: "orderid=" + orderId}); //在微信环境下 router.go 不改变真实url
+				window.location.href = '/pay/?orderid=' + orderId ;
 				return;
 			}
 		}

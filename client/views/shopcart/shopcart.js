@@ -42,8 +42,8 @@ Template.shopcart.events({
 // 底部控制
 Template.shopcart_controlBox.events({
 	'click #trade': function () {
-		// Router.go("trade");
-        window.location.href = '/weixinpay/';
+		// Router.go("trade"); //在微信环境下 router.go 不改变真实url
+    window.location.href = '/pay/';
 	}
 });
 

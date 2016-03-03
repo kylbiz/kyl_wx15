@@ -8,19 +8,23 @@ Router.configure({
 // 登陆权限控制 这里需要判断两种条件
 // 微信帐号登录
 Router.onBeforeAction(function () {
-	var WeChatUser = this.params.query.openid || "";
-	if (WeChatUser) {
-		console.log("have query");
-		window.localStorage.openid = WeChatUser;
-		Session.set('WeChatUser', WeChatUser);
-		this.next();
-	} else if (window.localStorage.openid) {
-		console.log('have coll');
-		Session.set('WeChatUser', window.localStorage.openid);
-		this.next();
+	if (kylUtil.isWeChat()) {
+		var WeChatUser = this.params.query.openid || "";
+		if (WeChatUser) {
+			console.log("have query");
+			window.localStorage.openid = WeChatUser;
+			Session.set('WeChatUser', WeChatUser);
+			this.next();
+		} else if (window.localStorage.openid) {
+			console.log('have coll');
+			Session.set('WeChatUser', window.localStorage.openid);
+			this.next();
+		} else {
+			console.log("go to oauth");
+			Router.go('/oauth');
+		}
 	} else {
-		console.log("go to oauth");
-		Router.go('/oauth');
+		this.next();
 	}
 }, {except: ['receive', 'oauth', 'createMenu']});
 
