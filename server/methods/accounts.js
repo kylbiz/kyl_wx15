@@ -148,13 +148,26 @@ Meteor.methods({
 	'checkWeChatBind': function(wechat_openid) {
 		Meteor.users.upsert({_id: Meteor.userId()}, {$set: {'profile.wechat_openid': wechat_openid}});
 		return true;
-	}
+	},
+
+	// 通过wehcat_openid添加微信登录
+	'loginByWechat': function(wechat_openid) {
+			var userInfo = Meteor.users.findOne({"profile.wechat_openid": wechat_openid});
+			if (userInfo) {
+				var id = userInfo._id;
+				var token = Accounts._generateStampedLoginToken();
+				var hashedToken = Accounts._hashStampedToken(token);
+				Meteor.users.update({_id: id}, {$push: {"services.resume.loginTokens": hashedToken}});
+				return token;
+			}
+			return false;
+	},
 });
 
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// 常见token
 
 
 // 验证短信发送的频次校验

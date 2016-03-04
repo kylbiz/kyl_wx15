@@ -5,39 +5,39 @@
       <img src="/images/avator.png" alt="">
       <p>{{currentUser.username}}</p>
     </div>
-  </div>  
+  </div>
   <div class="usercenter main-container has-ui-menu">
     <div class="module">
       <a href="/context">
-      <div class="content">       
+      <div class="content">
         <div class="single">
-          常见问题    
+          常见问题
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>                                
-        </div>                        
+          </span>
+        </div>
       </div>
       </a>
     </div>
     <div class="module">
       <a href="/aboutus">
-      <div class="content">       
+      <div class="content">
         <div class="single">
-          关于我们   
+          关于我们
           <span class="pull-right">
             <i class="angle right icon"></i>
-          </span>                                   
-        </div>                        
+          </span>
+        </div>
       </div>
       </a>
-    </div>  
+    </div>
     <div class="get">
-      <div>
-       <!-- <a href="/logout"> -->
+      {{#if isWeChat}}
+
+      {{else}}
         <button class="ui btn-default" type="button" id="logout">退出</button>
-       <!-- </a>   -->
-      </div>
-    </div>           
+      {{/if}}
+    </div>
     {{> ui_menu }}
   </div>
 </template>
