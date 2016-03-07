@@ -1,4 +1,4 @@
-var HOST = 'http://wx15.kyl.biz'
+var HOST = 'http://m.kyl.biz'
 PingxxConfig = {
   'host': HOST,
   // 'host': 'http://127.0.0.1:3000',

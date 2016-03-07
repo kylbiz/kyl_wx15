@@ -71,8 +71,11 @@ Template.register.events({
 			return;
 		}
 
+
 		if (phone && password && verifyCode) {
-			Meteor.call('UserRegistration', phone, password, Session.get('WeChatUser'), verifyCode, function (error, result) {
+			Meteor.call('UserRegistration'
+				, phone, password, verifyCode, {wechat_openid: Session.get('WeChatUser') || '', host: kylUtil.getBrowserHost()}
+				, function (error, result) {
 				if (error) {
 					console.log('UserRegistration err' + error.error, error.message, error.details);
 					if (error.error == 403) {

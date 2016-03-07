@@ -90,19 +90,21 @@ Meteor.methods({
 	},
 
 	// 注册
-	'UserRegistration': function(phone, password, wechat_openid, code) {
+	'UserRegistration': function(phone, password, code, hostInfo) {
 		// 验证码校验
 		if (!codeVerification(phone, code, new Date())) {
 			throw new Meteor.Error("验证码校验失败", "Error: code verify fail");
 		}
+
+
 
 		var options = {
 			username: phone,
 			password: password,
 			profile: {
 	            phone: phone,
-	            wechat_openid: wechat_openid || "",
-	            host: "KYLWX",
+	            wechat_openid: hostInfo.wechat_openid || "",
+	            host: hostInfo.host,
 	        }
 		};
 

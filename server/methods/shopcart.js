@@ -57,7 +57,7 @@ function commInfo(serInfo) {
 	    ordered: false,
 	    // canceled: false,
 	    // finished: false,
-	    host: 'KYLWX', //来源
+	    host: serInfo.host, //来源
 	    createTime: new Date(),
 	};
 }

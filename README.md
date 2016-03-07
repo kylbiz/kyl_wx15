@@ -116,7 +116,7 @@ key --交易过程生成签名的密钥
 	payed: false,
 	canceled: false,
 	finished: false,
-	host: 'KYLPC', // 或 'KYLWX',
+	host: 'KYLPC', // 或 'KYLWX' 或 'KYLWAP',
 	createTime: new Date(),
 	productProgress: { 	// 公司注册需要该字段说明进度
 			status: 0

@@ -124,58 +124,77 @@ Meteor.methods({
     }
 });
 
-
-// 测试
-Meteor.methods({
-    //创建菜单
-    createMenu: function () {
-        var menu = {
-            "button":[
+function createMenu(callback) {
+  var menu = {
+    "button":[
+        {
+            "type":"view",
+            "name":"开",
+            "url":"http://m.kyl.biz"
+        },
+        {
+            "name":"业",
+            "sub_button":[
                 {
-                    "type":"click",
-                    "name":"开",
-                    "key":"OPEN"
-                },
-                {
-                    "name":"业",
-                    "sub_button":[
-                        {
-                            "type":"view",
-                            "name":"产品中心",
-                            "url":"http://101.200.217.6/"
-                        },
-                        {
-                            "type":"click",
-                            "name":"赞一下我们",
-                            "key":"V1001_GOOD"
-                        }
-                    ]
-                },
-                {
-                    "type": "pic_sysphoto",
-                    "name": "啦",
-                    "key": "SEND_PICTURE"
+                    "type":"view",
+                    "name":"一企查",
+                    "url":"http://m.yiqicha.net/"
                 }
             ]
-        };
-
-        var result = Async.runSync(function(callback) {
-            WXAPI.createMenu(menu, callback);
-        });
-
-        if (result.error) {
-            throw new Meteor.Error(result.error, 'create menu fail');
-        } else {
-            return result.result;
+        },
+        {
+            "name": "啦",
+            "sub_button": [
+              {
+                "type": "view",
+                "name": "关于我们",
+                "url": "http://x.eqxiu.com/s/z5IHQrx7?eqrcode"
+              },
+              {
+                "type": "view",
+                "name": "400电话申请",
+                "url": "http://form.mikecrm.com/f.php?t=G1PpYj"
+              }
+            ]
         }
+      ]
+  };
+
+  WXAPI.createMenu(menu, callback);
+}
+
+WebApp.connectHandlers.use("/wechatapi", function(req, res, next) {
+  if (!req.query.token || req.query.token !== 'kyl123') {
+    res.end('illegal api');
+    return;
+  }
+
+  var mapHandle = {
+    'createmenu': function () {
+      createMenu(function (err, result) {
+        console.log("createmenu ", err, result);
+        var ret = err ? 'fail' : 'ok';
+        res.end("create menu " + ret);
+      });
+    },
+    'getmenu': function () {
+      WXAPI.getMenu(function (err, result) {
+        console.log('getMenu ', err, result.menu);
+        // var button = result.menu.button;
+        // console.log(button);
+        // button.forEach(function (info) {
+        //   console.log(info);
+        // });
+        res.end('getMenu');
+      });
     }
-});
+  };
 
+  var cmd = req.query.name || '';
+  if (mapHandle.hasOwnProperty(cmd)) {
+    mapHandle[cmd]();
+  } else {
+    res.end('unknow');
+  }
 
-WebApp.connectHandlers.use("/getFollowers", function(req, res, next) {
-    Meteor.call('getUserInfo','oPw1ptwXVwobI7hmFUijqQ4UVBqE', function (error, result) {
-        console.log('getUserInfo', error, result);
-
-    });
-    res.end('fuck');
 });

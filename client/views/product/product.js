@@ -324,7 +324,9 @@ function getServiceData () {
     };
 
     if (handles.hasOwnProperty(type)) {
-        return handles[type]();
+        var data = handles[type]();
+        data.host = kylUtil.getBrowserHost();
+        return data;
     } else {
         throw new Meteor.Error("内部错误", "非法数据");
     }

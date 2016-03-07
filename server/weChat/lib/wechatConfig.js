@@ -1,5 +1,5 @@
 
-var HOST = 'http://wx15.kyl.biz'
+var HOST = 'http://m.kyl.biz'
 WXConfig = {
     'host': HOST,
     'token': 'keyboardcat123',

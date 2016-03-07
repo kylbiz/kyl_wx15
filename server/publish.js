@@ -35,7 +35,7 @@ Meteor.publish('products', function(project, opt) {
 Meteor.publish('shopcart', function (orderId) {
 	orderId = orderId || false;
 	// console.log("shopcart --", orderId, ShopCart.find({ordered: orderId}).fetch() );
-	return ShopCart.find({userId: this.userId, payed: false, ordered: orderId, host: 'KYLWX'}, {sort: {createTime: -1}});
+	return ShopCart.find({userId: this.userId, payed: false, ordered: orderId, $or: [{host: 'KYLWX'}, {host: 'KYLWAP'}] }, {sort: {createTime: -1}});
 });
 
 Meteor.publish('userAddress', function (addrId) {
@@ -47,7 +47,7 @@ Meteor.publish('userAddress', function (addrId) {
 });
 
 Meteor.publish('orders', function (orderId) {
-	var cond = {userId: this.userId, host: 'KYLWX'};
+	var cond = {userId: this.userId, $or: [{host:'KYLWX'}, {host:'KYLWAP'}] };
 	if (orderId) {
 		cond.orderId = orderId;
 	}
