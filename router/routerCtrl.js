@@ -69,6 +69,7 @@ Router.onBeforeAction(function () {
 	if (Meteor.userId()) {
 		this.next();
 	} else {
-			Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(this.originalUrl)});
+			// Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(this.originalUrl)});
+			this.render('login', {data: {redirectUrl: encodeURIComponent(this.originalUrl)}});
 	}
 }, {only: needAccountRouters});

@@ -4,21 +4,25 @@ Template.login.events({
 	"click #loginBtn": function (event, template) {
 		var phone = template.$('#phone').val();
 		var password = template.$('#password').val();
-
-
 		if (phone && password) {
-			loginFunc(phone, password);
+			loginFunc(phone, password, getRedirectUrl(this));
 		}
 	},
 	"click #registerBtn": function (event, template) {
-		var redirectUrl = Router.current().params.query.redirectUrl || "";
+		var redirectUrl = getRedirectUrl(this);
 		var queryStr =  '';
 		if (redirectUrl) {
 			queryStr = 'redirectUrl=' + encodeURIComponent(redirectUrl);
 		}
-
-		console.log("registerBtn", queryStr);
 		Router.go('register', {}, {query: queryStr});
+	},
+	"click #forgetBtn": function () {
+		var redirectUrl = getRedirectUrl(this);
+		var queryStr =  '';
+		if (redirectUrl) {
+			queryStr = 'redirectUrl=' + encodeURIComponent(redirectUrl);
+		}
+		Router.go('forget', {}, {query: queryStr});
 	}
 });
 
@@ -86,7 +90,8 @@ Template.register.events({
 					// Router.go('login');
 				} else {
 					kylUtil.alert('注册成功');
-					// Meteor.call('sendRegistrationInfos', phone); // 发送成功注册消息
+					// loginFunc(phone, password);
+					Meteor.call('sendRegistrationInfos', phone); // 发送成功注册消息
 					Meteor.loginWithPassword(phone, password, function(err) {
 						if(err) {
 							console.log("login fail", err);
@@ -188,8 +193,13 @@ function getGenCode(phone, callBack) {
 	});
 }
 
+
+function getRedirectUrl(self) {
+	return self.redirectUrl || Router.current().params.query.redirectUrl || "";
+}
+
 //
-function loginFunc(phone, password) {
+function loginFunc(phone, password, redirectUrl) {
 	Meteor.loginWithPassword(phone, password, function (error, result) {
 		if (error) {
 			var msg = "登录失败";
@@ -197,7 +207,7 @@ function loginFunc(phone, password) {
 				msg = "用户不存在";
 			}
 			kylUtil.alert(msg);
-			Router.go('login');
+			// Router.go('login');
 		} else {
 			// 检测当前用户是否有微信账号绑定
 			if (Session.get('WeChatUser')) {
@@ -206,8 +216,9 @@ function loginFunc(phone, password) {
 				});
 			}
 
-			var redirectUrl = Router.current().params.query.redirectUrl || '/';
-			Router.go(decodeURIComponent(redirectUrl));
+			redirectUrl = redirectUrl || Router.current().params.query.redirectUrl || '/';
+			console.log("loginFunc redirectUrl", redirectUrl);
+			// Router.go(decodeURIComponent(redirectUrl));
 		}
 	});
 }

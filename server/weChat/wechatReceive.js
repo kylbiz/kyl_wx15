@@ -15,24 +15,24 @@
 
 
 // 处理微信回调回来的数据
-HTTP.methods({
-	'/wechat/receive': {
-		post: function (data) {
-			data = translate2Obj(data, this.requestHeaders['content-type']);
-			var ret = receiveHandle(data, this);
-			if (ret) {
-				return ret;
-			}
-		},
-		get: function (data) {
-			console.log("receive get obj", this.request.query);
-			var ret = WeChatVerifyUrl(this.request.query);
-			if (ret) {
-				return ret;
-			}
-		}
-	}
-});
+// HTTP.methods({
+// 	'/wechat/receive': {
+// 		post: function (data) {
+// 			data = translate2Obj(data, this.requestHeaders['content-type']);
+// 			var ret = receiveHandle(data, this);
+// 			if (ret) {
+// 				return ret;
+// 			}
+// 		},
+// 		get: function (data) {
+// 			console.log("receive get obj", this.request.query);
+// 			var ret = WeChatVerifyUrl(this.request.query);
+// 			if (ret) {
+// 				return ret;
+// 			}
+// 		}
+// 	}
+// });
 
 // @param data -- binary
 function translate2Obj(data, contentType) {
