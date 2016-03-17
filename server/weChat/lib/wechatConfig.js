@@ -1,6 +1,8 @@
 
 var HOST = 'http://m.kyl.biz'
 WXConfig = {
+    'subscribeWelcome': '感谢关注开业啦！我们提供一站式创业服务！',
+
     'host': HOST,
     'token': 'keyboardcat123',
 
@@ -29,5 +31,4 @@ WXConfig = {
     // 'appsecret': 'd4624c36b6795d1d99dcf0547af5443d',
     // 'token': 'keyboardcat123',
     // 'host': 'http://52.77.228.223'
-
 };

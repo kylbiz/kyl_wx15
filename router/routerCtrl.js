@@ -56,7 +56,7 @@ Router.onBeforeAction(function () {
 					}
 				});
 			} else {
-				kylUtil.alert("该微信帐号未绑定");
+				kylUtil.alert("您的微信帐号未绑定开业啦账号，请前往注册或登录");
 			}
 		});
 	}
