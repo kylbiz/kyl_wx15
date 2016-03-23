@@ -25,21 +25,9 @@ Router.route('/products/:products', {
 			},
 			finances: function () {
 				return {title: '小企财云', items: [
-					{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
 					{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
-					{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
 				]};
 			},
-			assurance: function () {
-				return {title: '小企人事', items: [
-					{name: '社保人事', price: kylUtil.getPriceGeneral('社保人事'), baseType: 'assurance'}
-				]};
-			},
-			trademark: function () {
-				return {title: '商标注册', items: [
-					{name: '商标注册', price: kylUtil.getPriceGeneral('商标注册'), baseType: 'trademark'}
-				]};
-			}
 		}[type]();
 	},
 	onBeforeAction: function () {
@@ -52,36 +40,6 @@ Router.route('/products/:products', {
 		}
 	}
 });
-
-// 产品中心首页 !!! 废弃
-// Router.route('/main', {
-// 	name: 'main',
-// 	waitOn: function () {
-// 		return Meteor.subscribe('products', 'preview_all');
-// 	},
-// 	data: function () {
-// 		// registration, bank, finance, assurance, bookkeeping
-// 		console.log("main params", this.params);
-// 		var RegList = RegistrationLists.find({}, {name: true}).fetch();
-// 		for (var key in RegList) {
-// 			RegList[key]['baseType'] = 'registration';
-// 			RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
-// 		}
-
-// 		productsPreview = [
-// 			{title: '小白云工商注册', items: RegList},
-// 			{title: '小企财云', items: [
-// 				{name: '银行开户', price: kylUtil.getPriceGeneral('银行开户'), baseType: 'bank'},
-// 				{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
-// 				{name: '流量记账包服务套餐', price: kylUtil.getPriceGeneral('流量记账包服务套餐'), baseType: 'bookkeeping'}
-// 			]},
-// 			{title: '小企人事', items: [
-// 				{name: '小企社保', price: kylUtil.getPriceGeneral('小企社保'), baseType: 'assurance'}
-// 			]},
-// 		];
-// 		return {products: productsPreview};
-// 	},
-// });
 
 
 // 产品详情页

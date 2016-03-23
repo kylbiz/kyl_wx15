@@ -1,16 +1,16 @@
 
 // 公司注册产品 -- outside
 var registrationLists=[
-  // {
-  //   name:'1元注册',
-  //   baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
-  //   services: [
-  //     {zone: '金山', payment: 1, message: '注册时长25天，行业以文化创意类为主，办理时需要股东到场一次'},
-  //     {zone: '松江', payment: 1, message: '注册时长20天，无其他要求'},
-  //     {zone: '嘉定', payment: 1, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
-  //     {zone: '奉贤', payment: 1, message: '注册时长20天，无其他要求'}
-  //   ],
-  // },
+  {
+    name:'1元注册',
+    baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
+    services: [
+      {zone: '金山', payment: 1, message: '注册时长25天，行业以文化创意类为主，办理时需要股东到场一次'},
+      {zone: '松江', payment: 1, message: '注册时长20天，无其他要求'},
+      {zone: '嘉定', payment: 1, message: '科技、金融类优先，办理时需股东到场一次，注册时长20天'},
+      {zone: '奉贤', payment: 1, message: '注册时长20天，无其他要求'}
+    ],
+  },
   // {
   //   name:'新年特惠',
   //   baseService: '新版营业执照、新版营业执照副本、公司章、法人章、财务章',
@@ -140,10 +140,10 @@ var registrationLists=[
 
 // 人事产品 -- inside
 var assuranceLists = [
-  {name: '社保+公积金开户', type: "account",  payment: 500},
-  {name: '网上汇缴', type: "remittance", payment: 300},
-  {name: '社保+公积金每月代缴', type: "fees", period: "6", periodName: "半年", payment: 120},
-  {name: '社保+公积金每月代缴', type: "fees", period: "12", periodName: "一年", payment: 240},
+  // {name: '社保+公积金开户', type: "account",  payment: 500},
+  // {name: '网上汇缴', type: "remittance", payment: 300},
+  // {name: '社保+公积金每月代缴', type: "fees", period: "6", periodName: "半年", payment: 120},
+  // {name: '社保+公积金每月代缴', type: "fees", period: "12", periodName: "一年", payment: 240},
 ];
 
 // 财务 -- inside 财务代理
@@ -266,43 +266,43 @@ var financeLists = [
 
 // 财务 -- 流量记账包
 var bookkeepingLists = [
-  {
-    bookkeepingType: 'small',
-    bookkeepingTypeName: '小规模纳税人',
-    lists: [
-      {name: '起步型记账包', payment: 300, description: '10张代开发票、20张记账凭证或40张记账凭证'},
-      {name: '成长型记账包', payment: 500, description: '20张代开发票、30张记账凭证或70张记账凭证'},
-      {name: '稳定型记账包', payment: 1000, description: '50张代开发票、60张记账凭证或160张记账凭证'},
-      {name: '无限量记账包', payment: 2000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
-    ]
-  },
-  {
-    bookkeepingType: 'common',
-    bookkeepingTypeName: '一般纳税人',
-    lists: [
-      {name: '起步型记账包', payment: 450, description: '10张代开发票、20张记账凭证或40张记账凭证'},
-      {name: '成长型记账包', payment: 700, description: '20张代开发票、30张记账凭证或70张记账凭证'},
-      {name: '稳定型记账包', payment: 1000, description: '50张代开发票、60张记账凭证或160张记账凭证'},
-      {name: '无限量记账包', payment: 3000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
-    ]
-  }
+  // {
+  //   bookkeepingType: 'small',
+  //   bookkeepingTypeName: '小规模纳税人',
+  //   lists: [
+  //     {name: '起步型记账包', payment: 300, description: '10张代开发票、20张记账凭证或40张记账凭证'},
+  //     {name: '成长型记账包', payment: 500, description: '20张代开发票、30张记账凭证或70张记账凭证'},
+  //     {name: '稳定型记账包', payment: 1000, description: '50张代开发票、60张记账凭证或160张记账凭证'},
+  //     {name: '无限量记账包', payment: 2000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
+  //   ]
+  // },
+  // {
+  //   bookkeepingType: 'common',
+  //   bookkeepingTypeName: '一般纳税人',
+  //   lists: [
+  //     {name: '起步型记账包', payment: 450, description: '10张代开发票、20张记账凭证或40张记账凭证'},
+  //     {name: '成长型记账包', payment: 700, description: '20张代开发票、30张记账凭证或70张记账凭证'},
+  //     {name: '稳定型记账包', payment: 1000, description: '50张代开发票、60张记账凭证或160张记账凭证'},
+  //     {name: '无限量记账包', payment: 3000, description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'}
+  //   ]
+  // }
 ];
 
 var bankLists = [
-  {bank: '中国银行', payment: 200, baseService: '银行开户许可证明'},
-  {bank: '招商银行', payment: 200, baseService: '银行开户许可证明'},
-  {bank: '上海银行', payment: 200, baseService: '银行开户许可证明'},
-  {bank: '工商银行', payment: 200, baseService: '银行开户许可证明'},
+  // {bank: '中国银行', payment: 200, baseService: '银行开户许可证明'},
+  // {bank: '招商银行', payment: 200, baseService: '银行开户许可证明'},
+  // {bank: '上海银行', payment: 200, baseService: '银行开户许可证明'},
+  // {bank: '工商银行', payment: 200, baseService: '银行开户许可证明'},
 ];
 
 var tradeMark = [
-  {name: '商标注册', payment: 1200},
+  // {name: '商标注册', payment: 1200},
 ];
 
 // 特殊品类产品
 var specialProduct = [
   {name: '合伙管家', label: '合伙管家', payment: 2999, subType: 'partnership', other: {}},
-  {name: '周年庆特别活动', label: '周年庆特别活动', payment: 3000, subType: 'anniversaryActivity', other: {}},
+  // {name: '周年庆特别活动', label: '周年庆特别活动', payment: 3000, subType: 'anniversaryActivity', other: {}},
 ];
 
 var businessTypeLists = [

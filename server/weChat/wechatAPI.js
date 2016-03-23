@@ -34,7 +34,6 @@ function saveToken(token, callback) {
     console.log("saveToken", token);
   // var fs = Npm.require('fs');
   // fs.writeFile('access_token.txt', JSON.stringify(token), callback);
-
     var Fiber = Npm.require("fibers");
     Fiber(function () {
         WeChatInfo.upsert({name: 'access_token'}, {$set: {name: 'access_token', token: token}}, callback);
@@ -186,6 +185,24 @@ WebApp.connectHandlers.use("/wechatapi", function(req, res, next) {
         //   console.log(info);
         // });
         res.end('getMenu');
+      });
+    },
+    'createqrcode': function () {
+      // var url = 'http://mp.weixin.qq.com/bizmall/malldetail?id=&pid=pPw1pt_bsayBkZxbSqkAun9d0UJ8&biz=MzA3NzExNTE5OQ==&scene=&action=show_detail&showwxpaytitle=1#wechat_redirect';
+    },
+    'getproductinfo': function () {
+      // var pid = req.query.pid || 0;
+
+      // var handleFunc = pid ? WXAPI.getGoods : WXAPI.getGoodsByStatus;
+      WXAPI.getGoodsByStatus(0, function(err, result) {
+      // WXAPI.getGoods("pPw1pt-bXvqDub35Z_S7Rl2HodWI", function(err, result) {
+        if (err) {
+          console.log("err happened", err);
+          res.end('fail');
+        } else {
+          console.log("ok ",result);
+          res.end('ok');
+        }
       });
     }
   };
