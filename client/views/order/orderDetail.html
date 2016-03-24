@@ -2,7 +2,7 @@
  {{#control_nav}}
    我的订单
  {{/control_nav}}
-  <div class="startup main-container has-ui-menu">     
+  <div class="startup main-container has-ui-menu">
     <div class="module">
       <div class="content cover">
         <div class="icon-left">
@@ -26,11 +26,11 @@
             <div class="region-content">
               <span class="field">
               {{addressInfo.address}}
-              </span>              
+              </span>
             </div>
           </div>
         </div>
-        
+
 
       </div>
     </div>
@@ -43,10 +43,10 @@
                 <div class="piece key">{{lastStatus isRegComp}}</div>
                 <div class="piece">{{lastUpdateTime isRegComp}}</div>
               </div>
-            </div>        
+            </div>
             <div class="icon-right">
               <i class="angle right icon"></i>
-            </div>        
+            </div>
           </div>
         </div>
       </a>
@@ -98,7 +98,7 @@
           <div class="piece">
             <span class="key">付款金额：</span>
             <span class="field">{{moneyAmount}}</span>
-          </div>          
+          </div>
           <div class="piece">
             <span class="key">付款时间：</span>
             <span class="field">{{payedTimStr}}</span>
@@ -111,7 +111,7 @@
               未付款
             {{/if}}
             </span>
-          </div>                                
+          </div>
         </div>
       </div>
     </div>
@@ -125,8 +125,8 @@
             需要
             {{else}}
             不需要
-            {{/if}}           
-          </span>        
+            {{/if}}
+          </span>
         </div>
       </div>
     </div>
@@ -140,6 +140,6 @@
         </div>
       </div>
     </div>
-    {{> ui_menu }} 
-  </div>  
+    {{> ui_menu }}
+  </div>
 </template>

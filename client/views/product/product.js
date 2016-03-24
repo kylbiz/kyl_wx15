@@ -40,7 +40,8 @@ Template.product_normal.helpers({
     },
     _img: function() {
         var type = Router.current().params.productType;
-        return kylUtil.getProductImg(type);
+        // return kylUtil.getProductImg(type);
+        return kylUtil.getImg(type);
     },
     _dynamic: function() {
         var type = Router.current().params.productType;
@@ -54,7 +55,8 @@ Template.product_normal.helpers({
     },
     _price: function() {
         var type = Router.current().params.productType;
-        return kylUtil.getGeneralPrice(type);
+        // return kylUtil.getGeneralPrice(type);
+        return kylUtil.getPriceGeneral(type);
     },
     _briefDes: function() {
         // return "hello-world";
@@ -81,7 +83,8 @@ Template.product_normal.helpers({
     product: function() {
         var params = Router.current().params;
         var productType = params.productType;
-        var _img = kylUtil.getProductImg(productType);
+        // var _img = kylUtil.getProductImg(productType);
+        var _img = kylUtil.getImg(productType);
 
         var products = {
             registration: function() {
@@ -196,13 +199,13 @@ function getServiceData () {
                 certiNum: Session.get('Sel_3'),
             };
         },
-        // bank: function () {
-        //     return {
-        //         type: type,
-        //         name: name,
-        //         bank: Session.get('Sel_1_str') || "",
-        //     };
-        // },
+        bank: function () {
+            return {
+                type: type,
+                name: '银行开户',
+                bank: Session.get('Sel_2') || "",
+            };
+        },
         special: function () {
             var product = SpecialProduct.findOne({subType: params.query.subtype}) || false;
 

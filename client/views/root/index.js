@@ -36,7 +36,7 @@ Template.index.helpers({
         // 配置banner图
         var bannerImages = [{
             source: '/images/event/banner1.png',
-            link: 'product/special?subtype=partnership'
+            link: 'products/special?subtype=partnership'
         }];
         return bannerImages;
     },
@@ -61,13 +61,14 @@ Template.index.events({
         }
 
 		var url = {
-			// registration: '/product/registration?name=1元注册',
-            "special": '/product/special?name=合伙管家&subtype=partnership',
-            "registration": '/product/registration?name=极速注册',
-            "registration-newyear": '/product/registration?name=公司注册-新年特惠',
-			"finance": '/product/finance?name=财务代理',
-			"assurance": '/product/assurance?name=社保人事',
-            "trademark": '/product/trademark?name=商标注册'
+			"finance": '/products/finance',
+            "bank": '/products/bank',
+            // registration: '/product/registration?name=1元注册',
+   //          "special": '/product/special?name=合伙管家&subtype=partnership',
+   //          "registration": '/product/registration?name=极速注册',
+   //          "registration-newyear": '/product/registration?name=公司注册-新年特惠',
+			// "assurance": '/product/assurance?name=社保人事',
+   //          "trademark": '/product/trademark?name=商标注册',
 			// workspace: 'http://foundfit.mikecrm.com/f.php?t=Q3JZZH'
 		};
         if (url.hasOwnProperty(product)) {

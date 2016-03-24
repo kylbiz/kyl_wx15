@@ -1,8 +1,8 @@
 Meteor.methods({
 	shopcartAdd: function( serInfo ) {
-    console.log("shopcartAdd get serInfo", serInfo);
+    // console.log("shopcartAdd get serInfo", serInfo);
 		var shopcartInfo = getShopcartInfo(serInfo);
-    console.log("shopcartInfo", shopcartInfo);
+    // console.log("shopcartInfo", shopcartInfo);
 		return ShopCart.insert(shopcartInfo);
 	},
 
@@ -43,12 +43,23 @@ function commInfo(serInfo) {
         'finance': '财务代理',
         'bank': '银行开户',
         'special': '特别产品',
+        'partnership': '合伙管家',
         // 'assurance': '社保代理',
         // 'bookkeeping': '流量记账包服务套餐',
         // 'trademark': '商标注册',
     };
 
+  var productCollections = {
+    'registration': 'CompanyRegist',
+    'finance': 'FinanceAgent',
+    'bank': 'BankLists',
+    'special': 'SpecialProduct',
+  }
+
+  var version = WebSiteInfoMobile.findOne({name: 'productVersion'})[ productCollections[serInfo.type] ];
+
 	return {
+      version: version,
 	    userId: Meteor.userId(),
 	    relationId: kylUtil.genOrderId(),     //  关联产品id 为兼容PC数据 未实际使用
 	    productType: productTypeNames[serInfo.type],
@@ -165,126 +176,27 @@ function handleFinance (serInfo) {
   };
 }
 
-
-// 社保数据处理
-function handleAssurance(serInfo) {
-
-	var info = AssuranceLists.findOne({name: serInfo.server, periodName: serInfo.periodName});
-	if (!info) {
-		throw new Meteor.Error("内部数据错误");
-	}
-
-	var pay = info.payment * serInfo.num;
-
-	var ret = {
-		moneyAmount: pay,
-		servicesNameList: [{
-			name: serInfo.name,
-			money: pay,
-			scale: serInfo.num,
-			server: info.name,
-			servicesContains: [{
-			}]
-		}],
-	};
-
-	if (info.periodName) {
-		ret.servicesNameList[0].periodName = info.periodName;
-		ret.servicesNameList[0].period = info.period || 0;
-	}
-
-	return ret;
-}
-
-// 流量记账包
-function handleBookkeeping (serInfo) {
-	var info = BookkeepingLists.findOne({
-		"bookkeepingTypeName": serInfo.serverType,
-		"lists.name": serInfo.server
-	});
-	if (!info) {
-		throw new Meteor.Error("内部数据错误");
-	}
-
-
-	var list = info.lists || [];
-	var pay = 0;
-	var description = "";
-	list.forEach(function (item) {
-		if (item.name == serInfo.server) {
-			pay = item.payment;
-			description = item.description;
-		}
-	});
-
-	return {
-		moneyAmount: pay,
-		servicesNameList: [{
-			name: serInfo.name,
-			money: pay,
-			scale: 1,
-			serverType: serInfo.serverType,
-			server: serInfo.server,
-			servicesContains: [{
-				name: description
-			}]
-		}]
-	};
-}
-
 // 银行开户
 function handleBank(serInfo) {
-	var info = BankLists.findOne({bank: serInfo.bank});
-	if (!info) {
-		throw new Meteor.Error("内部数据错误");
-	}
+  var info = BankLists.findOne({bank: serInfo.bank});
+  if (!info) {
+    throw new Meteor.Error("内部数据错误");
+  }
 
-	var pay = info.payment || 0;
-	return {
-		moneyAmount: pay,
-		servicesNameList: [{
-			name: serInfo.name,
-			money: pay,
-			scale: 1,
-			bank: info.bank,
-			servicesContains: [{
-				name: info.baseService
-			}]
-		}]
-	};
+  var pay = info.payment || 0;
+  return {
+    moneyAmount: pay,
+    servicesNameList: [{
+      name: serInfo.name,
+      money: pay,
+      scale: 1,
+      bank: info.bank,
+      servicesContains: [{
+        name: info.baseService
+      }]
+    }]
+  };
 }
-
-// 商标注册
-function handleTrademark(serInfo) {
-    var info = TradeMark.findOne({name: serInfo.name});
-    if (!info) {
-        throw new Meteor.Error("内部数据错误");
-    }
-
-    var pay = info.payment || 0;
-    console.log("trademark", {
-        moneyAmount: pay,
-        servicesNameList: [{
-            name: serInfo.name,
-            money: pay,
-            scale: 1,
-            other: info.other,
-            servicesContains:[],
-        }]
-    });
-    return {
-        moneyAmount: pay,
-        subType: info.subType,
-        servicesNameList: [{
-            name: serInfo.name,
-            money: pay,
-            scale: 1,
-            other: info.other,
-            servicesContains:[],
-        }]
-    };
-}
-
 
 // 特别产品
 function handleSpecial(serInfo) {
@@ -305,5 +217,103 @@ function handleSpecial(serInfo) {
         }]
     };
 }
+
+// // 社保数据处理
+// function handleAssurance(serInfo) {
+
+// 	var info = AssuranceLists.findOne({name: serInfo.server, periodName: serInfo.periodName});
+// 	if (!info) {
+// 		throw new Meteor.Error("内部数据错误");
+// 	}
+
+// 	var pay = info.payment * serInfo.num;
+
+// 	var ret = {
+// 		moneyAmount: pay,
+// 		servicesNameList: [{
+// 			name: serInfo.name,
+// 			money: pay,
+// 			scale: serInfo.num,
+// 			server: info.name,
+// 			servicesContains: [{
+// 			}]
+// 		}],
+// 	};
+
+// 	if (info.periodName) {
+// 		ret.servicesNameList[0].periodName = info.periodName;
+// 		ret.servicesNameList[0].period = info.period || 0;
+// 	}
+
+// 	return ret;
+// }
+
+// // 流量记账包
+// function handleBookkeeping (serInfo) {
+// 	var info = BookkeepingLists.findOne({
+// 		"bookkeepingTypeName": serInfo.serverType,
+// 		"lists.name": serInfo.server
+// 	});
+// 	if (!info) {
+// 		throw new Meteor.Error("内部数据错误");
+// 	}
+
+
+// 	var list = info.lists || [];
+// 	var pay = 0;
+// 	var description = "";
+// 	list.forEach(function (item) {
+// 		if (item.name == serInfo.server) {
+// 			pay = item.payment;
+// 			description = item.description;
+// 		}
+// 	});
+
+// 	return {
+// 		moneyAmount: pay,
+// 		servicesNameList: [{
+// 			name: serInfo.name,
+// 			money: pay,
+// 			scale: 1,
+// 			serverType: serInfo.serverType,
+// 			server: serInfo.server,
+// 			servicesContains: [{
+// 				name: description
+// 			}]
+// 		}]
+// 	};
+// }
+
+// // 商标注册
+// function handleTrademark(serInfo) {
+//     var info = TradeMark.findOne({name: serInfo.name});
+//     if (!info) {
+//         throw new Meteor.Error("内部数据错误");
+//     }
+
+//     var pay = info.payment || 0;
+//     console.log("trademark", {
+//         moneyAmount: pay,
+//         servicesNameList: [{
+//             name: serInfo.name,
+//             money: pay,
+//             scale: 1,
+//             other: info.other,
+//             servicesContains:[],
+//         }]
+//     });
+//     return {
+//         moneyAmount: pay,
+//         subType: info.subType,
+//         servicesNameList: [{
+//             name: serInfo.name,
+//             money: pay,
+//             scale: 1,
+//             other: info.other,
+//             servicesContains:[],
+//         }]
+//     };
+// }
+
 
 

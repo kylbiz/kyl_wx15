@@ -202,7 +202,7 @@ Template.bank_board.onRendered(function () {
 
     this.autorun(function () {
         var bankName = $("#bankSel li").eq(Session.get('Sel_1')).html() || "";
-        Session.set('Sel_1_str', bankName);
+        Session.set('Sel_2', bankName);
         var info = BankLists.findOne({bank: bankName});
 
         Session.set("Pay", info.payment);
@@ -218,7 +218,6 @@ Template.bank_board.helpers({
 Template.bank_board.events({
     'click #bankSel': function (event) {
         Session.set('Sel_1', $(event.currentTarget).index());
-
     }
 });
 

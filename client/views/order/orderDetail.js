@@ -29,5 +29,5 @@ Template.orderDetail.helpers({
 			}
 			return moment(updateTime).format("YYYY-MM-DD HH:mm:ss");
 		}
-	}	
+	}
 });

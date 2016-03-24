@@ -58,7 +58,15 @@ Router.route('/products/:productType', {
 	name: 'product',
 	waitOn: function () {
 		return Meteor.subscribe('products', this.params.productType);
-	}
+	},
+	// onBeforeAction: function () {
+	// 	var productType = this.params.productType || "";
+	// 	if (productType == 'special') {
+	// 		this.render("partnership");
+	// 	} else {
+	// 		this.next();
+	// 	}
+	// }
 });
 
 

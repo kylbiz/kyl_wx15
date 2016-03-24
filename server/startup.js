@@ -25,12 +25,14 @@ function productInit() {
 
   var productVerSaved = WebSiteInfoMobile.findOne({name: 'productVersion'});
   if (!productVerSaved) {
-    WebSiteInfoMobile.insert({
+    productVerSaved = {
       name: 'productVersion',
       CompanyRegist: 0,
       FinanceAgent: 0,
       SpecialProduct: 0,
-    });
+      BankLists: 0,
+    };
+    WebSiteInfoMobile.insert(productVerSaved);
   }
 
   if (productVerSaved.CompanyRegist <= productVersion.CompanyRegist) {
