@@ -8,80 +8,40 @@
 
 <!-- 公司注册选项 -->
 <template name="registration_board">
- {{#reactive_board}}
-  <div class="des">
-    <div class="photo-frame">
-        <!-- <img src="http://fpoimg.com/100x100" alt=""> -->
-        <img src={{_img}} alt="">
+  {{#reactive_board}}
+    <div class="des">
+      <div class="photo-frame">
+          <img src={{_img}} alt="">
+      </div>
+      <div class="tag">
+        <div class="title">公司注册</div>
+        <div class="price">&yen;{{payment}}</div>
+      </div>
     </div>
-    <div class="tag">
-      <div class="title">{{productInfo.name}}</div>
-      <div class="price">&yen;{{payment}}</div>
-    </div>
-  </div>
-  <div class="ui-dist-content">
-    <div class="key">选择区域：</div>
-    <div class="field" id="zone">
-      <ul>
-        {{#each $mapped productInfo.services}}
-          <li class="{{#if $first}}selected{{/if}}">{{zone}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-  <div class="control-box">
-    <button type="button" class="ui btn-default submit">立即购买</button>
-  </div>
-{{/reactive_board}}
-</template>
-
-
-<!-- 小企人事选项 -->
-<template name="assurance_board">
- {{#reactive_board}}
-  <div class="des">
-    <div class="photo-frame">
-      <img src="{{_img}}" alt="">
-    </div>
-    <div class="tag">
-      <div class="title">小企人事</div>
-      <div class="price">&yen;{{payment}}</div>
-    </div>
-  </div>
-  <div class="ui-dist-content assurance_board">
-    <div class="piece">
-      <div class="key">选择服务：</div>
-      <div class="field" id="serSelect">
-        <ul class="cover">
-          {{#each $mapped productInfo}}
-            <li class="{{#if $first}}selected{{/if}}">{{name}}</li>
+    <div class="ui-dist-content">
+      <div class="key">选择类型：</div>
+      <div class="field" id="name">
+        <ul>
+          {{#each $mapped subTypes}}
+            <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
           {{/each}}
         </ul>
       </div>
     </div>
-    {{#if items}}
-      <div class="piece">
-        <div class="key">时间：</div>
-        <div class="field" id='timeSelect'>
-          <ul class="half">
-            {{#each $mapped items}}
-              <li class="{{#if $first}}selected{{/if}}">{{periodName}}</li>
-            {{/each}}
-          </ul>
-        </div>
+    <div class="ui-dist-content">
+      <div class="key">选择区域：</div>
+      <div class="field" id="zone">
+        <ul>
+          {{#each $mapped zones}}
+            <li class="{{#if $first}}selected{{/if}}" value="{{zone}}">{{zone}}</li>
+          {{/each}}
+        </ul>
       </div>
-      <div class="piece">
-        <div class="key">人数：</div>
-        <div class="field">
-          <input type="number" class="form-control" id="personNum" value={{personNum}} min="1" step="1">
-        </div>
-      </div>
-    {{/if}}
-  </div>
-  <div class="control-box">
-    <button type="button" class="ui btn-default submit">立即购买</button>
-  </div>
-{{/reactive_board}}
+    </div>
+    <div class="control-box">
+      <button type="button" class="ui btn-default submit">立即购买</button>
+    </div>
+  {{/reactive_board}}
 </template>
 
 <!-- 财务代理选项 -->
@@ -97,41 +57,52 @@
     </div>
   </div>
   <div class="ui-dist-content">
+
     <div class="piece">
-      <div class="key">服务类型：</div>
-      <div class="field" id="agentTypSel">
-        <ul class="half">
-          {{#each $mapped productInfo.serTypes}}
-            <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
+      <div class="key">选择套餐：</div>
+      <div class="field" id="name">
+        <ul>
+          {{#each $mapped names}}
+            <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
           {{/each}}
         </ul>
       </div>
     </div>
-    <div class="piece">
-      <div class="key">选择服务：</div>
-      <div class="field" >
-        <div class="select-region">
-          <select id="agentSerSel" class="form-control">
-              {{#each productInfo.list }}
-              <option value={{name}}>{{name}}</option>
-              {{/each}}
-          </select>
+
+    {{#if opts}}
+      <div class="piece">
+        <div class="key">选择年收入：</div>
+        <div class="field" id="annualIncome">
+          <ul>
+            {{#each $mapped opts.annualIncome.items}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
         </div>
       </div>
-    </div>
-    {{#if periodNames}}
+
       <div class="piece">
-        <div class="key">时间：</div>
-        <div class="field" id="agentTimeSel">
-          <ul class="three">
-            {{#each $mapped periodNames}}
-              <li class="{{#if $first}}selected{{/if}}">{{$this}}</li>
+        <div class="key">选择凭证量：</div>
+        <div class="field" id="certiNum">
+          <ul>
+            {{#each $mapped opts.certiNum.items}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
             {{/each}}
           </ul>
         </div>
       </div>
     {{/if}}
 
+    <div class="piece">
+      <div class="key">选择时间：</div>
+      <div class="field" id="period">
+        <ul>
+          {{#each $mapped period.items}}
+            <li class="{{#if $first}}selected{{/if}}" value="{{value}}">{{label}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="control-box">
     <button type="button" class="ui btn-default submit">立即购买</button>

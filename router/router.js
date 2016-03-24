@@ -6,61 +6,62 @@ Router.route('/', {
 });
 
 // 大分类产品
-Router.route('/products/:products', {
-	name: 'products',
+// Router.route('/products/:products', {
+// 	name: 'products',
+// 	waitOn: function () {
+// 		var type = this.params.products || false;
+// 		return Meteor.subscribe('products', type);
+// 	},
+// 	data: function () {
+// 		var type = this.params.products;
+// 		return {
+// 			registration: function () {
+// 				var RegList = RegistrationLists.find({}, {name: true}).fetch();
+// 				for (var key in RegList) {
+// 					RegList[key]['baseType'] = 'registration';
+// 					RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
+// 				}
+// 				return {title: '小白云工商注册', items: RegList};
+// 			},
+// 			finances: function () {
+// 				return {title: '小企财云', items: [
+// 					{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
+// 				]};
+// 			},
+// 		}[type]();
+// 	},
+// 	onBeforeAction: function () {
+// 		var data = this.data() || {};
+// 		var items = data.items || [];
+// 		if (items.length === 1) {
+// 			this.redirect('/product/' + items[0].baseType + '?name=' + items[0].name);
+// 		} else {
+// 			this.next();
+// 		}
+// 	}
+// });
+
+// 产品详情页
+// Router.route('/product/:productType', {
+// 	name: 'product',
+// 	waitOn: function () {
+// 		// console.log("product ", this.params.productType, this.params.query);
+// 		return Meteor.subscribe('products', this.params.productType);
+// 	},
+// 	data: function () {
+// 		return {productName: this.params.query.name};
+// 	}
+// });
+
+// 产品详细页
+Router.route('/products/:productType', {
+	name: 'product',
 	waitOn: function () {
-		var type = this.params.products || false;
-		return Meteor.subscribe('products', type);
-	},
-	data: function () {
-		var type = this.params.products;
-		return {
-			registration: function () {
-				var RegList = RegistrationLists.find({}, {name: true}).fetch();
-				for (var key in RegList) {
-					RegList[key]['baseType'] = 'registration';
-					RegList[key]['price'] = kylUtil.getPriceGeneral(RegList[key]['name']);
-				}
-				return {title: '小白云工商注册', items: RegList};
-			},
-			finances: function () {
-				return {title: '小企财云', items: [
-					{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
-				]};
-			},
-		}[type]();
-	},
-	onBeforeAction: function () {
-		var data = this.data() || {};
-		var items = data.items || [];
-		if (items.length === 1) {
-			this.redirect('/product/' + items[0].baseType + '?name=' + items[0].name);
-		} else {
-			this.next();
-		}
+		return Meteor.subscribe('products', this.params.productType);
 	}
 });
 
 
-// 产品详情页
-Router.route('/product/:productType', {
-	name: 'product',
-	waitOn: function () {
-		// console.log("product ", this.params.productType, this.params.query);
-		return Meteor.subscribe('products', this.params.productType);
-	},
-	data: function () {
-		return {productName: this.params.query.name};
-	},
-	// onBeforeAction: function () {
-	// 	var productType = this.params.productType || "";
-	// 	if (productType == 'special') {
-	// 		this.render("partnership");
-	// 	} else {
-	// 		this.next();
-	// 	}
-	// }
-});
 
 // 购物车
 Router.route('/shopcart', {

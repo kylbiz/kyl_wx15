@@ -19,7 +19,7 @@ function productShowInfo (list) {
   	list.forEach(function (infoBase) {
   		var type = infoBase.typeNameFlag;
   		var info = infoBase.servicesNameList[0];
-	  	var _img = kylUtil.getImg(info.name);
+	  	var _img = kylUtil.getProductImg(type);
 	  	var infoExt = getInfoExt(type, info);
 
 	  	listExt.push({
@@ -30,7 +30,7 @@ function productShowInfo (list) {
 	  		userConfirmed: infoBase.userConfirmed,
 	  		// title: infoBase.productType, subtitle: info.name, payment: infoBase.moneyAmount,
 	  		_img: _img,
-	  		title: info.name,
+	  		title: infoBase.productType,
 	  		payment: infoBase.moneyAmount,
 	  		ext: infoExt
 	  	});
@@ -40,51 +40,38 @@ function productShowInfo (list) {
 
 
   	function getInfoExt (type, info) {
-		var strMap = {
-			registration: function () {
-				return [
-					'地区: ' + info.zone,
-				];
-			},
-			assurance: function () {
-				var ret = [
-					'服务: ' + info.server,
-				];
+			var strMap = {
+				registration: function () {
+					return [
+						'类型: ' + info.label,
+						'地区: ' + info.zone,
+					];
+				},
+				finance: function () {
+					var arr = ['类型: ' + info.label, '时间: ' + info.period];
+					if (info.annualIncome) {
+						arr.push('年收入: ' + info.annualIncome);
+					}
 
-				if(info.periodName) {
-					ret.push('时间: ' + info.periodName);
-					ret.push('人数: ' + info.scale);
+					if (info.certiNum) {
+						arr.push('凭证量: ' + info.certiNum);
+					}
+					return arr;
+				},
+				bank: function () {
+					return [
+						'银行: ' + info.bank
+					];
+				},
+				trademark: function () {
+					return [];
 				}
-				return ret;
-			},
-			finance: function () {
-				return [
-					'类型: ' + info.name,
-					'服务: ' + info.serverType,
-					'时间: ' + info.period
-				];
-			},
-			bookkeeping: function () {
-				return [
-					'类型: ' + info.serverType,
-					'服务: ' + info.server
-				];
-			},
-			bank: function () {
-				return [
-					'银行: ' + info.bank
-				];
-			},
-			trademark: function () {
+			};
+
+			if (strMap.hasOwnProperty(type)) {
+				return strMap[type]();
+			} else {
 				return [];
 			}
-		};
-
-		if (strMap.hasOwnProperty(type)) {
-			return strMap[type]();
-		} else {
-			return [];
 		}
-
-	}
 }

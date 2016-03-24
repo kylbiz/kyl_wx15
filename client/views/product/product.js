@@ -10,7 +10,7 @@ Template.product.helpers({
         var params = Router.current().params;
         var type = params.productType;
 
-        console.log("isSpecialProduct", params);
+        // console.log("isSpecialProduct", params);
         if (type == 'special') {
             var subType = params.query.subtype || "";
             return {result: true, template: subType};
@@ -22,6 +22,10 @@ Template.product.helpers({
 
 
 Template.product_normal.helpers({
+    productName: function () {
+        var type = Router.current().params.productType;
+        return kylUtil.getProductName(type);
+    },
     productsDes: function() {
         var type = Router.current().params.productType;
         return kylUtil.getProductsDes(type);
@@ -35,8 +39,8 @@ Template.product_normal.helpers({
         return origin;
     },
     _img: function() {
-        var name = this.productName || "";
-        return kylUtil.getImg(name);
+        var type = Router.current().params.productType;
+        return kylUtil.getProductImg(type);
     },
     _dynamic: function() {
         var type = Router.current().params.productType;
@@ -49,28 +53,11 @@ Template.product_normal.helpers({
         }[type];
     },
     _price: function() {
-        var name = this.productName || "";
-        // console.log('price', name);
-        return kylUtil.getPriceGeneral(name);
+        var type = Router.current().params.productType;
+        return kylUtil.getGeneralPrice(type);
     },
     _briefDes: function() {
-        var type = Router.current().params.productType;
-        var name = this.productName || "";
-        if (type != 'registration') {
-            return kylUtil.getBriefDes(name);
-        } else {
-            var info = RegistrationLists.findOne({name: name}) || {};
-            var services = info.services || [];
-            var areas = [];
-            services.forEach(function (area) {
-                areas.push(area.zone);
-            });
-            if (areas.length === 0) {
-                return "";
-            } else {
-                return "地区: " + areas.join("、");
-            }
-        }
+        // return "hello-world";
     },
     _desTemplate: function() {
         var type = Router.current().params.productType;
@@ -93,47 +80,15 @@ Template.product_normal.helpers({
     // 产品选项信息
     product: function() {
         var params = Router.current().params;
-        var productName = params.query.name || "default";
-        var _img = kylUtil.getImg(productName);
-
+        var productType = params.productType;
+        var _img = kylUtil.getProductImg(productType);
 
         var products = {
             registration: function() {
                 return {
-                    productInfo: RegistrationLists.findOne(params.query),
                     _img: _img
                 };
             },
-
-            assurance: function() {
-                // var assInfo = AssuranceLists.find().fetch();
-                var services = [{
-                    name: '社保+公积金开户',
-                    type: "account",
-                    payment: 500
-                }, {
-                    name: '网上汇缴',
-                    type: "account",
-                    payment: 300
-                }, {
-                    name: '社保+公积金每月代缴',
-                    type: "fees",
-                    items: [{
-                        period: "6",
-                        periodName: "半年",
-                        payment: 120
-                    }, {
-                        period: "12",
-                        periodName: "一年",
-                        payment: 240
-                    }]
-                }, ];
-                return {
-                    productInfo: services,
-                    _img: _img
-                };
-            },
-
             finance: function() {
                 var services = {
                     serTypes: ["一般纳税人", "小规模纳税人"],
@@ -159,49 +114,20 @@ Template.product_normal.helpers({
                     _img: _img
                 };
             },
-
-            bookkeeping: function() {
-                var services = {
-                    bookkeepingTypeNames: ["小规模纳税人", "一般纳税人"],
-                    list: [{
-                        name: '起步型记账包',
-                        description: '10张代开发票、20张记账凭证或40张记账凭证'
-                    }, {
-                        name: '成长型记账包',
-                        description: '20张代开发票、30张记账凭证或70张记账凭证'
-                    }, {
-                        name: '稳定型记账包',
-                        description: '50张代开发票、60张记账凭证或160张记账凭证'
-                    }, {
-                        name: '无限量记账包',
-                        description: '无限量代开发票、无限量记账凭证1年或无限量记账凭证1年'
-                    }]
-                };
-                return {
-                    productInfo: services,
-                    _img: _img
-                };
-            },
-
             bank: function() {
                 return {
                     productInfo: BankLists.find({}).fetch(),
                     _img: _img
                 };
             },
-
-            trademark: function () {
-                return {directBuy: true};
-            }
         };
 
         //初始化数据
         Session.set('Sel_1', 0);
-        Session.set('Sel_1_str', "");
         Session.set('Sel_2', 0);
-        Session.set('Sel_2_str', "");
         Session.set('Sel_3', 0);
-        Session.set('Sel_3_str', "");
+        Session.set('Sel_4', 0);
+        // Session.set('paySelInfo', {});
         Session.set('Pay', 0);
 
         if (products.hasOwnProperty(params.productType)) {
@@ -233,11 +159,9 @@ Template.product.events({
 // 前去添加到购物车
 function goToAddShopCart() {
     if (!Meteor.userId()) {
-        // console.log("product", Router.current());
         Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(Router.current().url) });
         return;
     }
-    console.log('seceive data', getServiceData());
 
     Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
         if (err) {
@@ -254,61 +178,31 @@ function goToAddShopCart() {
 function getServiceData () {
     var params = Router.current().params;
     var type = params.productType;
-    var name = params.query.name || "";
 
     var handles = {
         registration: function () {
             return {
                 type: type,
-                name: name,
-                zone: Session.get("Sel_1_str"),
+                name: Session.get("Sel_1"),
+                zone: Session.get("Sel_2"),
             };
-        },
-        assurance: function () {
-            var info = {
-                type: type,
-                name: name,
-                server: Session.get("Sel_1_str"),
-                num: Session.get("Sel_3") || 1
-            };
-
-            var periodName = Session.get("Sel_2_str") || "";
-            if (periodName) {
-                info.periodName = periodName;
-            }
-
-            return info;
         },
         finance: function () {
             return {
                 type: type,
-                name: name,
-                serverType: Session.get('Sel_1_str') || "",
-                server: Session.get('Sel_2_str') || "",
-                period: Session.get('Sel_3_str') || "",
+                name: Session.get("Sel_1"),
+                period: Session.get('Sel_4'),
+                annualIncome: Session.get('Sel_2'),
+                certiNum: Session.get('Sel_3'),
             };
         },
-        bookkeeping: function () {
-            return {
-                type: type,
-                name: name,
-                serverType: Session.get('Sel_1_str') || "",
-                server: Session.get("Sel_2_str") || "",
-            };
-        },
-        bank: function () {
-            return {
-                type: type,
-                name: name,
-                bank: Session.get('Sel_1_str') || "",
-            };
-        },
-        trademark: function () {
-            return {
-                type: type,
-                name: name,
-            };
-        },
+        // bank: function () {
+        //     return {
+        //         type: type,
+        //         name: name,
+        //         bank: Session.get('Sel_1_str') || "",
+        //     };
+        // },
         special: function () {
             var product = SpecialProduct.findOne({subType: params.query.subtype}) || false;
 

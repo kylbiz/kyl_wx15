@@ -20,29 +20,35 @@ Template.registration_board.onRendered(function () {
 
     // 计算价格
     this.autorun(function () {
-        var name = Blaze.getData(this).productInfo.name;
-        var info = RegistrationLists.findOne({name: name});
-        var zoneName = Session.get("Sel_1_str") || "";
-        if (!zoneName) {
-            zoneName = $("#zone li").eq(Session.get('Sel_1')).html();
-            Session.set("Sel_1_str", zoneName);
-        }
-
+        var name = Session.get('Sel_1');
+        var zone = Session.get('Sel_2');
         var payment = 0;
-        var services = info.services;
-        services.forEach(function (service) {
-            if (service.zone == zoneName) {
-                payment = service.payment;
-            }
-        });
-
+        if (name && zone) {
+            var services = CompanyRegist.findOne({"name": name}).services || [];
+            services.forEach(function (service) {
+                if (service.zone == zone) {
+                    payment = service.payment;
+                }
+            });
+        }
         Session.set('Pay', payment);
     });
-
 });
 
 
 Template.registration_board.helpers({
+    subTypes: function () {
+        return CompanyRegist.find({}).fetch();
+    },
+    zones: function () {
+        // 初始化
+        if (!Session.get('Sel_1')) {
+            Session.set("Sel_1", CompanyRegist.find({}).fetch()[0].name);
+        }
+        var name = Session.get('Sel_1');
+        Session.set("Sel_2", CompanyRegist.findOne({name: name}).services[0].zone);
+        return CompanyRegist.findOne({name: name}).services;
+    },
     payment: function() {
         return Session.get('Pay') || 0;
     }
@@ -50,90 +56,12 @@ Template.registration_board.helpers({
 
 
 Template.registration_board.events({
-    'click #zone li': function(event) {
-        Session.set('Sel_1', $(event.currentTarget).index());
-        Session.set('Sel_1_str', $(event.currentTarget).html());
-    }
-});
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// 社保
-
-Template.assurance_board.onRendered(function () {
-    // 监听人数变化
-    $(document).delegate("#personNum", "change", function () {
-        var num = $("#personNum").val() || 1;
-        Session.set('Sel_3', num);
-    });
-
-    // 计算花费
-    // 这里更好的办法应该是使用 `Track.afterFlush` 具体使用时有问题之后再研究
-    this.autorun(function () {
-        var Sel_1 = Session.get('Sel_1');
-        var Sel_2 = Session.get('Sel_2');
-        Session.setDefault('Sel_3', 1);
-        var personNum = Session.get('Sel_3') || 1;
-
-        var payFunc = function () {
-            var serSelect = $("#serSelect li").eq(Sel_1).html() || "";
-            Session.set('Sel_1_str', serSelect);
-
-            var timeSelect = $("#timeSelect li").eq(Sel_2).html() || "";
-            Session.set('Sel_2_str', timeSelect);
-
-            var handle = {
-                '社保+公积金开户': function () {
-                    Session.set('Sel_2', 0);
-                    Session.set('Sel_2_str', "");
-                    Session.set('Sel_3', 1);
-
-                    var info = AssuranceLists.findOne({name: serSelect}) || {};
-                    return info.payment || 0;
-                },
-                '网上汇缴': function () {
-                    Session.set('Sel_2', 0);
-                    Session.set('Sel_2_str', "");
-                    Session.set('Sel_3', 1);
-
-                    var info = AssuranceLists.findOne({name: serSelect}) || {};
-                    return info.payment || 0;
-                },
-                '社保+公积金每月代缴': function () {
-                    var info = AssuranceLists.findOne({name: serSelect, periodName: timeSelect}) || {};
-                    return info.payment * personNum || 0;
-                }
-            };
-
-            Session.set('Pay', handle[serSelect]() || 0);
-        };
-
-        setTimeout(payFunc, 200);
-    });
-
-});
-
-Template.assurance_board.helpers({
-    payment: function () {
-        return Session.get('Pay');
+    'click #name li': function(event) {
+        Session.set('Sel_1', $(event.currentTarget).attr("value"));
+        $("#zone li").first().addClass("selected").siblings().removeClass("selected");
     },
-    items: function () {
-        var Sel_1 = Session.get('Sel_1');
-        return this.productInfo[Sel_1].items;
-    },
-    personNum: function () {
-        return Session.get('Sel_3');
-    }
-});
-
-Template.assurance_board.events({
-    'click #serSelect li': function (event, template) {
-        Session.set('Sel_1', $(event.currentTarget).index());
-    },
-    'click #timeSelect li': function (event, template) {
-        Session.set('Sel_2', $(event.currentTarget).index());
+    'click #zone li': function (event) {
+        Session.set('Sel_2', $(event.currentTarget).attr("value"));
     }
 });
 
@@ -145,33 +73,31 @@ Template.agent_board.onRendered(function () {
 
     // 计算花费
     this.autorun(function () {
-        var Sel_1 = Session.get('Sel_1');
-        var Sel_2 = Session.get('Sel_2');
-        var Sel_3 = Session.get('Sel_3');
+        var name = Session.get('Sel_1');
+        var annualIncome = Session.get('Sel_2');
+        var certiNum = Session.get('Sel_3');
+        var period = Session.get('Sel_4');
 
-        var payFunc = function () {
-            var typ = $("#agentTypSel li").eq(Sel_1).html();
-            var ser = $("#agentSerSel")[0].value;
+        // console.log(name, period, annualIncome, certiNum);
 
-            Session.set("Sel_1_str", typ);
-            Session.set("Sel_2_str", ser);
+        var payment = 0;
+        if (name && period) {
+            var info = FinanceAgent.findOne({name: name});
+            if (info.payment && !info.opts) {
+                payment = info.payment;
+            } else {
+                var payment_1 = kylUtil.getValueFromList(
+                    info.opts.annualIncome.items || [], 'name', annualIncome, 'value');
+                var payment_2 = kylUtil.getValueFromList(
+                    info.opts.certiNum.items || [], 'name', certiNum, 'value');
 
-            var period = $("#agentTimeSel li").eq(Sel_3).html() || "一次";
-            Session.set("Sel_3_str", period);
-
-            var payment = 0;
-            var info = FinanceLists.findOne({'financeTypeName': typ, 'serviceTypeName': ser}) || [];
-            var lists = info.lists || [];
-            lists.forEach(function (value) {
-                if (value.period == period) {
-                    payment = value.payment;
+                if (payment_1 && payment_2) {
+                    payment = Math.min(payment_1, payment_2);
                 }
-            });
-
-            Session.set('Pay', payment);
+            }
+            payment = payment * parseInt(period);
         }
-
-        setTimeout(payFunc, 200);
+        Session.set('Pay', payment);
     });
 });
 
@@ -180,29 +106,46 @@ Template.agent_board.helpers({
     payment: function () {
         return Session.get('Pay');
     },
-    periodNames: function () {
-        var periodNames = false;
-        var selId = Session.get("Sel_2");
-        var list = this.productInfo.list;
-        periodNames = list[selId].periodNames || false;
-
-        if (!periodNames) {
-            Session.set('Sel_3', 0);
+    names: function () {
+        return FinanceAgent.find({}, {fields: {name: 1, label: 1}}).fetch();
+    },
+    opts: function () {
+        if (!Session.get('Sel_1')) {
+            var info = FinanceAgent.find({}).fetch()[0] || {};
+            Session.set('Sel_1', info.name);
         }
-
-        return periodNames;
+        var name = Session.get("Sel_1");
+        var info = FinanceAgent.findOne({name: name});
+        var opts = info.opts || false;
+        if (opts) {
+            Session.set('Sel_2', opts.annualIncome.items[0].name);
+            Session.set('Sel_3', opts.certiNum.items[0].name);
+        } else {
+            Session.set('Sel_2', '');
+            Session.set('Sel_3', '');
+        }
+        Session.set('Sel_4', info.period.items[0].value);
+        return opts;
+    },
+    period: function () {
+        var name = Session.get("Sel_1") ;
+        return FinanceAgent.findOne({name: name}).period || {};
     }
 });
 
 Template.agent_board.events({
-    'click #agentTypSel li': function (event, template) {
-        Session.set('Sel_1', $(event.currentTarget).index());
+    'click #name li': function (event, template) {
+        Session.set('Sel_1', $(event.currentTarget).attr('value') );
+        $("#period li").first().addClass("selected").siblings().removeClass("selected");
     },
-    'change #agentSerSel':function (event, template) {
-        Session.set('Sel_2', $(event.currentTarget)[0].selectedIndex);
+    'click #annualIncome li': function (event, template) {
+        Session.set('Sel_2', $(event.currentTarget).attr('value') );
     },
-    'click #agentTimeSel li':function (event, template) {
-        Session.set('Sel_3', $(event.currentTarget).index());
+    'click #certiNum li':function (event, template) {
+        Session.set('Sel_3', $(event.currentTarget).attr('value') );
+    },
+    'click #period li': function (event, template) {
+        Session.set('Sel_4', parseInt($(event.currentTarget).attr('value')) );
     }
 });
 
