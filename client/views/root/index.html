@@ -8,13 +8,16 @@ body {
  <!-- 新年通告 -->
  <!-- {{> notice_box }} -->
 
-  <div class="index has-ui-menu">
+  <div class="index main has-ui-menu">
     <header>
      <div class="wrapper">
         <div class="utf-nav-left">
           <img src="/images/index/index_logo.png" alt="">
         </div>
         <div class="utf-nav-right">
+         <a href="tel:4000663192">
+           <img src="/images/kyl_phone.png?version=1" alt="">  
+         </a>                           
           <a href="/shopcart">
             {{#if shopCartNum}}
               <span class="dot">{{shopCartNum}}</span>
@@ -27,6 +30,7 @@ body {
     <!-- banner图 -->
     {{> swipe_banners bannerImages=bannerImages}}
 
+    <!--
     <div class="main-root-container">
       <ul class="main_root">
         <li>
@@ -67,7 +71,84 @@ body {
         </li>
       </ul>
     </div>
+    -->
+    
+    <div class="PostList bridge-gray clearfix">
+      <div class="main-title">
+        <i class="icon-1"></i>公司注册
+      </div>
+    </div>
+        
+    <div class="root-module" style="margin-bottom:0">
+     <div class="content">
+        <div class="photo-frame">
+          <img src="/images/index/index_icon_1.png" alt="">
+        </div>
+        <div class="segement">
+          <div class="des">
+            <a href="/products/registration">
+              普通公司注册
+            </a>
+          </div>
+          <div class="label-item">
+            <div class="item">最快仅需7天，政策扶持高达40%</div>
+          </div>
+        </div>
+        <div class="icon-right-container">
+          <!--<div class="angle-right"></div>-->
+          <div>1元</div>
+        </div>
+     </div>
+    </div>
+       
+    <div class="PostList bridge-gray clearfix">
+      <div class="main-title">
+        <i class="icon-2"></i>财税服务
+      </div>
+    </div>             
+       
+    <div class="root-module">
+     <div class="content" style="border-bottom:solid 1px #ccc;">
+        <div class="photo-frame">
+          <img src="/images/index/index_icon_2.png" alt="">
+        </div>
+        <div class="segement">
+          <div class="des">
+            <a href="/products/finance">
+              财务代理套餐
+            </a>
+          </div>
+          <div class="label-item">
+            <div class="item">会计服务全能，贴心财务管家</div>
+          </div>
+        </div>
+        <div class="icon-right-container">
+          <!--<div class="angle-right"></div>-->
+          <div>79元/月</div>
+        </div>
+     </div>
 
+     <div class="content">
+        <div class="photo-frame">
+          <img src="/images/index/index_icon_3.png" alt="">
+        </div>
+        <div class="segement">
+          <div class="des">
+            <a href="/products/bank">
+              银行开户
+            </a>
+          </div>
+          <div class="label-item">
+            <div class="item">专人快速办理，省时省心省力</div>
+          </div>
+        </div>
+        <div class="icon-right-container">
+          <!--<div class="angle-right"></div>-->
+          <div>300元</div>
+        </div>
+     </div>
+    </div>        
+    <!--   
     <div class="PostList bridge-gray clearfix">
       <div class="main-title">
         <span></span> 精选产品
@@ -80,7 +161,6 @@ body {
      </div>
      <div class="content">
         <div class="photo-frame">
-          <!-- <img src="/images/index/index_list_1.png?v=1" alt=""> -->
           <img src="/images/product/get_icon_2.png" alt="">
         </div>
         <div class="segement">
@@ -115,6 +195,7 @@ body {
         </div>
       </div>
     </div>
+    -->
     {{> ui_menu }}
   </div>
 </template>
