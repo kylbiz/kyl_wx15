@@ -15,6 +15,15 @@ Template.index.onRendered(function(){
     return false;
   });
 
+  $(".root-module>.content").click(function(){
+    var href = $(this).find("a").attr("href");
+    if (href) {
+      window.location.href = href;
+    }
+    return false;
+  });
+
+  
   $("#notice").modal('show');
 
   $("#get").click(function(){
