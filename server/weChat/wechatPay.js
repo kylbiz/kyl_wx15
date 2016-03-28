@@ -96,10 +96,6 @@ Meteor.methods({
 	// 本地测试支付
 	'payOKTest': function (msg) {
 		console.log('payOK', msg);
-		// msg = {
-		// 	out_trade_no: "",
-		// 	des: "test",
-		// }
 		return paySuccessHandle(msg);
 	}
 });
@@ -118,6 +114,9 @@ WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 			if (result_code == "SUCCESS") {
 				var ret = paySuccessHandle(message);
 				console.log("paySuccessHandle --", ret);
+				if (ret) {
+					SMSSend.orderNotice(message.out_trade_no, 'KYLWX');
+				}
 			} else if (result_code == "FAIL") {
 				var ret = payFailHandle(message);
 				console.log("payFailHandle --", ret);
@@ -125,12 +124,6 @@ WebApp.connectHandlers.use("/wxpayret", middleware(initConfig).getNotify().done(
 
 			res.reply('success');
 		}).run();
-
-		// try {
-		// 	res.reply('success');
-		// } catch(e) {
-		// 	res.reply(new Error('error happen'));
-		// }
 	}
 ));
 
@@ -408,6 +401,8 @@ function paySuccessHandle(message) {
 		};
 		Meteor.call("sendTemplate", info);
 	}
+
+
 
 	return true;
 }

@@ -205,26 +205,33 @@ Template.package_board.events({
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // 银行开户
 
-Template.bank_board.onRendered(function () {
-
-    this.autorun(function () {
-        var bankName = $("#bankSel li").eq(Session.get('Sel_1')).html() || "";
-        Session.set('Sel_2', bankName);
-        var info = BankLists.findOne({bank: bankName});
-
-        Session.set("Pay", info.payment);
-    });
-});
+// Template.bank_board.onRendered(function () {
+//     this.autorun(function () {
+//         var bankName = $("#bankSel li").eq(Session.get('Sel_1')).html() || "";
+//         Session.set('Sel_2', bankName);
+//         var info = BankLists.findOne({bank: bankName});
+//         Session.set("Pay", info.payment);
+//     });
+// });
 
 Template.bank_board.helpers({
+    productInfo: function () {
+        return BankLists.find({}).fetch();
+    },
     payment: function () {
-        return Session.get("Pay") || 0;
+        if (!Session.get('Sel_1')) {
+            var bank = BankLists.find({}).fetch()[0].bank;
+            Session.set('Sel_1', bank);
+        }
+        var bankName = Session.get('Sel_1');
+        var bankInfo = BankLists.findOne({bank: bankName}) || {};
+        return bankInfo.payment || 0;
     }
 });
 
 Template.bank_board.events({
-    'click #bankSel': function (event) {
-        Session.set('Sel_1', $(event.currentTarget).index());
+    'click #bankSel li': function (event) {
+        Session.set('Sel_1', $(event.currentTarget).attr("value"));
     }
 });
 

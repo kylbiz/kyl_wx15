@@ -81,6 +81,11 @@ HTTP.methods({
         var payInfo = data.data.object;
         if (payInfo.paid) {
           ret = PayHandle.paySuccessHandle(payInfo.order_no, payInfo);
+          if (ret) {
+            // 通知相关人员新的订单产生
+            SMSSend.orderNotice(payInfo.order_no, 'KYLWAP');
+          }
+
         } else {
           ret = PayHandle.payFailHandle(payInfo.order_no, payInfo);
         }

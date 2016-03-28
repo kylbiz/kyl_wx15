@@ -99,7 +99,6 @@ Template.product_normal.helpers({
             },
             bank: function() {
                 return {
-                    productInfo: BankLists.find({}).fetch(),
                     _img: _img
                 };
             },
@@ -183,12 +182,11 @@ function getServiceData () {
             return {
                 type: type,
                 name: '银行开户',
-                bank: Session.get('Sel_2') || "",
+                bank: Session.get('Sel_1') || "",
             };
         },
         special: function () {
             var product = SpecialProduct.findOne({subType: params.query.subtype}) || false;
-
             if (product) {
                 return {
                     type: type,
