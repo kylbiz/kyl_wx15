@@ -19,7 +19,7 @@ semantic:ui-icon
 # fastclick
 rounce:fastclick
 meteorhacks:npm
+cfs:http-methods
 
 npm-container
-http-methods
 meteorhacks:kadira
