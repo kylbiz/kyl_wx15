@@ -23,7 +23,7 @@ Template.shopcart.helpers({
 Template.shopcart.events({
 	'click .trash': function (event) {
 		var id = $(event.currentTarget).context.id;
-		console.log("id", id);
+		// console.log("id", id);
 
 		Template.layoutTemplate.confirm({
 			title: '提示',

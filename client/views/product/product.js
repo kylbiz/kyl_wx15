@@ -93,27 +93,7 @@ Template.product_normal.helpers({
                 };
             },
             finance: function() {
-                var services = {
-                    serTypes: ["一般纳税人", "小规模纳税人"],
-                    list: [{
-                        name: '抄报税（零申报）',
-                        periodNames: ['季度', '半年', '一年']
-                    }, {
-                        name: '抄报税+核税',
-                        periodNames: ['半年', '一年']
-                    }, {
-                        name: '年度公示+汇算清缴'
-                    }, {
-                        name: '抄报税（零申报）+年度公示+汇算清缴',
-                        periodNames: ['季度', '半年', '一年']
-                    }, {
-                        name: '抄报税+核税+年度公示+汇算清缴',
-                        periodNames: ['半年', '一年']
-                    }, ]
-                };
-
                 return {
-                    productInfo: services,
                     _img: _img
                 };
             },

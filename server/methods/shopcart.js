@@ -100,6 +100,9 @@ function handleRegist(serInfo) {
   }
 
   var pay = getPay();
+  var message = kylUtil.getValueFromList(
+    CompanyRegist.findOne({name: serInfo.name}).services || [],
+    'zone', serInfo.zone, 'message') || "未知";
 
 	return {
     moneyAmount: pay,
@@ -109,9 +112,10 @@ function handleRegist(serInfo) {
       money: pay,          //当前订单价格
       scale: 1,                 // 购买数量
       zone: serInfo.zone,
+      message: '',
       servicesContains: [      // 订单中包含，也就是详细信息
         {
-            name: info.baseService || "'新版营业执照、新版营业执照副本、公司章、法人章、财务章'",
+          message: message,
         }
       ]
     }],
@@ -147,13 +151,14 @@ function handleFinance (serInfo) {
         info.opts.annualIncome.items || [], 'name', serInfo.annualIncome, 'value');
     var payment_2 = kylUtil.getValueFromList(
         info.opts.certiNum.items || [], 'name', serInfo.certiNum, 'value');
-    var payment = Math.min(payment_1, payment_2) || 0;
-    pay = payment * serInfo.period;
+    pay = Math.min(payment_1, payment_2) || 0;
   }
 
   if (!pay) {
     throw new Meteor.Error('内部数据错误: 1002');
   }
+
+  pay = pay * serInfo.period;
 
   var info = {
     name: serInfo.name,

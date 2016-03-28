@@ -70,8 +70,8 @@ function productInit() {
 function getProductInfo() {
   return {
     productVersion: {
-      name: 'productVersion',
-      'CompanyRegist': 2.1,
+       name: 'productVersion',
+      'CompanyRegist': 2.2,
       'FinanceAgent': 2.3,
       'SpecialProduct': 1,
       'BankLists': 1,
@@ -83,28 +83,28 @@ function getProductInfo() {
         name: 'special',
         label: '特价区域注册',
         services: [
-          {zone: '奉贤', payment: 1},
+          {zone: '奉贤', payment: 1, message: '仅限文化娱乐和科技行业'},
         ],
       },
       {
         name: 'hot',
         label: '热点区域注册',
         services: [
-          {zone: '奉贤', payment: 500},
-          {zone: '崇明', payment: 500},
-          {zone: '青浦', payment: 500},
-          {zone: '金山', payment: 500},
+          {zone: '奉贤', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
+          {zone: '崇明', payment: 500, message: '不接受贸易、文化娱乐（音乐创作、影视文化）行业'},
+          {zone: '青浦', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
+          {zone: '金山', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
         ]
       },
       {
         name: 'downtown',
         label: '市区公司注册',
         services: [
-          {zone: '虹口', payment: 1000},
-          {zone: '普陀', payment: 1000},
-          {zone: '杨浦', payment: 1000},
-          {zone: '嘉定', payment: 1000},
-          {zone: '长宁', payment: 1500},
+          {zone: '虹口', payment: 1000, message: '不接受贸易行业'},
+          {zone: '普陀', payment: 1000, message: '仅限科技行业，注册资金300万以上'},
+          {zone: '杨浦', payment: 1000, message: '仅限科技行业'},
+          {zone: '嘉定', payment: 1000, message: '没有行业限制，需要办理行业许可证请另外咨询'},
+          {zone: '长宁', payment: 1500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
         ]
       }
     ],

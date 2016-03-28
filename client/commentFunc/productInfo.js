@@ -23,7 +23,6 @@ function productShowInfo (list) {
       if (version && version >= 2) {
         info = newProduct(infoBase);
       } else {
-        console.log(infoBase);
         info = oldProduct(infoBase);
       }
       if (info) {
@@ -133,13 +132,14 @@ function newProduct(infoBase) {
         ];
       },
       finance: function () {
-        var arr = ['类型: ' + info.label, '时间: ' + info.period];
+        var arr = ['类型: ' + info.label, '时间: ' + info.period + '个月'];
         if (info.annualIncome) {
-          arr.push('年收入: ' + info.annualIncome);
+
+          arr.push('年收入: ' + ({"lte100": "≤100万", "101to499": "101-499万", "gte500": "≥500万"}[info.annualIncome] || "未知") );
         }
 
         if (info.certiNum) {
-          arr.push('凭证量: ' + info.certiNum);
+          arr.push('凭证量: ' + ({"lte120": "≤120张", "lte300": "≤300张", "gt300": "＞300张" }[info.certiNum] || "未知") );
         }
         return arr;
       },

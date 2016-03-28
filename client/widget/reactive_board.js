@@ -51,6 +51,13 @@ Template.registration_board.helpers({
     },
     payment: function() {
         return Session.get('Pay') || 0;
+    },
+    notice: function () {
+        var name = Session.get('Sel_1');
+        var zone = Session.get('Sel_2');
+        return kylUtil.getValueFromList(
+            CompanyRegist.findOne({name: name}).services || [],
+            'zone', zone, 'message') || "未知";
     }
 });
 
