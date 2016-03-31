@@ -1,14 +1,7 @@
 # 开业啦微信商城
 
 ## 项目结构
-```
-- lib
-- router
-- client
-- server
-- public
-- packages
-```
+
 
 ## 功能实现
 
@@ -17,11 +10,14 @@
 	- `accounts-password`, `meteor-roles`
 	- 注意点: 用户取消关注后follwers列表中仍保存用户的openid 但是user信息中subscribe＝0，除openid外其他信息都清除,openid对应一个公众号永久不变
 
-#### 微信OAuth *-- 使用 wehcat-oauth*
+#### 微信OAuth 
+*-- 使用 wehcat-oauth*
 
-#### 支付系统 *-- 使用 wechat-pay*
+#### 支付系统 
+*-- 使用 wechat-pay*
 
-#### 微信基本API接口的实现 *-- 使用 wechat-api*
+#### 微信基本API接口的实现 
+*-- 使用 wechat-api*
 
 - access_token的维护
 	- 中控服务器统一管理access_token
@@ -59,9 +55,10 @@
 		- 前台: 订单列表信息显示，旧购物车订单不可支付，未付款订单设置可支付时间限制(12小时)
 		- 后台: 更新产品与旧有产品的显示
 		- 公告: 产品更新提示
-- 更新首页
+- 财务代理加上由开业啦代理选项
 
 #### 计划
+- 更新产品
 - 添加对支付宝服务窗的支持 (待实现) -- (1. 帐号支持； 2. 支付支持)
 
 
@@ -417,6 +414,7 @@ key --交易过程生成签名的密钥
 	            "liaisonsEmail": "liuzk552@gmail.com"
 	        },
 	        "financialStaff": {
+	        	  "financialAgent": false,  // 是否需要财务代理
 	            "financialStaffName": "财务负责人",
 	            "financialStaffId": "411502199006029614",
 	            "financialStaffPhone": "15618871258",

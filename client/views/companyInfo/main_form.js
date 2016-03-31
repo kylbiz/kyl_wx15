@@ -569,29 +569,33 @@ Template.manager_segement.events({
 // 财务负责人与经办人
 //////////////////////////////////////////////////////////////
 Template.others_segement.helpers({
+  'finAgent': function (str) {
+    // console.log("finAgent", );
+    var finAgent = this.contractor.financialStaff.financialAgent;
+    if ( (finAgent && (str == "agent")) || ( !finAgent &&  (str == "self")) ) {
+        Session.set('agent', str);
+        return "selected";
+    } else {
+
+    }
+    return '';
+  },
   'agent': function () {
      return Session.get("agent");
   }
 });
 
 Template.others_segement.events({
-    'change #agentSelect': function(e,template) {
+    'change #finAgentSelect': function(e,template) {
        var toggle = $(e.currentTarget).val();
-       if(toggle==1) {
-         Session.set("agent","agent");         
-       }
-       else if(toggle==2) {
-         Session.set("agent","self");
-       }
-       else {
-         Session.set("agent",null)
-       }
+       Session.set("agent", toggle);
     },
     'click #saveBtn': function (event, template) {
-        var finaName = $("#finaName").val().trim() || "";
-        var finaId = $("#finaId").val().trim() || "";
-        var finaPhone = $("#finaPhone").val().trim() || "";
-        var finaEmail = $("#finaEmail").val().trim() || "";
+        var finalAgent = $("#finAgentSelect").val();
+        var finaName = "";
+        var finaId = "";
+        var finaPhone = "";
+        var finaEmail = "";
 
         var liaName = $("#liaName").val().trim() || "";
         var liaId = $("#liaId").val().trim() || "";
@@ -622,23 +626,38 @@ Template.others_segement.events({
 
 
         // 财务负责人
-        if (!finaName || !finaId || !finaPhone || !finaEmail) {
+        if (!finalAgent || (finalAgent != 'agent' && finalAgent != 'self')) {
+            kylUtil.alert("请选择财务负责人");
+            return;
+        }
+        if (finalAgent == "self") {
+            finaName = $("#finaName").val().trim() || "";
+            finaId = $("#finaId").val().trim() || "";
+            finaPhone = $("#finaPhone").val().trim() || "";
+            finaEmail = $("#finaEmail").val().trim() || "";
+            finalAgent = false;
+        } else if (finalAgent == "agent") {
+            finalAgent = true;
+        }
+
+        if (!finalAgent && (!finaName || !finaId || !finaPhone || !finaEmail) ) {
             kylUtil.alert("所填项不可为空");
             return;
         }
-
-        if (!kylUtil.verifyIDCard(finaId)) {
+        if (!finalAgent && !kylUtil.verifyIDCard(finaId)) {
             kylUtil.alert("财务负责人身份证信息非法");
             return;
         }
 
         var orderInfo = template.data;
+
         var verif = judgeFinaWithOthers(orderInfo, {finaId: finaId});
-        if (!verif) {
+        if (!finalAgent && !verif) {
             kylUtil.alert("财务负责人不可与股东、监事、法人为同一人");
             callBack = function () {};
         } else {
             var financialStaff = {
+                financialAgent: finalAgent,
                 financialStaffName: finaName,
                 financialStaffId: finaId,
                 financialStaffPhone: finaPhone,
@@ -750,7 +769,6 @@ function judgeFinaWithOthers(orderInfo, info) {
         return handle[key](info[key]);
     }
 }
-
 
 
 function updateOrder(info, callBack) {
