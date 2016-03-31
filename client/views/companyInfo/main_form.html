@@ -454,13 +454,25 @@
   <div class="module group">
     <div class="content">
       <span class="key">财务负责人</span>
-      <span class="dot"></span>
-      <input type="text" placeholder="姓名" id="finaName" value="{{contractor.financialStaff.financialStaffName}}">
+      <span class="dot"></span> 
       <div class="box-end">
         <a href="/helper#finance_chief">
           <i class="icon helper-icon"></i>
         </a>
-      </div>
+      </div>           
+    </div>
+    <div class="content">
+      <select class="form-control main-field" id="agentSelect">
+        <option value=null>请选择财务负责人</option>
+        <option value="1">选择开业啦代理</option>
+        <option value="2">自有财务负责人</option>
+      </select>  
+    </div>
+    {{#if $eq agent 'self'}}
+    <div class="content"> 
+      <span class="key">姓名</span>
+      <span class="dot"></span>     
+      <input type="text" placeholder="姓名" id="finaName" value="{{contractor.financialStaff.financialStaffName}}">
     </div>
     <div class="content">
       <span class="key">身份证</span>
@@ -476,7 +488,15 @@
       <span class="key">邮箱</span>
       <span class="dot"></span>
       <input type="text" placeholder="邮箱" id="finaEmail" value="{{contractor.financialStaff.financialStaffEmail}}">
-    </div>
+    </div>     
+    {{/if}}       
+    {{#if $eq agent 'agent'}}
+      <div class="content">
+      <span class="key">财务代理</span>
+      <span class="dot"></span>
+      <span>开业啦代理</span>
+      </div>                 
+    {{/if}}      
   </div>
 
   <div class="module group">

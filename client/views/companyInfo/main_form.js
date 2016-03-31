@@ -568,7 +568,25 @@ Template.manager_segement.events({
 //////////////////////////////////////////////////////////////
 // 财务负责人与经办人
 //////////////////////////////////////////////////////////////
+Template.others_segement.helpers({
+  'agent': function () {
+     return Session.get("agent");
+  }
+});
+
 Template.others_segement.events({
+    'change #agentSelect': function(e,template) {
+       var toggle = $(e.currentTarget).val();
+       if(toggle==1) {
+         Session.set("agent","agent");         
+       }
+       else if(toggle==2) {
+         Session.set("agent","self");
+       }
+       else {
+         Session.set("agent",null)
+       }
+    },
     'click #saveBtn': function (event, template) {
         var finaName = $("#finaName").val().trim() || "";
         var finaId = $("#finaId").val().trim() || "";
