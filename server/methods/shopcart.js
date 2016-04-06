@@ -109,6 +109,7 @@ function handleRegist(serInfo) {
     servicesNameList: [{
     	name: serInfo.name, //"互联网公司", // 当前订单具体内容
       label: info.label,
+      zhDes: info.label + "-"+ '区域' + ':' + serInfo.zone,
       money: pay,          //当前订单价格
       scale: 1,                 // 购买数量
       zone: serInfo.zone,
@@ -147,6 +148,11 @@ function handleFinance (serInfo) {
       throw new Meteor.Error("内部数据错误: 1001");
     }
 
+
+    var periodName = info.period.label;
+    var periodLabel = kylUtil.getValueFromList(info.items, 'value', serInfo.period, 'label');
+    var zhDes = info.label + '-'+ periodName + ':' + periodLabel;
+
     var payment_1 = kylUtil.getValueFromList(
         info.opts.annualIncome.items || [], 'name', serInfo.annualIncome, 'value');
     var payment_2 = kylUtil.getValueFromList(
@@ -157,12 +163,12 @@ function handleFinance (serInfo) {
   if (!pay) {
     throw new Meteor.Error('内部数据错误: 1002');
   }
-
   pay = pay * serInfo.period;
 
   var info = {
     name: serInfo.name,
     label: info.label,
+    zhDes: zhDes,
     money: pay,
     scale: 1,
     period: serInfo.period,
@@ -173,6 +179,15 @@ function handleFinance (serInfo) {
   if (serInfo.annualIncome && serInfo.certiNum) {
     info.annualIncome = serInfo.annualIncome;
     info.certiNum = serInfo.certiNum;
+
+    var annualIncomeName = info.opts.annualIncome.label;
+    var certiNum = info.opts.certiNum.label;
+
+    var annualIncomeLabel = kylUtil.getValueFromList(info.opts.annualIncome.items, 'name', serInfo.annualIncome, 'label');
+    var certiNumLabel = kylUtil.getValueFromList(info.opts.certiNum.items, 'name', serInfo.certiNum, 'label');
+
+    info.zhDes = info.zhDes + '-' + annualIncomeName + ':' + annualIncomeLabel
+                + '-' + certiNumName + ':' + certiNumLabel;
   }
 
   return {

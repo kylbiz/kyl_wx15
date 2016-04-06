@@ -168,6 +168,7 @@ function getProductInfo() {
           {zone: '崇明', payment: 500, message: '不接受贸易、文化娱乐（音乐创作、影视文化）行业'},
           {zone: '青浦', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
           {zone: '金山', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
+          {zone: '松江', payment: 500, message: '没有行业限制，需要办理行业许可证请另外咨询'},
         ]
       },
       {
