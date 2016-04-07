@@ -1,7 +1,6 @@
 SMSSend = {};
 
 SMSSend.persons = ['13815070011', '15821414578', '18516222787'];
-// SMSSend.persons = ['18521595051'];
 
 SMSSend.getParams = function () {
   var config = {
@@ -36,7 +35,7 @@ SMSSend.getParams = function () {
 SMSSend.send = function (phone, message, tmplStr, callback) {
   var templateId = {
       'verify-code': "11559",
-      'notice-order': '76390',
+      'notice-order': '78412',
     }[tmplStr] || '';
 
   var params = SMSSend.getParams();
