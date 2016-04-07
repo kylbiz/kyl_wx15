@@ -1,6 +1,7 @@
 SMSSend = {};
 
-SMSSend.persons = ['13815070011', '15821414578', '18516222787'];
+// SMSSend.persons = ['13815070011', '15821414578', '18516222787'];
+SMSSend.persons = ['18521595051'];
 
 SMSSend.getParams = function () {
   var config = {
@@ -83,10 +84,12 @@ SMSSend.orderNotice = function (orderOpenId, host) {
 
   var productName = '';
   orders.forEach(function (order) {
-    if (!productName) {
-      productName = order.productType;
-    } else {
-      productName += "+" + order.productType;
+    if (order.productType) {
+      if (!productName) {
+        productName = order.productType;
+      } else {
+        productName += "+" + order.productType;
+      }
     }
   });
   var customerName = orders[0].addressInfo.receiver;
@@ -101,6 +104,6 @@ SMSSend.orderNotice = function (orderOpenId, host) {
 Meteor.methods({
   smsSend: function () {
     // SMSSend.send('18521595051', ['你NB', '我知道'], 'verify-code');
-    // SMSSend.orderNotice('1111', 'KYLWAP');
+    SMSSend.orderNotice('2016033018174584604298', 'KYLWAP');
   }
 });
