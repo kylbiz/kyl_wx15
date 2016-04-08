@@ -170,7 +170,6 @@ function getProductInfo() {
           {zone: '松江', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '青浦', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '金山', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '嘉定', payment: 500, message: '不接受金融、投资类，注册资本300万以上请另外咨询'},
           {zone: '崇明', payment: 500, message: '不接受贸易、文化娱乐（音乐创作、影视文化）行业'},
         ]
       },
@@ -182,7 +181,7 @@ function getProductInfo() {
           {zone: '虹口', payment: 1000, message: '不接受信息咨询、金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '杨浦', payment: 1000, message: '仅限科技行业，需要办理行业许可证请另外咨询'},
           {zone: '长宁', payment: 1500, message: '不接受贸易、金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '浦东(三林)', payment: 1000, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '浦东(三林)', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
       // {

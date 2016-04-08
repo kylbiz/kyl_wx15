@@ -129,34 +129,34 @@ function handleRegist(serInfo) {
 
 // 财务代理
 function handleFinance (serInfo) {
-  var info = FinanceAgent.findOne({name: serInfo.name, 'period.items.value': serInfo.period});
-  if (!info) {
+  var productInfo = FinanceAgent.findOne({name: serInfo.name, 'period.items.value': serInfo.period});
+  if (!productInfo) {
     throw new Meteor.Error("内部数据错误: 1001");
   }
 
   var pay = 0;
-  if (info.payment) {
-    pay = info.payment;
+  if (productInfo.payment) {
+    pay = productInfo.payment;
   } else {
-    var info = FinanceAgent.findOne({
+    var productInfo = FinanceAgent.findOne({
       'name': serInfo.name,
       'opts.annualIncome.items.name': serInfo.annualIncome,
       'opts.certiNum.items.name': serInfo.certiNum,
     });
 
-    if (!info) {
+    if (!productInfo) {
       throw new Meteor.Error("内部数据错误: 1001");
     }
 
 
-    var periodName = info.period.label;
-    var periodLabel = kylUtil.getValueFromList(info.items, 'value', serInfo.period, 'label');
-    var zhDes = info.label + '-'+ periodName + ':' + periodLabel;
+    var periodName = productInfo.period.label;
+    var periodLabel = kylUtil.getValueFromList(productInfo.period.items, 'value', serInfo.period, 'label');
+    var zhDes = productInfo.label + '-'+ periodName + ':' + periodLabel;
 
     var payment_1 = kylUtil.getValueFromList(
-        info.opts.annualIncome.items || [], 'name', serInfo.annualIncome, 'value');
+        productInfo.opts.annualIncome.items || [], 'name', serInfo.annualIncome, 'value');
     var payment_2 = kylUtil.getValueFromList(
-        info.opts.certiNum.items || [], 'name', serInfo.certiNum, 'value');
+        productInfo.opts.certiNum.items || [], 'name', serInfo.certiNum, 'value');
     pay = Math.min(payment_1, payment_2) || 0;
   }
 
@@ -167,7 +167,7 @@ function handleFinance (serInfo) {
 
   var info = {
     name: serInfo.name,
-    label: info.label,
+    label: productInfo.label,
     zhDes: zhDes,
     money: pay,
     scale: 1,
@@ -180,11 +180,11 @@ function handleFinance (serInfo) {
     info.annualIncome = serInfo.annualIncome;
     info.certiNum = serInfo.certiNum;
 
-    var annualIncomeName = info.opts.annualIncome.label;
-    var certiNum = info.opts.certiNum.label;
+    var annualIncomeName = productInfo.opts.annualIncome.label;
+    var certiNumName = productInfo.opts.certiNum.label;
 
-    var annualIncomeLabel = kylUtil.getValueFromList(info.opts.annualIncome.items, 'name', serInfo.annualIncome, 'label');
-    var certiNumLabel = kylUtil.getValueFromList(info.opts.certiNum.items, 'name', serInfo.certiNum, 'label');
+    var annualIncomeLabel = kylUtil.getValueFromList(productInfo.opts.annualIncome.items, 'name', serInfo.annualIncome, 'label');
+    var certiNumLabel = kylUtil.getValueFromList(productInfo.opts.certiNum.items, 'name', serInfo.certiNum, 'label');
 
     info.zhDes = info.zhDes + '-' + annualIncomeName + ':' + annualIncomeLabel
                 + '-' + certiNumName + ':' + certiNumLabel;
