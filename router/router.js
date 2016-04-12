@@ -183,6 +183,10 @@ Router.route('/login', {
 	}
 });
 
+//财务代理套餐
+Router.route('/buyAgent',{
+	name: 'buyAgent',
+});
 
 
 // 注册页
