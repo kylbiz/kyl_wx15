@@ -206,3 +206,4 @@ function getServiceData () {
         throw new Meteor.Error("内部错误", "非法数据");
     }
 }
+

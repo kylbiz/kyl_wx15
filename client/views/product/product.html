@@ -272,7 +272,12 @@
 </template>
 
 <!-- 代理记账 -->
-<template name="dist_agent">
+<!-- <template name="dist_agent">
+  <div class="section">
+    <div class="ui-title">
+      财务代理
+    </div>
+  </div>
   <div class="section">
     <div class="ui-title">
       服务说明
@@ -437,7 +442,184 @@
   </div>
 
   {{ >dist_promise }}
+</template> -->
+
+<template name="dist_agent">
+    <div class="title-product">
+      <div class="product-detail" id="click_finance">
+        <p id="product-detail-p1">财代基础套餐</p>
+      </div>
+      <div class="product-detail border-left" id="click_special">
+        <p id="product-detail-p2">小白基础服务</p>
+      </div>
+      <div class="product-detail border-left" id="click_custome">
+        <p id="product-detail-p3">小白定制服务</p>
+      </div>
+    </div>
+    
+    <!--财政基础套餐-->
+    <div class="container" id="financial_base">
+      <div class="product-content">
+        <p class="service">小白起步套餐</p>
+        <p class="cost">￥ 79元/月</p>
+        <p class="service-intro">适用于无财务往来，无记账张凭证，只需每月完成税务0申报的企业。一次性购买6个月，送新企业税种核定外勤服务</p>
+      </div>
+
+      <div class="product-content">
+        <p class="service">小白成长套餐</p>
+        <p class="cost">￥ 179~579元/月</p>
+        <p class="service-intro">适用于已产生财务往来，有凭证，需要记账和申报服务的企业。该套餐根据企业的年收入(指企业年营业额)和凭证量(每张凭证大概可以贴10张左右的费用发票)双向标准， 选较低的一项为该企业的收费标准。
+        </p>
+      </div>
+
+      <div class="product-content">
+        <p class="service">特殊行业财代套餐</p>
+        <p class="cost">加收服务费￥ 2000 元/年</p>
+        <p class="service-intro">适用于需要进行专项费用核算的行业财务代理服务。划定范围：商贸、加工、高新技术、软件等加研发核算、免税行业如社团组织、行业协会、外贸企业、进出口企业、集团企业。</p>
+      </div>
+    </div>
+    <!--小白特殊服务-->
+    <div class="container" id="xiaobai_special">
+      <!--外勤服务-->
+      <div class="product-content">
+        <p class="service">外勤服务</p>
+        <p class="content-detail">当您的企业需要去税务局办理业务时，您可以选择我们的外勤服务哟！</p>
+        <table class="product-table">
+          <tr>
+            <th>服务项目</th>
+            <th>服务项目</th>
+            <th>服务项目</th>
+          </tr>
+          <tr>
+            <td>核税</td>
+            <td rowspan="9">￥ 100元/次</td>
+            <td rowspan="9">￥ 200元/次</td>
+          </tr>
+          <tr>
+            <td>三方协议备案</td>
+          </tr>
+          <tr>
+            <td>数字证书购买</td>
+          </tr>
+          <tr>
+            <td>购买税控设备</td>
+          </tr>
+          <tr>
+            <td>税控系统开通</td>
+          </tr>
+          <tr>
+            <td>购买发票</td>
+          </tr>
+          <tr>
+            <td>代开发票</td>
+          </tr>
+          <tr>
+            <td>代缴税款</td>
+          </tr>
+          <tr>
+            <td>银行单据拿取(1次/月)</td>
+          </tr>
+          <tr>
+            <td>专管员约谈</td>
+            <td rowspan="3">￥ 500元/日起</td>
+            <td rowspan="3">￥ 800元/日起</td>
+          </tr>
+          <tr>
+            <td>税务检查配合</td>
+          </tr>
+          <tr>
+            <td>审计配合</td>
+          </tr>
+        </table>
+      </div>
+      <!--代开票服务-->
+      <div class="product-content">
+        <p class="service">代开票服务</p>
+        <table class="product-table">
+          <tr>
+            <th>服务内容</th>
+            <th>收费标准</th>
+            <th>特殊说明</th>
+          </tr>
+          <tr>
+            <td>金盘托管</td>
+            <td>￥ 0元/年</td>
+            <td>
+              <p>服务内容：</p>
+              <p>每月抄税、清卡</p>
+            </td>
+          </tr>
+          <tr>
+            <td>代开发票</td>
+            <td>￥ 10元/张</td>
+            <td><p>每季度初结算该季度代开票金额，满10张赠送5张，
+            赠送张数可自动转入下季度使用，赠送张数仅可开票使用不可申请退款。</p></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!--小白定制服务-->
+    <div class="container" id="xiaobai_customization">
+      <!--小白定制服务-->
+      <div class="product-content">
+        <p class="service">小白定制服务</p>
+        <p class="content-detail">当您的企业有一下特殊的财务需求时，您可以选择我们的定制服务哟！</p>
+        <table class="product-table">
+          <tr>
+            <th>服务项目</th>
+            <th>收费标准</th>
+          </tr>
+          <tr>
+            <td>项目预算</td>
+            <td rowspan="5">￥ 2000元起</td>
+          </tr>
+          <tr>
+            <td>财务分析</td>
+          </tr>
+          <tr>
+            <td>项目决算</td>
+          </tr>
+          <tr>
+            <td>财税筹划</td>
+          </tr>
+          <tr>
+            <td>专项资质申报</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+       $('#click_finance').click(function(){
+               $('#financial_base').show()
+               $('#xiaobai_special').hide();
+               $('#xiaobai_customization').hide();
+               $('#product-detail-p1').css({color:'rgb(228, 58, 61)'});
+               // $('#product-detail-p1').addClass("act");
+               $('#product-detail-p2').css({color:'rgb(150, 150, 150)'});
+               $('#product-detail-p3').css({color:'rgb(150, 150, 150)'});      
+             });
+             $('#click_special').click(function(){
+               $('#xiaobai_special').show();
+               $('#product-detail-p2').css({color:'rgb(228, 58, 61)'});
+               $('#financial_base').hide();
+               $('#xiaobai_customization').hide();
+               $('#product-detail-p1').css({color:'rgb(150,150,150)'});
+               $('#product-detail-p3').css({color:'rgb(150, 150, 150)'});      
+
+             });
+             
+             $('#click_custome').click(function(){
+               $('#xiaobai_customization').show()
+               $('#product-detail-p3').css({color:'rgb(228, 58, 61)'});
+               $('#financial_base').hide();
+               $('#xiaobai_special').hide();
+               $('#product-detail-p1').css({color:'rgb(150,150,150)'});
+               $('#product-detail-p2').css({color:'rgb(150, 150, 150)'});
+             });
+    </script> 
 </template>
+
 
 <!-- 银行开户 -->
 <template name="dist_bank">

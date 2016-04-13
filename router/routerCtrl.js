@@ -1,7 +1,7 @@
 //路由相关设置
 Router.configure({
-	layoutTemplate: 'layoutTemplate',
-  loadingTemplate: 'loading',
+ 	layoutTemplate: 'layoutTemplate',
+	loadingTemplate: 'loading',
   //notFoundTemplate: 'notFoundTemplate',
 });
 

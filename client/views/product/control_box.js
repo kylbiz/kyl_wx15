@@ -4,3 +4,4 @@ Template.controlBox.events({
     Router.go('/');
   }
 });
+ 
