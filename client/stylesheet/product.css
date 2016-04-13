@@ -1,11 +1,3 @@
-html,body{
-	margin: 0;
-	padding: 0;
-}
-body{
-	overflow-x: hidden;
-	font: "微软雅黑";
-}
 ul>li{
 	list-style:none;
 }
@@ -35,10 +27,6 @@ ul>li{
 
 #xiaobai_customization {
 	display: none;
-}
-
-.index{
-	display:none;
 }
 
 /*财代基础套餐*/
@@ -187,10 +175,3 @@ ul>li{
 		height: 200px;
 	}
 }
-
-
-
-
-
-
-
