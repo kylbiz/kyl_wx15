@@ -185,7 +185,7 @@ Router.route('/login', {
 
 //财务代理套餐
 Router.route('/buyagent',{
-	name: 'xiaobaitaocao',
+	name: 'xiaobaidingzhi',
 });
 
 
