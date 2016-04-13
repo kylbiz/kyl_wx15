@@ -135,7 +135,6 @@ Template.product.events({
         event.preventDefault();
         goToAddShopCart();
     }
-
 });
 
 // 前去添加到购物车

@@ -128,6 +128,186 @@ function handleRegist(serInfo) {
 }
 
 // 财务代理
+function handleFinance_new (serInfo) {
+  var productInfo = FinanceAgent.findOne({name: serInfo.name});
+  if (!productInfo) {
+    throw new Meteor.Error("内部数据错误: 1001");
+  }
+
+  var basicType = productInfo.basicType.name || "";
+  var handleMap = {
+    base: finBaseHandle,
+    special: finSpecialHandle,
+    // customproduct: finCustomHandle
+  }
+
+  if (!handleMap[basicType]) {
+    throw new Meteor.Error("内部数据错误: 1003");
+  }
+
+  return finBaseHandle(serInfo, productInfo);
+}
+
+// 财务代理基础套餐
+function finBaseHandle (serInfo) {
+  var productInfo = FinanceAgent.findOne({name: serInfo.name, 'period.items.value': serInfo.period});
+  if (!productInfo) {
+    throw new Meteor.Error("内部数据错误: 1001");
+  }
+
+  var pay = 0;
+  if (productInfo.payment) {
+    pay = productInfo.payment;
+  } else {
+    var productInfo = FinanceAgent.findOne({
+      'name': serInfo.name,
+      'opts.annualIncome.items.name': serInfo.annualIncome,
+      'opts.certiNum.items.name': serInfo.certiNum,
+    });
+
+    if (!productInfo) {
+      throw new Meteor.Error("内部数据错误: 1001");
+    }
+
+
+    var periodName = productInfo.period.label;
+    var periodLabel = kylUtil.getValueFromList(productInfo.period.items, 'value', serInfo.period, 'label');
+    var zhDes = productInfo.label + '-'+ periodName + ':' + periodLabel;
+
+    var payment_1 = kylUtil.getValueFromList(
+        productInfo.opts.annualIncome.items || [], 'name', serInfo.annualIncome, 'value');
+    var payment_2 = kylUtil.getValueFromList(
+        productInfo.opts.certiNum.items || [], 'name', serInfo.certiNum, 'value');
+    pay = Math.min(payment_1, payment_2) || 0;
+  }
+
+  if (!pay) {
+    throw new Meteor.Error('内部数据错误: 1002');
+  }
+  pay = pay * serInfo.period;
+
+  var info = {
+    name: serInfo.name,
+    label: productInfo.label,
+    zhDes: zhDes,
+    money: pay,
+    scale: 1,
+    period: serInfo.period,
+    servicesContains: [{
+    }]
+  };
+
+  if (serInfo.annualIncome && serInfo.certiNum) {
+    info.annualIncome = serInfo.annualIncome;
+    info.certiNum = serInfo.certiNum;
+
+    var annualIncomeName = productInfo.opts.annualIncome.label;
+    var certiNumName = productInfo.opts.certiNum.label;
+
+    var annualIncomeLabel = kylUtil.getValueFromList(productInfo.opts.annualIncome.items, 'name', serInfo.annualIncome, 'label');
+    var certiNumLabel = kylUtil.getValueFromList(productInfo.opts.certiNum.items, 'name', serInfo.certiNum, 'label');
+
+    info.zhDes = info.zhDes + '-' + annualIncomeName + ':' + annualIncomeLabel
+                + '-' + certiNumName + ':' + certiNumLabel;
+  }
+
+  return {
+    moneyAmount: pay,
+    servicesNameList: [info]
+  };
+}
+
+// 财务代理特殊服务
+function finSpecialHandle (serInfo) {
+
+  var num = parseInt(serInfo.num);
+  if (!num) {
+    throw new Meteor.Error('内部数据错误: 1004');
+  }
+
+  if (serInfo.name == 'fieldwork') {
+    // 外勤
+    var productInfo = FinanceAgent.findOne({
+      "name": serInfo.name,
+      "opts.service.items.name": serInfo.service,
+      "opts.area.items.name": serInfo.area
+    });
+
+    if (!productInfo) {
+      throw new Meteor.Error('内部数据错误: 1001');
+    }
+
+    var paymentAll = kylUtil.getValueFromList(
+        productInfo.opts.service.items || [], 'name', serInfo.service, 'payment') || {};
+
+    var payment = paymentAll[serInfo.area];
+    if (!payment && payment !== 0) {
+      throw new Meteor.Error('内部数据错误: 1002');
+    }
+
+    var pay = payment * num;
+
+    var opts = productInfo.opts;
+    var areaLabel = kylUtil.getValueFromList(
+        opts.area.items || [], 'name', serInfo.area, 'label');
+    var zhDes = productInfo.label
+                + '-' + opts.service.label + ":" + serInfo.service
+                + '-' + opts.area.label + ":" + serInfo.areaLabel
+                + '-' + opts.num.label + ":" + serInfo.num
+
+    return {
+      name: serInfo.name,
+      label: productInfo.label,
+      zhDes: zhDes,
+      money: pay,
+      service: serInfo.service,
+      area: serInfo.area,
+      num: num,
+      scale: 1,
+      servicesContains: [{
+      }]
+    };
+  } else if (serInfo.name == 'invoiceagent') {
+    // 代开发票
+    var productInfo = FinanceAgent.findOne({
+      "name": serInfo.name,
+      "opts.service.items.name": serInfo.service,
+    });
+    if (!productInfo) {
+      throw new Meteor.Error("内部数据错误: 1001");
+    }
+
+    var payment = kylUtil.getValueFromList(
+        productInfo.opts.service.items || [], 'name', serInfo.service, 'payment');
+    if (!payment && payment !== 0) {
+      throw new Meteor.Error("内部数据错误: 1002");
+    }
+    var pay = payment * num;
+
+    var opts = productInfo.opts;
+    var zhDes = productInfo.label
+                + '-' + opts.service.label + ":" + serInfo.service
+                + '-' + opts.num.label + ":" + serInfo.num;
+
+    return {
+      name: serInfo.name,
+      label: productInfo.label,
+      zhDes: zhDes,
+      money: pay,
+      service: serInfo.service,
+      num: num,
+      scale: 1,
+      servicesContains: [{
+      }]
+    }
+  }
+}
+
+// 财代定制服务
+function finCustomHandle (serInfo) {
+}
+
+
 function handleFinance (serInfo) {
   var productInfo = FinanceAgent.findOne({name: serInfo.name, 'period.items.value': serInfo.period});
   if (!productInfo) {

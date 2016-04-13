@@ -145,8 +145,8 @@ function getProductInfo() {
   return {
     productVersion: {
        name: 'productVersion',
-      'CompanyRegist': 2.4,
-      'FinanceAgent': 2.3,
+      'CompanyRegist': 2.5,
+      'FinanceAgent': 2.4,
       'SpecialProduct': 1,
       'BankLists': 1,
     },
@@ -157,31 +157,31 @@ function getProductInfo() {
         name: 'special',
         label: '特价区',
         services: [
-          {zone: '松江', payment: 1, message: '仅限文创类'},
-          {zone: '金山', payment: 1, message: '仅限电商贸易类'},
+          {zone: '松江', payment: 1, message: '电商贸易类优先'},
+          {zone: '金山', payment: 1, message: '文化创意类优先'},
         ],
       },
       {
         name: 'hot',
         label: '郊区',
         services: [
-          {zone: '浦东(临港)', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '浦东临港', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '奉贤', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '松江', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '青浦', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '金山', payment: 500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '崇明', payment: 500, message: '不接受贸易、文化娱乐（音乐创作、影视文化）行业'},
+          {zone: '崇明', payment: 500, message: '不接受培训、文创、食品、贸易、金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
       {
         name: 'downtown',
         label: '市区',
         services: [
-          {zone: '普陀', payment: 1000, message: '不接受教育、培训、金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '虹口', payment: 1000, message: '不接受信息咨询、金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '杨浦', payment: 1000, message: '仅限科技行业，需要办理行业许可证请另外咨询'},
-          {zone: '长宁', payment: 1500, message: '不接受贸易、金融、投资类，需要办理行业许可证请另外咨询'},
-          {zone: '浦东(三林)', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '普陀', payment: 1000, message: '不接受教育、培训、金融、投资类；科技、文化创意类优先'},
+          {zone: '虹口', payment: 1000, message: '不接受信息咨询、金融、投资类；需要办理行业许可证请另外咨询'},
+          {zone: '杨浦', payment: 1000, message: '仅限科技型，需要办理行业许可证请另外咨询'},
+          {zone: '长宁', payment: 2000, message: '不接受贸易、金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '浦东新区', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
       // {
@@ -200,6 +200,10 @@ function getProductInfo() {
       {
         name: 'zero',
         label: '零申报套餐',
+        basicType: {
+          name: 'base',
+          label: '财代基础套餐',
+        },
         payment: 79,
         period: {
           name: 'period',
@@ -213,6 +217,10 @@ function getProductInfo() {
       {
         name: 'common',
         label: '普通行业套餐',
+        basicType: {
+          name: 'base',
+          label: '财代基础套餐',
+        },
         opts: {
           'annualIncome': {
             name: 'annualIncome',
@@ -242,6 +250,175 @@ function getProductInfo() {
             ]
         }
       },
+      {
+        name: 'fieldwork',
+        label: '外勤',
+        basicType: {
+          name: 'special',
+          label: '财代特殊服务',
+        },
+        opts: {
+          service: {
+            name: 'service',
+            label: '服务项目',
+            items: [
+              {
+                label: '核税', name: '核税', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '三方协议备案', name: '三方协议备案', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '数字证书购买', name: '数字证书购买', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '购买税控设备', name: '购买税控设备', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '税控系统开通', name: '税控系统开通', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '购买发票', name: '购买发票', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '代开专票', name: '代开专票', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '代缴税款', name: '代缴税款', unit:'元/次',
+                payment: {
+                  downtown: 100,
+                  suburbs: 200,
+                }
+              },
+              {
+                label: '专管员约谈', name: '专管员约谈', unit:'元/日',
+                payment: {
+                  downtown: 500,
+                  suburbs: 800,
+                }
+              },
+              {
+                label: '税务检查配合', name: '税务检查配合', unit:'元/日',
+                payment: {
+                  downtown: 500,
+                  suburbs: 800,
+                }
+              },
+              {
+                label: '审计配合', name: '审计配合', unit:'元/日',
+                payment: {
+                  downtown: 500,
+                  suburbs: 800,
+                }
+              },
+            ]
+          },
+          area: {
+            name: 'area',
+            label: '区域',
+            items: [
+              {label: '市区', name: 'downtown'},
+              {label: '郊县', name: 'suburbs'},
+            ]
+          },
+          num: {
+            name: 'num',
+            label: '数量',
+          }
+        }
+      },
+      {
+        name: 'invoiceagent',
+        label: '代开发票',
+        basicType: {
+          name: 'special',
+          label: '财代特殊服务',
+        },
+        opts: {
+          service: {
+            name: 'service',
+            label: '服务项目',
+            items: [
+              {
+                label: '金税盘托管', name: '金税盘托管', unit: '元/年', payment: 0,
+                message: '服务内容：每月抄税、清卡',
+              },
+              {
+                label: '代开发票', name: '代开发票', unit: '元/张', payment: 10,
+                message: '每季度初结算该季度代开票金额，满10张赠送5张，赠送张数可自动转入下季度使用，赠送张数仅可开票使用不可申请退款。',
+              },
+            ]
+          },
+          num: {
+            name: 'num',
+            label: '数量',
+          }
+        }
+      },
+      {
+        name: 'customservice',
+        label: '定制服务',
+        basicType: {
+          name: 'customproduct',
+          label: '财代定制服务'
+        },
+        opts: {
+          service: {
+            name: 'service',
+            label: '服务项目',
+            items: [
+              {
+                label: '项目预算', name: '项目预算', paylimit: true, payment: 2000,
+                message: '2000元起，具体金额已实际工作量为主。',
+              },
+              {
+                label: '财务分析', name: '财务分析', paylimit: true, payment: 2000,
+                message: '2000元起，具体金额已实际工作量为主。',
+              },
+              {
+                label: '项目决算', name: '项目决算', paylimit: true, payment: 2000,
+                message: '2000元起，具体金额已实际工作量为主。',
+              },
+              {
+                label: '财税筹划', name: '财税筹划', paylimit: true, payment: 2000,
+                message: '2000元起，具体金额已实际工作量为主。',
+              },
+              {
+                label: '专项资质申报', name: '专项资质申报', paylimit: true, payment: 2000,
+                message: '2000元起，具体金额已实际工作量为主。',
+              },
+            ]
+          }
+        }
+      }
     ],
 
     // 银行开户

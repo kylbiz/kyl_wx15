@@ -83,7 +83,7 @@ SMSSend.orderNotice = function (orderOpenId, host) {
 
   var productName = '';
   orders.forEach(function (order) {
-    if (order.productType) {
+    if (order && order.productType) {
       if (!productName) {
         productName = order.productType;
       } else {
@@ -103,6 +103,6 @@ SMSSend.orderNotice = function (orderOpenId, host) {
 Meteor.methods({
   smsSend: function () {
     // SMSSend.send('18521595051', ['你NB', '我知道'], 'verify-code');
-    SMSSend.orderNotice('2016033018174584604298', 'KYLWAP');
+    // SMSSend.orderNotice('2016033018174584604298', 'KYLWAP');
   }
 });

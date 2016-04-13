@@ -303,8 +303,8 @@ function paySuccessHandle(message) {
 	var payedTime = new Date();
 
 	// 检测订单信息, 判断原有订单是否符合要求
-	var allPayed = true;
-	var orderInfoOld = Orders.find();
+	// var allPayed = true;
+	// var orderInfoOld = Orders.find();
 
 	// 更新paylog状态
 	updatePayLog();
