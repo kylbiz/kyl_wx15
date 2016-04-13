@@ -46,20 +46,30 @@
 
 	.dist-content {
 		width: 100%;
-		height: 74%;
+		height: 76%;
+		background-color: #f4f5f7;
 		.piece {
 			width: 100%;
 			height: 18%;
+			background-color: white;
+			overflow: hidden;
+			&:first-child {
+				height: 20%;
+				@media screen and (max-width:320px) {
+					height:25%;
+				}
+			}
 			@media screen and (max-width:320px) {
-				height:23%;
+				height:22%;
 			}
 			border-bottom: .2rem solid #d7d7d7;
 			.content {
 				width: 90%;
-				height: 80%;
+				height: 75%;
 				margin-left: 5%;
+				margin-top: 0.9rem;
 				.key {
-					margin: 4% 0;
+					margin-bottom: 4%;
 				}
 				.field {
 					width: 100%;
@@ -89,22 +99,51 @@
 				font-size: .9rem;
 				color: #999999;
 				margin-left: 5%;
+				margin-top: -1.9rem;
 			}
 		}
 	}
 
-	.control_box {
+	.buy-box {
 		width: 100%;
-		height: 14%;
-		.price_info {
-			width: 60%;
-			float: left;
-			display: inline-block;
-		}
-		.buy_btn {
-			width: 40%;
-			float: right;
-			display: inline-block;
+		height: 9%;
+		background-color: gray;
+		position: fixed;
+		bottom: 0;
+		ul {
+			height: 100%;
+			@media screen and (max-width:320px) {
+				font-size: 1rem;
+			}
+			li {
+				float: left;
+				height: 100%;
+				&:first-child {
+					width: 65%;
+					background-color: white;
+					padding-left: 1.5rem;
+					p {
+						margin-top: 4%;
+						margin-bottom: .4rem;
+					}
+					#price {
+						color: red;
+						// font-size: 1.9rem;
+					}
+
+				}
+				&:last-child {
+					width: 35%;
+				}
+				.btn {
+					display: block;
+					width: 100%;
+					height: 100%;
+					background-color: red;
+					color: white;
+					// font-size: 2rem;
+				}
+			}
 		}
 	}
 
