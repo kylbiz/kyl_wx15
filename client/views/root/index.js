@@ -23,7 +23,7 @@ Template.index.onRendered(function(){
     return false;
   });
 
-  
+
   $("#notice").modal('show');
 
   $("#get").click(function(){

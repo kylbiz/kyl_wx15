@@ -19,9 +19,15 @@
       立即购买
    </div>
  {{else}}
-   <div class="box submit-box" data-toggle="modal" data-target="#reactive_board">
-      立即购买
-   </div>
+    {{#if needNewPage}}
+     <div class="box submit-box needNewPage">
+        立即购买
+     </div>
+   {{else}}
+     <div class="box submit-box" data-toggle="modal" data-target="#reactive_board">
+        立即购买
+     </div>
+   {{/if}}
  {{/if}}
 </div>
 </template>

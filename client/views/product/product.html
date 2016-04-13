@@ -17,29 +17,32 @@
         <div class="cover-subtitle">{{productsDes.subTitle}}</div>
       </div>
     </div>
-    <div class="index">
-      <div class="root-module">
-        <div class="content">
-          <div class="photo-frame">
-            <img src="{{_img}}" alt="">
-          </div>
-          <div class="segement">
-            <div class="title">
-              {{productName}}
+
+    {{#unless needNewPage}}
+      <div class="index">
+        <div class="root-module">
+          <div class="content">
+            <div class="photo-frame">
+              <img src="{{_img}}" alt="">
             </div>
-            {{#if _briefDes}}
-              <div class="des">{{_briefDes}}</div>
-            {{/if}}
+            <div class="segement">
+              <div class="title">
+                {{productName}}
+              </div>
+              {{#if _briefDes}}
+                <div class="des">{{_briefDes}}</div>
+              {{/if}}
+            </div>
+            <div class="icon-right-container">
+              &yen;{{_price}}
+            </div>
           </div>
-          <div class="icon-right-container">
-            &yen;{{_price}}
+          <!--安置活动标签-->
+          <div class="triangle-right">
           </div>
-        </div>
-        <!--安置活动标签-->
-        <div class="triangle-right">
         </div>
       </div>
-    </div>
+    {{/unless}}
 
     <!-- 文案部分 -->
     <div class="dist">
@@ -47,9 +50,13 @@
          {{> UI.dynamic template=_desTemplate}}
         {{/if}}
     </div>
-    {{#with product}}
-      {{> controlBox}}
-    {{/with}}
+    {{#if needNewPage}}
+      {{> controlBox needNewPage="true"}}
+    {{else}}
+      {{#with product}}
+        {{> controlBox}}
+      {{/with}}
+    {{/if}}
   </div>
   {{#if product.directBuy}}
   {{else}}
@@ -446,19 +453,19 @@
 
 <template name="dist_agent">
     <div class="title-product">
-      <div class="product-detail" id="click_finance">
-        <p id="product-detail-p1">财代基础套餐</p>
+      <div class="product-detail selected" value="base">
+        <p>财代基础套餐</p>
       </div>
-      <div class="product-detail border-left" id="click_special">
-        <p id="product-detail-p2">小白基础服务</p>
+      <div class="product-detail border-left" value="special">
+        <p>小白基础服务</p>
       </div>
-      <div class="product-detail border-left" id="click_custome">
-        <p id="product-detail-p3">小白定制服务</p>
+      <div class="product-detail border-left" value="custom">
+        <p>小白定制服务</p>
       </div>
     </div>
-    
+
     <!--财政基础套餐-->
-    <div class="container" id="financial_base">
+    <div class="finance-container selected">
       <div class="product-content">
         <p class="service">小白起步套餐</p>
         <p class="cost">￥ 79元/月</p>
@@ -479,7 +486,7 @@
       </div>
     </div>
     <!--小白特殊服务-->
-    <div class="container" id="xiaobai_special">
+    <div class="finance-container">
       <!--外勤服务-->
       <div class="product-content">
         <p class="service">外勤服务</p>
@@ -559,7 +566,7 @@
       </div>
     </div>
     <!--小白定制服务-->
-    <div class="container" id="xiaobai_customization">
+    <div class="finance-container">
       <!--小白定制服务-->
       <div class="product-content">
         <p class="service">小白定制服务</p>
@@ -588,36 +595,6 @@
         </table>
       </div>
     </div>
-
-    <script type="text/javascript">
-       $('#click_finance').click(function(){
-               $('#financial_base').show()
-               $('#xiaobai_special').hide();
-               $('#xiaobai_customization').hide();
-               $('#product-detail-p1').css({color:'rgb(228, 58, 61)'});
-               // $('#product-detail-p1').addClass("act");
-               $('#product-detail-p2').css({color:'rgb(150, 150, 150)'});
-               $('#product-detail-p3').css({color:'rgb(150, 150, 150)'});      
-             });
-             $('#click_special').click(function(){
-               $('#xiaobai_special').show();
-               $('#product-detail-p2').css({color:'rgb(228, 58, 61)'});
-               $('#financial_base').hide();
-               $('#xiaobai_customization').hide();
-               $('#product-detail-p1').css({color:'rgb(150,150,150)'});
-               $('#product-detail-p3').css({color:'rgb(150, 150, 150)'});      
-
-             });
-             
-             $('#click_custome').click(function(){
-               $('#xiaobai_customization').show()
-               $('#product-detail-p3').css({color:'rgb(228, 58, 61)'});
-               $('#financial_base').hide();
-               $('#xiaobai_special').hide();
-               $('#product-detail-p1').css({color:'rgb(150,150,150)'});
-               $('#product-detail-p2').css({color:'rgb(150, 150, 150)'});
-             });
-    </script> 
 </template>
 
 

@@ -78,6 +78,10 @@ Template.product_normal.helpers({
         return false;
 
     },
+    needNewPage: function () {
+        var type = Router.current().params.productType;
+        return (type == 'finance');
+    },
 
     // 产品选项信息
     product: function() {
@@ -94,7 +98,7 @@ Template.product_normal.helpers({
             },
             finance: function() {
                 return {
-                    _img: _img
+                    _img: _img,
                 };
             },
             bank: function() {
@@ -131,11 +135,24 @@ Template.product.events({
     'click .submit': function() {
         goToAddShopCart();
     },
-    'click .directBuy':function () {
+    'click .directBuy': function () {
         event.preventDefault();
         goToAddShopCart();
+    },
+    'click .needNewPage': function () {
+        Router.go('/');
     }
 });
+
+
+// 新产品点击
+Template.dist_agent.events({
+    'click .product-detail': function (event) {
+        $(event.currentTarget).addClass("selected").siblings().removeClass("selected");
+        $('.finance-container').eq($(event.currentTarget).index()).addClass("selected").siblings().removeClass("selected");
+    }
+});
+
 
 // 前去添加到购物车
 function goToAddShopCart() {

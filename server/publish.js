@@ -38,10 +38,6 @@ Meteor.publish('products', function(project, opt) {
 	}
 	opt = opt || {};
 
-	if (project == 'finance') {
-		opt = {'basicType.name': 'base'}
-	}
-
 	products = {
 		'registration': CompanyRegist.find(opt),
 		'finance': FinanceAgent.find(opt),

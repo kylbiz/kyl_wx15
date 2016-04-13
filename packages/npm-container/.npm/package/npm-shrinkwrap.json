@@ -30,6 +30,9 @@
         },
         "ejs": {
           "version": "https://registry.npm.taobao.org/ejs/download/ejs-2.4.1.tgz"
+        },
+        "wechat-crypto": {
+          "version": "https://registry.npm.taobao.org/wechat-crypto/download/wechat-crypto-0.0.2.tgz"
         }
       }
     },
@@ -173,7 +176,7 @@
           }
         },
         "request": {
-          "version": "https://registry.npm.taobao.org/request/download/request-2.70.0.tgz",
+          "version": "https://registry.npm.taobao.org/request/download/request-2.71.0.tgz",
           "dependencies": {
             "aws-sign2": {
               "version": "https://registry.npm.taobao.org/aws-sign2/download/aws-sign2-0.6.0.tgz"
@@ -448,7 +451,7 @@
               "version": "https://registry.npm.taobao.org/xmlbuilder/download/xmlbuilder-4.2.1.tgz",
               "dependencies": {
                 "lodash": {
-                  "version": "https://registry.npm.taobao.org/lodash/download/lodash-4.9.0.tgz"
+                  "version": "https://registry.npm.taobao.org/lodash/download/lodash-4.10.0.tgz"
                 }
               }
             }
