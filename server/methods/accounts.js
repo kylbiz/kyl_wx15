@@ -148,8 +148,9 @@ Meteor.methods({
 
 	// 检测微信与Web账号的绑定
 	'checkWeChatBind': function(wechat_openid) {
+		var wechat_openid_old = Meteor.user().profile.wechat_openid || "";
 		Meteor.users.upsert({_id: Meteor.userId()}, {$set: {'profile.wechat_openid': wechat_openid}});
-		return true;
+		return (wechat_openid_old ==  wechat_openid);
 	},
 
 	// 通过wehcat_openid添加微信登录

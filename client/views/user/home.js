@@ -12,7 +12,7 @@ Template.home.events({
 			if (err) {
 				kylUtil.alert("警告", "退出失败");
 			} else {
-        console.log("go to index");
+        // console.log("go to index");
         window.localStorage.openid = null;
         Session.set('WeChatUser', null);
         // Session.set("isLoggingout", false);
