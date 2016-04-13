@@ -60,7 +60,10 @@
   </div>
   {{#if product.directBuy}}
   {{else}}
-    {{> UI.dynamic template=_dynamic data=product}}
+    {{#if needNewPage}}
+    {{else}}
+      {{> UI.dynamic template=_dynamic data=product}}
+    {{/if}}
   {{/if}}
 </template>
 
@@ -457,9 +460,9 @@
         <p>财代基础套餐</p>
       </div>
       <div class="product-detail border-left" value="special">
-        <p>小白基础服务</p>
+        <p>小白特殊套餐</p>
       </div>
-      <div class="product-detail border-left" value="custom">
+      <div class="product-detail border-left" value="customproduct">
         <p>小白定制服务</p>
       </div>
     </div>
@@ -485,6 +488,7 @@
         <p class="service-intro">适用于需要进行专项费用核算的行业财务代理服务。划定范围：商贸、加工、高新技术、软件等加研发核算、免税行业如社团组织、行业协会、外贸企业、进出口企业、集团企业。</p>
       </div>
     </div>
+
     <!--小白特殊服务-->
     <div class="finance-container">
       <!--外勤服务-->

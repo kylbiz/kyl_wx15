@@ -3,6 +3,8 @@ Template.product.onRendered(function(){
     $(".dist-list-box .list").click(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
+
+    Session.set('buyagentParmas', "");
 });
 
 Template.product.helpers({
@@ -121,7 +123,6 @@ Template.product_normal.helpers({
         } else {
             return {};
         }
-
     },
 });
 
@@ -135,12 +136,15 @@ Template.product.events({
     'click .submit': function() {
         goToAddShopCart();
     },
-    'click .directBuy': function () {
+    'click .directBuy': function (event) {
         event.preventDefault();
         goToAddShopCart();
     },
-    'click .needNewPage': function () {
-        Router.go('/');
+    'click .needNewPage': function (event) {
+        event.preventDefault();
+        var defaultType = 'base';
+        var type = Session.get('buyagentParmas') || defaultType;
+        Router.go('buyagent', {productType: 'finance'}, {query: 'type=' + type});
     }
 });
 
@@ -150,6 +154,8 @@ Template.dist_agent.events({
     'click .product-detail': function (event) {
         $(event.currentTarget).addClass("selected").siblings().removeClass("selected");
         $('.finance-container').eq($(event.currentTarget).index()).addClass("selected").siblings().removeClass("selected");
+        var value = $(event.currentTarget).attr('value');
+        Session.set('buyagentParmas', value);
     }
 });
 

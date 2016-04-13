@@ -128,7 +128,8 @@ function handleRegist(serInfo) {
 }
 
 // 财务代理
-function handleFinance_new (serInfo) {
+function handleFinance (serInfo) {
+  console.log('serInfo', serInfo);
   var productInfo = FinanceAgent.findOne({name: serInfo.name});
   if (!productInfo) {
     throw new Meteor.Error("内部数据错误: 1001");
@@ -145,7 +146,7 @@ function handleFinance_new (serInfo) {
     throw new Meteor.Error("内部数据错误: 1003");
   }
 
-  return finBaseHandle(serInfo, productInfo);
+  return handleMap[basicType](serInfo, productInfo);
 }
 
 // 财务代理基础套餐
@@ -188,6 +189,7 @@ function finBaseHandle (serInfo) {
 
   var info = {
     name: serInfo.name,
+    basicType: productInfo.basicType.name,
     label: productInfo.label,
     zhDes: zhDes,
     money: pay,
@@ -225,6 +227,9 @@ function finSpecialHandle (serInfo) {
     throw new Meteor.Error('内部数据错误: 1004');
   }
 
+  var pay = 0
+  var info = {}
+
   if (serInfo.name == 'fieldwork') {
     // 外勤
     var productInfo = FinanceAgent.findOne({
@@ -245,18 +250,19 @@ function finSpecialHandle (serInfo) {
       throw new Meteor.Error('内部数据错误: 1002');
     }
 
-    var pay = payment * num;
+    pay = payment * num;
 
     var opts = productInfo.opts;
     var areaLabel = kylUtil.getValueFromList(
         opts.area.items || [], 'name', serInfo.area, 'label');
     var zhDes = productInfo.label
                 + '-' + opts.service.label + ":" + serInfo.service
-                + '-' + opts.area.label + ":" + serInfo.areaLabel
+                + '-' + opts.area.label + ":" + areaLabel
                 + '-' + opts.num.label + ":" + serInfo.num
 
-    return {
+    info = {
       name: serInfo.name,
+      basicType: productInfo.basicType.name,
       label: productInfo.label,
       zhDes: zhDes,
       money: pay,
@@ -282,15 +288,16 @@ function finSpecialHandle (serInfo) {
     if (!payment && payment !== 0) {
       throw new Meteor.Error("内部数据错误: 1002");
     }
-    var pay = payment * num;
+    pay = payment * num;
 
     var opts = productInfo.opts;
     var zhDes = productInfo.label
                 + '-' + opts.service.label + ":" + serInfo.service
                 + '-' + opts.num.label + ":" + serInfo.num;
 
-    return {
+    info = {
       name: serInfo.name,
+      basicType: productInfo.basicType.name,
       label: productInfo.label,
       zhDes: zhDes,
       money: pay,
@@ -301,6 +308,11 @@ function finSpecialHandle (serInfo) {
       }]
     }
   }
+
+  return {
+    moneyAmount: pay,
+    servicesNameList: [info]
+  };
 }
 
 // 财代定制服务
@@ -308,7 +320,7 @@ function finCustomHandle (serInfo) {
 }
 
 
-function handleFinance (serInfo) {
+function handleFinance_old (serInfo) {
   var productInfo = FinanceAgent.findOne({name: serInfo.name, 'period.items.value': serInfo.period});
   if (!productInfo) {
     throw new Meteor.Error("内部数据错误: 1001");
