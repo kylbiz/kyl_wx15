@@ -78,7 +78,6 @@ Router.route('/buyagent/:productType', {
 });
 
 
-
 // 购物车
 Router.route('/shopcart', {
 	name: 'shopcart',
