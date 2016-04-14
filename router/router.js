@@ -56,33 +56,25 @@ Router.route('/', {
 // 产品详细页
 Router.route('/products/:productType', {
 	name: 'product',
-	waitOn: function () 
-{		return Meteor.subscribe('products', this.params.productType);
+	waitOn: function () {
+		return Meteor.subscribe('products', this.params.productType);
+	}
+});
+
+// 产品购买选项页
+Router.route('/buyagent/:productType', {
+	name: 'buyagent',
+	waitOn: function () {
+		return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
 	},
-	// onBeforeAction: function () {
-	// 	var productType = this.params.productType || "";
-	// 	if (productType == 'special') {
-	// 		this.render("partnership");
-	// 	} else {
-	// 		this.next();
-	// 	}
-	// }
-});
-
-
-//产品购买介绍页
-
-//财务套餐代理说明
-Router.route('/productIntro1', {
-	name: 'productIntro1',
-});
-//外勤服务项目套餐说明
-Router.route('/productIntro2', {
-	name: 'productIntro2',
-});
-//代开发票服务说明
-Router.route('/productIntro3', {
-	name: 'productIntro3',
+	onBeforeAction:function () {
+		Session.set("Sel_1", '');
+		Session.set("Sel_2", '');
+		Session.set("Sel_3", '');
+		Session.set("Sel_4", '');
+		Session.set("Pay", 0);
+		this.next();
+	}
 });
 
 
@@ -197,8 +189,6 @@ Router.route('/login', {
 		}
 	}
 });
-
-
 
 // 注册页
 Router.route('/register', {

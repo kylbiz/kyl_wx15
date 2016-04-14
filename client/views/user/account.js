@@ -167,7 +167,7 @@ Template.forget.events({
 					Router.go('login');
 				}
 			} else {
-				console.log("resetPassword", result);
+				// console.log("resetPassword", result);
 				loginFunc(phone, password);
 			}
 		});
@@ -212,13 +212,18 @@ function loginFunc(phone, password, redirectUrl) {
 			// 检测当前用户是否有微信账号绑定
 			if (Session.get('WeChatUser')) {
 				Meteor.call('checkWeChatBind', Session.get('WeChatUser'), function (error, result) {
-					console.log('checkWeChatBind', error, result);
+					// console.log('checkWeChatBind', error, result);
+					if (!result) {
+						Meteor.logoutOtherClients(function (err) {
+							console.log("其他客户端已退出登录");
+						});
+					}
 				});
 			}
 
 			redirectUrl = redirectUrl || Router.current().params.query.redirectUrl || '/';
-			console.log("loginFunc redirectUrl", redirectUrl);
-			// Router.go(decodeURIComponent(redirectUrl));
+			// console.log("loginFunc redirectUrl", redirectUrl);
+			Router.go(decodeURIComponent(redirectUrl));
 		}
 	});
 }

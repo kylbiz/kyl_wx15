@@ -176,7 +176,7 @@
           }
         },
         "request": {
-          "version": "2.70.0",
+          "version": "2.71.0",
           "dependencies": {
             "aws-sign2": {
               "version": "0.6.0"
@@ -451,7 +451,7 @@
               "version": "4.2.1",
               "dependencies": {
                 "lodash": {
-                  "version": "4.9.0"
+                  "version": "4.11.0"
                 }
               }
             }

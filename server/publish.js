@@ -37,6 +37,7 @@ Meteor.publish('products', function(project, opt) {
 		return [];
 	}
 	opt = opt || {};
+
 	products = {
 		'registration': CompanyRegist.find(opt),
 		'finance': FinanceAgent.find(opt),
