@@ -12,7 +12,7 @@ ul>li{
 	padding: 0;
 	margin: 0;
 	background-color: #FFFEFF;
-	font-size: 1em;
+	font-size: 14px;
 }
 
 /*页面初始化时样式*/
@@ -63,12 +63,12 @@ ul>li{
     -ms-flex: 1;       
 }
 .product-detail{
-	font-size: 18px;
 	font-weight: 600;
 	padding: 10px;
 	color: #000000;
 }
 .product-detail p{
+	font-size: 15px;
 	color:rgb(150, 150, 150);
 	cursor: default;	
 }
@@ -103,7 +103,6 @@ ul>li{
 
 .service{
 	text-align: center;
-	font-size:18px;
 	font-weight:900;
 	color:rgb(34, 34, 34);
 	margin-top: 30px;
@@ -111,7 +110,6 @@ ul>li{
 }
 .service-left{
 	text-align: left;
-	font-size:18px;
 	font-weight:900;
 	color:rgb(34, 34, 34);
 	margin-top: 30px;
@@ -122,22 +120,18 @@ ul>li{
 	margin-top:10px;
 	margin-bottom: 20px;
 	text-align: justify;
-	font-size:16px;
 	font-weight:400;
 	color:rgb(112, 112, 112);
 }
 .product-content .cost{
 	text-align: center;
-	font-size: 18px;
 	font-weight: 500;
 	color: #FF0000;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 .product-content .content-detail{
-	font-size: 16px;
 	font-weight:400;
-	font-size: 18px;
 	color: rgb(112, 112, 112);
 	text-align: center;
 	margin-bottom: 10px;
@@ -154,14 +148,12 @@ ul>li{
 	word-wrap:break-word;
 }
 .product-table th{
-	font-size:18px;
 	padding: 10px;
 	border:solid rgb(112, 112, 112);
 	border-width:0px 1px 1px 0px; 
 }
 .product-table td{
 	text-align:center;
-	font-size:16px;
 	padding: 10px;
 	border:solid rgb(112, 112, 112);
 	border-width:0px 1px 1px 0px; 
@@ -173,5 +165,14 @@ ul>li{
 @media only screen and (min-width: 100px) and (max-width: 640px) {
 	.pic{
 		height: 200px;
+	}
+}
+
+@media (max-width:321px){
+	.container{
+		font-size:12px;
+	}
+	.product-detail p{
+	 font-size: 13px;
 	}
 }
