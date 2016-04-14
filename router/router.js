@@ -77,7 +77,16 @@ Router.route('/buyagent/:productType', {
 	}
 });
 
+//财务代理套餐介绍页
+Router.route('/productdes/:type', {
+	name: 'productdes',
+	template: "productDes"
+})
 
+// //小白特殊套餐说明
+// Router.route('/productIntro2/:type', {
+// 	name: 'productIntro2'，
+// })
 
 // 购物车
 Router.route('/shopcart', {
