@@ -208,6 +208,14 @@ Template.financeSpecial.helpers({
 
     return '';
   },
+  serviceDes: function () {
+    var name = Session.get("Sel_1");
+    return {
+      'fieldwork': 'fieldwork',
+      'invoiceagent': 'invoiceagent'
+    }[name] || "";
+
+  }
 });
 
 Template.financeSpecial.events({
