@@ -123,7 +123,10 @@ Template.financeBase.events({
     },
     'click #period li': function (event, template) {
         Session.set('Sel_4', parseInt($(event.currentTarget).attr('value')) );
-    }
+    },
+    'click #name li:last': function(event) {
+    $(".dist-content").css({height: '450px'})
+  }
 });
 
 
@@ -237,6 +240,9 @@ Template.financeSpecial.events({
   },
   'change #num input': function (event) {
     Session.set('Sel_4', parseInt($(event.currentTarget).val()) );
+  },
+  'click #name li:last': function(event) {
+    $(".dist-content").css({height: '400px'})
   }
 });
 

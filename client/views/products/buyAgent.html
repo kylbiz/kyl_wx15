@@ -100,7 +100,8 @@
 
 		</div>
 
-		<div class="buy-box">
+	</div>
+	<div class="buy-box">
 			<ul>
 				<li>
 					<p>财务代理({{typeLabel}})</p>
@@ -111,7 +112,6 @@
 				</li>
 			</ul>
 		</div>
-	</div>
 </template>
 
 
@@ -132,7 +132,7 @@
 			  <div class="content">
 				<div class="key">1、选择服务</div>
 				<div class="field" id="name">
-					<ul>
+					<ul id="server-type">
 						{{#each $mapped names}}
 	            <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
 	          {{/each}}
@@ -184,18 +184,18 @@
 
 		</div>
 
-		<div class="buy-box">
-			<ul>
-				<li>
-					<p>小白特殊套餐({{typeLabel}})</p>
-					<span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
-				</li>
-				<li>
-					<button class="btn submit">立即购买</button>
-				</li>
-			</ul>
-		</div>
-
+	</div>
+	<div class="clearfix"></div>
+	<div class="buy-box2">
+		<ul>
+			<li>
+				<p>小白特殊套餐({{typeLabel}})</p>
+				<span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
+			</li>
+			<li>
+				<button class="btn submit">立即购买</button>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -231,16 +231,17 @@
 			</div>
 		</div>
 
-		<div class="buy-box">
-			<ul>
-				<li>
-					<p>小白定制服务</p>
-					<span style="color: #999999">应付金额：</span><span id="price">无</span>
-				</li>
-				<li>
-					<button class="btn">立即咨询</button>
-				</li>
-			</ul>
-		</div>
+		
 	</div>
+	<div class="buy-box">
+		<ul>
+			<li>
+				<p>小白定制服务</p>
+				<span style="color: #999999">应付金额：</span><span id="price">无</span>
+			</li>
+			<li>
+				<button class="btn">立即咨询</button>
+			</li>
+		</ul>
+	</div>		
 </template>

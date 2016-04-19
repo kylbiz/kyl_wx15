@@ -1,11 +1,10 @@
 #xbdz-content {
 	font-family: "PingFangSC";
 	width: 100%;
-	height: 100%;
 	background-color: white;
 	.des {
 		width: 100%;
-		height: 16%;
+		height: 75px;
 		border-bottom: .2rem solid #d7d7d7;
 		.icon {
 			width: 16%;
@@ -116,49 +115,50 @@
 		}
 	}
 
-	.buy-box {
-		width: 100%;
-		height: 11%;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		z-index: 200;
-		background: white;
-		ul {
-			height: 100%;
-			@media screen and (max-width:320px) {
-				font-size: 1rem;
-			}
-			li {
-				float: left;
-				height: 100%;
-				&:first-child {
-					width: 65%;
-					background-color: white;
-					padding-left: 1.5rem;
-					p {
-						margin-top: 4%;
-						margin-bottom: .4rem;
-					}
-					#price {
-						color: red;
-						font-size: 15px;
-					}
 
+}
+
+.buy-box {
+	width: 100%;
+	height: 11%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 200;
+	background: white;
+	ul {
+		height: 100%;
+		@media screen and (max-width:320px) {
+			font-size: 1rem;
+		}
+		li {
+			float: left;
+			height: 100%;
+			&:first-child {
+				width: 65%;
+				background-color: white;
+				padding-left: 1.5rem;
+				p {
+					margin-top: 4%;
+					margin-bottom: .4rem;
 				}
-				&:last-child {
-					width: 35%;
+				#price {
+					color: red;
+					font-size: 15px;
 				}
-				.btn {
-					font-size: 17px;
-					display: block;
-					width: 100%;
-					height: 100%;
-					background-color: #d81918;
-					color: white;
-				}
+
+			}
+			&:last-child {
+				width: 35%;
+			}
+			.btn {
+				font-size: 17px;
+				display: block;
+				width: 100%;
+				height: 100%;
+				background-color: #d81918;
+				color: white;
 			}
 		}
 	}
-
 }

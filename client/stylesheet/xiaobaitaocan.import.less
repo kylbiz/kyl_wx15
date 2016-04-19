@@ -1,11 +1,12 @@
 #xb-content {
 	font-family: "PingFangSC";
 	width: 100%;
-	height: 100%;
 	background-color: white;
+	position: absolute;
+	top: 0;
 	.des {
 		width: 100%;
-		height: 16%;
+		height: 75px;
 		border-bottom: .2rem solid #d7d7d7;
 		.icon {
 			width: 17%;
@@ -29,11 +30,7 @@
 				margin: 0;
 				&:first-child {
 					margin-top: 10%;
-					// margin-bottom: 5%;
-					@media screen and (max-width: 320px){
-						// margin-top: 7%;
-						// margin-bottom: 3%;
-					}
+
 				}
 
 				&:last-child {
@@ -46,14 +43,15 @@
 
 	.dist-content {
 		width: 100%;
-		height: 115%;
+		height: 550px;
 		background-color: #f4f5f7;
 		.piece {
 			width: 100%;
 			background-color: white;
 			overflow: hidden;
 			&:last-child {
-				height: 18%;
+				height: 95px;
+				
 			}
 			&:last-child {
 				input {
@@ -127,50 +125,55 @@
 			}
 		}
 	}
+	
 
-	.buy-box {
-		width: 100%;
-		height: 11%;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		z-index: 200;
-		background-color: #ffffff;
-		ul {
+}
+
+.clearfix {
+	clear: both;
+}
+
+.buy-box2 {
+	width: 100%;
+	height: 60px;
+	position: fixed;
+	bottom: 0;
+	// left: 0;
+	z-index: 200;
+	background-color: #ffffff;
+	ul {
+		height: 100%;
+		@media screen and (max-width:320px) {
+			font-size: 1rem;
+		}
+		li {
+			float: left;
 			height: 100%;
-			@media screen and (max-width:320px) {
-				font-size: 1rem;
-			}
-			li {
-				float: left;
-				height: 100%;
-				&:first-child {
-					width: 65%;
-					background-color: white;
-					padding-left: 1.5rem;
-					p {
-						margin-top: 4%;
-						margin-bottom: .4rem;
-					}
-					#price {
-						color: red;
-						font-size: 15px;
-					}
+			&:first-child {
+				width: 65%;
+				background-color: white;
+				padding-left: 1.5rem;
+				p {
+					margin-top: 4%;
+					margin-bottom: .4rem;
+				}
+				#price {
+					color: red;
+					font-size: 15px;
+				}
 
-				}
-				&:last-child {
-					width: 35%;
-				}
-				.btn {
-					font-size: 17px;
-					display: block;
-					width: 100%;
-					height: 100%;
-					background-color: #d81918;
-					color: white;
-				}
+			}
+			&:last-child {
+				width: 35%;
+			}
+			.btn {
+				font-size: 17px;
+				display: block;
+				width: 100%;
+				height: 100%;
+				background-color: #d81918;
+				color: white;
 			}
 		}
 	}
-
 }
