@@ -175,7 +175,10 @@ Template.financeSpecial.helpers({
   },
   typeLabel: function () {
     var name = Session.get("Sel_1");
-    return FinanceAgent.findOne({name: name}).label || "未知";
+    if (name) {
+      return FinanceAgent.findOne({name: name}).label || "未知";
+    }
+    return '';
   },
   payment: function () {
     return Session.get('Pay') || 0;
@@ -183,8 +186,11 @@ Template.financeSpecial.helpers({
   message: function () {
     var name = Session.get("Sel_1");
     var service = Session.get("Sel_2");
-    var items = FinanceAgent.findOne({name: name}).opts.service.items;
-    return kylUtil.getValueFromList(items, 'name', service, 'message') || '';
+    if (name && service) {
+      var items = FinanceAgent.findOne({name: name}).opts.service.items;
+      return kylUtil.getValueFromList(items, 'name', service, 'message') || '';
+    }
+    return '';
   },
   singlePayLabel: function () {
     var pay = Session.get('Pay') || 0;
@@ -202,6 +208,14 @@ Template.financeSpecial.helpers({
 
     return '';
   },
+  serviceDes: function () {
+    var name = Session.get("Sel_1");
+    return {
+      'fieldwork': 'fieldwork',
+      'invoiceagent': 'invoiceagent'
+    }[name] || "";
+
+  }
 });
 
 Template.financeSpecial.events({
