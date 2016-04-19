@@ -52,7 +52,7 @@
 }
 .product-detail p {
 	font-size: 15px;
-	color:rgb(150, 150, 150);
+	color: rgb(113, 112, 113);
 	cursor: default;
 }
 .product-detail p:hover{
@@ -71,6 +71,11 @@
 	display: none;
 }
 
+.finance-container  p {
+	margin: 0;
+	display: inline-block;
+}
+
 .finance-container.selected {
 	display: block;
 }
@@ -85,8 +90,8 @@
 }
 
 .product-content{
-	padding: 10px;
-	border-bottom: 1px solid rgb(112, 112, 112);
+	padding: 15px 20px;
+	border-bottom: 1px solid #dcdcdc;
 }
 
 .product-content:last-child{
@@ -98,10 +103,9 @@
 }
 
 .service{
-	text-align: center;
 	font-weight:900;
 	color:rgb(34, 34, 34);
-	margin-top: 30px;
+	margin-top: 3px !important;
 	margin-bottom: 20px;
 }
 .service-left{
@@ -113,26 +117,31 @@
 }
 
 .service-intro{
-	margin-top:10px;
+	margin-top:13px !important;
 	margin-bottom: 20px;
 	text-align: justify;
 	font-weight:400;
 	color:rgb(112, 112, 112);
 }
 .product-content .cost{
-	text-align: center;
+	font-size: 15px;
 	font-weight: 500;
-	color: #FF0000;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	color: rgb(228, 57, 60);
+	float: right;
+	border:1px solid red;
+	border-radius: 2px;
 }
 .product-content .content-detail{
+	font-size: 12px;
 	font-weight:400;
 	color: rgb(112, 112, 112);
-	text-align: center;
-	margin-bottom: 10px;
+	text-align: left;
+	margin-bottom: 15px;
+	margin-top: 15px;
 }
-
+.product-content  .tb-title {
+	margin-bottom: 18px;
+}
 /*小白特殊服务*/
 .product-table{
 	border:solid rgb(112, 112, 112);
@@ -148,11 +157,19 @@
 	border:solid rgb(112, 112, 112);
 	border-width:0px 1px 1px 0px;
 }
+
 .product-table td{
 	text-align:center;
 	padding: 10px;
 	border:solid rgb(112, 112, 112);
 	border-width:0px 1px 1px 0px;
+}
+.product-table  .price {
+	color: rgb(228, 57, 60);
+	font-weight: 500;
+}
+.product-table .tb-content{
+	text-align: left !important;
 }
 .product-table td>p{
 	text-align:justify;

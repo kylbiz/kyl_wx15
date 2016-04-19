@@ -20,7 +20,7 @@
 		<div class="dist-content">
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择套餐<a href="/productdes/financebase"><img src="/images/why.png" alt=""></a></div>
+				<div class="key">1、选择套餐<a href="/productdes/financebase"><img src="/images/why.png" alt=""></a></div>
 				<div class="field" id="name">
 					<ul>
 						{{#each $mapped names}}
@@ -29,13 +29,15 @@
 					</ul>
 				</div>
 			  </div><br>
-			  <!-- <p>根据年收入与凭证量的不同分为179、379、579三种套餐</p> -->
+			  {{#if isServer 'common'}}
+				  <p>根据年收入与凭证量的不同分为179、379、579三种套餐</p>
+			   {{/if}}
 			</div>
 
 			{{#if opts}}
 				<div class="piece">
 				  <div class="content">
-					<div class="key">选择年收入</div>
+					<div class="key">2、选择年收入</div>
 					<div class="field" id="annualIncome">
 						<ul>
 							{{#each $mapped opts.annualIncome.items}}
@@ -47,7 +49,7 @@
 				</div>
 				<div class="piece">
 				  <div class="content">
-					<div class="key">选择凭证量</div>
+					<div class="key">3、选择凭证量</div>
 					<div class="field" id="certiNum">
 						<ul>
 							{{#each $mapped opts.certiNum.items}}
@@ -57,10 +59,24 @@
 					</div>
 				  </div>
 				</div>
+				<div class="piece">
+				  <div class="content">
+					<div class="key">4、选择时间</div>
+					<div class="field" id="period">
+						<ul>
+							{{#each $mapped period.items}}
+		            <li class="{{#if $first}}selected{{/if}}" value="{{value}}">{{label}}</li>
+		          {{/each}}
+						</ul>
+					</div>
+				  </div>
+				</div>
 			{{/if}}
+			
+			{{#if isServer 'zero'}}
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择时间</div>
+				<div class="key">2、选择时间</div>
 				<div class="field" id="period">
 					<ul>
 						{{#each $mapped period.items}}
@@ -70,6 +86,18 @@
 				</div>
 			  </div>
 			</div>
+			<div class="piece">
+				<div class="content">
+					<div class="key">3、套餐解释</div>
+					<div class="field">
+						<span>新成立企业，无任何收入、人员工资及费用。</span>
+						<br>
+						<span>做账无任何票据，仅需要按期纳税0申报。</span>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+
 		</div>
 
 		<div class="buy-box">
@@ -102,7 +130,7 @@
 		<div class="dist-content">
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择套餐</div>
+				<div class="key">1、选择服务</div>
 				<div class="field" id="name">
 					<ul>
 						{{#each $mapped names}}
@@ -114,7 +142,7 @@
 			</div>
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择服务项目<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
+				<div class="key">2、选择服务项目<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
 				<div class="field" id="service">
 					<ul>
 						{{#each $mapped opts.service.items}}
@@ -133,7 +161,7 @@
 			{{#if opts.area}}
 				<div class="piece">
 				  <div class="content">
-					<div class="key">选择区域<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
+					<div class="key">3、选择区域<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
 					<div class="field" id="area">
 						<ul>
 							{{#each $mapped opts.area.items}}
@@ -147,7 +175,7 @@
 
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择数量</div>
+				<div class="key">4、选择次数</div>
 				<div class="field" id="num">
 					<input type="number" value="1" step="1" min="1" />
 				</div>
@@ -187,7 +215,7 @@
 		<div class="dist-content">
 			<div class="piece">
 			  <div class="content">
-				<div class="key">选择服务</div>
+				<div class="key">1、选择服务</div>
 				<div class="field" id="service">
 					<ul>
 						{{#each $mapped opts.service.items}}

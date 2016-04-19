@@ -102,6 +102,10 @@ Template.financeBase.helpers({
     var pay = Session.get('Pay') || 0;
     var period = Session.get('Sel_4') || 1;
     return pay / parseInt(period);
+  },
+  isServer: function (str) {
+    var name = Session.get("Sel_1") || "";
+    return (str == name);
   }
 });
 
