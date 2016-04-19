@@ -91,25 +91,134 @@
 //ZZR product css less
 
 /*css插件*/
-.product-detail.border-left{
+@deep-red: rgb(288,58,61);
+.border-left{
   border-left: 1px solid rgb(214, 214, 214);
 }
 .no-bottom-border{
   border-bottom-width:0;
+}
+
+// 财代基础套餐
+.title-product{
+  background: #FFFFFF;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items:center;
+  align-items:center;
+  // for uc
+  display: box;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  border-bottom: 1px solid rgb(214,214,214);
+  div{
+    flex:1;
+    -webkit-flex:1;
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+  }
+  .product-detail{
+    font-weight: 600;
+    padding: 10px;
+    color: #000000;
+    p{
+      text-align: center;
+      font-size:15px;
+      color: rgb(150,150,150);
+      cursor: default;
+      &:hover{color: @deep-red;}
+    }
+    .border-left;
+  }
+  .selected{
+    p{color: @deep-red;}
+  }
 }
 .finance-container{
   padding: 0;
   margin: 0;
   background-color: #FFFEFF;
   font-size: 14px;
+  display: none;
+  .product-content{
+    padding: 10px;
+    border-bottom:1px solid rgb(112,112,112);
+    &:last-child{border-bottom-width: 0;}
+    .service{
+      text-align: center;
+      font-weight: 900;
+      color: rgb(34,34,34);
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .cost{
+      text-align: center;
+      font-weight: 500;
+      color: #FF0000;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .service-intro{
+      margin-top:10px;
+      margin-bottom: 20px;
+      text-align: justify;
+      font-weight:400;
+      color:rgb(112, 112, 112);
+    }
+    .content-datail{
+      font-weight:400;
+      color: rgb(112, 112, 112);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    // 小白特殊服務
+    .product-table{
+      border:solid rgb(112, 112, 112);
+      border-width:1px 0px 0px 1px;
+      color:rgb(151, 151, 151);
+      width: 100%;
+      margin-bottom:20px;
+      table-layout:fixed;
+      word-wrap:break-word;
+      th{
+        padding: 10px;
+        border:solid rgb(112, 112, 112);
+        border-width:0px 1px 1px 0px;
+      }
+      td{
+        text-align:center;
+        padding: 10px;
+        border:solid rgb(112, 112, 112);
+        border-width:0px 1px 1px 0px;
+        p{
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+.finance-container.selected{
+  display: block;
 }
 
-// 财代基础套餐
-.pic{
-  height: 300px;
-  background-color: #007AFF;
-  border-bottom: 1px soild #000000;
+/*响应式布局*/
+@media only screen and (min-width: 100px) and (max-width: 640px) {
+  .pic{
+    height: 200px;
+  }
 }
+@media (max-width: 370px) {
+  .finance-container{
+    font-size:12px;
+  }
+  .product-detail p {
+    font-size: 13px;
+  }
+}
+
+
+
 
 
 
