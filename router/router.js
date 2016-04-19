@@ -5,6 +5,14 @@ Router.route('/', {
 	name: 'index'
 });
 
+//demo路由设置
+Router.route('/demo', {
+	name: 'demo',
+	waitOn: function () {
+		return Meteor.subscribe('products', this.params.productType);
+	}
+});
+
 // 大分类产品
 // Router.route('/products/:products', {
 // 	name: 'products',
