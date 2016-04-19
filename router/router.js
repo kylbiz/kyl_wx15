@@ -65,18 +65,25 @@ Router.route('/products/:productType', {
 Router.route('/buyagent/:productType', {
 	name: 'buyagent',
 	waitOn: function () {
-		return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
-	},
-	onBeforeAction:function () {
 		Session.set("Sel_1", '');
 		Session.set("Sel_2", '');
 		Session.set("Sel_3", '');
 		Session.set("Sel_4", '');
 		Session.set("Pay", 0);
-		this.next();
-	}
+		return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
+	},
 });
 
+//财务代理套餐介绍页
+Router.route('/productdes/:type', {
+	name: 'productdes',
+	template: "productDes"
+})
+
+// //小白特殊套餐说明
+// Router.route('/productIntro2/:type', {
+// 	name: 'productIntro2'，
+// })
 
 // 购物车
 Router.route('/shopcart', {
