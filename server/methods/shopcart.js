@@ -260,6 +260,9 @@ function finSpecialHandle (serInfo) {
                 + '-' + opts.area.label + ":" + areaLabel
                 + '-' + opts.num.label + ":" + serInfo.num
 
+    var message = kylUtil.getValueFromList(
+        opts.area.items || [], 'name', serInfo.area, 'message');
+
     info = {
       name: serInfo.name,
       basicType: productInfo.basicType.name,
@@ -271,6 +274,7 @@ function finSpecialHandle (serInfo) {
       num: num,
       scale: 1,
       servicesContains: [{
+        message: message || ""
       }]
     };
   } else if (serInfo.name == 'invoiceagent') {
@@ -295,6 +299,9 @@ function finSpecialHandle (serInfo) {
                 + '-' + opts.service.label + ":" + serInfo.service
                 + '-' + opts.num.label + ":" + serInfo.num;
 
+    var message = kylUtil.getValueFromList(
+        productInfo.opts.service.items || [], 'name', serInfo.service, 'message') || "";
+
     info = {
       name: serInfo.name,
       basicType: productInfo.basicType.name,
@@ -305,6 +312,7 @@ function finSpecialHandle (serInfo) {
       num: num,
       scale: 1,
       servicesContains: [{
+        message: message
       }]
     }
   }

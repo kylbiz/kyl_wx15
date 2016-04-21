@@ -146,6 +146,11 @@ function newProduct(infoBase) {
           if (info.area) {
             arr.push('地区: ' + ({'downtown': '市区', 'suburbs': '郊县'}[info.area] || "未知"));
           }
+
+          if (info.service == "代开发票") {
+            arr.push('信息: 满10张赠送5张');
+          }
+
           return arr;
         }
       },

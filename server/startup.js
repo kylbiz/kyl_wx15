@@ -146,7 +146,7 @@ function getProductInfo() {
     productVersion: {
        name: 'productVersion',
       'CompanyRegist': 2.5,
-      'FinanceAgent': 2.4,
+      'FinanceAgent': 2.5,
       'SpecialProduct': 1,
       'BankLists': 1,
     },
@@ -339,6 +339,13 @@ function getProductInfo() {
                   suburbs: 800,
                 }
               },
+              {
+                label: '营改增代办', name: '营改增代办', unit:'元/次',
+                payment: {
+                  downtown: 300,
+                  suburbs: 500,
+                }
+              },
             ]
           },
           area: {
@@ -373,7 +380,7 @@ function getProductInfo() {
               },
               {
                 label: '代开发票', name: '代开发票', unit: '元/张', payment: 10,
-                message: '每季度初结算该季度代开票金额，满10张赠送5张，赠送张数可自动转入下季度使用，赠送张数仅可开票使用不可申请退款。',
+                message: '季度结算，满10张赠送5张，赠送张数可用于下季度使用',
               },
             ]
           },
