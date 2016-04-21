@@ -24,7 +24,7 @@ Router.route('/', {
 // 				return {title: '小白云工商注册', items: RegList};
 // 			},
 // 			finances: function () {
-// 				return {title: '小企财云', items: [
+// 				return {title: '小白财税', items: [
 // 					{name: '财务代理', price: kylUtil.getPriceGeneral('财务代理'), baseType: 'finance'},
 // 				]};
 // 			},
