@@ -8,89 +8,41 @@
 
 <template name='product_normal'>
   <div class="main main-container has-ui-control-bottom product">
-    <div class="container">
-      <div class="banner" style="background-image: url(/images/registintro.png);background-size:100% 180px;">
-      </div>
-      <div class="content">
-        <div class="title">
-          <span>服务说明</span>
+    <div class="board gallery" style="background-image:url(/images/product/reg_bg.jpg);margin:0">
+          <div class="cover-center">
+            <div class="cover-img">
+              <img src="{{productsDes.img}}" alt="">
+            </div>
+            <div class="cover-title">{{productsDes.title}}</div>
+            <div class="cover-subtitle">{{productsDes.subTitle}}</div>
+          </div>
         </div>
-        <div class="intro">
-          <span>为有注册需求的客户提供企业注册代办服务。代办服务包括提供虚拟注册地址，公司注册成立拿到证照（并赠送公章、法人章、财务章）</span>
-        </div>
-        <div class="intro-table">
-          <table>
-            <tr>
-              <td>区域</td>
-              <td>价格</td>
-              <td style="text-align: center;">特点</td>
-              <td style="text-align: center;">行业要求</td>
-            </tr>
-            <tr>
-              <td>松江</td>
-              <td class="price">¥1元</td>
-              <td>手续便捷，政策给力</td>
-              <td>电商贸易类优先，除金融、投资类</td>
-            </tr>
-            <tr>
-              <td>金山</td>
-              <td class="price">¥1元</td>
-              <td>手续方便（自拍视频代替现场签字）</td>
-              <td>文化创意类优先，除金融、投资类</td>
-            </tr>
-            <tr>
-              <td>奉贤</td>
-              <td class="price">¥500元</td>
-              <td>手续便捷，政策给力</td>
-              <td>除金融投资类</td>
-            </tr>
-            <tr>
-              <td>青浦</td>
-              <td class="price">¥500元</td>
-              <td>申请一般纳税人手续简便</td>
-              <td>除金融投资类</td>
-            </tr>
-            <tr>
-              <td>崇明</td>
-              <td class="price">¥500元</td>
-              <td>核名通过后最快3天出证，海岛优惠政策</td>
-              <td>除食品、文创、培训、贸易、金融投资类</td>
-            </tr>
-            <tr>
-              <td>普陀</td>
-              <td class="price">¥1000元</td>
-              <td>稀有市区地址，注册快</td>
-              <td>文创、科技优先，教育、培训、金融不能注册</td>
-            </tr>
-            <tr>
-              <td>虹口</td>
-              <td class="price">¥1000元</td>
-              <td>市区地址，最快16天出证</td>
-              <td>除信息咨询、金融、投资类</td>
-            </tr>
-            <tr>
-              <td>杨浦</td>
-              <td class="price">¥1000元</td>
-              <td>市区地址，核名快</td>
-              <td>仅限科技类</td>
-            </tr>
-            <tr>
-              <td>浦东</td>
-              <td class="price">¥1500元</td>
-              <td>市区地址，核名阶段需全体股东到场</td>
-              <td>除金融投资类</td>
-            </tr>
-            <tr>
-              <td>长宁</td>
-              <td class="price">¥2000元</td>
-              <td>市区地址，有开业政策扶持</td>
-              <td>除金融投资类</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <br>
-    </div>
+
+        {{#unless needNewPage}}
+          <div class="index">
+            <div class="root-module">
+              <div class="content">
+                <div class="photo-frame">
+                  <img src="{{_img}}" alt="">
+                </div>
+                <div class="segement">
+                  <div class="title">
+                    {{productName}}
+                  </div>
+                  {{#if _briefDes}}
+                    <div class="des">{{_briefDes}}</div>
+                  {{/if}}
+                </div>
+                <div class="icon-right-container">
+                  &yen;{{_price}}
+                </div>
+              </div>
+              <!--安置活动标签-->
+              <div class="triangle-right">
+              </div>
+            </div>
+          </div>
+        {{/unless}}
 
     <!-- 文案部分 -->
     <div class="dist">
@@ -127,6 +79,109 @@
 </template>
 
 <!-- 公司注册 -->
+
+<template name="registintro">
+  <div class="reg-container">
+        <div class="banner" style="background-image: url(/images/registintro.png);background-size:100% 180px;">
+        </div>
+        <div class="content">
+          <div class="title">
+            <span>服务说明</span>
+          </div>
+          <div class="intro">
+            <span>为有注册需求的客户提供企业注册代办服务。代办服务包括提供虚拟注册地址，公司注册成立拿到证照（并赠送公章、法人章、财务章）</span>
+          </div>
+          <div class="intro-table">
+            <table>
+              <tr>
+                <td>区域</td>
+                <td>价格</td>
+                <td style="text-align: center;">特点</td>
+                <td style="text-align: center;">行业要求</td>
+              </tr>
+              <tr>
+                <td>松江</td>
+                <td class="price">¥1元</td>
+                <td>手续便捷，政策给力</td>
+                <td>电商贸易类优先，除金融、投资类</td>
+              </tr>
+              <tr>
+                <td>金山</td>
+                <td class="price">¥1元</td>
+                <td>手续方便（自拍视频代替现场签字）</td>
+                <td>文化创意类优先，除金融、投资类</td>
+              </tr>
+              <tr>
+                <td>奉贤</td>
+                <td class="price">¥500元</td>
+                <td>手续便捷，政策给力</td>
+                <td>除金融投资类</td>
+              </tr>
+              <tr>
+                <td>青浦</td>
+                <td class="price">¥500元</td>
+                <td>申请一般纳税人手续简便</td>
+                <td>除金融投资类</td>
+              </tr>
+              <tr>
+                <td>崇明</td>
+                <td class="price">¥500元</td>
+                <td>核名通过后最快3天出证，海岛优惠政策</td>
+                <td>除食品、文创、培训、贸易、金融投资类</td>
+              </tr>
+              <tr>
+                <td>普陀</td>
+                <td class="price">¥1000元</td>
+                <td>稀有市区地址，注册快</td>
+                <td>文创、科技优先，教育、培训、金融不能注册</td>
+              </tr>
+              <tr>
+                <td>虹口</td>
+                <td class="price">¥1000元</td>
+                <td>市区地址，最快16天出证</td>
+                <td>除信息咨询、金融、投资类</td>
+              </tr>
+              <tr>
+                <td>杨浦</td>
+                <td class="price">¥1000元</td>
+                <td>市区地址，核名快</td>
+                <td>仅限科技类</td>
+              </tr>
+              <tr>
+                <td>浦东</td>
+                <td class="price">¥1500元</td>
+                <td>市区地址，核名阶段需全体股东到场</td>
+                <td>除金融投资类</td>
+              </tr>
+              <tr>
+                <td>长宁</td>
+                <td class="price">¥2000元</td>
+                <td>市区地址，有开业政策扶持</td>
+                <td>除金融投资类</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br>
+      </div>
+      <br><br>
+      {{> controlBox }}
+<!--       {{#if needNewPage}}
+      {{> controlBox needNewPage="true"}}
+    {{else}}
+      {{#with product}}
+        {{> controlBox}}
+      {{/with}}
+    {{/if}}
+
+    {{#if product.directBuy}}
+    {{else}}
+    {{#if needNewPage}}
+    {{else}}
+      {{> UI.dynamic template=_dynamic data=product}}
+    {{/if}}
+    {{/if}} -->
+</template>
 
 
 <!-- 代理记账 -->

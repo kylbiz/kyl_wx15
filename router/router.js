@@ -74,6 +74,19 @@ Router.route('/buyagent/:productType', {
 	},
 });
 
+//注册公司说明 
+Router.route('/registintro',{
+	name:'registintro',
+})
+
+
+//注册公司购买
+Router.route('/registservice',{
+	name: 'registservice'
+})
+
+
+
 //财务代理套餐介绍页
 Router.route('/productdes/:type', {
 	name: 'productdes',
