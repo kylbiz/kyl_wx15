@@ -11,13 +11,16 @@ Template.product.helpers({
     isSpecialProduct: function () {
         var params = Router.current().params;
         var type = params.productType;
-
+        // console.log(params);
         // console.log("isSpecialProduct", params);
         if (type == 'special') {
             var subType = params.query.subtype || "";
             return {result: true, template: subType};
         }
 
+        if (type == 'registration') {
+
+        }
         return {result: false};
     },
 });
@@ -82,7 +85,8 @@ Template.product_normal.helpers({
     },
     needNewPage: function () {
         var type = Router.current().params.productType;
-        return (type == 'finance');
+        console.log(Router.current().params);
+        return (type == 'finance' || type == 'registration');
     },
 
     // 产品选项信息
@@ -126,8 +130,6 @@ Template.product_normal.helpers({
     },
 });
 
-
-
 Template.product.events({
     'click #shopCart': function(event, template) {
         event.preventDefault();
@@ -149,6 +151,30 @@ Template.product.events({
 });
 
 
+Template.registintro.helpers({
+    needNewPage: function() {
+        var params = Router.current().params;
+        console.log(window.location.href.split('/')[3]);
+    }
+})
+
+Template.registintro.events({
+    'click #shopCart': function(event, template) {
+        event.preventDefault();
+        Router.go('/shopCart');
+    },
+    'click .submit': function() {
+        goToAddShopCart();
+    },
+    'click .directBuy': function (event) {
+        event.preventDefault();
+        goToAddShopCart();
+    },
+    'click .submit-box': function(event) {
+        event.preventDefault();
+        Router.go('registservice')
+    }
+})
 // 新产品点击
 Template.dist_agent.events({
     'click .product-detail': function (event) {

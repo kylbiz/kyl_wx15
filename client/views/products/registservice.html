@@ -1,0 +1,58 @@
+<template name="registservice">
+	
+	<div id="regist-main">
+		<div class="top">
+			<div class="title">
+				<div class="left">
+					<img src="/images/index/index_icon_1.png" alt="">
+				</div>
+				<div class="right">
+					<p>上海公司注册</p>
+					<span class="price"> ¥ 2000元</span>
+				</div>
+			</div>
+			<div class="content">
+				<div class="field">
+					<div class="field-content">
+						<div class="type-title">1、选择类型</div>
+						<div class="box">
+							<ul>
+							{{#each $mapped names}}
+	            			<li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+	          				{{/each}}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<div class="field-content">
+						<div class="type-title">2、选择区域</div>
+						<div class="box">
+							<ul>
+								<li>松江</li>
+								<li>金山</li>
+							</ul>
+						</div>
+						<p>注意：电商贸易类优先</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="buy-box">
+			<div class="buy-box">
+					<ul>
+						<li>
+							<p>财务代理({{typeLabel}})</p>
+							<span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
+						</li>
+						<li>
+							<button class="btn submit">立即购买</button>
+						</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+		
+
+
+</template>

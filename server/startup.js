@@ -428,6 +428,7 @@ function getProductInfo() {
       }
     ],
 
+
     // 银行开户
     bankLists: [
       {bank: '中国银行', payment: 500, baseService: '银行开户许可证明'},
@@ -444,8 +445,6 @@ function getProductInfo() {
     ],
   }
 }
-
-
 
 
 // // 公司注册产品 -- outside
