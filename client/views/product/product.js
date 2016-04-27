@@ -151,31 +151,6 @@ Template.product.events({
     }
 });
 
-
-Template.registintro.helpers({
-    needNewPage: function() {
-        var params = Router.current().params;
-        console.log(window.location.href.split('/')[3]);
-    }
-})
-
-Template.registintro.events({
-    'click #shopCart': function(event, template) {
-        event.preventDefault();
-        Router.go('/shopCart');
-    },
-    'click .submit': function() {
-        goToAddShopCart();
-    },
-    'click .directBuy': function (event) {
-        event.preventDefault();
-        goToAddShopCart();
-    },
-    'click .submit-box': function(event) {
-        event.preventDefault();
-        Router.go('registservice')
-    }
-})
 // 新产品点击
 Template.dist_agent.events({
     'click .product-detail': function (event) {
