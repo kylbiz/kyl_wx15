@@ -17,9 +17,9 @@
 						<div class="type-title">1、选择类型</div>
 						<div class="box">
 							<ul>
-								<li>特价区</li>
-								<li>郊区</li>
-								<li>市区</li>
+							{{#each $mapped names}}
+	            			<li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+	          				{{/each}}
 							</ul>
 						</div>
 					</div>
