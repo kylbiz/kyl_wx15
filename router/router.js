@@ -70,21 +70,16 @@ Router.route('/buyagent/:productType', {
 		Session.set("Sel_3", '');
 		Session.set("Sel_4", '');
 		Session.set("Pay", 0);
-		return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
+
+		var productType = this.params.productType;
+
+		if (productType == 'finance') {
+			return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
+		} else if (productType == 'registration') {
+			return Meteor.subscribe('products', this.params.productType);
+		}
 	},
 });
-
-//注册公司说明 
-Router.route('/registintro',{
-	name:'registintro',
-})
-
-
-//注册公司购买
-Router.route('/registservice',{
-	name: 'registservice'
-})
-
 
 
 //财务代理套餐介绍页

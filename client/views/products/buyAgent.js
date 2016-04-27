@@ -15,6 +15,12 @@ Template.buyagent.helpers({
           template: templateMap[basicType],
           data: "",
         }
+      },
+      'registration': function () {
+        return {
+          template: 'registservice',
+          data: "",
+        }
       }
     }
     if (handelMap[type]) {
@@ -326,6 +332,13 @@ function getServiceData () {
             }
             return {};
         },
+        registration: function () {
+          return {
+            type: type,
+            name: Session.get('Sel_1'),
+            zone: Session.get('Sel_2'),
+          }
+        }
     };
 
     if (handles.hasOwnProperty(type)) {

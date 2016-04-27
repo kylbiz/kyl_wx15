@@ -69,7 +69,7 @@ Template.product_normal.helpers({
     _desTemplate: function() {
         var type = Router.current().params.productType;
         var dynamicTemplates = {
-            registration: 'dist_reg',
+            registration: 'registintro',
             finance: 'dist_agent',
             bank: 'dist_bank',
             assurance: 'dist_security',
@@ -145,8 +145,9 @@ Template.product.events({
     'click .needNewPage': function (event) {
         event.preventDefault();
         var defaultType = 'base';
+        var productType = Router.current().params.productType;
         var type = Session.get('buyagentParmas') || defaultType;
-        Router.go('buyagent', {productType: 'finance'}, {query: 'type=' + type});
+        Router.go('buyagent', {productType: productType}, {query: 'type=' + type});
     }
 });
 

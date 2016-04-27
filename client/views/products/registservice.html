@@ -1,5 +1,5 @@
 <template name="registservice">
-	
+
 	<div id="regist-main">
 		<div class="top">
 			<div class="title">
@@ -15,11 +15,11 @@
 				<div class="field">
 					<div class="field-content">
 						<div class="type-title">1、选择类型</div>
-						<div class="box">
+						<div class="box" id="name">
 							<ul>
-							{{#each $mapped names}}
-	            			<li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
-	          				{{/each}}
+								{{#each $mapped subTypes}}
+	          			<li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+        				{{/each}}
 							</ul>
 						</div>
 					</div>
@@ -27,13 +27,14 @@
 				<div class="field">
 					<div class="field-content">
 						<div class="type-title">2、选择区域</div>
-						<div class="box">
+						<div class="box" id="zone">
 							<ul>
-								<li>松江</li>
-								<li>金山</li>
+								{{#each $mapped zones}}
+			            <li class="{{#if $first}}selected{{/if}}" value="{{zone}}">{{zone}}</li>
+			          {{/each}}
 							</ul>
 						</div>
-						<p>注意：电商贸易类优先</p>
+						<p>注意：{{notice}}</p>
 					</div>
 				</div>
 			</div>
@@ -42,7 +43,7 @@
 			<div class="buy-box">
 					<ul>
 						<li>
-							<p>财务代理({{typeLabel}})</p>
+							<p>公司注册({{typeLabel}})</p>
 							<span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
 						</li>
 						<li>
@@ -52,7 +53,4 @@
 			</div>
 		</div>
 	</div>
-		
-
-
 </template>
