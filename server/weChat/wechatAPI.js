@@ -124,15 +124,70 @@ Meteor.methods({
 });
 
 function createMenu(callback) {
+  // var menu = {
+  //   "button":[
+  //       {
+  //           "type":"view",
+  //           "name":"开",
+  //           "url":"http://m.kyl.biz"
+  //       },
+  //       {
+  //           "name":"业",
+  //           "sub_button":[
+  //               {
+  //                   "type":"view",
+  //                   "name":"一企查",
+  //                   "url":"http://m.yiqicha.net/"
+  //               }
+  //           ]
+  //       },
+  //       {
+  //           "name": "啦",
+  //           "sub_button": [
+  //             {
+  //               "type": "view",
+  //               "name": "关于我们",
+  //               "url": "http://x.eqxiu.com/s/z5IHQrx7?eqrcode"
+  //             },
+  //             {
+  //               "type": "view",
+  //               "name": "400电话申请",
+  //               "url": "http://form.mikecrm.com/f.php?t=G1PpYj"
+  //             }
+  //           ]
+  //       }
+  //     ]
+  // };
+
   var menu = {
     "button":[
         {
-            "type":"view",
-            "name":"开",
-            "url":"http://m.kyl.biz"
+            "name":"创业服务",
+            "sub_button": [
+              {
+                  "type":"view",
+                  "name":"1元注册",
+                  "url":"http://m.kyl.biz/products/registration"
+              },
+              {
+                  "type":"view",
+                  "name":"79元财代",
+                  "url":"http://m.kyl.biz/products/finance"
+              },
+              {
+                  "type":"view",
+                  "name":"银行开户",
+                  "url":"http://m.kyl.biz/products/bank"
+              },
+              {
+                  "type":"view",
+                  "name":"产品集合",
+                  "url":"http://m.kyl.biz/"
+              },
+            ]
         },
         {
-            "name":"业",
+            "name":"创业工具",
             "sub_button":[
                 {
                     "type":"view",
@@ -142,17 +197,12 @@ function createMenu(callback) {
             ]
         },
         {
-            "name": "啦",
+            "name": "创业加油",
             "sub_button": [
               {
                 "type": "view",
-                "name": "关于我们",
+                "name": "联系我们",
                 "url": "http://x.eqxiu.com/s/z5IHQrx7?eqrcode"
-              },
-              {
-                "type": "view",
-                "name": "400电话申请",
-                "url": "http://form.mikecrm.com/f.php?t=G1PpYj"
               }
             ]
         }
