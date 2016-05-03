@@ -227,6 +227,7 @@ function beforePayHandle(orderInfo) {
 			var order_ret = Orders.update({orderId: orderId}, {
 				$set: {
 					invoice: orderInfo.invoice,
+					host: 'KYLWX',
 					openid: out_trade_no,
 					addressInfo: address
 				}

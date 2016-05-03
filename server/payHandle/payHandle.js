@@ -75,13 +75,14 @@ PayHandle.beforePayHandle = function (orderInfo) {
 
     // 更新订单
     function updateOrder () {
-      var orderInfo = Orders.findOne({orderId: orderId});
-      if (!orderInfo && orderInfo.payed) {
+      var info = Orders.findOne({orderId: orderId});
+      if (!info || info.payed) {
         return false;
       }
 
       var order_ret = Orders.update({orderId: orderId}, {
         $set: {
+          host: orderInfo.host,
           invoice: orderInfo.invoice,
           openid: out_trade_no,
           addressInfo: address

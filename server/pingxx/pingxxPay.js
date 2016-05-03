@@ -11,6 +11,7 @@ Meteor.methods({
       throw new Meteor.Error("支付渠道非法", "错误: 支付信息非法");
     }
 
+    orderInfo.host = 'KYLWAP';
     var paylogInfo = PayHandle.beforePayHandle(orderInfo);
     var productName = getOrderDes(paylogInfo);
     var client_ip = this.connection.clientAddress;

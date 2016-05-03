@@ -31,7 +31,6 @@ Template.trade.helpers({
         });
         Session.set('allPayment', allPayment);
         Session.set('shopcartIdList', shopcartIdList);
-
         return payList;
     },
 
