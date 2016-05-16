@@ -80,8 +80,8 @@ Template.financeBase.helpers({
   },
   opts: function () {
     if (!Session.get('Sel_1')) {
-        var info = FinanceAgent.find({}).fetch()[0] || {};
-        Session.set('Sel_1', info.name);
+        var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
+        Session.set('Sel_1', firstInfo.name);
     }
     var name = Session.get("Sel_1");
     var info = FinanceAgent.findOne({name: name});
@@ -170,13 +170,18 @@ Template.financeSpecial.helpers({
   },
   opts: function () {
     if (!Session.get('Sel_1')) {
-      var info = FinanceAgent.find({}).fetch()[0] || {};
-      Session.set('Sel_1', info.name);
+      var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
+      Session.set('Sel_1', firstInfo.name);
     }
 
     var name = Session.get("Sel_1");
     var info = FinanceAgent.findOne({name: name});
     var opts = info.opts;
+
+if (!info || !info.opts || !info.opts.service) {
+  console.log("info", info);
+}
+
     Session.set('Sel_2', opts.service.items[0].name);
     if (opts.area) {
       Session.set('Sel_3', opts.area.items[0].name);

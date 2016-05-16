@@ -146,7 +146,7 @@ function getProductInfo() {
     productVersion: {
        name: 'productVersion',
       'CompanyRegist': 2.5,
-      'FinanceAgent': 2.5,
+      'FinanceAgent': 2.7,
       'SpecialProduct': 1,
       'BankLists': 1,
     },
@@ -284,14 +284,7 @@ function getProductInfo() {
                 }
               },
               {
-                label: '购买税控设备', name: '购买税控设备', unit:'元/次',
-                payment: {
-                  downtown: 100,
-                  suburbs: 200,
-                }
-              },
-              {
-                label: '税控系统开通', name: '税控系统开通', unit:'元/次',
+                label: '税控设备', name: '税控设备', unit:'元/次',
                 payment: {
                   downtown: 100,
                   suburbs: 200,
@@ -346,6 +339,13 @@ function getProductInfo() {
                   suburbs: 500,
                 }
               },
+              {
+                label: '两码合一', name: '两码合一', unit:'元/次',
+                payment: {
+                  downtown: 200,
+                  suburbs: 200,
+                }
+              }
             ]
           },
           area: {
