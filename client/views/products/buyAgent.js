@@ -170,7 +170,7 @@ Template.financeSpecial.helpers({
   },
   opts: function () {
     if (!Session.get('Sel_1')) {
-      var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
+      var firstInfo = FinanceAgent.find({"basicType.name": Router.current().params.query.type}).fetch()[0] || {};
       Session.set('Sel_1', firstInfo.name || "");
     }
 
