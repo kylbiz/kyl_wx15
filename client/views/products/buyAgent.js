@@ -84,7 +84,7 @@ Template.financeBase.helpers({
         Session.set('Sel_1', firstInfo.name || "");
     }
     var name = Session.get("Sel_1");
-    var info = FinanceAgent.findOne({name: name});
+    var info = FinanceAgent.findOne({name: name}) || {};
     var opts = info.opts || false;
     if (opts) {
         Session.set('Sel_2', opts.annualIncome.items[0].name);
@@ -147,7 +147,7 @@ Template.financeSpecial.onRendered(function () {
     // console.log('name', name, 'service', service, 'area', area, 'num', num);
     var payment = 0
     if (name && service && num) {
-      var info = FinanceAgent.findOne({name: name});
+      var info = FinanceAgent.findOne({name: name}) || {};
       if (info.opts.area && area) {
         var paymentAll = kylUtil.getValueFromList(
           info.opts.service.items, 'name', service, 'payment') || {};
@@ -175,7 +175,7 @@ Template.financeSpecial.helpers({
     }
 
     var name = Session.get("Sel_1");
-    var info = FinanceAgent.findOne({name: name});
+    var info = FinanceAgent.findOne({name: name}) || {};
     var opts = info.opts;
 
 if (!info || !info.opts || !info.opts.service) {
