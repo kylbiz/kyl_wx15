@@ -1,10 +1,22 @@
+var subObj = null;
+
 // 产品说明页
 Template.product.onRendered(function(){
+    this.autorun(function () {
+        subObj = Meteor.subscribe('products', Router.current().params.productType);
+    });
+
     $(".dist-list-box .list").click(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
 
     Session.set('buyagentParmas', "");
+});
+
+Template.product.onDestroyed(function () {
+    if (subObj) {
+        subObj.stop();
+    }
 });
 
 Template.product.helpers({

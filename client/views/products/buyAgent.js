@@ -81,7 +81,7 @@ Template.financeBase.helpers({
   opts: function () {
     if (!Session.get('Sel_1')) {
         var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
-        Session.set('Sel_1', firstInfo.name);
+        Session.set('Sel_1', firstInfo.name || "");
     }
     var name = Session.get("Sel_1");
     var info = FinanceAgent.findOne({name: name});
@@ -171,7 +171,7 @@ Template.financeSpecial.helpers({
   opts: function () {
     if (!Session.get('Sel_1')) {
       var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
-      Session.set('Sel_1', firstInfo.name);
+      Session.set('Sel_1', firstInfo.name || "");
     }
 
     var name = Session.get("Sel_1");
@@ -180,6 +180,7 @@ Template.financeSpecial.helpers({
 
 if (!info || !info.opts || !info.opts.service) {
   console.log("info", info);
+    return {};
 }
 
     Session.set('Sel_2', opts.service.items[0].name);
