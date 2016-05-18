@@ -12,12 +12,20 @@
  * 
  * Released on: June 14, 2015
  */
+
+.box-shadow{
+box-shadow: 0px 5px 5px #d0d1d1;
+-moz-box-shadow: 0px 5px 5px #d0d1d1;
+-webkit-box-shadow: 0px 5px 5px #d0d1d1;
+}
+ 
 .swiper-container {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   /* Fix of Webkit flickering */
   z-index: 1;
+  .box-shadow;
 }
 .swiper-container-no-flexbox .swiper-slide {
   float: left;
