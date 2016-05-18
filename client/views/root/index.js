@@ -2,7 +2,6 @@ Template.index.onCreated(function () {
     if (Meteor.userId()) {
         Meteor.subscribe('shopcart');
     }
-
 });
 
 
@@ -38,6 +37,22 @@ Template.index.onRendered(function(){
 //  $('#notice').on('show.bs.modal',function(event) {
 //  });
 
+// //下拉功能实现
+//   var range = 50;             //距下边界长度/单位px
+//   var elemt = 500;           //插入元素高度/单位px
+//   var maxnum = 1;            //设置加载最多次数
+//   var num = 0;
+//   $(window).scroll(function(){
+//       var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+//       var dbHiht = $("body").height();          //页面(约等于窗体)高度/单位px
+//       var main = $(".index");                         //主体元素
+//       var mainHiht = main.height();               //主体元素高度/单位px
+//       if((srollPos + dbHiht) >= (mainHiht-range) && num != maxnum){
+//           main.append("<div style='height:"+elemt+"' >hello world"+srollPos+"---"+num+"</div>");
+//           num++;
+//       }
+//   });
+
 });
 
 
@@ -45,7 +60,7 @@ Template.index.helpers({
     bannerImages: function () {
         // 配置banner图
         var bannerImages = [{
-            source: '/images/event/banner1.png',
+            source: '/images/event/banner2.png',
             link: 'products/special?subtype=partnership'
         }];
         return bannerImages;
