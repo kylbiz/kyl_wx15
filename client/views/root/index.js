@@ -61,7 +61,7 @@ Template.index.helpers({
         // 配置banner图
         var bannerImages = [{
             source: '/images/event/banner2.png',
-            link: 'products/special?subtype=partnership'
+            // link: 'products/special?subtype=partnership'
         }];
         return bannerImages;
     },
