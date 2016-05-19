@@ -148,7 +148,7 @@ function getProductInfo() {
       'CompanyRegist': 2.5,
       'FinanceAgent': 2.7,
       'SpecialProduct': 1,
-      'BankLists': 1,
+      'BankLists': 1.1,
     },
 
     // 公司注册
@@ -431,10 +431,10 @@ function getProductInfo() {
 
     // 银行开户
     bankLists: [
-      {bank: '中国银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '招商银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '上海银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '工商银行', payment: 500, baseService: '银行开户许可证明'},
+      {bank: '中国银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '招商银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '上海银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '工商银行', payment: 300, baseService: '银行开户许可证明'},
       {bank: '建设银行', payment: 300, baseService: '银行开户许可证明'},
     ],
 
