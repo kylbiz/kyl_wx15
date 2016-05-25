@@ -145,7 +145,7 @@ function getProductInfo() {
   return {
     productVersion: {
        name: 'productVersion',
-      'CompanyRegist': 2.5,
+      'CompanyRegist': 2.6,
       'FinanceAgent': 2.7,
       'SpecialProduct': 1,
       'BankLists': 1.1,
@@ -181,6 +181,7 @@ function getProductInfo() {
           {zone: '虹口', payment: 1000, message: '不接受信息咨询、金融、投资类；需要办理行业许可证请另外咨询'},
           {zone: '杨浦', payment: 1000, message: '仅限科技型，需要办理行业许可证请另外咨询'},
           {zone: '长宁', payment: 2000, message: '不接受贸易、金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '徐汇', payment: 3000, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '浦东新区', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
