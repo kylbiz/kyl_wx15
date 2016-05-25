@@ -9,7 +9,9 @@ Template.product.onRendered(function(){
     $(".dist-list-box .list").click(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
-
+    $(".dist-info-box .list").click(function(){
+      $(this).closest('.list-container').toggleClass("open");
+    });
     Session.set('buyagentParmas', "");
 });
 
