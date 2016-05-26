@@ -96,6 +96,7 @@
 
 .product-content:last-child{
 	border-bottom-width: 0;
+	margin-bottom: 16px;
 }
 
 .product-intro{
