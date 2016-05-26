@@ -80,11 +80,11 @@ Template.financeBase.helpers({
   },
   opts: function () {
     if (!Session.get('Sel_1')) {
-        var info = FinanceAgent.find({}).fetch()[0] || {};
-        Session.set('Sel_1', info.name);
+        var firstInfo = FinanceAgent.find({}).fetch()[0] || {};
+        Session.set('Sel_1', firstInfo.name || "");
     }
     var name = Session.get("Sel_1");
-    var info = FinanceAgent.findOne({name: name});
+    var info = FinanceAgent.findOne({name: name}) || {};
     var opts = info.opts || false;
     if (opts) {
         Session.set('Sel_2', opts.annualIncome.items[0].name);
@@ -147,7 +147,7 @@ Template.financeSpecial.onRendered(function () {
     // console.log('name', name, 'service', service, 'area', area, 'num', num);
     var payment = 0
     if (name && service && num) {
-      var info = FinanceAgent.findOne({name: name});
+      var info = FinanceAgent.findOne({name: name}) || {};
       if (info.opts.area && area) {
         var paymentAll = kylUtil.getValueFromList(
           info.opts.service.items, 'name', service, 'payment') || {};
@@ -170,13 +170,19 @@ Template.financeSpecial.helpers({
   },
   opts: function () {
     if (!Session.get('Sel_1')) {
-      var info = FinanceAgent.find({}).fetch()[0] || {};
-      Session.set('Sel_1', info.name);
+      var firstInfo = FinanceAgent.find({"basicType.name": Router.current().params.query.type}).fetch()[0] || {};
+      Session.set('Sel_1', firstInfo.name || "");
     }
 
     var name = Session.get("Sel_1");
-    var info = FinanceAgent.findOne({name: name});
+    var info = FinanceAgent.findOne({name: name}) || {};
     var opts = info.opts;
+
+if (!info || !info.opts || !info.opts.service) {
+  console.log("info", info);
+    return {};
+}
+
     Session.set('Sel_2', opts.service.items[0].name);
     if (opts.area) {
       Session.set('Sel_3', opts.area.items[0].name);

@@ -57,7 +57,8 @@ Router.route('/', {
 Router.route('/products/:productType', {
 	name: 'product',
 	waitOn: function () {
-		return Meteor.subscribe('products', this.params.productType);
+		// 不再放到router中 原因: 如果不使用stop(), 会影响到下面产品购买选项页数据, 故放到template的autorun()中这样meteor自己会处理subscribe的stop
+		// return Meteor.subscribe('products', this.params.productType);
 	}
 });
 

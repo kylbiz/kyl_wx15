@@ -145,10 +145,10 @@ function getProductInfo() {
   return {
     productVersion: {
        name: 'productVersion',
-      'CompanyRegist': 2.5,
-      'FinanceAgent': 2.5,
+      'CompanyRegist': 2.6,
+      'FinanceAgent': 2.7,
       'SpecialProduct': 1,
-      'BankLists': 1,
+      'BankLists': 1.1,
     },
 
     // 公司注册
@@ -181,6 +181,7 @@ function getProductInfo() {
           {zone: '虹口', payment: 1000, message: '不接受信息咨询、金融、投资类；需要办理行业许可证请另外咨询'},
           {zone: '杨浦', payment: 1000, message: '仅限科技型，需要办理行业许可证请另外咨询'},
           {zone: '长宁', payment: 2000, message: '不接受贸易、金融、投资类，需要办理行业许可证请另外咨询'},
+          {zone: '徐汇', payment: 3000, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
           {zone: '浦东新区', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
@@ -284,14 +285,7 @@ function getProductInfo() {
                 }
               },
               {
-                label: '购买税控设备', name: '购买税控设备', unit:'元/次',
-                payment: {
-                  downtown: 100,
-                  suburbs: 200,
-                }
-              },
-              {
-                label: '税控系统开通', name: '税控系统开通', unit:'元/次',
+                label: '税控设备', name: '税控设备', unit:'元/次',
                 payment: {
                   downtown: 100,
                   suburbs: 200,
@@ -346,6 +340,13 @@ function getProductInfo() {
                   suburbs: 500,
                 }
               },
+              {
+                label: '两码合一', name: '两码合一', unit:'元/次',
+                payment: {
+                  downtown: 200,
+                  suburbs: 200,
+                }
+              }
             ]
           },
           area: {
@@ -431,10 +432,10 @@ function getProductInfo() {
 
     // 银行开户
     bankLists: [
-      {bank: '中国银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '招商银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '上海银行', payment: 500, baseService: '银行开户许可证明'},
-      {bank: '工商银行', payment: 500, baseService: '银行开户许可证明'},
+      {bank: '中国银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '招商银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '上海银行', payment: 300, baseService: '银行开户许可证明'},
+      {bank: '工商银行', payment: 300, baseService: '银行开户许可证明'},
       {bank: '建设银行', payment: 300, baseService: '银行开户许可证明'},
     ],
 

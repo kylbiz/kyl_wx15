@@ -73,3 +73,4 @@ Router.onBeforeAction(function () {
 			this.render('login', {data: {redirectUrl: encodeURIComponent(this.originalUrl)}});
 	}
 }, {only: needAccountRouters});
+

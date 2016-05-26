@@ -220,7 +220,8 @@ Template.bank_board.helpers({
     },
     payment: function () {
         if (!Session.get('Sel_1')) {
-            var bank = BankLists.find({}).fetch()[0].bank;
+            var bankInfo = BankLists.find({}).fetch()[0] || {}
+            var bank = bankInfo.bank || "";
             Session.set('Sel_1', bank);
         }
         var bankName = Session.get('Sel_1');

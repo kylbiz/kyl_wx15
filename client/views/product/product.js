@@ -1,5 +1,11 @@
+var subObj = null;
+
 // 产品说明页
 Template.product.onRendered(function(){
+    this.autorun(function () {
+        subObj = Meteor.subscribe('products', Router.current().params.productType);
+    });
+
     $(".dist-list-box .list").click(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
@@ -7,6 +13,13 @@ Template.product.onRendered(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
     Session.set('buyagentParmas', "");
+});
+
+Template.product.onDestroyed(function () {
+    if (subObj) {
+        console.log("prodcut destroy", subObj);
+        subObj.stop();
+    }
 });
 
 Template.product.helpers({
@@ -87,7 +100,7 @@ Template.product_normal.helpers({
     },
     needNewPage: function () {
         var type = Router.current().params.productType;
-        console.log(Router.current().params);
+        // console.log(Router.current().params);
         return (type == 'finance' || type == 'registration');
     },
 
@@ -170,7 +183,6 @@ function goToAddShopCart() {
         Router.go('login', {}, {query: 'redirectUrl=' + encodeURIComponent(Router.current().url) });
         return;
     }
-
     Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
         if (err) {
             console.log('shopcartAdd err', err);
@@ -226,7 +238,7 @@ function getServiceData () {
 
     if (handles.hasOwnProperty(type)) {
         var data = handles[type]();
-        // data.host = kylUtil.getBrowserHost();
+        data.host = kylUtil.getBrowserHost();
         return data;
     } else {
         throw new Meteor.Error("内部错误", "非法数据");
