@@ -202,6 +202,7 @@ function beforePayHandle(orderInfo) {
 			info.userConfirmed = false;
 			info.createTime = new Date();
 			info.invoice = orderInfo.invoice;
+			info.host = 'KYLWX';z
 			info.openid = out_trade_no;
 			info.cartId = shopcartId;
 			info.orderId = orderId;
@@ -233,7 +234,7 @@ function beforePayHandle(orderInfo) {
 				}
 			});
 			if (!order_ret) {
-				console.log("update pay order fail");
+				console.log("update pay order fail orderId:", orderId);
 				return false;
 			} else {
 				console.log("update pay order ok", order_ret);
@@ -246,10 +247,10 @@ function beforePayHandle(orderInfo) {
 		function updateShopCart() {
 			var shopcart_ret = ShopCart.update({_id: shopcartId}, {$set: {ordered: orderId}});
 			if (!shopcart_ret) {
-				console.log('update ShopCart fail');
+				console.log('update ShopCart fail', shopcartId);
 				return false;
 			} else {
-				console.log('update shopcart ok');
+				console.log('update shopcart ok', shopcartId);
 			}
 
 			return true;
@@ -330,7 +331,7 @@ function paySuccessHandle(message) {
 			}
 		}, {multi: true});
 		if (!ret) {
-			console.log('update paylog fail');
+			console.log('update paylog fail', openid);
 			return false;
 		} else {
 			console.log("update paylog ok", ret);
@@ -362,7 +363,7 @@ function paySuccessHandle(message) {
 				}
 			});
 			if (!ret) {
-				console.log("update ShopCart fail");
+				console.log("update ShopCart fail", openid);
 				return false;
 			} else {
 				console.log("update ShopCart Ok", ret);
@@ -382,7 +383,7 @@ function paySuccessHandle(message) {
 			}
 		}, {multi: true});
 		if (!ret) {
-			console.log('update order fail');
+			console.log('update order fail', openid);
 			return false;
 		} else {
 			console.log('update order ok', ret);

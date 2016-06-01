@@ -53,9 +53,11 @@ Template.trade.events({
 
         var shopcartIdList = retInfo.result.shopcartIdList;
         var addressId = retInfo.result.addressId;
-        weChatPay(shopcartIdList, addressId);
+
+        var elem = $(event.currentTarget);
+        weChatPay(shopcartIdList, addressId, elem);
     },
-    'click #otherbuy': function () {
+    'click #otherbuy': function (event) {
         var retInfo = getProductInfo();
         if (retInfo.error) {
             kylUtil.alert(retInfo.error);
@@ -64,7 +66,9 @@ Template.trade.events({
 
         var shopcartIdList = retInfo.result.shopcartIdList;
         var addressId = retInfo.result.addressId;
-        pingxxPay(shopcartIdList, addressId, 'alipay_wap');
+
+        var elem = $(event.currentTarget);
+        pingxxPay(shopcartIdList, addressId, 'alipay_wap', elem);
     },
     'click #setAddress':function () {
         if( UserAddress.find({}).count() ) {
@@ -110,13 +114,16 @@ function getProductInfo() {
     }
 }
 
-function weChatPay(shopcartIdList, addressId) {
+function weChatPay(shopcartIdList, addressId, elem) {
+    // elem
+    elem.prop('disabled', true);
     Meteor.call('getWechatPayArgs', {
                 shopcartIdList: shopcartIdList,
                 invoice: Session.get('invoice') || false,
                 addressId: addressId,
                 // wechatOpenId: Session.get("WeChatUser")
         }, function (error, result) {
+          elem.prop('disabled', false);
           if (error) {
             console.log("error", error);
             kylUtil.alert("警告", error.reason);
@@ -142,7 +149,8 @@ function weChatPay(shopcartIdList, addressId) {
 }
 
 
-function pingxxPay(shopcartIdList, addressId, channel) {
+function pingxxPay(shopcartIdList, addressId, channel, elem) {
+    elem.prop('disabled', true);
     Meteor.call('getPingxxPayArgs', {
         shopcartIdList: shopcartIdList,
         invoice: Session.get('invoice') || false,
@@ -151,6 +159,7 @@ function pingxxPay(shopcartIdList, addressId, channel) {
     }, {
         channel: channel
     }, function (error, result) {
+        elem.prop('disabled', false);
         if (error) {
             console.log("error", error);
             kylUtil.alert("警告", error.reason);
