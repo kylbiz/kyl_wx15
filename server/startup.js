@@ -145,7 +145,7 @@ function getProductInfo() {
   return {
     productVersion: {
        name: 'productVersion',
-      'CompanyRegist': 2.6,
+      'CompanyRegist': 2.7,
       'FinanceAgent': 2.7,
       'SpecialProduct': 1,
       'BankLists': 1.1,
@@ -185,6 +185,14 @@ function getProductInfo() {
           {zone: '浦东新区', payment: 1500, message: '不接受金融、投资类，需要办理行业许可证请另外咨询'},
         ]
       },
+      {
+        name: 'foreign',
+        label: '外资',
+        services: [
+          {zone: '金山', payment: 6000, message: '外资为港澳台地区，注资需以人民币或美金折算；可独资；可合资；中方必须以公司入股'},
+          {zone: '奉贤', payment: 6000, message: '外资为欧美地区中方必须以公司入股'},
+        ]
+      }
       // {
       //   name: 'fta',
       //   label: '自贸区',
