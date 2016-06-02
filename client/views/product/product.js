@@ -101,7 +101,7 @@ Template.product_normal.helpers({
     needNewPage: function () {
         var type = Router.current().params.productType;
         // console.log(Router.current().params);
-        return (type == 'finance' || type == 'registration');
+        return (type == 'finance');
     },
 
     // 产品选项信息
