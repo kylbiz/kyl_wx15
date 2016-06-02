@@ -54,29 +54,32 @@
 					padding-bottom: 12px;
 					.type-title {
 						margin: 16px 0;
+						padding-top: 8px;
 					}
 					.box {
-						li {
-							display: inline-block;
-							border: 1px solid #d7d7d7;
-							border-radius: 4px;
-							width: 90px;
-							padding: 5px 0;
-							text-align: center;
-							margin-right: 4%;
-							margin-bottom: 3%;
-							@media screen and (max-width: 320px) {
-								margin-right: 0.5%;
+						ul{
+							li {
+								display: inline-block;
+								border: 1px solid #d7d7d7;
+								border-radius: 4px;
+								width: 90px;
+								padding: 5px 0;
+								text-align: center;
+								margin-right: 4%;
+								margin-bottom: 3%;
+								@media screen and (max-width: 320px) {
+									margin-right: 0.5%;
+								}
 							}
-						}
-						li.selected {
-			        .toggle-color();
-			        position: relative;
-			        z-index: 20;
-			      }
-			      li:hover {
-			        .toggle-color();
-			      }
+							li.selected {
+							        .toggle-color();
+							        position: relative;
+							        z-index: 20;
+				    				  }
+						      li:hover {
+						        .toggle-color();
+						      }
+		  					}
 					}
 					p {
 						margin-top: 20px;
