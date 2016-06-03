@@ -202,7 +202,7 @@ function beforePayHandle(orderInfo) {
 			info.userConfirmed = false;
 			info.createTime = new Date();
 			info.invoice = orderInfo.invoice;
-			info.host = 'KYLWX';z
+			info.host = 'KYLWX';
 			info.openid = out_trade_no;
 			info.cartId = shopcartId;
 			info.orderId = orderId;
