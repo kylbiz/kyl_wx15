@@ -9,9 +9,9 @@ Template.product.onRendered(function(){
     $(".dist-list-box .list").click(function(){
       $(this).closest('.list-container').toggleClass("open");
     });
-    $(".dist-info-box .list").click(function(){
-      $(this).closest('.list-container').toggleClass("open");
-    });
+    // $(".dist-info-box .list").click(function(){
+    //   $(this).closest('.list-container').toggleClass("open");
+    // });
     Session.set('buyagentParmas', "");
 });
 
@@ -163,6 +163,35 @@ Template.product.events({
         var productType = Router.current().params.productType;
         var type = Session.get('buyagentParmas') || defaultType;
         Router.go('buyagent', {productType: productType}, {query: 'type=' + type});
+    }
+});
+
+
+// 银行开户
+Template.dist_bank.onRendered(function () {
+    this.autorun(function () {
+        Meteor.subscribe("getBankDes");
+    });
+});
+
+
+Template.dist_bank.helpers({
+    bankDes: function () {
+        return BankDes.find({}).fetch();
+    },
+    getStars: function (star) {
+        return [star, star, star, star, star];
+    },
+    needStar: function (star, indexNow) {
+        // console.log("needStar", star, indexNow);
+        return ( Number(star) > Number(indexNow) );
+    }
+});
+
+
+Template.dist_bank.events({
+    'click .dist-info-box .list': function (event) {
+        $(event.currentTarget).closest('.list-container').toggleClass("open");
     }
 });
 

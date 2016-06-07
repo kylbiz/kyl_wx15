@@ -91,6 +91,11 @@ Meteor.publish('companyIndustry', function () {
 	return [BusinessTypeLists.find({}), Business.find({}), Business1.find({})];
 });
 
+// 银行开户描述
+Meteor.publish('getBankDes', function () {
+	return BankDes.find({});
+});
+
 // 公司所属大行业
 // Meteor.publish('compTypBase', function () {
 // 	return BusinessTypeLists.find({});
