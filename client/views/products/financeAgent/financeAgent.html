@@ -1,0 +1,241 @@
+<!-- 财代基础 -->
+<template name="financeBase">
+  <div id="content">
+    <div class="des">
+      <div class="icon">
+        <img src="/images/index/index_icon_2new.png" alt="">
+      </div>
+      <div class="tag">
+        <p>财务代理套餐</p>
+        <p>¥ {{monthPayLabel}}元/月</p>
+      </div>
+    </div>
+
+    <div class="dist-content">
+      <div class="piece">
+        <div class="content">
+        <div class="key">1、选择套餐<a href="/productdes/financebase"><img src="/images/why.png" alt=""></a></div>
+        <div class="field" id="name">
+          <ul>
+            {{#each $mapped names}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        </div><br>
+        {{#if isServer 'common'}}
+          <p>根据年收入与凭证量的不同分为179、379、579三种套餐</p>
+         {{/if}}
+      </div>
+
+      {{#if opts}}
+        <div class="piece">
+          <div class="content">
+          <div class="key">2、选择年收入</div>
+          <div class="field" id="annualIncome">
+            <ul>
+              {{#each $mapped opts.annualIncome.items}}
+                <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          </div>
+        </div>
+        <div class="piece">
+          <div class="content">
+          <div class="key">3、选择凭证量</div>
+          <div class="field" id="certiNum">
+            <ul>
+              {{#each $mapped opts.certiNum.items}}
+                <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          </div>
+        </div>
+        <div class="piece">
+          <div class="content">
+          <div class="key">4、选择时间</div>
+          <div class="field" id="period">
+            <ul>
+              {{#each $mapped period.items}}
+                <li class="{{#if $first}}selected{{/if}}" value="{{value}}">{{label}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if isServer 'zero'}}
+      <div class="piece">
+        <div class="content">
+        <div class="key">2、选择时间</div>
+        <div class="field" id="period">
+          <ul>
+            {{#each $mapped period.items}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{value}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        </div>
+      </div>
+      <div class="piece">
+        <div class="content">
+          <div class="key">3、套餐解释</div>
+          <div class="field">
+            <span>新成立企业，无任何收入、人员工资及费用。</span>
+            <br>
+            <span>做账无任何票据，仅需要按期纳税0申报。</span>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
+    </div>
+
+  </div>
+  <div class="buy-box">
+      <ul>
+        <li>
+          <p>财务代理({{typeLabel}})</p>
+          <span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
+        </li>
+        <li>
+          <button class="btn submit">立即购买</button>
+        </li>
+      </ul>
+    </div>
+</template>
+
+<!-- 财代特别 -->
+<template name="financeSpecial">
+  <div id="xb-content">
+    <div class="des">
+      <div class="icon">
+        <img src="/images/index/index_icon_2new.png" alt="">
+      </div>
+      <div class="tag">
+        <p>小白特殊套餐</p>
+        <p>¥ {{singlePayLabel}}{{unitLabel}}</p>
+      </div>
+    </div>
+
+    <div class="dist-content">
+      <div class="piece">
+        <div class="content">
+        <div class="key">1、选择服务</div>
+        <div class="field" id="name">
+          <ul id="server-type">
+            {{#each $mapped names}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        </div>
+      </div>
+      <div class="piece">
+        <div class="content">
+        <div class="key">2、选择服务项目<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
+        <div class="field" id="service">
+          <ul>
+            {{#each $mapped opts.service.items}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        <br><br>
+        </div>
+        {{#if message}}
+          <br>
+          <p>{{message}}</p>
+        {{/if}}
+      </div>
+
+      {{#if opts.area}}
+        <div class="piece">
+          <div class="content">
+          <div class="key">3、选择区域<a href="/productdes/{{serviceDes}}"><img src="/images/why.png" alt=""></a></div>
+          <div class="field" id="area">
+            <ul>
+              {{#each $mapped opts.area.items}}
+                <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="piece">
+        <div class="content">
+        <div class="key">4、选择次数</div>
+        <div class="field" id="num">
+          <input type="number" value="1" step="1" min="1" />
+        </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="clearfix"></div>
+  <div class="buy-box2">
+    <ul>
+      <li>
+        <p>小白特殊套餐({{typeLabel}})</p>
+        <span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
+      </li>
+      <li>
+        <button class="btn submit">立即购买</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<!-- 财代自定义 -->
+<template name="financeCustomProduct">
+  <div id="xbdz-content">
+    <div class="des">
+      <div class="icon">
+        <img src="/images/index/index_icon_2new.png" alt="">
+      </div>
+      <div class="tag">
+        <p>小白定制服务</p>
+        <p>¥ 2000元起</p>
+      </div>
+    </div>
+
+    <div class="dist-content">
+      <div class="piece">
+        <div class="content">
+        <div class="key">1、选择服务</div>
+        <div class="field" id="service">
+          <ul>
+            {{#each $mapped opts.service.items}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        </div>
+        {{#if message}}
+          <br>
+          <p>{{message}}</p>
+        {{/if}}
+      </div>
+    </div>
+
+
+  </div>
+  <div class="buy-box">
+    <ul>
+      <li>
+        <p>小白定制服务</p>
+        <span style="color: #999999">应付金额：</span><span id="price">无</span>
+      </li>
+      <li>
+        <button class="btn">立即咨询</button>
+      </li>
+    </ul>
+  </div>
+</template>
