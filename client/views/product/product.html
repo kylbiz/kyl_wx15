@@ -1317,7 +1317,7 @@
 <template name="dist_permit">
   <div class="section">
     <div class="ui-title">
-      <span class="border-pink"></span>服务说明(食品经营许可证)
+      <span class="border-pink"></span>服务说明({{foodInfo.label}})
     </div>
     <div class="ui-info-register pink">
       <div>
@@ -1338,24 +1338,36 @@
     <div class="ui-detail">
       <div class="dist-detail-box">
         <ul>
-          <li><div class="table-cell">奉贤</div></li>
-          <li><div class="table-cell">临港</div></li>
-          <li><div class="table-cell">宝山</div></li>
+          {{#each foodInfo.services}}
+            <li><div class="table-cell">{{zone}}</div></li>
+          {{/each}}
+        </ul>
+
+        <ul>
+          {{#each foodInfo.services}}
+            <li><div class="table-cell">{{message}}</div></li>
+          {{/each}}
+
+          <!-- <li><div class="table-cell">许可证办理地址和注册地址需在同一地区，该证有效期1年</div></li> -->
+          <!-- <li><div class="table-cell">许可证办理地址和注册地址需在同一地区</div></li> -->
+          <!-- <li><div class="table-cell">许可证办理地址和注册地址需在同一地区，该证有效期3年</div></li> -->
         </ul>
         <ul>
-          <li><div class="table-cell">许可证办理地址和注册地址需在同一地区，该证有效期1年</div></li>
-          <li><div class="table-cell">许可证办理地址和注册地址需在同一地区</div></li>
-          <li><div class="table-cell">许可证办理地址和注册地址需在同一地区，该证有效期3年</div></li>
+          {{#each foodInfo.services}}
+            <li><div class="table-cell">{{payment}}元</div></li>
+          {{/each}}
+          <!-- <li><div class="table-cell">5000元</div></li> -->
+          <!-- <li><div class="table-cell">8000元</div></li> -->
+          <!-- <li><div class="table-cell">5000元</div></li> -->
         </ul>
         <ul>
-          <li><div class="table-cell">5000元</div></li>
-          <li><div class="table-cell">8000元</div></li>
-          <li><div class="table-cell">5000元</div></li>
-        </ul>
-        <ul>
-          <li><div class="table-cell">2个月</div></li>
-          <li><div class="table-cell">2个月</div></li>
-          <li><div class="table-cell">2个月</div></li>
+          {{#each foodInfo.services}}
+            <li><div class="table-cell">{{timeNeed}}</div></li>
+          {{/each}}
+
+          <!-- <li><div class="table-cell">2个月</div></li> -->
+          <!-- <li><div class="table-cell">2个月</div></li> -->
+          <!-- <li><div class="table-cell">2个月</div></li> -->
         </ul>
       </div>
       <div class="annotation">
@@ -1364,7 +1376,7 @@
     </div>
 
     <div class="ui-title">
-      <span class="border-pink"></span>服务说明(进出口权证)
+      <span class="border-pink"></span>服务说明({{exportImportInfo.label}})
     </div>
 
     <div class="ui-detail">
@@ -1378,14 +1390,14 @@
         </ul>
         <ul>
           <li>
-            <div class="table-cell">客户需要再自费1400元，电子口岸卡、信息录入费等官方费用海关收取</div>
+            <div class="table-cell">{{exportImportInfo.message}}</div>
           </li>
         </ul>
         <ul>
-          <li><div class="table-cell">3000元</div></li>
+          <li><div class="table-cell">{{exportImportInfo.payment}}元</div></li>
         </ul>
         <ul>
-          <li><div class="table-cell">1个月</div></li>
+          <li><div class="table-cell">{{exportImportInfo.timeNeed}}</div></li>
         </ul>
       </div>
       <div class="annotation">

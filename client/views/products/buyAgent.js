@@ -178,10 +178,10 @@ Template.financeSpecial.helpers({
     var info = FinanceAgent.findOne({name: name}) || {};
     var opts = info.opts;
 
-if (!info || !info.opts || !info.opts.service) {
-  console.log("info", info);
-    return {};
-}
+    if (!info || !info.opts || !info.opts.service) {
+      console.log("info", info);
+        return {};
+    }
 
     Session.set('Sel_2', opts.service.items[0].name);
     if (opts.area) {

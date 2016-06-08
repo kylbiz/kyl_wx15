@@ -106,11 +106,15 @@ function getSupportInfo() {
 // 产品初始化
 function productInit() {
   var retInfo = getProductInfo();
-  productVersion = retInfo.productVersion;
-  companyRegist = retInfo.companyRegist;
-  financeAgent = retInfo.financeAgent;
-  specialProduct = retInfo.specialProduct;
-  bankLists = retInfo.bankLists;
+  var productVersion = retInfo.productVersion;
+  var companyRegist = retInfo.companyRegist;
+  var financeAgent = retInfo.financeAgent;
+  var specialProduct = retInfo.specialProduct;
+  var bankLists = retInfo.bankLists;
+  var permitProduct = retInfo.permitProduct;
+  var companyChange = retInfo.companyChange;
+
+
 
   var productVerSaved = WebSiteInfoMobile.findOne({name: 'productVersion'});
   if (!productVerSaved) {
@@ -120,6 +124,8 @@ function productInit() {
       FinanceAgent: 0,
       SpecialProduct: 0,
       BankLists: 0,
+      PermitProduct: 0,
+      CompanyChange: 0
     };
     WebSiteInfoMobile.insert(productVerSaved);
   }
@@ -149,6 +155,21 @@ function productInit() {
     BankLists.remove({});
     bankLists.forEach(function (info) {
       BankLists.insert(info);
+    });
+  }
+
+  if (productVerSaved.PermitProduct <= productVersion.PermitProduct) {
+    PermitProduct.remove({});
+    permitProduct.forEach(function (info) {
+      PermitProduct.insert(info);
+    });
+  }
+
+  if (productVerSaved.CompanyChange <= productVersion.CompanyChange) {
+    CompanyChange.remove({});
+    console.log("companyChange insert");
+    companyChange.forEach(function (info) {
+      CompanyChange.insert(info);
     });
   }
 
@@ -475,18 +496,22 @@ function getProductInfo() {
       {
         name: '食品流通许可证',
         label: '食品流通许可证',
+        type: 'food',
         services: [
-          {zone: '奉贤', payment: 5000, message: '许可证办理地址和注册地址需在同一地区'},
-          {zone: '临港', payment: 8000, message: '许可证办理地址和注册地址需在同一地区'},
+          {zone: '奉贤', payment: 5000, message: '许可证办理地址和注册地址需在同一地区', timeNeed: '2个月'},
+          {zone: '临港', payment: 8000, message: '许可证办理地址和注册地址需在同一地区', timeNeed: '2个月'},
         ]
       },
       {
         name: '进出口权证',
         label: '进出口权证',
+        type: 'exportImport',
         payment: 3000,
-        services: [
-          {zone: '全区', payment: 3000, message: '除正常办理费，客户需要再自费1400元，电子口岸卡、信息录入费等官方费用，海关收取'},
-        ]
+        timeNeed: '1个月',
+        message: '除正常办理费，客户需要再自费1400元，电子口岸卡、信息录入费等官方费用，海关收取',
+        // services: [
+        //   {zone: '全区', payment: 3000, message: '除正常办理费，客户需要再自费1400元，电子口岸卡、信息录入费等官方费用，海关收取', timeNeed: '1个月'},
+        // ]
       }
     ],
     companyChange: [
