@@ -483,6 +483,7 @@ function getProductInfo() {
       {
         name: '进出口权证',
         label: '进出口权证',
+        payment: 3000,
         services: [
           {zone: '全区', payment: 3000, message: '除正常办理费，客户需要再自费1400元，电子口岸卡、信息录入费等官方费用，海关收取'},
         ]

@@ -32,10 +32,6 @@ Template.product.helpers({
             var subType = params.query.subtype || "";
             return {result: true, template: subType};
         }
-
-        if (type == 'registration') {
-
-        }
         return {result: false};
     },
 });
@@ -71,8 +67,6 @@ Template.product_normal.helpers({
             finance: 'agent_board', //财务代理
             bookkeeping: 'package_board', //流量记账包服务套餐
             bank: 'bank_board', //银行开户
-            permit: 'dist_permit', //许可证
-            companycha: 'dist_change', //公司变更
         }[type];
     },
     _price: function() {
@@ -92,6 +86,8 @@ Template.product_normal.helpers({
             assurance: 'dist_security',
             trademark: 'dist_trademark',
             bookkeeping: 'dist_agent',
+            permit: 'dist_permit', //许可证
+            companycha: 'dist_change', //公司变更
         };
         if (dynamicTemplates.hasOwnProperty(type)) {
             return dynamicTemplates[type];
@@ -129,6 +125,14 @@ Template.product_normal.helpers({
                     _img: _img
                 };
             },
+            permit: function () {
+
+            },
+            companycha: function () {
+                return {
+                    _img: _img
+                }
+            }
         };
 
         //初始化数据
