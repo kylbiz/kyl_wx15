@@ -164,6 +164,8 @@ function getProductInfo() {
       'FinanceAgent': 2.7,
       'SpecialProduct': 1,
       'BankLists': 1.1,
+      'PermitProduct': 1,
+      'CompanyChange': 1
     },
 
     // 公司注册
@@ -467,6 +469,42 @@ function getProductInfo() {
       {name: '合伙管家', label: '合伙管家', payment: 2999, subType: 'partnership', other: {}},
       // {name: '周年庆特别活动', label: '周年庆特别活动', payment: 3000, subType: 'anniversaryActivity', other: {}},
     ],
+
+    // 特殊行业许可证
+    permitProduct: [
+      {
+        name: '食品流通许可证',
+        label: '食品流通许可证',
+        services: [
+          {zone: '奉贤', payment: 5000, message: '许可证办理地址和注册地址需在同一地区'},
+          {zone: '临港', payment: 8000, message: '许可证办理地址和注册地址需在同一地区'},
+        ]
+      },
+      {
+        name: '进出口权证',
+        label: '进出口权证',
+        services: [
+          {zone: '全区', payment: 3000, message: '除正常办理费，客户需要再自费1400元，电子口岸卡、信息录入费等官方费用，海关收取'},
+        ]
+      }
+    ],
+    companyChange: [
+      {
+        name: '公司字号变更',
+        label: '公司字号变更',
+        payment: 1500,
+      },
+      {
+        name: '内容变更',
+        label: '内容变更',
+        payment: 1500,
+      },
+      {
+        name: '注册地址变更',
+        label: '注册地址变更',
+        payment: 2000,
+      },
+    ]
   }
 }
 

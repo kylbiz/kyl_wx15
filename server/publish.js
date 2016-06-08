@@ -43,6 +43,8 @@ Meteor.publish('products', function(project, opt) {
 		'finance': FinanceAgent.find(opt),
 		'bank': BankLists.find(),
 		'special': SpecialProduct.find(),
+		'permit': PermitProduct.find(),
+		'companycha': CompanyChange.find(),
 	};
 
 	if (project == 'preview_all') {

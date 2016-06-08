@@ -70,7 +70,9 @@ Template.product_normal.helpers({
             assurance: 'assurance_board', //社保
             finance: 'agent_board', //财务代理
             bookkeeping: 'package_board', //流量记账包服务套餐
-            bank: 'bank_board' //银行开户
+            bank: 'bank_board', //银行开户
+            permit: 'dist_permit', //许可证
+            companycha: 'dist_change', //公司变更
         }[type];
     },
     _price: function() {
