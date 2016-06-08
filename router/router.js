@@ -62,6 +62,9 @@ Router.route('/products/:productType', {
 	}
 });
 
+//许可证
+
+
 // 产品购买选项页
 Router.route('/buyagent/:productType', {
 	name: 'buyagent',

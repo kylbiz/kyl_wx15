@@ -172,11 +172,18 @@
         font-weight: 600;
       }
     }
-    .line-sharpe{
-      background: url('/images/icon/linesharpe.png') no-repeat;
+    .line-sharpe-tmp{
       background-position: 0px -1px;
       background-size: 100% 130%;
       height: 15px;
+    }
+    .line-sharpe{
+      background: url('/images/icon/linesharpe.png') no-repeat;
+      .line-sharpe-tmp;
+    }
+    .line-sharpe1{
+      background: url('/images/icon/linesharpe1.png') no-repeat;
+      .line-sharpe-tmp;
     }
     .ui-info{
       .padding-inline;
@@ -709,9 +716,20 @@
 .yellow{
   background-color: @default-yellow;
 }
+
 .border-yellow{
   border-left-color: @default-yellow !important;
 }
+
+.pink{
+  background-color: #e88391;
+}
+
+.border-pink{
+  border-left-color:#e88391 !important;
+}
+
+
 
 .doubble-height{
   height: @default-li-height * 2 !important;
