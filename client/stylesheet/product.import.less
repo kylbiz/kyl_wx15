@@ -1,4 +1,7 @@
 @default-li-height:77px;
+@permit-li-height:88px;
+@change-li-height:134px;
+
 
 .board.gallery {
   color: #fff;
@@ -268,7 +271,69 @@
             // vertical-align: middle;
             height: @default-li-height;
             padding: 0px 0px;
+            font-size: 12px;
             border-bottom: 1px solid #dddbd6;
+            .table-cell{
+              display: table-cell;
+              vertical-align: middle;
+              height: @default-li-height;
+              width: @default-li-height * 2;
+              text-align: center;
+            }
+
+            .table-cell-doubble{
+              display: table-cell;
+              vertical-align: middle;
+              height: @default-li-height * 2;
+              width: @default-li-height * 2;
+              text-align: center;
+            }
+          }
+        }
+      }
+      // 特殊许可证ul样式
+      .permit{
+        ul{
+          &:first-child{
+              width: 18%; 
+          }
+          &:nth-child(2){
+              width: 39%;  
+          }
+          &:nth-child(3){  
+              width: 23%;  
+          }
+          &:last-child{
+            width: 20%;
+           
+          }
+          li{
+            height: @default-li-height;
+          }
+        }
+      }
+      //公司字号变更ul样式
+      .change{
+        ul{
+          &:first-child{
+              width: 33%; 
+          }
+          &:nth-child(2){
+              width: 24%; 
+          }
+          &:nth-child(3){  
+              width: 20%;  
+          }
+          &:last-child{
+            width: 23%;
+           
+          }
+          li{
+            height: @change-li-height;
+            .table-cell{
+              height: @change-li-height;
+              width: @change-li-height * 2;
+            }
           }
         }
       }
@@ -739,18 +804,3 @@
   line-height: @default-li-height * 2 !important;
 }
 
-.table-cell{
-  display: table-cell;
-  vertical-align: middle;
-  height: @default-li-height;
-  width: @default-li-height * 2;
-  text-align: center;
-}
-
-.table-cell-doubble{
-  display: table-cell;
-  vertical-align: middle;
-  height: @default-li-height * 2;
-  width: @default-li-height * 2;
-  text-align: center;
-}
