@@ -99,7 +99,8 @@ Template.product_normal.helpers({
     needNewPage: function () {
         var type = Router.current().params.productType;
         // console.log(Router.current().params);
-        return (type == 'finance' || type == 'registration');
+        // return (type == 'finance' || type == 'registration' || type == '' || typ);
+        return (type != 'bank');
     },
 
     // 产品选项信息
@@ -198,6 +199,17 @@ Template.dist_bank.helpers({
 Template.dist_bank.events({
     'click .dist-info-box .list': function (event) {
         $(event.currentTarget).closest('.list-container').toggleClass("open");
+    }
+});
+
+
+//
+Template.dist_permit.helpers({
+    foodInfo: function () {
+        return PermitProduct.findOne({type: 'food'});
+    },
+    exportImportInfo: function () {
+        return PermitProduct.findOne({type: 'exportImport'});
     }
 });
 
