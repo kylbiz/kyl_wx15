@@ -336,6 +336,16 @@
             }
           }
         }
+        @media (max-width:349px) {
+            ul{
+              li{
+                height: @change-li-height + 45;
+                .table-cell{
+                  height: @change-li-height + 45;
+                }
+              }
+            }
+        }
       }
       .annotation{
         margin-left: 7px;
@@ -566,8 +576,6 @@
 
 //帮助页
 .dist.helper {
-  
-  
   .section .dist-list-box .list {
     .line-height(48px);
     .height(48px);
@@ -765,7 +773,7 @@
           height: @default-li-height + 13 !important;
         }
         .doubble-height{
-          height: @default-li-height * 2 + 26 !important;
+          height: @default-li-height * 2 + 30 !important;
         }
       }
     }

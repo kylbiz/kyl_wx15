@@ -1,4 +1,50 @@
 <!-- 许可证购买页面 -->
 <template name="permitAgent">
-  <p>许可证购买页面</p>
+  <div id="content">
+    <div class="des">
+      <div class="icon">
+        <img src="/images/index/index_icon_4.png" alt="">
+      </div>
+      <div class="tag">
+        <p>许可证类型</p>
+        <p>¥ 100元/月</p>
+      </div>
+    </div>
+    <div class="dist-content">
+      <div class="piece">
+        <div class="content">
+        <div class="key">1、许可证类型</div>
+        <div class="field" id="name">
+          <ul>
+              <li class="{{#if $first}}selected{{/if}}" value="">食品流通许可证</li>
+              <li class="{{#if $first}}selected{{/if}}" value="">进出口权证</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+      <div class="piece">
+        <div class="content">
+        <div class="key">2、选择区域</div>
+        <div class="field" id="period">
+          <ul>
+              <li class="{{#if $first}}selected{{/if}}" value="">奉贤</li>
+              <li class="{{#if $first}}selected{{/if}}" value="">临港</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="buy-box">
+      <ul>
+        <li>
+          <p>许可证购买页面<!-- ({{typeLabel}}) --></p>
+          <span style="color: #999999">应付金额：</span><span id="price">¥ 200<!-- {{payment}} --></span>
+        </li>
+        <li>
+          <button class="btn submit">立即购买</button>
+        </li>
+      </ul>
+    </div>
 </template>
