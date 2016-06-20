@@ -488,7 +488,7 @@ function handlePermit(serInfo) {
 
 // 公司变更
 function handleCompanyCha (serInfo) {
-    var info = SpecialProduct.findOne({name: serInfo.name});
+    var info = CompanyChange.findOne({name: serInfo.name});
     if (!info) {
         throw new Meteor.Error("内部数据错误");
     }
