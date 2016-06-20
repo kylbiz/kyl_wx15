@@ -1,4 +1,40 @@
 <!-- 公司变更购买页面 -->
 <template name="companychaAgent">
-  <p>公司变更购买页面</p>
+  <div id="content">
+    <div class="des">
+      <div class="icon">
+        <img src="/images/index/index_icon_5.png" alt="">
+      </div>
+      <div class="tag">
+        <p>公司变更服务</p>
+        <!-- <p>¥ 100元/月</p> -->
+      </div>
+    </div>
+    <div class="dist-content">
+      <div class="piece">
+        <div class="content">
+        <div class="key">1、变更类型</div>
+        <div class="field" id="name">
+          <ul>
+            {{#each $mapped subTypes}}
+              <li class="{{#if $first}}selected{{/if}}" value="{{name}}">{{label}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="buy-box">
+      <ul>
+        <li>
+          <p>公司变更({{typeLabel}})</p>
+          <span style="color: #999999">应付金额：</span><span id="price">¥ {{payment}}</span>
+        </li>
+        <li>
+          <button class="btn submit">立即购买</button>
+        </li>
+      </ul>
+    </div>
 </template>

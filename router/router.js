@@ -62,8 +62,6 @@ Router.route('/products/:productType', {
 	}
 });
 
-//许可证
-
 
 // 产品购买选项页
 Router.route('/buyagent/:productType', {
@@ -79,7 +77,7 @@ Router.route('/buyagent/:productType', {
 
 		if (productType == 'finance') {
 			return Meteor.subscribe('products', this.params.productType, {"basicType.name": this.params.query.type});
-		} else if (productType == 'registration') {
+		} else {
 			return Meteor.subscribe('products', this.params.productType);
 		}
 	},

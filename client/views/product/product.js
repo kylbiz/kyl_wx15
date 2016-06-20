@@ -17,7 +17,7 @@ Template.product.onRendered(function(){
 
 Template.product.onDestroyed(function () {
     if (subObj) {
-        console.log("prodcut destroy", subObj);
+        // console.log("prodcut destroy", subObj);
         subObj.stop();
     }
 });

@@ -60,6 +60,8 @@ function goToAddShopCart() {
         return;
     }
 
+console.log("getServiceData", getServiceData());
+
     Meteor.call('shopcartAdd', getServiceData(), function (err, result) {
         if (err) {
             console.log('shopcartAdd err', err);
@@ -111,7 +113,20 @@ function getServiceData () {
             type: type,
             name: Session.get('Sel_1'),
             zone: Session.get('Sel_2'),
-          }
+          };
+        },
+        permit: function () {
+          return {
+            type: type,
+            name: Session.get('Sel_1'),
+            zone: Session.get('Sel_2')
+          };
+        },
+        companycha: function () {
+          return {
+            type: type,
+            name: Session.get('Sel_1')
+          };
         }
     };
 

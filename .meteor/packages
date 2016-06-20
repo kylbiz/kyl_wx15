@@ -7,7 +7,6 @@
 meteor-platform
 
 
-iron:router
 alanning:roles
 accounts-password
 http
@@ -23,3 +22,4 @@ cfs:http-methods
 
 npm-container
 meteorhacks:kadira
+iron:router

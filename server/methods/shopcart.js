@@ -25,6 +25,9 @@ function getShopcartInfo(serInfo) {
     	finance: handleFinance,
     	bank: handleBank,
       special: handleSpecial,
+      permit: handlePermit,
+      companycha: handleCompanyCha,
+
       // assurance: handleAssurance,
       // bookkeeping: handleBookkeeping,
       // trademark: handleTrademark,
@@ -44,6 +47,9 @@ function commInfo(serInfo) {
         'bank': '银行开户',
         'special': '特别产品',
         'partnership': '合伙管家',
+        'permit': '许可证',
+        'companycha': '公司变更',
+
         // 'assurance': '社保代理',
         // 'bookkeeping': '流量记账包服务套餐',
         // 'trademark': '商标注册',
@@ -54,6 +60,8 @@ function commInfo(serInfo) {
     'finance': 'FinanceAgent',
     'bank': 'BankLists',
     'special': 'SpecialProduct',
+    'permit': 'PermitProduct',
+    'companycha': 'CompanyChange',
   }
 
   var version = WebSiteInfoMobile.findOne({name: 'productVersion'})[ productCollections[serInfo.type] ];
@@ -431,6 +439,65 @@ function handleSpecial(serInfo) {
         servicesNameList: [{
             name: serInfo.name,
             subType: info.subType,
+            money: pay,
+            scale: 1,
+            servicesContains: [],
+        }]
+    };
+}
+
+// 许可证
+function handlePermit(serInfo) {
+  var info = PermitProduct.findOne({name: serInfo.name});
+  if (!info) {
+    throw new Meteor.Error("内部数据错误");
+  }
+
+
+  function getPay() {
+    var payment = 0;
+    var services = info.services;
+    services.forEach(function (service) {
+        if (service.zone == serInfo.zone) {
+            payment = service.payment;
+        }
+    });
+
+    if (!payment) {
+      throw new Meteor.Error('内部数据错误: 1002');
+    }
+
+    return payment;
+  }
+
+  var pay = getPay() || 0;
+  return {
+    moneyAmount: pay,
+    servicesNameList: [{
+      name: serInfo.name, //"互联网公司", // 当前订单具体内容
+      label: info.label,
+      money: pay,          //当前订单价格
+      scale: 1,                 // 购买数量
+      zone: serInfo.zone,
+      message: '',
+      servicesContains: [{}]
+    }]
+  };
+}
+
+
+// 公司变更
+function handleCompanyCha (serInfo) {
+    var info = SpecialProduct.findOne({name: serInfo.name});
+    if (!info) {
+        throw new Meteor.Error("内部数据错误");
+    }
+
+    var pay = info.payment || 0;
+    return {
+        moneyAmount: pay,
+        servicesNameList: [{
+            name: serInfo.name,
             money: pay,
             scale: 1,
             servicesContains: [],
