@@ -285,8 +285,9 @@ function finSpecialHandle (serInfo) {
         message: message || ""
       }]
     };
-  } else if (serInfo.name == 'invoiceagent') {
-    // 代开发票
+  // } else if (serInfo.name == 'invoiceagent' || serInfo.name == 'annualReport') {
+  } else {
+    // 代开发票 && 年报服务
     var productInfo = FinanceAgent.findOne({
       "name": serInfo.name,
       "opts.service.items.name": serInfo.service,

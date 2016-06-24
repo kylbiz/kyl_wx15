@@ -182,7 +182,7 @@ function getProductInfo() {
     productVersion: {
        name: 'productVersion',
       'CompanyRegist': 2.7,
-      'FinanceAgent': 2.7,
+      'FinanceAgent': 2.8,
       'SpecialProduct': 1,
       'BankLists': 1.1,
       'PermitProduct': 1,
@@ -428,6 +428,38 @@ function getProductInfo() {
               {
                 label: '代开发票', name: '代开发票', unit: '元/张', payment: 10,
                 message: '季度结算，满10张赠送5张，赠送张数可用于下季度使用',
+              },
+            ]
+          },
+          num: {
+            name: 'num',
+            label: '数量',
+          }
+        }
+      },
+      {
+        name: 'annualReport',
+        label: '年报服务',
+        basicType: {
+          name: 'special',
+          label: '财代特殊服务',
+        },
+        opts: {
+          service: {
+            name: 'service',
+            label: '服务项目',
+            items: [
+              {
+                label: '年度公示', name: '年度公示', unit: '元/次', payment: 300,
+                message: '',
+              },
+              {
+                label: '汇率清缴', name: '汇率清缴', unit: '元/次', payment: 500,
+                message: '',
+              },
+              {
+                label: '年度公示+汇率清缴', name: '年度公示+汇率清缴', unit: '元/次', payment: 800,
+                message: '',
               },
             ]
           },
