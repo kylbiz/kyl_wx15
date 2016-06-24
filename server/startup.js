@@ -182,7 +182,7 @@ function getProductInfo() {
     productVersion: {
        name: 'productVersion',
       'CompanyRegist': 2.7,
-      'FinanceAgent': 2.8,
+      'FinanceAgent': 2.9,
       'SpecialProduct': 1,
       'BankLists': 1.1,
       'PermitProduct': 1,
@@ -454,11 +454,11 @@ function getProductInfo() {
                 message: '',
               },
               {
-                label: '汇率清缴', name: '汇率清缴', unit: '元/次', payment: 500,
+                label: '汇算清缴', name: '汇算清缴', unit: '元/次', payment: 500,
                 message: '',
               },
               {
-                label: '年度公示+汇率清缴', name: '年度公示+汇率清缴', unit: '元/次', payment: 800,
+                label: '年度公示+汇算清缴', name: '年度公示+汇算清缴', unit: '元/次', payment: 800,
                 message: '',
               },
             ]
