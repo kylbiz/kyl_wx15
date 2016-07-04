@@ -392,6 +392,13 @@ function getProductInfo() {
                   downtown: 200,
                   suburbs: 200,
                 }
+              },
+              {
+                label: '三证合一', name: '三证合一', unit:'元/次',
+                payment: {
+                  downtown: 500,
+                  suburbs: 500,
+                }
               }
             ]
           },
