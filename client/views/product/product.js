@@ -174,6 +174,7 @@ Template.product.events({
 });
 
 
+
 // 银行开户
 Template.dist_bank.onRendered(function () {
     this.autorun(function () {
